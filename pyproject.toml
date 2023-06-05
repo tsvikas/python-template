@@ -1,0 +1,82 @@
+[tool.poetry]
+name = "python-template"
+version = "0.0.0"
+description = ""
+license = "AGPL-3.0-or-later"
+authors = ["Tsvika S <tsvikas@gmail.com>"]
+readme = "README.md"
+packages = [{include = "python_template"}]
+
+[tool.poetry.scripts]
+pdb-features = 'pdb_features.__main__:main'
+
+[tool.poetry.dependencies]
+python = "~3.11"
+
+[tool.poetry.group.dev.dependencies]
+bump2version = "^1"
+pre-commit = "^3"
+black = "^23"  # TODO: add d/jupyter support
+ruff = "^0.0.270"
+
+[tool.poetry.group.typing.dependencies]
+mypy = "^1"
+
+[tool.poetry.group.testing.dependencies]
+pytest = "^7"
+pytest-clarity = "^1"
+pytest-cov = "^4"
+#pytest-datadir = "^1"
+pytest-pretty = "^1"
+pytest-reverse = "^1"
+
+[tool.poetry.group.jupyter.dependencies]
+jupyterlab = "^4"
+jupytext = "^1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+
+[tool.poe.tasks]
+_commit-release = "bump2version release --commit --tag"
+_commit-post-release = "bump2version release --commit"
+
+[tool.poe.tasks.bump2version]
+help = "Update code version"
+cmd  = "bump2version"
+
+[tool.poe.tasks.test]
+help = "Run unit and feature tests"
+cmd  = "pytest --cov=python_template"
+
+[tool.poe.tasks.build]
+help = "Create sdist and wheel"
+cmd  = "poetry build"
+
+[tool.poe.tasks.release]
+help = "Realese a new version"
+sequence  = ["test", "_commit-release", "build", "_commit-post-release"]
+
+[tool.poe.tasks.black]
+help = "Run black on the code base"
+cmd  = "pre-commit run --all-files black"
+
+[tool.poe.tasks.format]
+help = "Run formating tools on the code base"
+sequence  = ["black"]
+
+[tool.poe.tasks.ruff]
+help = "Run ruff on the code base"
+cmd  = "pre-commit run ruff check ."
+
+[tool.poe.tasks.mypy]
+help = "Run mypy on the code base"
+cmd  = "pre-commit run mypy"
+
+[tool.poe.tasks.check]
+help = "Run validation tools on the code base"
+sequence  = ["ruff", "mypy"]
+

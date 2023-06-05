@@ -1,0 +1,62 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.4.0
+    hooks:
+      # filesystem
+      - id: check-case-conflict
+      - id: check-executables-have-shebangs
+      - id: check-shebang-scripts-are-executable
+      # files
+      - id: detect-private-key
+      - id: end-of-file-fixer
+      - id: mixed-line-ending
+      - id: trailing-whitespace
+        # excluding this since bumpversion keep changing it
+        exclude: (\.pdb$|^\.bumpversion.cfg$)
+      # git
+      - id: check-added-large-files
+      - id: check-merge-conflict
+      # python
+      - id: check-ast
+      - id: check-docstring-first
+      - id: debug-statements
+      - id: requirements-txt-fixer
+      # filetypes
+      - id: check-json
+      - id: check-symlinks
+      - id: check-toml
+      - id: check-yaml
+      - id: check-xml
+      - id: pretty-format-json
+  - repo: https://github.com/psf/black
+    rev: 23.3.0
+    hooks:
+      # change to "black" to drop jupyter support
+      - id: black-jupyter
+  # remove this repo to drop jupyter support
+  - repo: github.com/nbQA-dev/nbQA
+    rev: 1.7.0
+    hooks:
+      - id: nbqa-check-ast
+      - id: nbqa-black
+      - id: nbqa-ruff
+  #
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.0.270
+    hooks:
+      - id: ruff
+  - repo: local
+    hooks:
+    # black using poe
+    - id: poe-format
+      name: PoeThePoet format
+      language: system
+      entry: poe format
+      types_or: [python, jupyter]
+      require_serial: true
+    # ruff/mypy using poe
+    - id: poe-check
+      name: PoeThePoet check
+      language: system
+      entry: poe check
+      types: [python]
