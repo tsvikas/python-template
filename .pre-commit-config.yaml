@@ -1,4 +1,5 @@
 # run `pre-commit autoupdate` and `pre-commit install`
+# TODO: add jupytext? https://jupytext.readthedocs.io/en/latest/using-pre-commit.html
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.4.0
