@@ -60,3 +60,7 @@ repos:
       language: system
       entry: poe check
       types: [python]
+  - repo: https://github.com/python-poetry/poetry
+    rev: 1.5.0
+    hooks:
+      - id: poetry-check
