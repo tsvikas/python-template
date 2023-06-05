@@ -1,6 +1,7 @@
 # run `pre-commit autoupdate` and `pre-commit install`
 # TODO: add jupytext? https://jupytext.readthedocs.io/en/latest/using-pre-commit.html
 # TODO: add github.com/Lucas-C/pre-commit-hooks : forbid-crlf and forbid-tabs
+# TODO: add https://github.com/sirwart/ripsecrets
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.4.0
