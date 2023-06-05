@@ -9,16 +9,16 @@ repos:
       - id: check-case-conflict
       - id: check-executables-have-shebangs
       - id: check-shebang-scripts-are-executable
-      # files
+      # git
       - id: detect-private-key
+      - id: check-added-large-files
+      - id: check-merge-conflict
+      # files
       - id: end-of-file-fixer
       - id: mixed-line-ending
       - id: trailing-whitespace
         # excluding this since bumpversion keep changing it
         exclude: (\.pdb$|^\.bumpversion.cfg$)
-      # git
-      - id: check-added-large-files
-      - id: check-merge-conflict
       # python
       - id: check-ast
       - id: check-docstring-first
