@@ -11,9 +11,11 @@ repos:
       - id: check-executables-have-shebangs
       - id: check-shebang-scripts-are-executable
       # git
-      - id: detect-private-key
       - id: check-added-large-files
       - id: check-merge-conflict
+      # secrets
+      - id: detect-private-key
+      - id: detect-aws-credentials
       # files
       - id: end-of-file-fixer
       - id: mixed-line-ending
