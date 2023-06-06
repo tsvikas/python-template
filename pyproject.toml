@@ -55,22 +55,31 @@ preview = true
 
 
 [tool.ruff]
-# select = ["ALL"]
+select = ["ALL"]
 ignore = [
+    # not compatible with black:
     "COM812",   # flake8-commas/missing-trailing-comma
+    # incompatible pairs. choose 1:
+    # "D203",     # pydocstyle/one-blank-line-before-class 
+    "D211",     # pydocstyle/no-blank-line-before-class
+    "D212",     # pydocstyle/multi-line-summary-first-line
+    # "D213",     # pydocstyle/multi-line-summary-second-line
+    # wrong:
+    "PD010",    # pandas-vet/pandas-use-of-dot-pivot-or-unstack
+    "PD013",    # pandas-vet/pandas-use-of-dot-stack
     "EM",       # flake8-errmsg
+    # irrelevant:
+    "RET504",   # flake8-return/unnecessary-assign
+    # very costly to maintain:
+    "ANN",      # flake8-annotations
+    "D1",       # pydocstyle/undocumented-*
+    # ban something useful for a good reason
     # "C901",     # mccabe/complex-structure
-    # "D",        # pydocstyle (D)
-    # "ANN",      # flake8-annotations
     # "S101",     # flake8-bandit/assert
     # "FBT002",   # flake8-boolean-trap/boolean-default-value-in-function-definition
     # "DTZ",      # flake8-datetimez
-    # "INP001",   # flake8-no-pep420/implicit-namespace-package
-    # "RET504",   # flake8-return/unnecessary-assign
     # "ERA001",   # eradicate/commented-out-code
-    # "PD010",    # pandas-vet/pandas-use-of-dot-pivot-or-unstack
-    # "PD013",    # pandas-vet/pandas-use-of-dot-stack
-    # "PLR0913",  # PyLint-Refactor/too-many-arguments
+    # "PLR091",   # PyLint-Refactor/too-many-*
     # "PLW2901",  # PyLint-Warning/redefined-loop-name
     # "TRY003",   # tryceratops/raise-vanilla-args
 ]
