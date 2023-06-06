@@ -1,0 +1,62 @@
+# this makes pre-commit install work for other hook types
+default_install_hook_types: [pre-commit, pre-merge-commit, pre-push, post-checkout]
+default_language_version:
+    python: python3
+default_stages: [commit, merge-commit, manual]
+repos:
+# first, sort the dvc.lock
+- repo: local
+  hooks:
+  - id: sort-dvc-lock
+    name: sort-dvc-lock
+    entry: scripts/sort_dvc_lock.py
+    language: system
+    files: ^dvc.lock$
+    pass_filenames: false
+# add regular hooks here
+# repo: https://github.com/pre-commit/pre-commit-hooks
+# repo: https://github.com/psf/black
+# repo: https://github.com/charliermarsh/ruff-pre-commit
+# etc...
+# than, dvc at the end:
+# sometimes local is faster
+# also, running only on merge xommit to save time
+- repo: local
+  hooks:
+  - id: dvc-repro
+    name: dvc-repro
+    entry: dvc repro
+    language: system
+    pass_filenames: false
+    stages:
+    - merge-commit
+    - manual
+  - id: pre-pytest
+    name: dvc-checkout
+    entry: dvc checkout
+    language: system
+    pass_filenames: false
+    stages:
+    - merge-commit
+    - manual
+  - id: pytest
+    name: pytest
+    entry: poetry run pytest
+    language: system
+    pass_filenames: false
+    stages:
+    - merge-commit
+    - manual
+- repo: https://github.com/iterative/dvc
+  rev: 2.45.1
+  hooks:
+  # alternatively, use dvc-pre-commit and dvc-pre-push from here
+#  - id: dvc-pre-commit
+#  - id: dvc-pre-push
+#    stages:
+#    - push
+  # always use post-checkout, to prevent faulty data at tests etc.
+  - id: dvc-post-checkout
+    stages:
+    - post-checkout
+    always_run: true
