@@ -2,9 +2,13 @@
 name = "python-template"
 version = "0.0.0"
 description = ""
-license = "AGPL-3.0-or-later"
-authors = ["Tsvika S <tsvikas@gmail.com>"]
+authors = ["Tsvika S <tsvikas@github>"]
+# optional settings:
+license = "AGPL-3.0-or-later"  # or use "MIT"
 readme = "README.md"
+homepage = "https://python-template.org/"
+repository = "https://github.com/tsvikas/python-template"
+documentation = "https://python-template.org/docs/"
 packages = [{include = "python_template"}]
 
 [tool.poetry.scripts]
