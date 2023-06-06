@@ -14,6 +14,9 @@ packages = [{include = "python_template"}]
 [tool.poetry.scripts]
 my-script = "python_template.__main__:main"
 
+[tool.poetry.extras]
+# add optional dependency groups here
+
 [tool.poetry.dependencies]
 python = "~3.11"
 
