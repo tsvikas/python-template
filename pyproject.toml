@@ -47,6 +47,11 @@ requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 
+[tool.black]
+target-version = ["py311"]
+preview = true
+
+
 [tool.poe.tasks]
 _commit-release = "bump2version release --commit --tag"
 _commit-post-release = "bump2version release --commit"
