@@ -41,6 +41,10 @@ MANIFEST
 venv/
 .venv/
 
+# development tools
+.pytest_cache/
+.ruff_cache/
+
 # PyCharm
 .idea
 
