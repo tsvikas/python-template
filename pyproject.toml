@@ -10,6 +10,8 @@ homepage = "https://python-template.org/"
 repository = "https://github.com/tsvikas/python-template"
 documentation = "https://python-template.org/docs/"
 packages = [{include = "python_template"}]
+# TODO: src path
+# TODO: check isort works well with known_first_party
 
 [tool.poetry.scripts]
 my-script = "python_template.__main__:main"
