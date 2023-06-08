@@ -35,6 +35,8 @@ mypy = "^1"
 
 [tool.poetry.group.testing.dependencies]
 pytest = "^7"
+# TODO: add some kind of doctesting
+# TODO: maybe add hypothesis
 pytest-clarity = "^1"
 pytest-cov = "^4"
 #pytest-datadir = "^1"
