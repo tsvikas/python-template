@@ -45,6 +45,12 @@ pytest-reverse = "^1"
 
 [tool.poetry.group.jupyter.dependencies]
 jupyterlab = "^4"
+# TODO: fix version here
+matplotlib = "*"
+hvplot = "*"
+ipywidgets = "*"
+python-lsp-server = "*"
+jupyter-collaboration = "^1"
 jupytext = "^1"
 
 
