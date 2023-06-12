@@ -1,5 +1,6 @@
 https://github.com/dmyersturnbull/tyrannosaurus
-https://github.com/dmyersturnbull/science-notebook-template
-https://github.com/dmyersturnbull/tyrannosaurus#-feature-table
-hatch
-
+copier
+for nb - https://github.com/dmyersturnbull/science-notebook-template
+more tools - https://github.com/dmyersturnbull/tyrannosaurus#-feature-table
+Python project management - hatch
+Task runner - https://pawamoy.github.io/duty/
