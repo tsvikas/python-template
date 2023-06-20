@@ -34,6 +34,7 @@ repos:
       - id: check-yaml
       - id: check-xml
       - id: pretty-format-json
+  # TODO: use poethepoet instead of black/ruff/nbqa
   - repo: https://github.com/psf/black
     rev: 23.3.0
     hooks:
