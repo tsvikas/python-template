@@ -47,6 +47,7 @@ venv/
 # development tools
 .pytest_cache/
 .ruff_cache/
+.hypothesis/
 
 # PyCharm
 .idea
@@ -54,7 +55,6 @@ venv/
 # jupyter
 .ipynb_checkpoints/
 
-# converted notebooks
-src/automl/pycaret_notebook.ipynb
+# converted notebooks:
 
 # specific to this project:
