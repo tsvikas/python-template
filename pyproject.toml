@@ -26,7 +26,7 @@ python = "~3.11"
 [tool.poetry.group.dev.dependencies]
 bump2version = "^1"
 pre-commit = "^3"
-# TODO: add balck-d/jupyter support
+# TODO: add black-d/jupyter support
 black = "^23"
 ruff = "^0.0.270"
 
