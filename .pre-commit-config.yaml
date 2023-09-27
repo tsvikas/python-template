@@ -14,7 +14,7 @@ repos:
       - id: check-merge-conflict
       # secrets
       - id: detect-private-key
-      - id: detect-aws-credentials
+      - id: detect-aws-credentials  # TODO: maybe remove this?
       # files
       - id: end-of-file-fixer
       - id: mixed-line-ending
@@ -33,6 +33,7 @@ repos:
       - id: check-yaml
       - id: check-xml
       - id: pretty-format-json
+  # TODO: does it work?
   - repo: https://github.com/sirwart/ripsecrets
     rev: v0.1.7
     hooks:
