@@ -32,6 +32,7 @@ ruff = "^0.1.0"
 
 [tool.poetry.group.typing.dependencies]
 mypy = "^1"
+# TODO: add common needed typing stubs
 
 [tool.poetry.group.testing.dependencies]
 pytest = "^7"
@@ -148,4 +149,3 @@ cmd  = "pre-commit run mypy"
 [tool.poe.tasks.check]
 help = "Run validation tools on the code base"
 sequence  = ["ruff", "mypy"]
-
