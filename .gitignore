@@ -45,7 +45,7 @@ venv/
 .venv/
 
 # development tools
-.pytest_cache/
+.mypyt_cache/
 .ruff_cache/
 .hypothesis/
 
