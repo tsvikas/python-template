@@ -54,6 +54,7 @@ repos:
       # {remove if using black-jupyter}
       - id: nbqa-black
       - id: nbqa-ruff
+  # TODO: add ruff sort imports
   # {remove if using poethepoet}
   - repo: https://github.com/astral-sh/ruff-pre-commit
     rev: v0.0.270
