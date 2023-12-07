@@ -17,9 +17,9 @@
 # %load_ext autoreload
 
 # %%
-# %config ZMQ.??? = 'last_expr_or_assign'
+# %config ZMQInteractiveShell.ast_node_interactivity = 'last_expr_or_assign'
 # %autoreload 1
-# %aimport titanic
+# %aimport my_package
 
 # %%
 from pathlib import Path
@@ -27,4 +27,7 @@ from pathlib import Path
 import matplotlib.pyplot as plt
 import pandas as pd
 from IPython.core.display_functions import display
-pd.options.core = ...
+
+pd.options.display.show_dimensions = True
+pd.options.display.width = 120
+pd.options.mode.copy_on_write = True
