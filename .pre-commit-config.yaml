@@ -91,6 +91,11 @@ repos:
       language: system
       entry: poe check
       types: [python]
+    # optional: pytest using poe
+    - id: poe-test
+      name: poe-test
+      language: system
+      entry: poe test
   # {{/remove if not using poethepoet}}
   - repo: https://github.com/python-poetry/poetry
     rev: 1.5.0
