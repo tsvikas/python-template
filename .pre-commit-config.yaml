@@ -69,14 +69,14 @@ repos:
     hooks:
     # black using poe
     - id: poe-format
-      name: PoeThePoet format
+      name: poe-format
       language: system
       entry: poe format
       types_or: [python, jupyter]
       require_serial: true
     # ruff/mypy using poe
     - id: poe-check
-      name: PoeThePoet check
+      name: poe-check
       language: system
       entry: poe check
       types: [python]
