@@ -132,7 +132,6 @@ lint         = ["lint-ruff", "lint-mypy"]
 lint-ruff    = "ruff check ."
 lint-mypy    = "mypy"
 version      = "dunamai from git"
-release      = ["tag", "build"]
 build        = "poetry build"
 
 [tool.poe.tasks._tag]
