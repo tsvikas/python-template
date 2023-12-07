@@ -3,22 +3,20 @@
 # TODO: add hatch option
 # TODO: add option to get version from git tag
 # TODO: see https://github.com/mtkennerly/poetry-dynamic-versioning
-name = "python-template"
+name = "my_package"
 version = "0.0.0"
 description = ""
 authors = ["Tsvika S <tsvikas@gmail.com>"]
 # optional settings:
-license = "AGPL-3.0-or-later"  # or use "MIT"
+license = "AGPL-3.0-or-later"
 readme = "README.md"
-homepage = "https://python-template.org/"
-repository = "https://github.com/tsvikas/python-template"
-documentation = "https://python-template.org/docs/"
+repository = "https://github.com/tsvikas/my_package"
 # {use if package name != package stub, or package is in a specific dir}
-# packages = [{include = "python_template", from = "src"}]
+# packages = [{include = "my_package", from = "src"}]
 
 # {use to add a cli}
 # [tool.poetry.scripts]
-# my-command = "python_template.my_module:run"
+# my-command = "my_package.my_module:run"
 
 [tool.poetry.dependencies]
 python = "~3.12"
@@ -59,12 +57,12 @@ build-backend = "poetry.core.masonry.api"
 
 
 [tool.pytest.ini_options]
-addopts = "--doctest-modules --cov=python_template"
+addopts = "--doctest-modules --cov=my_package"
 
 
 [tool.mypy]
 mypy_path = "stubs"
-packages = "python_template"
+packages = "my_package"
 strict = true
 
 
