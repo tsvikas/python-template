@@ -32,16 +32,16 @@ ruff = "^0.1.0"
 
 [tool.poetry.group.typing.dependencies]
 mypy = "^1"
-# TODO: add common needed typing stubs
+# pandas-stubs = "*"
 
 [tool.poetry.group.testing.dependencies]
 pytest = "^7"
-# TODO: maybe add hypothesis
 pytest-clarity = "^1"
 pytest-cov = "^4"
-#pytest-datadir = "^1"
 pytest-pretty = "^1"
 pytest-reverse = "^1"
+# pytest-datadir = "^1.5"
+# hypothesis = "^6"
 
 [tool.poetry.group.jupyter.dependencies]
 jupyterlab = "^4"
@@ -49,8 +49,8 @@ matplotlib = "*"
 hvplot = "*"
 ipywidgets = "*"
 python-lsp-server = "*"
-jupyter-collaboration = "^1"
-jupytext = "^1"
+jupytext = "*"
+# jupyter-collaboration = "^1.2"
 
 
 [build-system]
