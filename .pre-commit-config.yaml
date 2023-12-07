@@ -37,34 +37,45 @@ repos:
     rev: v1.5.4
     hooks:
       - id: forbid-tabs
-  # {{ remove if using poethepoet}}
+  # {{remove if using poethepoet}}
   - repo: https://github.com/astral-sh/ruff-pre-commit
     rev: v0.0.270
     hooks:
       - id: ruff
         name: ruff-isort
         args: ["--select", "I001", "--fix"]
+  # {keep if using jupyter:forbidden}
   - repo: https://github.com/psf/black-pre-commit-mirror
     rev: 23.9.1
     hooks:
-      # {remove if using jupyter}
       - id: black
-      # {remove if not using jupyter}
+  - repo: local
+    hooks:
+      - id: forbid-ipynb
+        name: forbid ipynb
+        entry: filenames must not end in .ipynb
+        language: fail
+        files: '/.*(?<!\.ipynb)$'
+  # {keep if using jupyter:black}
+  - repo: https://github.com/psf/black-pre-commit-mirror
+    rev: 23.9.1
+    hooks:
+      - id: black
       - id: black-jupyter
-  # {remove if not using jupyter}
+  # {keep if using jupyter:nbqa}
   - repo: https://github.com/nbQA-dev/nbQA
     rev: 1.7.0
     hooks:
       - id: nbqa-check-ast
-      # {remove if using black-jupyter}
       - id: nbqa-black
       - id: nbqa-ruff
+  # {keep}
   - repo: https://github.com/astral-sh/ruff-pre-commit
     rev: v0.0.270
     hooks:
       - id: ruff
   # {{/remove if using poethepoet}}
-  # {remove if not using poethepoet}
+  # {{remove if not using poethepoet}}
   - repo: local
     hooks:
     # black using poe
@@ -80,7 +91,7 @@ repos:
       language: system
       entry: poe check
       types: [python]
-  # {remove if not using poetry}
+  # {{/remove if not using poethepoet}}
   - repo: https://github.com/python-poetry/poetry
     rev: 1.5.0
     hooks:
