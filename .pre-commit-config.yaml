@@ -34,15 +34,15 @@ repos:
       - id: check-yaml
       - id: check-xml
       - id: pretty-format-json
-  # {remove if using poethepoet}
+  # {{ remove if using poethepoet}}
   - repo: https://github.com/psf/black-pre-commit-mirror
     rev: 23.9.1
     hooks:
-      # {keep if not using jupyter}
+      # {remove if using jupyter}
       - id: black
-      # {keep if using jupyter}
+      # {remove if not using jupyter}
       - id: black-jupyter
-  # {remove if using poethepoet or not using jupyter}
+  # {remove if not using jupyter}
   - repo: https://github.com/nbQA-dev/nbQA
     rev: 1.7.0
     hooks:
@@ -50,13 +50,12 @@ repos:
       # {remove if using black-jupyter}
       - id: nbqa-black
       - id: nbqa-ruff
-  # TODO: add ruff sort imports
-  # {remove if using poethepoet}
   - repo: https://github.com/astral-sh/ruff-pre-commit
     rev: v0.0.270
     hooks:
       - id: ruff
-  # {keep if using poethepoet}
+  # {{/remove if using poethepoet}}
+  # {remove if not using poethepoet}
   - repo: local
     hooks:
     # black using poe
@@ -72,7 +71,7 @@ repos:
       language: system
       entry: poe check
       types: [python]
-  # {keep if using poetry}
+  # {remove if not using poetry}
   - repo: https://github.com/python-poetry/poetry
     rev: 1.5.0
     hooks:
