@@ -13,7 +13,8 @@ readme = "README.md"
 homepage = "https://python-template.org/"
 repository = "https://github.com/tsvikas/python-template"
 documentation = "https://python-template.org/docs/"
-packages = [{include = "python_template"}]
+# {use if package name != package stub, or package is in a specific dir}
+# packages = [{include = "python_template", from = "src"}]
 
 [tool.poetry.scripts]
 my-script = "python_template.__main__:main"
