@@ -1,5 +1,3 @@
-# on init: run `pre-commit autoupdate`
-# on init/clone: `pre-commit install`
 # TODO: add jupytext: jupytext.readthedocs.io/en/latest/using-pre-commit.html
 # TODO: add a secrets detector
 repos:
