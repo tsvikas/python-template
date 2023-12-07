@@ -43,14 +43,14 @@ pytest-reverse = "^1"
 # pytest-regressions = "^2.5"
 # hypothesis = "^6"
 
-[tool.poetry.group.jupyter.dependencies]
-jupyterlab = "^4"
-matplotlib = "*"
-hvplot = "*"
-ipywidgets = "*"
-python-lsp-server = "*"
-jupytext = "*"
-# jupyter-collaboration = "^1.2"
+# [tool.poetry.group.jupyter.dependencies]
+# jupyterlab = "^4"
+# matplotlib = "*"
+# hvplot = "*"
+# ipywidgets = "*"
+# python-lsp-server = "*"
+# jupytext = "*"
+# # jupyter-collaboration = "^1.2"
 
 
 [build-system]
