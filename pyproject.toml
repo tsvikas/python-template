@@ -1,7 +1,10 @@
-# TODO: add https://github.com/mtkennerly/poetry-dynamic-versioning
 [tool.poetry]
+# TODO: check that isort works well with known_first_party
+# TODO: add hatch option
 name = "python-template"
 version = "0.0.0"
+# TODO: add option to get version from git tag
+# TODO: see https://github.com/mtkennerly/poetry-dynamic-versioning
 description = ""
 authors = ["Tsvika S <tsvikas@gmail.com>"]
 # optional settings:
@@ -11,15 +14,12 @@ homepage = "https://python-template.org/"
 repository = "https://github.com/tsvikas/python-template"
 documentation = "https://python-template.org/docs/"
 packages = [{include = "python_template"}]
-# TODO: src path
-# TODO: check isort works well with known_first_party
-# TODO: add hatch option
 
 [tool.poetry.scripts]
 my-script = "python_template.__main__:main"
 
 [tool.poetry.extras]
-# add optional dependency groups here
+# TODO: add template for optional dependency groups
 
 [tool.poetry.dependencies]
 python = "~3.11"
@@ -27,7 +27,6 @@ python = "~3.11"
 [tool.poetry.group.dev.dependencies]
 bump2version = "^1"
 pre-commit = "^3"
-# TODO: add black-d/jupyter support
 black = "^23"
 ruff = "^0.1.0"
 
@@ -46,7 +45,6 @@ pytest-reverse = "^1"
 
 [tool.poetry.group.jupyter.dependencies]
 jupyterlab = "^4"
-# TODO: fix version here
 matplotlib = "*"
 hvplot = "*"
 ipywidgets = "*"
