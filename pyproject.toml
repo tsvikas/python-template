@@ -1,10 +1,10 @@
 [tool.poetry]
 # TODO: check that isort works well with known_first_party
 # TODO: add hatch option
-name = "python-template"
-version = "0.0.0"
 # TODO: add option to get version from git tag
 # TODO: see https://github.com/mtkennerly/poetry-dynamic-versioning
+name = "python-template"
+version = "0.0.0"
 description = ""
 authors = ["Tsvika S <tsvikas@gmail.com>"]
 # optional settings:
