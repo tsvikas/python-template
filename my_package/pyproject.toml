@@ -18,6 +18,7 @@ repository = "https://github.com/tsvikas/my_package"
 
 [tool.poetry.dependencies]
 python = "~3.12"
+# icecream / snoop / python-devtools / birdseye = "*"
 
 [tool.poetry.group.dev.dependencies]
 black = "^23"
