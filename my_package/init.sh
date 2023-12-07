@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 set -e
 
-# git init
-git init
+# git init & initial commit
+git init -q
 git add --all
 git reset "$0"
 git commit -m "initial commit" -q
@@ -19,8 +19,7 @@ git add .pre-commit-config.yaml
 git commit -m "chore: pre-commit update" -q
 
 # pre-commit install
-poetry run pre-commit install
+poetry run pre-commit install > /dev/null
 
 echo "use 'gh repo create' to set this repo on GitHub"
-echo "use 'run pre-commit install-hooks' to install the pre-commit hooks"
 rm "$0"
