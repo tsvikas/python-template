@@ -76,7 +76,7 @@ preview = false
 [tool.ruff]
 select = ["ALL"]
 ignore = [
-    # important, enable when possible:
+    # important, unignore when possible:
     "ANN",      # flake8-annotations
     "D1",       # pydocstyle/undocumented-*
     # needed only in large codebases
