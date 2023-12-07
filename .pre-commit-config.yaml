@@ -1,7 +1,7 @@
 # on init: run `pre-commit autoupdate`
 # on init/clone: `pre-commit install`
 # TODO: add jupytext: jupytext.readthedocs.io/en/latest/using-pre-commit.html
-# TODO: add forbif-crlf/tabs: github.com/Lucas-C/pre-commit-hooks
+# TODO: add forbif-tabs: github.com/Lucas-C/pre-commit-hooks
 # TODO: add a secrets detector
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
@@ -19,6 +19,7 @@ repos:
       # files
       - id: end-of-file-fixer
       - id: mixed-line-ending
+        args: [--fix=lf]
       - id: trailing-whitespace
         # excluding this since bumpversion keep changing it
         exclude: (\.pdb$|^\.bumpversion.cfg$)
