@@ -16,8 +16,9 @@ documentation = "https://python-template.org/docs/"
 # {use if package name != package stub, or package is in a specific dir}
 # packages = [{include = "python_template", from = "src"}]
 
-[tool.poetry.scripts]
-my-script = "python_template.my_module:run"
+# {use to add a cli}
+# [tool.poetry.scripts]
+# my-command = "python_template.my_module:run"
 
 [tool.poetry.extras]
 # TODO: add template for optional dependency groups
