@@ -14,21 +14,17 @@ def main():
     )
     parser.add_argument(
         "destination",
-        help="The destination directory to create the package in",
-    )
-    parser.add_argument(
-        "package_name",
-        help="The name of the package to create",
+        help="The destination directory to create the package in. the last part of the path will be the package name",
     )
     args = parser.parse_args()
-    # check the package name is valid
-    package_name = args.package_name
-    if not package_name.isidentifier():
-        print(f"Invalid package name: {package_name}")
-        sys.exit(1)
-    destination = Path(args.destination) / args.package_name
+    # check the arguments
+    destination = Path(args.destination)
     if destination.exists():
         print(f"Destination already exists: {destination}")
+        sys.exit(1)
+    package_name = destination.name
+    if not package_name.isidentifier():
+        print(f"Invalid package name: {package_name}")
         sys.exit(2)
 
     # copy to the destination
