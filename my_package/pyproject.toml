@@ -97,16 +97,16 @@ ignore = [
     "RET504",   # flake8-return/unnecessary-assign
     "ANN1",     # flake8-annotations/missing-type-self,missing-type-cls
     # ban something useful for a good reason
-    # "C901",     # mccabe/complex-structure
-    # "S101",     # flake8-bandit/assert
-    # "FBT001",   # flake8-boolean-trap/boolean-type-hint-positional-argument
-    # "FBT002",   # flake8-boolean-trap/boolean-default-value-positional-argument
-    # "DTZ",      # flake8-datetimez
-    # "PD901",    # pandas-vet/pandas-df-variable-name
-    # "FIX",      # flake8-fixme
-    # "ERA001",   # eradicate/commented-out-code
-    # "PLR091",   # PyLint-Refactor/too-many-*
-    # "TRY003",   # tryceratops/raise-vanilla-args
+    #"C901",     # mccabe/complex-structure
+    #"S101",     # flake8-bandit/assert
+    #"FBT001",   # flake8-boolean-trap/boolean-type-hint-positional-argument
+    #"FBT002",   # flake8-boolean-trap/boolean-default-value-positional-argument
+    #"DTZ",      # flake8-datetimez
+    #"PD901",    # pandas-vet/pandas-df-variable-name
+    #"FIX",      # flake8-fixme
+    #"ERA001",   # eradicate/commented-out-code
+    #"PLR091",   # PyLint-Refactor/too-many-*
+    #"TRY003",   # tryceratops/raise-vanilla-args
 ]
 target-version = "py312"
 
@@ -124,19 +124,14 @@ mypy-init-return = true
 # {{keep if using poe}}
 [tool.poe.tasks]
 check        = ["format", "test", "lint"]
-
 format       = ["format-isort", "format-black"]
 format-isort = "ruff check . --select I001 --fix"
 format-black = "black ."
-
 test         = "pytest"
-
 lint         = ["lint-ruff", "lint-mypy"]
 lint-ruff    = "ruff check ."
 lint-mypy    = "mypy"
-
 version      = "dunamai from git"
-
 release      = ["tag", "build"]
 build        = "poetry build"
 
