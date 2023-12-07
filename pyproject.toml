@@ -21,7 +21,7 @@ documentation = "https://python-template.org/docs/"
 # my-command = "python_template.my_module:run"
 
 [tool.poetry.dependencies]
-python = "~3.11"
+python = "~3.12"
 
 [tool.poetry.group.dev.dependencies]
 bump2version = "^1"
@@ -69,7 +69,7 @@ strict = true
 
 
 [tool.black]
-target-version = ["py311"]
+target-version = ["py312"]
 preview = false
 
 
@@ -106,7 +106,7 @@ ignore = [
     # "PLR091",   # PyLint-Refactor/too-many-*
     # "TRY003",   # tryceratops/raise-vanilla-args
 ]
-target-version = "py311"
+target-version = "py312"
 
 [tool.ruff.lint.flake8-annotations]
 mypy-init-return = true
