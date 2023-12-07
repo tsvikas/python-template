@@ -40,6 +40,7 @@ pytest-cov = "^4"
 pytest-pretty = "^1"
 pytest-reverse = "^1"
 # pytest-datadir = "^1.5"
+# pytest-regressions = "^2.5"
 # hypothesis = "^6"
 
 [tool.poetry.group.jupyter.dependencies]
