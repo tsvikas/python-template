@@ -20,7 +20,6 @@ repos:
       - id: mixed-line-ending
         args: [--fix=lf]
       - id: trailing-whitespace
-        exclude: "^\.bumpversion\.cfg$"
       # python
       - id: check-ast
       - id: check-docstring-first

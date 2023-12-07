@@ -1,10 +1,8 @@
 [tool.poetry]
 # TODO: check that isort works well with known_first_party
 # TODO: add hatch option
-# TODO: add option to get version from git tag
-# TODO: see https://github.com/mtkennerly/poetry-dynamic-versioning
 name = "my_package"
-version = "0.0.0"
+version = "0.0.0"  # managed with poetry-dynamic-versioning
 description = ""
 authors = ["Tsvika S <tsvikas@gmail.com>"]
 # optional settings:
@@ -22,10 +20,10 @@ repository = "https://github.com/tsvikas/my_package"
 python = "~3.12"
 
 [tool.poetry.group.dev.dependencies]
-bump2version = "^1"
-pre-commit = "^3"
 black = "^23"
+dunamai = "^1.19.0"
 ruff = "^0.1.0"
+pre-commit = "^3"
 
 [tool.poetry.group.typing.dependencies]
 mypy = "^1"
@@ -51,9 +49,14 @@ pytest-reverse = "^1"
 # # jupyter-collaboration = "^1.2"
 
 
+[tool.poetry-dynamic-versioning]
+enable = true
+vcs = "git"
+
+
 [build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+requires = ["poetry-core>=1.0.0", "poetry-dynamic-versioning>=1.0.0,<2.0.0"]
+build-backend = "poetry_dynamic_versioning.backend"
 
 
 [tool.pytest.ini_options]
@@ -131,11 +134,15 @@ lint         = ["lint-ruff", "lint-mypy"]
 lint-ruff    = "ruff check ."
 lint-mypy    = "mypy"
 
-bump_version = "bump2version"
+version      = "dunamai from git"
+
+release      = ["tag", "build"]
 build        = "poetry build"
-release      = [
-    "test",
-    {cmd = "bump2version release --commit --tag"},
-    "build",
-    {cmd = "bump2version release --commit"},
-]
+
+[tool.poe.tasks._tag]
+cmd = "git tag -a $tagname -m \"version $tagname\" -e"
+args = [{name="tagname", positional=true, required=true}]
+
+[tool.poe.tasks.tag]
+sequence = ["check", "_tag $tagname"]
+args = [{name="tagname", positional=true, required=true}]
