@@ -118,42 +118,25 @@ mypy-init-return = true
 ]
 
 
+# {{keep if using poe}}
 [tool.poe.tasks]
-_commit-release = "bump2version release --commit --tag"
-_commit-post-release = "bump2version release --commit"
+check        = ["format", "test", "lint"]
 
-[tool.poe.tasks.bump2version]
-help = "Update code version"
-cmd  = "bump2version"
+format       = ["format-isort", "format-black"]
+format-isort = "ruff check . --select I001 --fix"
+format-black = "black ."
 
-[tool.poe.tasks.test]
-help = "Run unit and feature tests"
-cmd  = "pytest --cov=python_template"
+test         = "pytest"
 
-[tool.poe.tasks.build]
-help = "Create sdist and wheel"
-cmd  = "poetry build"
+lint         = ["lint-ruff", "lint-mypy"]
+lint-ruff    = "ruff check ."
+lint-mypy    = "mypy"
 
-[tool.poe.tasks.release]
-help = "Realese a new version"
-sequence  = ["test", "_commit-release", "build", "_commit-post-release"]
-
-[tool.poe.tasks.black]
-help = "Run black on the code base"
-cmd  = "pre-commit run --all-files black"
-
-[tool.poe.tasks.format]
-help = "Run formating tools on the code base"
-sequence  = ["black"]
-
-[tool.poe.tasks.ruff]
-help = "Run ruff on the code base"
-cmd  = "pre-commit run ruff check ."
-
-[tool.poe.tasks.mypy]
-help = "Run mypy on the code base"
-cmd  = "pre-commit run mypy"
-
-[tool.poe.tasks.check]
-help = "Run validation tools on the code base"
-sequence  = ["ruff", "mypy"]
+bump_version = "bump2version"
+build        = "poetry build"
+release      = [
+    "test",
+    {cmd = "bump2version release --commit --tag"},
+    "build",
+    {cmd = "bump2version release --commit"},
+]
