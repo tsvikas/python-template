@@ -76,6 +76,7 @@ preview = false
 
 
 [tool.ruff]
+# TODO: only check PT for pytest files
 select = ["ALL"]
 ignore = [
     # important, unignore when possible:
@@ -124,15 +125,29 @@ mypy-init-return = true
 # {{keep if using poe}}
 [tool.poe.tasks]
 check        = ["format", "test", "lint"]
-format       = ["format-isort", "format-black"]
-format-isort = "ruff check . --select I001 --fix"
-format-black = "black ."
 test         = "pytest"
-lint         = ["lint-ruff", "lint-mypy"]
-lint-ruff    = "ruff check ."
 lint-mypy    = "mypy"
 version      = "dunamai from git"
-build        = "poetry build"
+
+[tool.poe.tasks.format]
+sequence = ["format-isort $target", "format-black $target"]
+args = [{name="target", positional=true, default=".", multiple=true}]
+
+[tool.poe.tasks.format-isort]
+cmd = "ruff check --select I001 --fix $target"
+args = [{name="target", positional=true, default=".", multiple=true}]
+
+[tool.poe.tasks.format-black]
+cmd = "black $target"
+args = [{name="target", positional=true, default=".", multiple=true}]
+
+[tool.poe.tasks.lint]
+sequence = ["lint-ruff $target", "lint-mypy"]
+args = [{name="target", positional=true, default=".", multiple=true}]
+
+[tool.poe.tasks.lint-ruff]
+cmd = "ruff check $target"
+args = [{name="target", positional=true, default=".", multiple=true}]
 
 [tool.poe.tasks._tag]
 cmd = "git tag -a $tagname -m \"version $tagname\" -e"
