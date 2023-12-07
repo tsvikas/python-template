@@ -21,8 +21,7 @@ repos:
       - id: mixed-line-ending
         args: [--fix=lf]
       - id: trailing-whitespace
-        # excluding this since bumpversion keep changing it
-        exclude: (\.pdb$|^\.bumpversion.cfg$)
+        exclude: "^\.bumpversion\.cfg$"
       # python
       - id: check-ast
       - id: check-docstring-first
