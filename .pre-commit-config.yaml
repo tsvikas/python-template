@@ -35,6 +35,12 @@ repos:
       - id: check-xml
       - id: pretty-format-json
   # {{ remove if using poethepoet}}
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.0.270
+    hooks:
+      - id: ruff
+        name: ruff-isort
+        args: ["--select", "I001", "--fix"]
   - repo: https://github.com/psf/black-pre-commit-mirror
     rev: 23.9.1
     hooks:
