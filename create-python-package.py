@@ -7,7 +7,23 @@ from pathlib import Path
 SOURCE_DIRECTORY = Path(__file__).parent / "my_package"
 
 
-def main():
+def copy_package(dst: Path):
+    template_name = "my_package"
+    package_name = dst.name
+
+    # copy to the destination
+    shutil.copytree(SOURCE_DIRECTORY, dst, ignore=shutil.ignore_patterns(".*cache"))
+
+    # rename file contents from "my_package" to the package name
+    dst.joinpath(template_name).rename(dst.joinpath(package_name))
+    for file in dst.rglob("*"):
+        if file.is_file():
+            file_contents = file.read_text()
+            file_contents = file_contents.replace(template_name, package_name)
+            file.write_text(file_contents)
+
+
+def parse_args() -> Path:
     parser = argparse.ArgumentParser(
         prog="create-python-package",
         description="Create a new python project using the python package",
@@ -26,17 +42,12 @@ def main():
     if not package_name.isidentifier():
         print(f"Invalid package name: {package_name}")
         sys.exit(2)
+    return destination
 
-    # copy to the destination
-    shutil.copytree(SOURCE_DIRECTORY, destination, ignore=shutil.ignore_patterns(".*cache"))
 
-    # rename file contents from "my_package" to the package name
-    destination.joinpath("my_package").rename(destination.joinpath(package_name))
-    for file in destination.rglob("*"):
-        if file.is_file():
-            file_contents = file.read_text()
-            file_contents = file_contents.replace("my_package", package_name)
-            file.write_text(file_contents)
+def main():
+    destination = parse_args()
+    copy_package(destination)
 
     # print instructions
     print(f"the python project is in {destination}")
