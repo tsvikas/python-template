@@ -1,6 +1,4 @@
 [tool.poetry]
-# TODO: check that isort works well with known_first_party
-# TODO: add hatch option
 name = "my_package"
 version = "0.0.0"  # managed with poetry-dynamic-versioning
 description = ""
@@ -76,7 +74,6 @@ preview = false
 
 
 [tool.ruff]
-# TODO: only check PT for pytest files
 select = ["ALL"]
 ignore = [
     # important, unignore when possible:
