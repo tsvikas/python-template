@@ -20,6 +20,7 @@ git commit -m "chore: pre-commit update" -q
 
 # pre-commit install
 poetry run pre-commit install > /dev/null
+poetry run pre-commit run --all-files
 
 echo "use 'gh repo create' to set this repo on GitHub"
 rm "$0"
