@@ -116,6 +116,9 @@ mypy-init-return = true  # allow you to omit the return type annotation for __in
 allow-dict-calls-with-keyword-arguments = true
 
 [tool.ruff.per-file-ignores]
+"my_package/" = [
+    "PT",         # flake8-pytest-style
+]
 "tests/*.py" = [
     "INP001",     # flake8-no-pep420/implicit-namespace-package
     "PLR2004",    # PyLint-Refactor/magic-value-comparison
