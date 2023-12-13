@@ -76,35 +76,35 @@ preview = false
 [tool.ruff]
 select = ["ALL"]
 ignore = [
-    # important, unignore when possible:
-    "ANN",      # flake8-annotations
-    "D1",       # pydocstyle/undocumented-*
-    # needed only in large codebases
-    "TD002",    # flake8-todos/missing-todo-author
-    "TD003",    # flake8-todos/missing-todo-link
-    # incompatible with other rules
-    "D203",     # pydocstyle/one-blank-line-before-class, incompatible D211
-    "D212",     # pydocstyle/multi-line-summary-first-line, incompatible D213
-    "D400",     # pydocstyle/ends-in-period, incompatible D415
-    "COM812",   # flake8-commas/missing-trailing-comma, incompatible with black
-    # wrong:
-    "PD010",    # pandas-vet/pandas-use-of-dot-pivot-or-unstack
-    "PD013",    # pandas-vet/pandas-use-of-dot-stack
-    "EM",       # flake8-errmsg
-    # annoying:
-    "RET504",   # flake8-return/unnecessary-assign
-    "ANN1",     # flake8-annotations/missing-type-self,missing-type-cls
-    # ban something useful for a good reason
-    #"C901",     # mccabe/complex-structure
-    #"S101",     # flake8-bandit/assert
-    #"FBT001",   # flake8-boolean-trap/boolean-type-hint-positional-argument
-    #"FBT002",   # flake8-boolean-trap/boolean-default-value-positional-argument
-    #"DTZ",      # flake8-datetimez
-    #"PD901",    # pandas-vet/pandas-df-variable-name
-    #"FIX",      # flake8-fixme
-    #"ERA001",   # eradicate/commented-out-code
-    #"PLR091",   # PyLint-Refactor/too-many-*
-    #"TRY003",   # tryceratops/raise-vanilla-args
+  # important, unignore when possible:
+  "ANN",      # flake8-annotations
+  "D1",       # pydocstyle/undocumented-*
+  # needed only in large codebases
+  "TD002",    # flake8-todos/missing-todo-author
+  "TD003",    # flake8-todos/missing-todo-link
+  # incompatible with other rules
+  "D203",     # pydocstyle/one-blank-line-before-class, incompatible D211
+  "D212",     # pydocstyle/multi-line-summary-first-line, incompatible D213
+  "D400",     # pydocstyle/ends-in-period, incompatible D415
+  "COM812",   # flake8-commas/missing-trailing-comma, incompatible with black
+  # wrong:
+  "PD010",    # pandas-vet/pandas-use-of-dot-pivot-or-unstack
+  "PD013",    # pandas-vet/pandas-use-of-dot-stack
+  "EM",       # flake8-errmsg
+  # annoying:
+  "RET504",   # flake8-return/unnecessary-assign
+  "ANN1",     # flake8-annotations/missing-type-self,missing-type-cls
+  # ban something useful for a good reason
+  #"C901",     # mccabe/complex-structure
+  #"S101",     # flake8-bandit/assert
+  #"FBT001",   # flake8-boolean-trap/boolean-type-hint-positional-argument
+  #"FBT002",   # flake8-boolean-trap/boolean-default-value-positional-argument
+  #"DTZ",      # flake8-datetimez
+  #"PD901",    # pandas-vet/pandas-df-variable-name
+  #"FIX",      # flake8-fixme
+  #"ERA001",   # eradicate/commented-out-code
+  #"PLR091",   # PyLint-Refactor/too-many-*
+  #"TRY003",   # tryceratops/raise-vanilla-args
 ]
 ignore-init-module-imports = true  # Avoid automatically removing unused imports in __init__.py
 target-version = "py312"
@@ -117,12 +117,12 @@ allow-dict-calls-with-keyword-arguments = true
 
 [tool.ruff.per-file-ignores]
 "my_package/" = [
-    "PT",         # flake8-pytest-style
+  "PT",       # flake8-pytest-style
 ]
 "tests/*.py" = [
-    "INP001",     # flake8-no-pep420/implicit-namespace-package
-    "PLR2004",    # PyLint-Refactor/magic-value-comparison
-    "S101",       # flake8-bandit/assert
+  "INP001",   # flake8-no-pep420/implicit-namespace-package
+  "PLR2004",  # PyLint-Refactor/magic-value-comparison
+  "S101",     # flake8-bandit/assert
 ]
 
 
