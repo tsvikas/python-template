@@ -128,7 +128,7 @@ allow-dict-calls-with-keyword-arguments = true
 
 # {{keep if using poe}}
 [tool.poe.tasks]
-check        = ["format", "test", "lint"]
+check        = ["format", "lint", "test"]
 test         = "pytest"
 lint-mypy    = "mypy"
 version      = "dunamai from git"
