@@ -19,9 +19,9 @@ python = "~3.12"
 # icecream / snoop / python-devtools / birdseye = "*"
 
 [tool.poetry.group.dev.dependencies]
-black = "^23"
-dunamai = "^1.19.0"
-ruff = "^0.1.0"
+black = "^24"
+dunamai = "^1"
+ruff = "^0.2"
 pre-commit = "^3"
 
 [tool.poetry.group.typing.dependencies]
@@ -29,7 +29,7 @@ mypy = "^1"
 # pandas-stubs = "*"
 
 [tool.poetry.group.testing.dependencies]
-pytest = "^7"
+pytest = "^8"
 pytest-clarity = "^1"
 pytest-cov = "^4"
 pytest-pretty = "^1"
