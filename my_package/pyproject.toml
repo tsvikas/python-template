@@ -74,6 +74,9 @@ preview = false
 
 
 [tool.ruff]
+target-version = "py312"
+
+[tool.ruff.lint]
 select = ["ALL"]
 ignore = [
   # important, unignore when possible:
@@ -107,7 +110,6 @@ ignore = [
   #"TRY003",   # tryceratops/raise-vanilla-args
 ]
 ignore-init-module-imports = true  # Avoid automatically removing unused imports in __init__.py
-target-version = "py312"
 
 [tool.ruff.lint.flake8-annotations]
 mypy-init-return = true  # allow you to omit the return type annotation for __init__ methods
@@ -115,7 +117,7 @@ mypy-init-return = true  # allow you to omit the return type annotation for __in
 [tool.ruff.lint.flake8-comprehensions]
 allow-dict-calls-with-keyword-arguments = true
 
-[tool.ruff.per-file-ignores]
+[tool.ruff.lint.per-file-ignores]
 "my_package/" = [
   "PT",       # flake8-pytest-style
 ]
