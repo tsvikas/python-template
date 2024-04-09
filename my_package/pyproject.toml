@@ -125,6 +125,7 @@ allow-dict-calls-with-keyword-arguments = true
   "INP001",   # flake8-no-pep420/implicit-namespace-package
   "PLR2004",  # PyLint-Refactor/magic-value-comparison
   "S101",     # flake8-bandit/assert
+  "D1",       # pydocstyle/undocumented-*
 ]
 
 
