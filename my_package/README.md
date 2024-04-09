@@ -12,5 +12,5 @@ my_package
 ## Build
 * install poetry-dynamic-versioning[plugin]
 * use `poe version` to see the current version
-* use `poe tag new_version_number` to add a git tag
+* use `poe tag vX.Y.Z` to add a git tag
 * use `poetry build` to build
