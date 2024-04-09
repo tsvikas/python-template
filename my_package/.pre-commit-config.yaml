@@ -25,6 +25,7 @@ repos:
       - id: requirements-txt-fixer
       # filetypes
       - id: check-json
+        exclude: ipynb
       - id: check-symlinks
       - id: check-toml
       - id: check-yaml
