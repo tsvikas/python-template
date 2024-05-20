@@ -34,11 +34,13 @@ pytest-clarity = "^1"
 pytest-cov = "^4"
 pytest-pretty = "^1"
 pytest-reverse = "^1"
-# pytest-datadir = "^1.5"
-# pytest-regressions = "^2.5"
+# pytest-datadir = "^1"
+# pytest-regressions = "^2"
+# pytest-loguru = "^0.4"
+# pytest-xdist = {extras = ["psutil"], version = "^3"}
 # hypothesis = "^6"
 
-# [tool.poetry.group.jupyter.dependencies]
+[tool.poetry.group.jupyter.dependencies]
 # jupyterlab = "^4"
 # matplotlib = "*"
 # hvplot = "*"
@@ -133,7 +135,7 @@ allow-dict-calls-with-keyword-arguments = true
 # {{keep if using poe}}
 [tool.poe.tasks]
 check        = ["format", "lint", "test"]
-test         = "pytest"
+test         = "pytest"  # add `-n auto` if using pytest-xdist
 lint-mypy    = "mypy"
 version      = "dunamai from git"
 
