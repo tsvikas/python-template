@@ -7,12 +7,19 @@ from pathlib import Path
 SOURCE_DIRECTORY = Path(__file__).parent / "my_package"
 
 
-def copy_package(dst: Path):
+def copy_package(dst: Path, todo_folder: Path|None = None):
     template_name = "my_package"
     package_name = dst.name
 
     # copy to the destination
     shutil.copytree(SOURCE_DIRECTORY, dst, ignore=shutil.ignore_patterns(".*cache"))
+    if todo_folder:
+        link_src = dst.joinpath("TODO.md")
+        link_dst = todo_folder.joinpath(package_name).withsuffix(".md")
+        if link_dst.exists():
+            print("can't create a TODO.md file in {link_src} because {link_dst} exists)")
+        else:
+            link_src.symlink_to(link_dst)
 
     # rename file contents from "my_package" to the package name
     dst.joinpath(template_name).rename(dst.joinpath(package_name))
@@ -32,6 +39,12 @@ def parse_args() -> Path:
         "destination",
         help="The destination directory to create the package in. the last part of the path will be the package name",
     )
+    parser.add_argument(
+        "-t",
+        "--todo-folder",
+        default="~/code_TODOs",
+        help="Create a todo file in this folder, and link into it",
+    )
     args = parser.parse_args()
     # check the arguments
     destination = Path(args.destination)
@@ -42,12 +55,16 @@ def parse_args() -> Path:
     if not package_name.isidentifier():
         print(f"Invalid package name: {package_name}")
         sys.exit(2)
-    return destination
+    todo_folder = Path(args.todo_folder).expanduser() if args.todo_folder else None
+    if todo_folder and not todo_folder.exists():
+        print(f"TODO folder doesn't exist: {todo_folder}")
+        sys.exit(3)
+    return destination, todo_folder
 
 
 def main():
-    destination = parse_args()
-    copy_package(destination)
+    destination, todo_folder = parse_args()
+    copy_package(destination, todo_folder)
 
     # print instructions
     print(f"the python project is in {destination}")
