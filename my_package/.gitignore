@@ -53,6 +53,9 @@ venv/
 # jupyter
 .ipynb_checkpoints/
 
+# TODO
+TODO*
+
 # converted notebooks:
 
 # specific to this project:
