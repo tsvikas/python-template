@@ -15,14 +15,15 @@ repository = "https://github.com/tsvikas/my_package"
 # my-command = "my_package.my_module:run"
 
 [tool.poetry.dependencies]
-python = "~3.12"
+python = ">=3.12,<4"
 # icecream / snoop / python-devtools / birdseye = "*"
 
 [tool.poetry.group.dev.dependencies]
 black = "^24"
+# or use: black = {extras = ["jupyter"], version = "^24"}
 dunamai = "^1"
-ruff = "^0.2"
-pre-commit = "^3"
+ruff = "^0.7"
+pre-commit = "^4"
 
 [tool.poetry.group.typing.dependencies]
 mypy = "^1"
@@ -31,7 +32,7 @@ mypy = "^1"
 [tool.poetry.group.testing.dependencies]
 pytest = "^8"
 pytest-clarity = "^1"
-pytest-cov = "^4"
+pytest-cov = "^6"
 pytest-pretty = "^1"
 pytest-reverse = "^1"
 # pytest-datadir = "^1"
