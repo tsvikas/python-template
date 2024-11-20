@@ -2,9 +2,10 @@
 # if using poethepoet: remove black github action
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.5.0
+    rev: v5.0.0
     hooks:
       # filesystem
+      - id: check-illegal-windows-names
       - id: check-case-conflict
       - id: check-executables-have-shebangs
       - id: check-shebang-scripts-are-executable
@@ -13,7 +14,7 @@ repos:
       - id: check-merge-conflict
       # secrets
       - id: detect-private-key
-      # files
+      # text in files
       - id: end-of-file-fixer
       - id: mixed-line-ending
         args: [--fix=lf]
