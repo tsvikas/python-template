@@ -43,6 +43,9 @@ repos:
       - id: ruff
         alias: ruff-isort
         args: ["--select", "I001", "--fix"]
+      # {{ replace black? }}
+      - id: ruff-format
+      # {{/replace}}
   - repo: https://github.com/psf/black-pre-commit-mirror
     rev: 24.10.0
     hooks:
