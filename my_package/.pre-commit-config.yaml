@@ -38,7 +38,7 @@ repos:
       - id: forbid-tabs
   # {{remove if using poethepoet}}
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.7.4
+    rev: v0.8.2
     hooks:
       - id: ruff
         alias: ruff-isort
