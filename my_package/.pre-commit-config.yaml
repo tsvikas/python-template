@@ -78,8 +78,8 @@ repos:
       name: poe-the-poet lint
       entry: poe lint
       language: system
-      types_or: [python, pyi, jupyter]
       require_serial: true
+      types_or: [python, pyi, jupyter]
     # pytest using poe
     - id: poe-test
       name: poe-the-poet test
