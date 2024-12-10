@@ -38,7 +38,7 @@ pytest-reverse = "^1"
 # pytest-datadir = "^1"
 # pytest-regressions = "^2"
 # pytest-loguru = "^0.4"
-# pytest-xdist = {extras = ["psutil"], version = "^3"}
+pytest-xdist = {extras = ["psutil"], version = "^3"}
 # hypothesis = "^6"
 
 [tool.poetry.group.jupyter.dependencies]
@@ -62,7 +62,7 @@ build-backend = "poetry_dynamic_versioning.backend"
 
 
 [tool.pytest.ini_options]
-addopts = "--doctest-modules --cov=my_package"
+addopts = "--doctest-modules --cov=my_package --numprocesses auto"
 
 
 [tool.mypy]
@@ -135,7 +135,7 @@ allow-dict-calls-with-keyword-arguments = true
 # {{keep if using poe}}
 [tool.poe.tasks]
 check        = ["format", "lint", "test"]
-test         = "pytest"  # add `-n auto` if using pytest-xdist
+test         = "pytest"
 lint-mypy    = "mypy"
 version      = "dunamai from git"
 
