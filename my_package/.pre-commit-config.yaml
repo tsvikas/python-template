@@ -73,6 +73,14 @@ repos:
       language: system
       require_serial: true
       types_or: [python, pyi, jupyter]
+    - id: poe-format-poetry
+      name: poe-the-poet format after poetry
+      entry: poe format
+      stages: [pre-commit, pre-merge-commit, pre-push, manual]
+      language: system
+      require_serial: true
+      files: ^poetry.lock$
+      pass_filenames: false
     # ruff/mypy using poe
     - id: poe-lint
       name: poe-the-poet lint
@@ -80,6 +88,13 @@ repos:
       language: system
       require_serial: true
       types_or: [python, pyi, jupyter]
+    - id: poe-lint-poetry
+      name: poe-the-poet lint after poetry
+      entry: poe lint
+      language: system
+      require_serial: true
+      files: ^poetry.lock$
+      pass_filenames: false
     # pytest using poe
     - id: poe-test
       name: poe-the-poet test
