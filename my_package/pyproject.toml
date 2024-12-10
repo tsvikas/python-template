@@ -62,7 +62,7 @@ build-backend = "poetry_dynamic_versioning.backend"
 
 
 [tool.pytest.ini_options]
-addopts = "--doctest-modules --cov=my_package --numprocesses auto"
+addopts = "--doctest-modules --cov=my_package --numprocesses auto --reverse"
 
 
 [tool.mypy]
