@@ -16,7 +16,7 @@ repository = "https://github.com/tsvikas/my_package"
 
 [tool.poetry.dependencies]
 python = ">=3.12,<4"
-# icecream / snoop / python-devtools / birdseye = "*"
+# loguru = "^0.7"
 
 [tool.poetry.group.dev.dependencies]
 black = "^24"
@@ -24,6 +24,12 @@ black = "^24"
 dunamai = "^1"
 ruff = "^0.8"
 pre-commit = "^4"
+
+# [tool.poetry.group.debug.dependencies
+# icecream = "*"
+# snoop = "*"
+# python-devtools = "*"
+# birdseye = "*"
 
 [tool.poetry.group.typing.dependencies]
 mypy = "^1"
