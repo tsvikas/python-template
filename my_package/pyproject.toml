@@ -22,8 +22,8 @@ python = ">=3.12,<4"
 black = "^24"
 # or use: black = {extras = ["jupyter"], version = "^24"}
 dunamai = "^1"
-ruff = "^0.8"
 pre-commit = "^4"
+ruff = "^0.8"
 
 # [tool.poetry.group.debug.dependencies
 # icecream = "*"
@@ -37,25 +37,25 @@ mypy = "^1"
 
 [tool.poetry.group.testing.dependencies]
 pytest = "^8"
-pytest-clarity = "^1"
-pytest-cov = "^6"
-pytest-pretty = "^1"
-pytest-reverse = "^1"
-# pytest-datadir = "^1"
-# pytest-regressions = "^2"
-# pytest-loguru = "^0.4"
-pytest-xdist = {extras = ["psutil"], version = "^3"}
-# hypothesis = "^6"
 pytest-benchmark = "^5"
+pytest-clarity = "^1"
+# pytest-datadir = "^1"
+pytest-cov = "^6"
+# pytest-loguru = "^0.4"
+pytest-pretty = "^1"
+# pytest-regressions = "^2"
+pytest-reverse = "^1"
+pytest-xdist = {extras = ["psutil"], version = "^3"}
 # freezegun = "^1.5.1"
+# hypothesis = "^6"
 
 [tool.poetry.group.jupyter.dependencies]
 # jupyterlab = "^4"
+# jupytext = "*"
 # matplotlib = "*"
 # hvplot = "*"
 # ipywidgets = "*"
 # python-lsp-server = "*"
-# jupytext = "*"
 # # jupyter-collaboration = "^1.2"
 
 
