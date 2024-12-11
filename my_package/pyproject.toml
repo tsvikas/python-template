@@ -40,6 +40,7 @@ pytest-reverse = "^1"
 # pytest-loguru = "^0.4"
 pytest-xdist = {extras = ["psutil"], version = "^3"}
 # hypothesis = "^6"
+pytest-benchmark = "^5"
 
 [tool.poetry.group.jupyter.dependencies]
 # jupyterlab = "^4"
@@ -67,6 +68,7 @@ addopts = """\
   --cov=my_package \
   --numprocesses auto \
   --reverse \
+  --benchmark-disable \
 """
 
 
@@ -141,6 +143,12 @@ allow-dict-calls-with-keyword-arguments = true
 [tool.poe.tasks]
 check        = ["format", "lint", "test"]
 test         = "pytest"
+benchmark    = """pytest \
+  --numprocesses 0 \
+  --benchmark-enable \
+  --benchmark-autosave \
+  --benchmark-only \
+  """
 lint-mypy    = "mypy"
 version      = "dunamai from git"
 
