@@ -15,7 +15,7 @@ def copy_package(dst: Path, todo_folder: Path|None = None):
     shutil.copytree(SOURCE_DIRECTORY, dst, ignore=shutil.ignore_patterns(".*cache"))
     if todo_folder:
         link_src = dst.joinpath("TODO.md")
-        link_dst = todo_folder.joinpath(package_name).withsuffix(".md").resolve()
+        link_dst = todo_folder.joinpath(package_name).with_suffix(".md").resolve()
         if link_dst.exists():
             print("can't create a TODO.md file in {link_src} because {link_dst} exists)")
         else:
