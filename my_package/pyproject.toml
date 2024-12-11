@@ -56,7 +56,7 @@ pytest-xdist = {extras = ["psutil"], version = "^3"}
 # hvplot = "*"
 # ipywidgets = "*"
 # python-lsp-server = "*"
-# # jupyter-collaboration = "^1.2"
+# jupyter-collaboration = "^1.2"
 
 
 [tool.poetry-dynamic-versioning]
