@@ -49,7 +49,7 @@ venv/
 .benchmarks/
 
 # PyCharm
-.idea
+.idea/
 
 # jupyter
 .ipynb_checkpoints/
