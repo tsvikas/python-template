@@ -22,7 +22,7 @@ python = ">=3.12,<4"
 black = "^24"
 # or use: black = {extras = ["jupyter"], version = "^24"}
 dunamai = "^1"
-ruff = "^0.7"
+ruff = "^0.8"
 pre-commit = "^4"
 
 [tool.poetry.group.typing.dependencies]
