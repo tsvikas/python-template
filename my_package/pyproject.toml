@@ -41,6 +41,7 @@ pytest-reverse = "^1"
 pytest-xdist = {extras = ["psutil"], version = "^3"}
 # hypothesis = "^6"
 pytest-benchmark = "^5"
+# freezegun = "^1.5.1"
 
 [tool.poetry.group.jupyter.dependencies]
 # jupyterlab = "^4"
