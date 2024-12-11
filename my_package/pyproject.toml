@@ -46,7 +46,7 @@ pytest-pretty = "^1"
 # pytest-regressions = "^2"
 pytest-reverse = "^1"
 pytest-xdist = {extras = ["psutil"], version = "^3"}
-# freezegun = "^1.5.1"
+# freezegun = "^1"
 # hypothesis = "^6"
 
 [tool.poetry.group.jupyter.dependencies]
