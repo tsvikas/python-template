@@ -7,7 +7,7 @@ from pathlib import Path
 SOURCE_DIRECTORY = Path(__file__).parent / "my_package"
 
 
-def copy_package(dst: Path, todo_folder: Path|None = None):
+def copy_package(dst: Path, todo_folder: Path | None = None):
     template_name = "my_package"
     package_name = dst.name
 
@@ -17,7 +17,9 @@ def copy_package(dst: Path, todo_folder: Path|None = None):
         link_src = dst.joinpath("TODO.md")
         link_dst = todo_folder.joinpath(package_name).with_suffix(".md").resolve()
         if link_dst.exists():
-            print("can't create a TODO.md file in {link_src} because {link_dst} exists)")
+            print(
+                "can't create a TODO.md file in {link_src} because {link_dst} exists)"
+            )
         else:
             link_src.symlink_to(link_dst)
 
