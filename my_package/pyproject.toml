@@ -15,7 +15,8 @@ repository = "https://github.com/tsvikas/my_package"
 # my-command = "my_package.my_module:run"
 
 [tool.poetry.dependencies]
-python = ">=3.12,<4"
+python = ">=3.12,<4"  # for package
+python = "~3.12"  # for app
 # loguru = "^0.7"
 
 [tool.poetry.group.dev.dependencies]
