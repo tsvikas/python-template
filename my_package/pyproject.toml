@@ -22,6 +22,7 @@ python = "~3.12"  # for app
 [tool.poetry.group.dev.dependencies]
 black = "^24"
 # or use: black = {extras = ["jupyter"], version = "^24"}
+blacken-docs = "^1"
 dunamai = "^1"
 pre-commit = "^4"
 ruff = "^0.8"
@@ -164,7 +165,7 @@ lint-mypy    = "mypy"
 version      = "dunamai from git"
 
 [tool.poe.tasks.format]
-sequence = ["format-isort $target", "format-black $target"]
+sequence = ["format-isort $target", "format-black $target", "format-black-docs $target"]
 args = [{name="target", positional=true, default=".", multiple=true}]
 
 [tool.poe.tasks.format-isort]
@@ -173,6 +174,10 @@ args = [{name="target", positional=true, default=".", multiple=true}]
 
 [tool.poe.tasks.format-black]
 cmd = "black $target"
+args = [{name="target", positional=true, default=".", multiple=true}]
+
+[tool.poe.tasks.format-black-docs]
+cmd = "[[ -f $1 ]] && blacken-docs \"$1\" || ([[ -d $1 ]] && git -C \"$1\" ls-files -z -- '*.md' '*.rst' '*.tex' '*.py' | xargs -0 blacken-docs)"
 args = [{name="target", positional=true, default=".", multiple=true}]
 
 [tool.poe.tasks.lint]
