@@ -36,6 +36,10 @@ repos:
     rev: v1.5.5
     hooks:
       - id: forbid-tabs
+  - repo: https://github.com/mxr/sync-pre-commit-deps
+    rev: v0.0.1
+    hooks:
+      - id: sync-pre-commit-deps
   # {keep if jupyter=false}
   - repo: local
     hooks:
