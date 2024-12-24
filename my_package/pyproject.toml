@@ -146,6 +146,9 @@ allow-dict-calls-with-keyword-arguments = true
   "ANN201",   # flake8-annotations/return-type
 ]
 
+[tool.ruff.format]
+docstring-code-format = true
+
 
 # {{keep if using poe}}
 [tool.poe.tasks]
