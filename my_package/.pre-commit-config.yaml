@@ -118,4 +118,9 @@ repos:
       language: system
       pass_filenames: false
       always_run: true
+ci:
+  skip:
+    - poe-format
+    - poe-lint
+    - poe-test
   # {{/remove if not using poethepoet}}
