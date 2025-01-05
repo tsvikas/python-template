@@ -4,7 +4,7 @@ import shutil
 import sys
 from pathlib import Path
 
-SOURCE_DIRECTORY = Path(__file__).parent / "my_package"
+SOURCE_DIRECTORY = Path(__file__).parent / "my-project"
 
 
 def copy_package(dst: Path, package_name: Path, todo_folder: Path | None = None):
