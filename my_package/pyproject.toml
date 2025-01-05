@@ -2,13 +2,19 @@
 dynamic = ["version", "classifiers"]
 name = "my-project"
 description = ""
+# {{choose one}}
 license = {text = "AGPL-3.0-or-later"}
 license = {text = "GPL-3.0-or-later"}
 license = {text = "Proprietary"}
 license = {file = "LICENSE"}
+# {{/choose}}
 readme = "README.md"
-requires-python = "~=3.12"  # for package
-requires-python = "~=3.12.0"  # for app
+# {{choose one}}
+# {for package}
+requires-python = "~=3.12"
+# {for app}
+requires-python = "~=3.12.0"
+# {{/choose}}
 authors = [
     {name = "Tsvika Shapira", email = "tsvikas@gmail.com"}
 ]
@@ -24,7 +30,7 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-# optional_name = []
+# optional_name = ["some_package (>=1)"]
 
 [project.scripts]
 # my-command = "my_package.my_module:run"
@@ -38,9 +44,11 @@ build-backend = "poetry.core.masonry.api"
 
 
 [tool.poetry]
+# {uncomment if not-package}
 # package-mode = false
-version = "0.0.0"  # managed with poetry-dynamic-versioning?
-classifiers = ["Private :: Do Not Upload"]
+version = "0.0.0"  # managed with poetry-dynamic-versioning
+classifiers = ["Private :: Do Not Upload"]  # change when ready to upload
+# {uncomment if using src layout}
 # packages = [{include = "my_package", from = "src"}]
 
 [tool.poetry.requires-plugins]
