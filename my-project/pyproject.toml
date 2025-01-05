@@ -61,8 +61,9 @@ package-mode = false
 {%- endif %}
 version = "0.0.0"  # managed with poetry-dynamic-versioning
 classifiers = ["Private :: Do Not Upload"]  # change when ready to upload
-# {uncomment if using src layout}
-# packages = [{include = "{{my_package}}", from = "src"}]
+{%- if is_src_layout %}
+packages = [{include = "{{my_package}}", from = "src"}]
+{%- endif %}
 
 [tool.poetry.requires-plugins]
 poethepoet = {extras = ["plugin"], version ="~=0.32.0"}
