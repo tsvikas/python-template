@@ -19,7 +19,7 @@
 # %%
 # %config ZMQInteractiveShell.ast_node_interactivity = 'last_expr_or_assign'
 # %autoreload 1
-# %aimport my_package
+# %aimport {{my_package}}
 
 # %%
 from pathlib import Path

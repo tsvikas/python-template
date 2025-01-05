@@ -1,8 +1,8 @@
-my-project
-==========
+{{my_project}}
+================
 ## Usage
 ```
-import my_package
+import {{my_package}}
 ```
 
 ## Development

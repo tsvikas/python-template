@@ -1,2 +1,2 @@
 def test_import():
-    import my_package  # noqa: F401
+    import {{my_package}}  # noqa: F401

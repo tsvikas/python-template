@@ -13,7 +13,7 @@ def copy_package(dst: Path, package_name: Path, todo_folder: Path | None = None)
 
     # rename
     package_template = "my_package"
-    project_template = "my-project"
+    project_template = "my_project"
     project_name = dst.name
     # foldwrs
     dst.joinpath(package_template).rename(dst.joinpath(package_name))
@@ -21,8 +21,8 @@ def copy_package(dst: Path, package_name: Path, todo_folder: Path | None = None)
     for file in dst.rglob("*"):
         if file.is_file():
             file_contents = file.read_text()
-            file_contents = file_contents.replace(package_template, package_name)
-            file_contents = file_contents.replace(project_template, project_name)
+            file_contents = file_contents.replace("{{"+package_template+"}}", package_name)
+            file_contents = file_contents.replace("{{"+project_template+"}}", project_name)
             file_contents = file_contents.replace("{{python_minor}}", "12")
             file.write_text(file_contents)
 

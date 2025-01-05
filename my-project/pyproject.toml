@@ -3,7 +3,7 @@
 dynamic = ["version", "classifiers"]
 # {uv}
 dynamic = ["version"]
-name = "my-project"
+name = "{{my_project}}"
 description = ""
 # {{choose one}}
 license = {text = "AGPL-3.0-or-later"}
@@ -27,8 +27,8 @@ keywords = []
 classifiers = ["Private :: Do Not Upload"]
 # urls.homepage = "https://example.com"
 # urls.documentation = "https://readthedocs.org"
-urls.repository = "https://github.com/tsvikas/my-project"
-# urls.changelog = "https://github.com/tsvikas/my-project/blob/master/CHANGELOG.md"
+urls.repository = "https://github.com/tsvikas/{{my_project}}"
+# urls.changelog = "https://github.com/tsvikas/{{my_project}}/blob/master/CHANGELOG.md"
 
 dependencies = [
   # "loguru ~=0.7.0",
@@ -40,7 +40,7 @@ dependencies = [
 
 [project.scripts]
 # TODO: this does not work with uv-dynamic-versioning
-# my-project = "my_package.cli:app"
+# {{my_project}} = "{{my_package}}.cli:app"
 
 [project.gui-scripts]
 
@@ -62,7 +62,7 @@ build-backend = "hatchling.build"
 version = "0.0.0"  # managed with poetry-dynamic-versioning
 classifiers = ["Private :: Do Not Upload"]  # change when ready to upload
 # {uncomment if using src layout}
-# packages = [{include = "my_package", from = "src"}]
+# packages = [{include = "{{my_package}}", from = "src"}]
 
 [tool.poetry.requires-plugins]
 poethepoet = {extras = ["plugin"], version ="~=0.32.0"}
@@ -168,7 +168,7 @@ dev = [
 [tool.pytest.ini_options]
 addopts = """\
   --doctest-modules \
-  --cov=my_package \
+  --cov={{my_package}} \
   --numprocesses auto \
   --reverse \
   --benchmark-disable \
@@ -177,7 +177,7 @@ addopts = """\
 
 [tool.mypy]
 mypy_path = "stubs"
-packages = "my_package"
+packages = "{{my_package}}"
 strict = true
 
 
@@ -230,7 +230,7 @@ mypy-init-return = true  # allow you to omit the return type annotation for __in
 allow-dict-calls-with-keyword-arguments = true
 
 [tool.ruff.lint.per-file-ignores]
-"my_package/" = [
+"{{my_package}}/" = [
   "PT",       # flake8-pytest-style
 ]
 "tests/*.py" = [
