@@ -51,7 +51,7 @@ pytest-xdist = {extras = ["psutil"], version = "^3"}
 # freezegun = "^1"
 # hypothesis = "^6"
 
-[tool.poetry.group.jupyter.dependencies]
+# [tool.poetry.group.jupyter.dependencies]
 # jupyterlab = "^4"
 # jupytext = "*"
 # matplotlib = "*"
