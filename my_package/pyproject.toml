@@ -39,6 +39,7 @@ dependencies = [
 # optional_name = ["some_package ~=1.0"]
 
 [project.scripts]
+# TODO: this does not work with uv-dynamic-versioning
 # my-project = "my_package.cli:app"
 
 [project.gui-scripts]
