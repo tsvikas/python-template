@@ -4,7 +4,7 @@ set -e
 # git init & initial commit
 git init -q
 git add --all
-git reset "init*"
+git reset "init*.sh"
 git commit -m "initial commit" -q
 
 # poetry install
@@ -23,4 +23,4 @@ poetry run pre-commit install > /dev/null
 poetry run pre-commit run --all-files
 
 echo "use 'gh repo create' to set this repo on GitHub"
-rm init*
+rm init*.sh
