@@ -71,8 +71,11 @@ poethepoet = {extras = ["plugin"], version ="~=0.32.0"}
 # poetry-dynamic-versioning = {extras = ["plugin"], version ="~=1.4"}
 
 [tool.poetry.group.dev.dependencies]
+{%- if allow_jupyter %}
+black = {extras = ["jupyter"], version = "~=24.0"}
+{%- else %}
 black = "~=24.0"
-# or use: black = {extras = ["jupyter"], version = "~=24.0"}
+{%- endif %}
 blacken-docs = "~=1.0"
 dunamai = "~=1.0"
 pre-commit = "~=4.0"
@@ -123,8 +126,7 @@ source = "uv-dynamic-versioning"
 [dependency-groups]
 dev = [
    # commit tools
-   "black ~=24.0",
-#   "black[jupyter] ~=24.0",
+   "black{% if allow_jupyter %}[jupyter]{% endif %} ~=24.0",
    "blacken-docs ~=1.0",
    "dunamai ~=1.0",
    "pre-commit ~=4.0",
