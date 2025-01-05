@@ -31,11 +31,11 @@ urls.repository = "https://github.com/tsvikas/my-project"
 # urls.changelog = "https://github.com/tsvikas/my-project/blob/master/CHANGELOG.md"
 
 dependencies = [
-  # "loguru (>=0.7)",
+  # "loguru ~=0.7.0",
 ]
 
 [project.optional-dependencies]
-# optional_name = ["some_package (>=1)"]
+# optional_name = ["some_package ~=1.0"]
 
 [project.scripts]
 # my-command = "my_package.my_module:run"
@@ -45,7 +45,7 @@ dependencies = [
 
 [build-system]
 # {{if poetry}}
-requires = ["poetry-core>=2.0.0,<3.0.0"]
+requires = ["poetry-core >=2.0.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"
 # {{elif uv}}
 requires = ["hatchling", "uv-dynamic-versioning"]
