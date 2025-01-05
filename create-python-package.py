@@ -18,7 +18,7 @@ def copy_package(dst: Path, todo_folder: Path | None = None):
         link_dst = todo_folder.joinpath(package_name).with_suffix(".md").resolve()
         if link_dst.exists():
             print(
-                "can't create a TODO.md file in {link_src} because {link_dst} exists)"
+                f"can't create a TODO.md file in {link_src} because {link_dst} exists)"
             )
         else:
             link_src.symlink_to(link_dst)
