@@ -62,17 +62,17 @@ classifiers = ["Private :: Do Not Upload"]  # change when ready to upload
 # packages = [{include = "my_package", from = "src"}]
 
 [tool.poetry.requires-plugins]
-poethepoet = {extras = ["plugin"], version ="^0.32.0"}
+poethepoet = {extras = ["plugin"], version ="~=0.32.0"}
 # TODO: enable when possible
-# poetry-dynamic-versioning = {extras = ["plugin"], version ="^1.4.0"}
+# poetry-dynamic-versioning = {extras = ["plugin"], version ="~=1.4"}
 
 [tool.poetry.group.dev.dependencies]
-black = "^24"
-# or use: black = {extras = ["jupyter"], version = "^24"}
-blacken-docs = "^1"
-dunamai = "^1"
-pre-commit = "^4"
-ruff = "^0.8"
+black = "~=24.0"
+# or use: black = {extras = ["jupyter"], version = "~=24.0"}
+blacken-docs = "~=1.0"
+dunamai = "~=1.0"
+pre-commit = "~=4.0"
+ruff = "~=0.8.0"
 
 # [tool.poetry.group.debug.dependencies
 # icecream = "*"
@@ -81,31 +81,31 @@ ruff = "^0.8"
 # birdseye = "*"
 
 [tool.poetry.group.typing.dependencies]
-mypy = "^1"
+mypy = "~=1.0"
 # pandas-stubs = "*"
 
 [tool.poetry.group.testing.dependencies]
-pytest = "^8"
-pytest-benchmark = "^5"
-pytest-clarity = "^1"
-# pytest-datadir = "^1"
-pytest-cov = "^6"
-# pytest-loguru = "^0.4"
-pytest-pretty = "^1"
-# pytest-regressions = "^2"
-pytest-reverse = "^1"
-pytest-xdist = {extras = ["psutil"], version = "^3"}
-# freezegun = "^1"
-# hypothesis = "^6"
+pytest = "~=8.0"
+pytest-benchmark = "~=5.0"
+pytest-clarity = "~=1.0"
+# pytest-datadir = "~=1.0"
+pytest-cov = "~=6.0"
+# pytest-loguru = "~=0.4.0"
+pytest-pretty = "~=1.0"
+# pytest-regressions = "~=2.0"
+pytest-reverse = "~=1.0"
+pytest-xdist = {extras = ["psutil"], version = "~=3.0"}
+# freezegun = "~=1.0"
+# hypothesis = "~=6.0"
 
 # [tool.poetry.group.jupyter.dependencies]
-# jupyterlab = "^4"
+# jupyterlab = "~=4.0"
 # jupytext = "*"
 # matplotlib = "*"
 # hvplot = "*"
 # ipywidgets = "*"
 # python-lsp-server = "*"
-# jupyter-collaboration = "^1.2"
+# jupyter-collaboration = "~=1.2"
 
 
 ## {{uv}}
