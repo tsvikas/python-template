@@ -48,13 +48,19 @@ repos:
         entry: filenames must not end in .ipynb
         language: fail
         files: '\.ipynb$'
-  # {keep if using poetry}
+  {%- if manager == "poetry" %}
   - repo: https://github.com/python-poetry/poetry
     rev: 2.0.0
     hooks:
       - id: poetry-check
       - id: poetry-lock
       - id: poetry-install
+  {%- elif manager == "uv" %}
+  - repo: https://github.com/astral-sh/uv-pre-commit
+    rev: 0.5.8
+    hooks:
+      - id: uv-lock
+  {%- enfif %}
   # {{remove if using poethepoet}}
   # {{remove if using ruff-format}}
   - repo: https://github.com/psf/black-pre-commit-mirror
@@ -92,13 +98,13 @@ repos:
       language: system
       require_serial: true
       types_or: [python, pyi, jupyter]
-    - id: poe-format-poetry
-      name: poe-the-poet format after poetry
+    - id: poe-format-lock
+      name: poe-the-poet format after lock
       entry: poe format
       stages: [pre-commit, pre-merge-commit, pre-push, manual]
       language: system
       require_serial: true
-      files: ^poetry.lock$
+      files: ^{{manager}}.lock$
       pass_filenames: false
     # ruff/mypy using poe
     - id: poe-lint
@@ -107,12 +113,12 @@ repos:
       language: system
       require_serial: true
       types_or: [python, pyi, jupyter]
-    - id: poe-lint-poetry
-      name: poe-the-poet lint after poetry
+    - id: poe-lint-lock
+      name: poe-the-poet lint after lock
       entry: poe lint
       language: system
       require_serial: true
-      files: ^poetry.lock$
+      files: ^{{manager}}.lock$
       pass_filenames: false
     # pytest using poe
     - id: poe-test

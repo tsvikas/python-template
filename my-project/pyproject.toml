@@ -1,8 +1,5 @@
 [project]
-# {poetry}
-dynamic = ["version", "classifiers"]
-# {uv}
-dynamic = ["version"]
+dynamic = ["version", {% if manager == "poetry" %}"classifiers"{% endif %}]
 name = "{{my_project}}"
 description = ""
 # {{choose one}}
@@ -18,8 +15,9 @@ authors = [
 ]
 maintainers = []
 keywords = []
-# {uv}
+{%- if manager == "uv" %}
 classifiers = ["Private :: Do Not Upload"]
+{%- endif %}
 # urls.homepage = "https://example.com"
 # urls.documentation = "https://readthedocs.org"
 urls.repository = "https://github.com/tsvikas/{{my_project}}"
@@ -36,7 +34,9 @@ dependencies = [
 # optional_name = ["some_package ~=1.0"]
 
 [project.scripts]
+{%- if manager == "uv" %}
 # TODO: this does not work with uv-dynamic-versioning
+{%- endif %}
 {%- if not is_cli %}
 # {% endif -%}
 {{my_project}} = "{{my_package}}.cli:app"
@@ -45,16 +45,16 @@ dependencies = [
 
 
 [build-system]
-# {{if poetry}}
+{%- if manager == "poetry" %}
 requires = ["poetry-core >=2.0.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"
-# {{elif uv}}
+{%- elif manager == "uv" %}
 requires = ["hatchling", "uv-dynamic-versioning"]
 build-backend = "hatchling.build"
-# {{end}}
+{%- endif %}
 
 
-# {{poetry}}
+{% if manager == "poetry" -%}
 [tool.poetry]
 {%- if not is_installable %}
 package-mode = false
@@ -115,10 +115,7 @@ pytest-xdist = {extras = ["psutil"], version = "~=3.0"}
 [tool.poetry-dynamic-versioning]
 enable = true
 vcs = "git"
-# {{/poetry}}
-
-
-## {{uv}}
+{%- elif manager == "uv" -%}
 [tool.hatch.version]
 source = "uv-dynamic-versioning"
 
@@ -163,7 +160,7 @@ dev = [
 #   "python-lsp-server",
 #   "jupyter-collaboration",
 ]
-## {{/uv}}
+{%- endif %}
 
 
 [tool.pytest.ini_options]

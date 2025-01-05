@@ -14,8 +14,13 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - uses: actions/setup-python@v3
-    - name: Install Poetry and PoeThePoet
-      run: pip install poetry poethepoet
-    - name: Install dependencies with poetry
-      run: poetry install
+    - name: Install {{manager}} and PoeThePoet
+      run: pip install {{manager}} poethepoet
+    - name: Install dependencies with {{manager}}
+      run:
+      {%- if manager == "poetry" -%}}
+      poetry install
+      {%- elif manager == "uv" -%}
+      uv sync
+      {%- endif %}
     - uses: pre-commit/action@v3.0.0
