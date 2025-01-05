@@ -1,23 +1,47 @@
-[tool.poetry]
+[project]
+dynamic = ["version", "classifiers"]
 name = "my_package"
-version = "0.0.0"  # managed with poetry-dynamic-versioning
 description = ""
-authors = ["Tsvika S <tsvikas@gmail.com>"]
-# optional settings:
-license = "AGPL-3.0-or-later"
+license = {text = "AGPL-3.0-or-later"}
+license = {text = "GPL-3.0-or-later"}
+license = {text = "Proprietary"}
+license = {file = "LICENSE"}
 readme = "README.md"
-repository = "https://github.com/tsvikas/my_package"
-# {use if package name != package stub, or package is in a specific dir}
-# packages = [{include = "my_package", from = "src"}]
+requires-python = "~=3.12"  # for package
+requires-python = "~=3.12.0"  # for app
+authors = [
+    {name = "Tsvika Shapira", email = "tsvikas@gmail.com"}
+]
+maintainers = []
+keywords = []
+# urls.homepage = "https://example.com"
+# urls.documentation = "https://readthedocs.org"
+urls.repository = "https://github.com/tsvikas/my-project"
+# urls.changelog = "https://github.com/tsvikas/my-project/blob/master/CHANGELOG.md"
 
-# {use to add a cli}
-# [tool.poetry.scripts]
+dependencies = [
+  # "loguru (>=0.7)",
+]
+
+[project.optional-dependencies]
+# optional_name = []
+
+[project.scripts]
 # my-command = "my_package.my_module:run"
 
-[tool.poetry.dependencies]
-python = ">=3.12,<4"  # for package
-python = "~3.12"  # for app
-# loguru = "^0.7"
+[project.gui-scripts]
+
+
+[tool.poetry]
+# package-mode = false
+version = "0.0.0"  # managed with poetry-dynamic-versioning?
+classifiers = ["Private :: Do Not Upload"]
+# packages = [{include = "my_package", from = "src"}]
+
+[tool.poetry.requires-plugins]
+poethepoet = {extras = ["plugin"], version ="^0.32.0"}
+# TODO: enable when possible
+# poetry-dynamic-versioning = {extras = ["plugin"], version ="^1.4.0"}
 
 [tool.poetry.group.dev.dependencies]
 black = "^24"
@@ -67,8 +91,8 @@ vcs = "git"
 
 
 [build-system]
-requires = ["poetry-core>=1.0.0", "poetry-dynamic-versioning>=1.0.0,<2.0.0"]
-build-backend = "poetry_dynamic_versioning.backend"
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
 
 
 [tool.pytest.ini_options]
