@@ -1,6 +1,6 @@
 [project]
 dynamic = ["version", "classifiers"]
-name = "my_package"
+name = "my-project"
 description = ""
 license = {text = "AGPL-3.0-or-later"}
 license = {text = "GPL-3.0-or-later"}

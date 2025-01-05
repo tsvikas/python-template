@@ -7,15 +7,28 @@ from pathlib import Path
 SOURCE_DIRECTORY = Path(__file__).parent / "my_package"
 
 
-def copy_package(dst: Path, todo_folder: Path | None = None):
-    template_name = "my_package"
-    package_name = dst.name
-
-    # copy to the destination
+def copy_package(dst: Path, package_name: Path, todo_folder: Path | None = None):
+    # copy the project to the destination
     shutil.copytree(SOURCE_DIRECTORY, dst, ignore=shutil.ignore_patterns(".*cache"))
+
+    # rename
+    package_template = "my_package"
+    project_template = "my-project"
+    project_name = dst.name
+    # foldwrs
+    dst.joinpath(package_template).rename(dst.joinpath(package_name))
+    # file contents
+    for file in dst.rglob("*"):
+        if file.is_file():
+            file_contents = file.read_text()
+            file_contents = file_contents.replace(package_template, package_name)
+            file_contents = file_contents.replace(project_template, project_name)
+            file.write_text(file_contents)
+
+    # create the TODO.md link
     if todo_folder:
         link_src = dst.joinpath("TODO.md")
-        link_dst = todo_folder.joinpath(package_name).with_suffix(".md").resolve()
+        link_dst = todo_folder.joinpath(dst.name).with_suffix(".md").resolve()
         if link_dst.exists():
             print(
                 f"can't create a TODO.md file in {link_src} because {link_dst} exists)"
@@ -23,23 +36,22 @@ def copy_package(dst: Path, todo_folder: Path | None = None):
         else:
             link_src.symlink_to(link_dst)
 
-    # rename file contents from "my_package" to the package name
-    dst.joinpath(template_name).rename(dst.joinpath(package_name))
-    for file in dst.rglob("*"):
-        if file.is_file():
-            file_contents = file.read_text()
-            file_contents = file_contents.replace(template_name, package_name)
-            file.write_text(file_contents)
 
-
-def parse_args() -> Path:
+def parse_args() -> tuple[Path, str, Path | None]:
     parser = argparse.ArgumentParser(
         prog="create-python-package",
         description="Create a new python project using the python package",
     )
     parser.add_argument(
         "destination",
-        help="The destination directory to create the package in. the last part of the path will be the package name",
+        help="The destination directory to create the package in",
+    )
+    parser.add_argument(
+        "-p",
+        "--package_name",
+        default=None,
+        help="The name of the package. Must be a valid identifier. "
+        "Automatically derived from the destination.",
     )
     parser.add_argument(
         "-t",
@@ -53,7 +65,7 @@ def parse_args() -> Path:
     if destination.exists():
         print(f"Destination already exists: {destination}")
         sys.exit(1)
-    package_name = destination.name
+    package_name = args.package_name or destination.name.replace("-", "_")
     if not package_name.isidentifier():
         print(f"Invalid package name: {package_name}")
         sys.exit(2)
@@ -61,12 +73,12 @@ def parse_args() -> Path:
     if todo_folder and not todo_folder.exists():
         print(f"TODO folder doesn't exist: {todo_folder}")
         sys.exit(3)
-    return destination, todo_folder
+    return destination, package_name, todo_folder
 
 
 def main():
-    destination, todo_folder = parse_args()
-    copy_package(destination, todo_folder)
+    destination, package_name, todo_folder = parse_args()
+    copy_package(destination, package_name, todo_folder)
 
     # print instructions
     print(f"the python project is in {destination}")

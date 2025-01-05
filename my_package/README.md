@@ -1,6 +1,9 @@
-my_package
+my-project
 ==========
 ## Usage
+```
+import my_package
+```
 
 ## Development
 * install git, python3.12, poetry, poethepoet.
