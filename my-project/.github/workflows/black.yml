@@ -12,8 +12,8 @@ jobs:
         with:
           jupyter: {{"true" if allow_jupyter else "false"}}
           version: "24.10.0"
-      { %- else % }
+      {%- endif %}
       - uses: astral-sh/ruff-action@v3
-        with:
-          args: "format --check"
+      {%- if use_ruff_format %}
+      - run: ruff format
       {%- endif %}
