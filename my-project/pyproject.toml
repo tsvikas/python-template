@@ -245,7 +245,7 @@ allow-dict-calls-with-keyword-arguments = true
 docstring-code-format = true
 
 
-# {{keep if using poe}}
+{%- if ci == "poe" %}
 [tool.poe.tasks]
 check        = ["format", "lint", "test"]
 test         = "pytest"
@@ -289,3 +289,4 @@ args = [{name="tagname", positional=true, required=true}]
 [tool.poe.tasks.tag]
 sequence = ["check", "_tag $tagname"]
 args = [{name="tagname", positional=true, required=true}]
+{%- endif %}
