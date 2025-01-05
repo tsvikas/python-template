@@ -8,7 +8,7 @@ git reset "init*.sh"
 git commit -m "initial commit" -q
 
 # poetry install
-uv python pin python3.12
+uv python pin python3.{{python_minor}}
 uv sync
 git add uv.lock .python-version
 git commit -m "chore: uv sync" -q

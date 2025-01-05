@@ -6,9 +6,9 @@ import my_package
 ```
 
 ## Development
-* install git, python3.12, poetry, poethepoet.
+* install git, python3.{{python_minor}}, poetry, poethepoet.
 * git clone this repo
-* create a venv using `poetry env use python3.12; poetry install`
+* create a venv using `poetry env use python3.{{python_minor}}; poetry install`
 * enable pre-commit checks with `poetry run pre-commit install`
 * use `poe check` to verify code quality
 

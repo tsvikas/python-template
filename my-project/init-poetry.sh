@@ -8,7 +8,7 @@ git reset "init*.sh"
 git commit -m "initial commit" -q
 
 # poetry install
-poetry env use python3.12
+poetry env use python3.{{python_minor}}
 poetry install -q
 git add poetry.lock
 git commit -m "chore: poetry install" -q
