@@ -49,6 +49,7 @@ repos:
         language: fail
         files: '\.ipynb$'
   {%- endif %}
+  # environment manager
   {%- if manager == "poetry" %}
   - repo: https://github.com/python-poetry/poetry
     rev: 2.0.0
@@ -63,6 +64,7 @@ repos:
       - id: uv-lock
   {%- enfif %}
 {%- if ci != "poe" %}
+  # formatting and linting
   {%- if not use_ruff_format %}
   - repo: https://github.com/psf/black-pre-commit-mirror
     rev: 24.10.0
