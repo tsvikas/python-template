@@ -43,7 +43,7 @@ dependencies = [
 requires = ["poetry-core>=2.0.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"
 # {{elif uv}}
-requires = ["hatchling"]
+requires = ["hatchling", "uv-dynamic-versioning"]
 build-backend = "hatchling.build"
 # {{end}}
 
@@ -145,6 +145,10 @@ dev = [
 #   "jupyter-collaboration",
 ]
 ## {{/uv}}
+
+
+[tool.hatch.version]
+source = "uv-dynamic-versioning"
 
 
 [tool.poetry-dynamic-versioning]
