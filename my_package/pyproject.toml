@@ -1,5 +1,8 @@
 [project]
+# {poetry}
 dynamic = ["version", "classifiers"]
+# {uv}
+dynamic = ["version"]
 name = "my-project"
 description = ""
 # {{choose one}}
@@ -20,6 +23,8 @@ authors = [
 ]
 maintainers = []
 keywords = []
+# {uv}
+classifiers = []
 # urls.homepage = "https://example.com"
 # urls.documentation = "https://readthedocs.org"
 urls.repository = "https://github.com/tsvikas/my-project"
