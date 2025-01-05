@@ -32,6 +32,11 @@ dependencies = [
 [project.gui-scripts]
 
 
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+
 [tool.poetry]
 # package-mode = false
 version = "0.0.0"  # managed with poetry-dynamic-versioning?
@@ -88,11 +93,6 @@ pytest-xdist = {extras = ["psutil"], version = "^3"}
 [tool.poetry-dynamic-versioning]
 enable = true
 vcs = "git"
-
-
-[build-system]
-requires = ["poetry-core>=2.0.0,<3.0.0"]
-build-backend = "poetry.core.masonry.api"
 
 
 [tool.pytest.ini_options]
