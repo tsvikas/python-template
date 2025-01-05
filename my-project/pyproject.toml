@@ -32,7 +32,9 @@ urls.repository = "https://github.com/tsvikas/{{my_project}}"
 
 dependencies = [
   # "loguru ~=0.7.0",
+  {%- if is_cli %}
   "typer ~=0.15.0",
+  {%- endif %}
 ]
 
 [project.optional-dependencies]
@@ -40,7 +42,9 @@ dependencies = [
 
 [project.scripts]
 # TODO: this does not work with uv-dynamic-versioning
-# {{my_project}} = "{{my_package}}.cli:app"
+{%- if not is_cli %}
+# {% endif -%}
+{{my_project}} = "{{my_package}}.cli:app"
 
 [project.gui-scripts]
 
