@@ -63,7 +63,7 @@ repos:
       - id: uv-lock
   {%- enfif %}
   # {{remove if using poethepoet}}
-  # {{remove if using ruff-format}}
+  {%- if not use_ruff_format %}
   - repo: https://github.com/psf/black-pre-commit-mirror
     rev: 24.10.0
     hooks:
@@ -74,15 +74,16 @@ repos:
       - id: blacken-docs
         additional_dependencies:
         - black==24.10.0
-  # {{/remove if using ruff-format}}
+  {%- endif %}
   - repo: https://github.com/astral-sh/ruff-pre-commit
     rev: v0.8.6
     hooks:
       - id: ruff
         alias: ruff-isort
         args: ["--select", "I001", "--fix"]
-      # {keep if using ruff-format}
+      {%- if use_ruff_format %}
       - id: ruff-format
+      {%- endif %}
       - id: ruff
   # {{/remove if using poethepoet}}
   # {{remove if not using poethepoet}}
