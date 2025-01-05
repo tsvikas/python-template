@@ -53,6 +53,7 @@ build-backend = "hatchling.build"
 # {{end}}
 
 
+# {{poetry}}
 [tool.poetry]
 # {uncomment if not-package}
 # package-mode = false
@@ -108,7 +109,17 @@ pytest-xdist = {extras = ["psutil"], version = "~=3.0"}
 # jupyter-collaboration = "~=1.2"
 
 
+[tool.poetry-dynamic-versioning]
+enable = true
+vcs = "git"
+# {{/poetry}}
+
+
 ## {{uv}}
+[tool.hatch.version]
+source = "uv-dynamic-versioning"
+
+
 [dependency-groups]
 dev = [
    # commit tools
@@ -150,15 +161,6 @@ dev = [
 #   "jupyter-collaboration",
 ]
 ## {{/uv}}
-
-
-[tool.hatch.version]
-source = "uv-dynamic-versioning"
-
-
-[tool.poetry-dynamic-versioning]
-enable = true
-vcs = "git"
 
 
 [tool.pytest.ini_options]
