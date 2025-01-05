@@ -56,8 +56,9 @@ build-backend = "hatchling.build"
 
 # {{poetry}}
 [tool.poetry]
-# {uncomment if not-package}
-# package-mode = false
+{%- if not is_installable %}
+package-mode = false
+{%- endif %}
 version = "0.0.0"  # managed with poetry-dynamic-versioning
 classifiers = ["Private :: Do Not Upload"]  # change when ready to upload
 # {uncomment if using src layout}
