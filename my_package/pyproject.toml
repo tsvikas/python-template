@@ -24,7 +24,7 @@ authors = [
 maintainers = []
 keywords = []
 # {uv}
-classifiers = []
+classifiers = ["Private :: Do Not Upload"]
 # urls.homepage = "https://example.com"
 # urls.documentation = "https://readthedocs.org"
 urls.repository = "https://github.com/tsvikas/my-project"
