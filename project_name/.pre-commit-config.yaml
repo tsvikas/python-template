@@ -50,19 +50,10 @@ repos:
         files: '\.ipynb$'
   {%- endif %}
   # environment manager
-  {%- if manager == "poetry" %}
-  - repo: https://github.com/python-poetry/poetry
-    rev: 2.0.0
-    hooks:
-      - id: poetry-check
-      - id: poetry-lock
-      - id: poetry-install
-  {%- elif manager == "uv" %}
   - repo: https://github.com/astral-sh/uv-pre-commit
     rev: 0.5.8
     hooks:
       - id: uv-lock
-  {%- enfif %}
 {%- if ci != "poe" %}
   # formatting and linting
   {%- if not use_ruff_format %}

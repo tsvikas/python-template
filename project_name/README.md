@@ -8,11 +8,7 @@ import {{package_name}}
 ## Development
 * install git, python3.{{python_minor}}, uv {%- if ci == "poe" %}, poethepoet {%- endif %}.
 * git clone this repo
-* create a venv using {% if manager=="poetry" -%}
-  `poetry env use python3.{{python_minor}}; poetry install`
-  {%- elif manager=="uv" -%}
-  `uv python pin python3.{{python_minor}}; uv sync`
-  {%- endif %}
+* create a venv using `uv python pin python3.{{python_minor}}; uv sync`
 * enable pre-commit checks with `uv run pre-commit install`
 
 ## Code quality

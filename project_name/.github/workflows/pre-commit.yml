@@ -16,19 +16,10 @@ jobs:
     - uses: actions/setup-python@v5
     {%- if ci == "poe" %}
     - name: Install uv
-      {%- if manager == "poetry" %}
-      run: pip install poetry
-      {%- elif manager == "uv" %}
       uses: astral-sh/setup-uv@v5
-      {%- endif %}
     - name: Install PoeThePoet
       run: pip install poethepoet
     - name: Install dependencies with uv
-      run:
-      {%- if manager == "poetry" -%}}
-      poetry install
-      {%- elif manager == "uv" -%}
-      uv sync
-      {%- endif %}
+      run: uv sync
     {%- endif %}
     - uses: pre-commit/action@v3

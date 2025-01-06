@@ -1,5 +1,5 @@
 [project]
-dynamic = ["version", {% if manager == "poetry" %}"classifiers"{% endif %}]
+dynamic = ["version"]
 name = "{{project_name}}"
 description = ""
 # {{choose one}}
@@ -15,9 +15,7 @@ authors = [
 ]
 maintainers = []
 keywords = []
-{%- if manager == "uv" %}
 classifiers = ["Private :: Do Not Upload"]
-{%- endif %}
 # urls.homepage = "https://example.com"
 # urls.documentation = "https://readthedocs.org"
 urls.repository = "https://github.com/tsvikas/{{project_name}}"
@@ -34,9 +32,7 @@ dependencies = [
 # optional_name = ["some_package ~=1.0"]
 
 [project.scripts]
-{%- if manager == "uv" %}
 # TODO: this does not work with uv-dynamic-versioning
-{%- endif %}
 {%- if not is_cli %}
 # {% endif -%}
 {{project_name}} = "{{package_name}}.cli:app"
@@ -45,80 +41,10 @@ dependencies = [
 
 
 [build-system]
-{%- if manager == "poetry" %}
-requires = ["poetry-core >=2.0.0,<3.0.0"]
-build-backend = "poetry.core.masonry.api"
-{%- elif manager == "uv" %}
 requires = ["hatchling", "uv-dynamic-versioning"]
 build-backend = "hatchling.build"
-{%- endif %}
 
 
-{% if manager == "poetry" -%}
-[tool.poetry]
-{%- if not is_installable %}
-package-mode = false
-{%- endif %}
-version = "0.0.0"  # managed with poetry-dynamic-versioning
-classifiers = ["Private :: Do Not Upload"]  # change when ready to upload
-{%- if is_src_layout %}
-packages = [{include = "{{package_name}}", from = "src"}]
-{%- endif %}
-
-[tool.poetry.requires-plugins]
-poethepoet = {extras = ["plugin"], version ="~=0.32.0"}
-# TODO: enable when possible
-# poetry-dynamic-versioning = {extras = ["plugin"], version ="~=1.4"}
-
-[tool.poetry.group.dev.dependencies]
-{%- if allow_jupyter %}
-black = {extras = ["jupyter"], version = "~=24.0"}
-{%- else %}
-black = "~=24.0"
-{%- endif %}
-blacken-docs = "~=1.0"
-dunamai = "~=1.0"
-pre-commit = "~=4.0"
-ruff = "~=0.8.0"
-
-# [tool.poetry.group.debug.dependencies
-# icecream = "*"
-# snoop = "*"
-# python-devtools = "*"
-# birdseye = "*"
-
-[tool.poetry.group.typing.dependencies]
-mypy = "~=1.0"
-# pandas-stubs = "*"
-
-[tool.poetry.group.testing.dependencies]
-pytest = "~=8.0"
-pytest-benchmark = "~=5.0"
-pytest-clarity = "~=1.0"
-# pytest-datadir = "~=1.0"
-pytest-cov = "~=6.0"
-# pytest-loguru = "~=0.4.0"
-pytest-pretty = "~=1.0"
-# pytest-regressions = "~=2.0"
-pytest-reverse = "~=1.0"
-pytest-xdist = {extras = ["psutil"], version = "~=3.0"}
-# freezegun = "~=1.0"
-# hypothesis = "~=6.0"
-
-# [tool.poetry.group.jupyter.dependencies]
-# jupyterlab = "~=4.0"
-# jupytext = "*"
-# matplotlib = "*"
-# hvplot = "*"
-# ipywidgets = "*"
-# python-lsp-server = "*"
-# jupyter-collaboration = "~=1.2"
-
-
-[tool.poetry-dynamic-versioning]
-enable = true
-vcs = "git"
-{%- elif manager == "uv" -%}
 [tool.hatch.version]
 source = "uv-dynamic-versioning"
 
@@ -162,7 +88,6 @@ dev = [
 #   "python-lsp-server",
 #   "jupyter-collaboration",
 ]
-{%- endif %}
 
 
 [tool.pytest.ini_options]
