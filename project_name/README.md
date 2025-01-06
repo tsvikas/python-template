@@ -1,8 +1,8 @@
-{{my_project}}
+{{project_name}}
 ================
 ## Usage
 ```
-import {{my_package}}
+import {{package_name}}
 ```
 
 ## Development
@@ -22,9 +22,9 @@ import {{my_package}}
 * use `{{manager}} run ruff check .` to verify code quality
 * use `{{manager}} run mypy` to verify check typing
 {%- if use_ruff_format %}
-* use `{{manager}} run ruff format .` {% endif %} to format code and docs
+* use `{{manager}} run ruff format .` to format code and docs
 {%- else %}
-* use `{{manager}} run black .` {% endif %} to format code
+* use `{{manager}} run black .` to format code
 * use `git ls-files -z -- '*.md' '*.rst' '*.tex' '*.py' | xargs -0 blacken-docs` to format docs
 {%- endif %}
 * use `{{manager}} run pytest` to run tests

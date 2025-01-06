@@ -4,7 +4,7 @@ import shutil
 import sys
 from pathlib import Path
 
-SOURCE_DIRECTORY = Path(__file__).parent / "my_project"
+SOURCE_DIRECTORY = Path(__file__).parent / "project_name"
 
 
 def copy_package(dst: Path, package_name: Path, todo_folder: Path | None = None):
@@ -12,8 +12,8 @@ def copy_package(dst: Path, package_name: Path, todo_folder: Path | None = None)
     shutil.copytree(SOURCE_DIRECTORY, dst, ignore=shutil.ignore_patterns(".*cache"))
 
     # rename
-    package_template = "my_package"
-    project_template = "my_project"
+    package_template = "package_name"
+    project_template = "project_name"
     project_name = dst.name
     # foldwrs
     dst.joinpath(package_template).rename(dst.joinpath(package_name))

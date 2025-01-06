@@ -1,6 +1,6 @@
 [project]
 dynamic = ["version", {% if manager == "poetry" %}"classifiers"{% endif %}]
-name = "{{my_project}}"
+name = "{{project_name}}"
 description = ""
 # {{choose one}}
 license = {text = "AGPL-3.0-or-later"}
@@ -20,8 +20,8 @@ classifiers = ["Private :: Do Not Upload"]
 {%- endif %}
 # urls.homepage = "https://example.com"
 # urls.documentation = "https://readthedocs.org"
-urls.repository = "https://github.com/tsvikas/{{my_project}}"
-# urls.changelog = "https://github.com/tsvikas/{{my_project}}/blob/master/CHANGELOG.md"
+urls.repository = "https://github.com/tsvikas/{{project_name}}"
+# urls.changelog = "https://github.com/tsvikas/{{project_name}}/blob/master/CHANGELOG.md"
 
 dependencies = [
   # "loguru ~=0.7.0",
@@ -39,7 +39,7 @@ dependencies = [
 {%- endif %}
 {%- if not is_cli %}
 # {% endif -%}
-{{my_project}} = "{{my_package}}.cli:app"
+{{project_name}} = "{{package_name}}.cli:app"
 
 [project.gui-scripts]
 
@@ -62,7 +62,7 @@ package-mode = false
 version = "0.0.0"  # managed with poetry-dynamic-versioning
 classifiers = ["Private :: Do Not Upload"]  # change when ready to upload
 {%- if is_src_layout %}
-packages = [{include = "{{my_package}}", from = "src"}]
+packages = [{include = "{{package_name}}", from = "src"}]
 {%- endif %}
 
 [tool.poetry.requires-plugins]
@@ -168,7 +168,7 @@ dev = [
 [tool.pytest.ini_options]
 addopts = """\
   --doctest-modules \
-  --cov={{my_package}} \
+  --cov={{package_name}} \
   --numprocesses auto \
   --reverse \
   --benchmark-disable \
@@ -177,7 +177,7 @@ addopts = """\
 
 [tool.mypy]
 mypy_path = "stubs"
-packages = "{{my_package}}"
+packages = "{{package_name}}"
 strict = true
 
 
@@ -230,7 +230,7 @@ mypy-init-return = true  # allow you to omit the return type annotation for __in
 allow-dict-calls-with-keyword-arguments = true
 
 [tool.ruff.lint.per-file-ignores]
-"{{my_package}}/" = [
+"{{package_name}}/" = [
   "PT",       # flake8-pytest-style
 ]
 "tests/*.py" = [
