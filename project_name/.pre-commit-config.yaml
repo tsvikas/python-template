@@ -104,7 +104,7 @@ repos:
       stages: [pre-commit, pre-merge-commit, pre-push, manual]
       language: system
       require_serial: true
-      files: ^{{manager}}.lock$
+      files: ^uv.lock$
       pass_filenames: false
     # ruff/mypy using poe
     - id: poe-lint
@@ -118,7 +118,7 @@ repos:
       entry: poe lint
       language: system
       require_serial: true
-      files: ^{{manager}}.lock$
+      files: ^uv.lock$
       pass_filenames: false
     # pytest using poe
     - id: poe-test

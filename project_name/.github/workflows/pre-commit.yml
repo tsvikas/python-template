@@ -15,7 +15,7 @@ jobs:
     - uses: actions/checkout@v4
     - uses: actions/setup-python@v5
     {%- if ci == "poe" %}
-    - name: Install {{manager}}
+    - name: Install uv
       {%- if manager == "poetry" %}
       run: pip install poetry
       {%- elif manager == "uv" %}
@@ -23,7 +23,7 @@ jobs:
       {%- endif %}
     - name: Install PoeThePoet
       run: pip install poethepoet
-    - name: Install dependencies with {{manager}}
+    - name: Install dependencies with uv
       run:
       {%- if manager == "poetry" -%}}
       poetry install

@@ -21,13 +21,13 @@ git commit -m "chore: uv sync" -q
 {%- endif %}
 
 # pre-commit update
-{{manager}} run pre-commit autoupdate -j "$(nproc)"
+uv run pre-commit autoupdate -j "$(nproc)"
 git add .pre-commit-config.yaml
 git commit -m "chore: pre-commit update" -q
 
 # pre-commit install
-{{manager}} run pre-commit install > /dev/null
-{{manager}} run pre-commit run --all-files
+uv run pre-commit install > /dev/null
+uv run pre-commit run --all-files
 
 echo "use 'gh repo create' to set this repo on GitHub"
 rm init.sh
