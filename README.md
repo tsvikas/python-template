@@ -2,5 +2,10 @@
 
 To use:
 ```
-copier copy <src> /path/to/my-repo
+copier copy <src> ~/code/my-repo
+```
+
+or:
+```
+copier copy gh:tsvikas/python-template ~/code/my-repo
 ```
