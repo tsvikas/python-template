@@ -1,0 +1,70 @@
+python_minor:
+    type: int
+    help: Minor version of python, i.e '9' or '13' for 3.9 or 3.13
+
+package_name:
+    type: str
+    help: The package name. Must be a valid identifier.
+
+project_name:
+    type: str
+    help: The project name. should be equal to the destination dirname
+
+license:
+    type: str
+    help: https://choosealicense.com/
+    default: MIT
+    choices:
+      - Proprietary
+      - AGPL-3.0-or-later
+      - GPL-3.0-or-later
+      - LGPL-3.0-or-later
+      - MPL-2.0
+      - Apache-2.0
+      - MIT
+      - BSL-1.0
+      - Unlicense
+
+is_cli:
+    type: bool
+    default: true
+    help: Add a cli module and entrypoint?
+
+allow_jupyter:
+    type: bool
+    default: false
+    help: Allow jupyter notebooks
+# TODO: change to this format
+# jupyter_files:
+#     type: str  # enum?
+#     help: allow / strip / reject jupyter notebooks
+
+
+use_ruff_format:
+    type: bool
+    default: false
+    help: use ruff format instead of black
+# TODO: change to this format
+# format_tool:
+#     type: str  # enum?
+#     help: ruff-format, black
+
+
+ci:
+    type: str  # enum?
+    default: poe
+    choices:
+      - poe
+    help: ci to use. can be [poe]
+# TODO: support different ci-tools.
+# managed by | runner    | pre-commit hooks | run remotely             | support?
+# -----------+-----------+------------------+--------------------------+---------
+# uv         | uv run    | local > uv run   | gh-action                |
+# uv         | poe > uv  | local > poe      | gh-action                | yes
+# uv         | just > uv | local > just     | gh-action                | TODO
+# uv         | uv run    | [auto sync hook] | gh-action / precommit.ci |
+# uv         | poe > uv  | [auto sync hook] | gh-action / precommit.ci |
+# uv         | just > uv | [auto sync hook] | gh-action / precommit.ci | TODO
+# pre-commit | poe > pc  | pre-commit       | gh-action / precommit.ci |
+# pre-commit | just > pc | pre-commit       | gh-action / precommit.ci |
+#
