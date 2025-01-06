@@ -1,10 +1,22 @@
+project_name:
+    type: str
+    help: The repo name. Probably equal to the destination dirname
+    validator: >-
+        {% if not (project_name | regex_search('^[a-z][a-z0-9\-]+$')) %}
+        project_name must start with a letter, followed one or more letters, digits or dashes all lowercase.
+        {% endif %}
+
+
 package_name:
     type: str
     help: The package name. Must be a valid identifier.
+    default: >-
+      {{ project_name | lower | replace("-", "_") }}
+    validator: >-
+        {% if not (package_name | regex_search('^[a-z][a-z0-9_]+$')) %}
+        package_name must start with a letter, followed one or more letters, digits or underscores all lowercase.
+        {% endif %}
 
-project_name:
-    type: str
-    help: The project name. should be equal to the destination dirname
 
 python_minor:
     type: int
