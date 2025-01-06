@@ -14,7 +14,7 @@ import {{package_name}}
 ## Code quality
 {%- if ci == "poe" %}
 * use `poe check` to verify code quality
-{%- else %}
+{%- elif ci == "none" %}
 * use `uv run ruff check .` to verify code quality
 * use `uv run mypy` to verify check typing
 {%- if use_ruff_format %}
@@ -30,7 +30,7 @@ import {{package_name}}
 {%- if ci == "poe" %}
 * use `poe version` to see the current version
 * use `poe tag vX.Y.Z` to add a git tag
-{%- else %}
+{%- elif ci == "none" %}
 * run formatting, linting, and tests.
 * use `uv run dunamai from git` to see the current version
 * use `git tag -a vX.Y.Z -m "version vX.Y.Z" -e` to add a git tag

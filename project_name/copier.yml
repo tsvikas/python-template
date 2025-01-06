@@ -55,11 +55,12 @@ ci:
     default: poe
     choices:
       - poe
-    help: ci to use. can be [poe]
+      - none  # uv run + local
+    help: CI to use
 # TODO: support different ci-tools.
 # managed by | runner    | pre-commit hooks | run remotely             | support?
 # -----------+-----------+------------------+--------------------------+---------
-# uv         | uv run    | local > uv run   | gh-action                |
+# uv         | uv run    | local > uv run   | gh-action                | yes?
 # uv         | poe > uv  | local > poe      | gh-action                | yes
 # uv         | just > uv | local > just     | gh-action                | TODO
 # uv         | uv run    | [auto sync hook] | gh-action / precommit.ci |

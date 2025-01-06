@@ -54,7 +54,7 @@ repos:
     rev: 0.5.8
     hooks:
       - id: uv-lock
-{%- if ci != "poe" %}
+{%- if ci == "none" %}
   # formatting and linting
   {%- if not use_ruff_format %}
   - repo: https://github.com/psf/black-pre-commit-mirror
@@ -78,7 +78,7 @@ repos:
       - id: ruff-format
       {%- endif %}
       - id: ruff
-{%- else %}
+{%- elif ci == "poe" %}
   - repo: local
     hooks:
     # black/ruff-isort using poe
