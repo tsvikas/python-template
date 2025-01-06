@@ -1,7 +1,3 @@
-python_minor:
-    type: int
-    help: Minor version of python, i.e '9' or '13' for 3.9 or 3.13
-
 package_name:
     type: str
     help: The package name. Must be a valid identifier.
@@ -9,6 +5,11 @@ package_name:
 project_name:
     type: str
     help: The project name. should be equal to the destination dirname
+
+python_minor:
+    type: int
+    help: Minor version of python, i.e '9' or '13' for 3.9 or 3.13
+    default: 13
 
 license:
     type: str
