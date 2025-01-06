@@ -8,7 +8,10 @@ including:
   - task runner [poe](https://poethepoet.natn.io/)
     and soon [just](https://just.systems/man/en/)
 - code quality tools:
-  - testing with [pytest](https://docs.pytest.org/)
+  - testing with [pytest](https://docs.pytest.org/),
+    [pytest-coverage](https://pytest-cov.readthedocs.io/),
+    [pytest-benchmark](https://pytest-benchmark.readthedocs.io/),
+    and more
   - formatting with [black](https://black.readthedocs.io/)
     or [ruff-format](https://docs.astral.sh/ruff/formatter/)
   - linting with [ruff](https://docs.astral.sh/ruff/)
