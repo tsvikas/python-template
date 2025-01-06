@@ -17,14 +17,14 @@ urls.repository = "https://github.com/tsvikas/{{project_name}}"
 # urls.changelog = "https://github.com/tsvikas/{{project_name}}/blob/master/CHANGELOG.md"
 
 dependencies = [
-  # "loguru ~=0.7.0",
+  # "loguru >=0.7.0",
   {%- if is_cli %}
-  "typer ~=0.15.0",
+  "typer >=0.15.0",
   {%- endif %}
 ]
 
 [project.optional-dependencies]
-# optional_name = ["some_package ~=1.0"]
+# optional_name = ["some_package >=1.0"]
 
 [project.scripts]
 # TODO: this does not work with uv-dynamic-versioning
@@ -47,32 +47,32 @@ source = "uv-dynamic-versioning"
 [dependency-groups]
 dev = [
    # commit tools
-   "black{% if allow_jupyter %}[jupyter]{% endif %} ~=24.0",
-   "blacken-docs ~=1.0",
-   "dunamai ~=1.0",
-   "pre-commit ~=4.0",
-   "ruff ~=0.8.0",
+   "black{% if allow_jupyter %}[jupyter]{% endif %} >=24.0",
+   "blacken-docs >=1.0",
+   "dunamai >=1.0",
+   "pre-commit >=4.0",
+   "ruff >=0.8.0",
 #   # debug
 #   "icecream",
 #   "snoop",
 #   "python-devtools",
 #   "birdseye",
    # typing
-   "mypy ~=1.0",
+   "mypy >=1.0",
 #   "pandas-stubs",
    # testing
-   "pytest ~=8.0",
-   "pytest-benchmark ~=5.0",
-   "pytest-clarity ~=1.0",
-#   "pytest-datadir ~=1.0",
-   "pytest-cov ~=6.0",
-#   "pytest-loguru ~=0.4.0",
-   "pytest-pretty ~=1.0",
-#   "pytest-regressions ~=2.0",
-   "pytest-reverse ~=1.0",
-   "pytest-xdist[psutil] ~=3.0",
-#   "freezegun ~=1.0",
-#   "hypothesis ~=6.0",
+   "pytest >=8.0",
+   "pytest-benchmark >=5.0",
+   "pytest-clarity >=1.0",
+#   "pytest-datadir >=1.0",
+   "pytest-cov >=6.0",
+#   "pytest-loguru >=0.4.0",
+   "pytest-pretty >=1.0",
+#   "pytest-regressions >=2.0",
+   "pytest-reverse >=1.0",
+   "pytest-xdist[psutil] >=3.0",
+#   "freezegun >=1.0",
+#   "hypothesis >=6.0",
 #   # ipython/jupyter
 #   "ipython",
 #   "jupyterlab",
