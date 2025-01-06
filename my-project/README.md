@@ -14,11 +14,16 @@ import {{my_package}}
   `uv python pin python3.{{python_minor}}; uv sync`
   {%- endif %}
 * enable pre-commit checks with `{{manager}} run pre-commit install`
+
+## Code quality
 {%- if ci == "poe" %}
 * use `poe check` to verify code quality
+{%- endif %}
 
 ## Build
+{%- if ci == "poe" %}
 * use `poe version` to see the current version
-* use `poe tag vX.Y.Z` to add a git tag. you still need to push it.
-* use `{{manager}} build` to build
+* use `poe tag vX.Y.Z` to add a git tag
 {%- endif %}
+* use `{{manager}} build` to build
+* push the tag with `git push origin tag vX.Y.Z`
