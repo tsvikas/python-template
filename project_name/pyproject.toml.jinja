@@ -140,6 +140,8 @@ ignore = [
   #"PLR091",   # PyLint-Refactor/too-many-*
   #"TRY003",   # tryceratops/raise-vanilla-args
 ]
+# objects that should be treated equivalently to a logging.Logger object.
+logger-objects = ["loguru.logger"]
 
 [tool.ruff.lint.flake8-annotations]
 mypy-init-return = true  # allow you to omit the return type annotation for __init__ methods
