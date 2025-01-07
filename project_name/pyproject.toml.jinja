@@ -106,7 +106,12 @@ docstring-code-format = true
 
 
 [tool.ruff.lint]
-select = ["ALL"]
+select = [
+  "ALL",
+  # extend rules outside pydocstyle google convention
+  "D401",  # non-imperative-mood
+  "D404",  # docstring-starts-with-this
+]
 ignore = [
   # important, unignore when possible:
   "ANN",      # flake8-annotations
@@ -115,9 +120,6 @@ ignore = [
   "TD002",    # flake8-todos/missing-todo-author
   "TD003",    # flake8-todos/missing-todo-link
   # incompatible with other rules
-  "D203",     # pydocstyle/one-blank-line-before-class, incompatible D211
-  "D212",     # pydocstyle/multi-line-summary-first-line, incompatible D213
-  "D400",     # pydocstyle/ends-in-period, incompatible D415
   "COM812",   # flake8-commas/missing-trailing-comma, incompatible with black
   # wrong:
   "PD010",    # pandas-vet/pandas-use-of-dot-pivot-or-unstack
@@ -144,6 +146,9 @@ mypy-init-return = true  # allow you to omit the return type annotation for __in
 
 [tool.ruff.lint.flake8-comprehensions]
 allow-dict-calls-with-keyword-arguments = true
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
 
 [tool.ruff.lint.per-file-ignores]
 "{{package_name}}/" = [
