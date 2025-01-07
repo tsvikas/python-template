@@ -20,6 +20,12 @@ package_name:
         {% endif %}
 
 
+package_description:
+    type: str
+    help: Short description of this package.
+    placeholder: Why fit in when you were born to stand out?
+
+
 python_minor:
     type: int
     help: Minor version of python, i.e '9' or '13' for 3.9 or 3.13
