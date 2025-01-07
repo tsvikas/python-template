@@ -109,8 +109,8 @@ docstring-code-format = true
 select = [
   "ALL",
   # extend rules outside pydocstyle google convention
-  "D401",  # non-imperative-mood
-  "D404",  # docstring-starts-with-this
+  "D401",  # pydocstyle/non-imperative-mood
+  "D404",  # pydocstyle/docstring-starts-with-this
 ]
 ignore = [
   # important, unignore when possible:
@@ -120,12 +120,12 @@ ignore = [
   "TD002",    # flake8-todos/missing-todo-author
   "TD003",    # flake8-todos/missing-todo-link
   # incompatible with other rules
-  "COM812",   # flake8-commas/missing-trailing-comma, incompatible with black
-  # wrong:
+  "COM812",   # flake8-commas/missing-trailing-comma (incompatible with black)
+  # disagree:
   "PD010",    # pandas-vet/pandas-use-of-dot-pivot-or-unstack
   "PD013",    # pandas-vet/pandas-use-of-dot-stack
-  "EM",       # flake8-errmsg
   # annoying:
+  "EM",       # flake8-errmsg/*
   "RET504",   # flake8-return/unnecessary-assign
   # ban something useful for a possibly good reason
   #"C901",     # mccabe/complex-structure
