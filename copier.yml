@@ -1,5 +1,28 @@
 _subdirectory: project_name
 
+name:
+    type: str
+    help: Your name (for the author field)
+    default: Tsvika Shapira
+
+
+email:
+    type: str
+    help: Your email
+    default: tsvikas@gmail.com
+    validator: >-
+        {% if not (email | regex_search('^[^@]+@[^@]+\.[^@]+$')) %}
+        Not a vaild email.
+        {% endif %}
+
+
+username:
+    type: str
+    help: Your GitHub username
+    default: >-
+        {{ email.split('@')[0]}}
+
+
 project_name:
     type: str
     help: The repo name. Probably equal to the destination dirname
