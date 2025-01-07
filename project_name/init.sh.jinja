@@ -2,24 +2,24 @@
 set -ex
 
 # git init & initial commit
-git init -q
+git init
 git add --all
 git reset init.sh
-git commit -m "initial commit" -q
+git commit -m "initial commit"
 
 # install venv
 uv python pin python3.{{python_minor}}
 uv sync
 git add uv.lock .python-version
-git commit -m "chore: uv sync" -q
+git commit -m "chore: uv sync"
 
 # pre-commit update
 uv run pre-commit autoupdate -j "$(nproc)"
 git add .pre-commit-config.yaml
-git commit -m "chore: pre-commit update" -q --allow-empty
+git commit -m "chore: pre-commit update" --allow-empty
 
 # pre-commit install
-uv run pre-commit install > /dev/null
+uv run pre-commit install
 uv run pre-commit run --all-files
 
 echo "use 'gh repo create' to set this repo on GitHub"
