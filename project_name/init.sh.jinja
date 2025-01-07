@@ -5,18 +5,18 @@ set -ex
 git init
 git add --all
 git reset init.sh
-git commit -m "initial commit"
+git commit -m "initial commit" -q
 
 # install venv
 uv python pin python3.{{python_minor}}
 uv sync
 git add uv.lock .python-version
-git commit -m "chore: uv sync"
+git commit -m "chore: uv sync" -q
 
 # pre-commit update
 uv run pre-commit autoupdate -j "$(nproc)"
 git add .pre-commit-config.yaml
-git commit -m "chore: pre-commit update" --allow-empty
+git commit -m "chore: pre-commit update" --allow-empty -q
 
 # pre-commit install
 uv run pre-commit install
