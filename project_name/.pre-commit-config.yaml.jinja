@@ -49,11 +49,24 @@ repos:
         language: fail
         files: '\.ipynb$'
   {%- endif %}
-  # environment manager
-  - repo: https://github.com/astral-sh/uv-pre-commit
-    rev: 0.5.14
+  # # environment manager
+  # # disabled until https://github.com/astral-sh/uv/issues/7533
+  # - repo: https://github.com/astral-sh/uv-pre-commit
+  #   rev: 0.5.14
+  #   hooks:
+  #     - id: uv-lock
+  - repo: local
     hooks:
-      - id: uv-lock
+    - id: uv-lock-dynamic
+      name: uv-lock-dynamic
+      description: "Automatically run 'uv lock' on your project dependencies"
+      entry: bash -c "uv lock && sed -i '/\[\[package\]\]/ {N; /name = \"rick\"/ {N; s/version = \".*\"/version = \"0.0.0+dynamic\"/}}' uv.lock"
+      language: system
+      files: ^(uv\.lock|pyproject\.toml|uv\.toml)$
+      args: []
+      pass_filenames: false
+      additional_dependencies: []
+      minimum_pre_commit_version: "2.9.2"
 {%- if ci == "none" %}
   # formatting and linting
   {%- if not use_ruff_format %}
@@ -119,9 +132,12 @@ repos:
       language: system
       pass_filenames: false
       always_run: true
+{%- endif %}
 ci:
   skip:
+    - uv-lock-dynamic
+    {%- if ci == "poe" %}
     - poe-format
     - poe-lint
     - poe-test
-{%- endif %}
+    {%- endif %}
