@@ -1,5 +1,5 @@
 [project]
-dynamic = ["version"]
+version = "0.0.0+dev"
 name = "{{project_name}}"
 description = "{{package_description}}"
 license.text = "{{license}}"
@@ -34,12 +34,8 @@ dependencies = [
 
 
 [build-system]
-requires = ["hatchling", "uv-dynamic-versioning"]
+requires = ["hatchling"]
 build-backend = "hatchling.build"
-
-
-[tool.hatch]
-version.source = "uv-dynamic-versioning"
 
 
 [dependency-groups]
