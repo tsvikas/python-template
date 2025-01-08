@@ -8,7 +8,7 @@ benchmark    = """pytest \
   --benchmark-only \
   """
 lint-mypy    = "mypy"
-version      = "dunamai from git"
+version      = "uv tree --depth 0 -q"
 
 [tool.poe.tasks.format]
 sequence = ["format-isort $target", "format-black $target", "format-black-docs"]
