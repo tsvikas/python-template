@@ -1,3 +1,4 @@
+{%- if is_cli %}
 import typer
 
 
@@ -25,3 +26,4 @@ def load():
     Load the portal gun
     """
     print("Loading portal gun")
+{%- endif %}

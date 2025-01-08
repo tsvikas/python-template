@@ -40,7 +40,7 @@ repos:
     rev: v0.0.2
     hooks:
       - id: sync-pre-commit-deps
-  # {keep if jupyter=false}
+  {%- if not allow_jupyter %}
   - repo: local
     hooks:
       - id: forbid-ipynb
@@ -48,40 +48,37 @@ repos:
         entry: filenames must not end in .ipynb
         language: fail
         files: '\.ipynb$'
-  # {keep if using poetry}
-  - repo: https://github.com/python-poetry/poetry
-    rev: 2.0.0
+  {%- endif %}
+  # environment manager
+  - repo: https://github.com/astral-sh/uv-pre-commit
+    rev: 0.5.8
     hooks:
-      - id: poetry-check
-      - id: poetry-lock
-      - id: poetry-install
-  # {{remove if using poethepoet}}
-  # {{remove if using ruff-format}}
+      - id: uv-lock
+{%- if ci != "poe" %}
+  # formatting and linting
+  {%- if not use_ruff_format %}
   - repo: https://github.com/psf/black-pre-commit-mirror
     rev: 24.10.0
     hooks:
-      # {keep if jupyter=false}
-      - id: black
-      # {keep if jupyter=true}
-      - id: black-jupyter
+      - id: black{%if allow_jupyter %}-jupyter{% endif %}
   - repo: https://github.com/adamchainz/blacken-docs
     rev: 1.19.1
     hooks:
       - id: blacken-docs
         additional_dependencies:
         - black==24.10.0
-  # {{/remove if using ruff-format}}
+  {%- endif %}
   - repo: https://github.com/astral-sh/ruff-pre-commit
     rev: v0.8.6
     hooks:
       - id: ruff
         alias: ruff-isort
         args: ["--select", "I001", "--fix"]
-      # {keep if using ruff-format}
+      {%- if use_ruff_format %}
       - id: ruff-format
+      {%- endif %}
       - id: ruff
-  # {{/remove if using poethepoet}}
-  # {{remove if not using poethepoet}}
+{%- else %}
   - repo: local
     hooks:
     # black/ruff-isort using poe
@@ -92,13 +89,13 @@ repos:
       language: system
       require_serial: true
       types_or: [python, pyi, jupyter]
-    - id: poe-format-poetry
-      name: poe-the-poet format after poetry
+    - id: poe-format-lock
+      name: poe-the-poet format after lock
       entry: poe format
       stages: [pre-commit, pre-merge-commit, pre-push, manual]
       language: system
       require_serial: true
-      files: ^poetry.lock$
+      files: ^uv.lock$
       pass_filenames: false
     # ruff/mypy using poe
     - id: poe-lint
@@ -107,12 +104,12 @@ repos:
       language: system
       require_serial: true
       types_or: [python, pyi, jupyter]
-    - id: poe-lint-poetry
-      name: poe-the-poet lint after poetry
+    - id: poe-lint-lock
+      name: poe-the-poet lint after lock
       entry: poe lint
       language: system
       require_serial: true
-      files: ^poetry.lock$
+      files: ^uv.lock$
       pass_filenames: false
     # pytest using poe
     - id: poe-test
@@ -127,4 +124,4 @@ ci:
     - poe-format
     - poe-lint
     - poe-test
-  # {{/remove if not using poethepoet}}
+{%- endif %}

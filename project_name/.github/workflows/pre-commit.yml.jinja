@@ -1,0 +1,25 @@
+name: pre-commit
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+env:
+  COLUMNS: 120
+
+jobs:
+  pre-commit:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - uses: actions/setup-python@v5
+    {%- if ci == "poe" %}
+    - name: Install uv
+      uses: astral-sh/setup-uv@v5
+    - name: Install PoeThePoet
+      run: pip install poethepoet
+    - name: Install dependencies with uv
+      run: uv sync
+    {%- endif %}
+    - uses: pre-commit/action@v3

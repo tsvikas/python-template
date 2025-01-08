@@ -1,0 +1,19 @@
+name: Lint
+
+on: [push, pull_request]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      {%- if not use_ruff_format %}
+      - uses: psf/black@stable
+        with:
+          jupyter: {{"true" if allow_jupyter else "false"}}
+          version: "24.10.0"
+      {%- endif %}
+      - uses: astral-sh/ruff-action@v3
+      {%- if use_ruff_format %}
+      - run: ruff format
+      {%- endif %}
