@@ -74,6 +74,7 @@ is_cli:
     default: true
     help: Add a cli module and entrypoint?
 
+
 allow_jupyter:
     type: bool
     default: false
