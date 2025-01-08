@@ -145,13 +145,13 @@ flake8-comprehensions.allow-dict-calls-with-keyword-arguments = true
 "collections.namedtuple".msg = "Use typing.NamedTuple or @dataclasses.dataclass(frozen=True, slots=True)"
 
 [tool.ruff.lint.per-file-ignores]
-"{{package_name}}/" = [
-  "PT",       # flake8-pytest-style
-]
 "{{package_name}}/cli.py" = [
   "T201",  # Print statement
 ]
-"tests/*.py" = [
+"!tests/test_*.py" = [
+  "PT",       # flake8-pytest-style
+]
+"tests/test_*.py" = [
   "INP001",   # flake8-no-pep420/implicit-namespace-package
   "PLR2004",  # PyLint-Refactor/magic-value-comparison
   "S101",     # flake8-bandit/assert
