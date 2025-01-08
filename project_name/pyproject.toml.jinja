@@ -26,7 +26,7 @@ dependencies = [
 # optional_name = ["some_package >=1.0"]
 
 [project.scripts]
-{%- if not is_cli %}
+{% if not is_cli -%}
 # {% endif -%}
 {{project_name}} = "{{package_name}}.cli:app"
 
