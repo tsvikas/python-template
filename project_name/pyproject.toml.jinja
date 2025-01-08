@@ -145,7 +145,7 @@ allow-dict-calls-with-keyword-arguments = true
 
 [tool.ruff.lint.flake8-tidy-imports.banned-api]
 # flag modules or module members that may not be imported or accessed
-"collections.namedtuple".msg = "Use typing.NamedTuple, types.SimpleNamespace, or @dataclass"
+"collections.namedtuple".msg = "Use typing.NamedTuple, @dataclasses.dataclass"
 
 [tool.ruff.lint.pydocstyle]
 convention = "google"
