@@ -10,6 +10,7 @@ git commit -m "initial commit" -q
 # install venv
 uv python pin python3.{{python_minor}}
 uv sync
+sed -i '/\[\[package\]\]/ {N; /name = "{{package_name}}"/ {N; s/version = ".*"/version = "0.0.0+dynamic"/}}' uv.lock
 git add uv.lock .python-version
 git commit -m "chore: uv sync" -q
 
@@ -20,6 +21,7 @@ git commit -m "chore: pre-commit update" --allow-empty -q
 
 # pre-commit install
 uv run pre-commit install
+git restore -SW uv.lock
 uv run pre-commit run --all-files
 
 echo "use 'gh repo create' to set this repo on GitHub"
