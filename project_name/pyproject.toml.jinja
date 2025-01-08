@@ -145,7 +145,7 @@ flake8-comprehensions.allow-dict-calls-with-keyword-arguments = true
 "collections.namedtuple".msg = "Use typing.NamedTuple or @dataclasses.dataclass(frozen=True, slots=True)"
 
 [tool.ruff.lint.per-file-ignores]
-"{{package_name}}/cli.py" = [
+"src/{{package_name}}/cli.py" = [
   "T201",  # Print statement
 ]
 "!tests/test_*.py" = [
