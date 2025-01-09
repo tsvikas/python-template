@@ -92,6 +92,8 @@ addopts = """\
 mypy_path = "stubs"
 packages = "{{package_name}}"
 strict = true
+warn_unreachable = true
+enable_error_code = ["ignore-without-code", "redundant-expr", "truthy-bool"]
 
 
 [tool.ruff.format]
