@@ -12,7 +12,7 @@ email:
     default: tsvikas@gmail.com
     validator: >-
         {% if not (email | regex_search('^[^@]+@[^@]+\.[^@]+$')) %}
-        Not a vaild email.
+        Not a valid email.
         {% endif %}
 
 
