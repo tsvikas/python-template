@@ -69,6 +69,11 @@ license:
       - BSL-1.0
       - Unlicense
 
+year:
+    type: int
+    help: The current year
+    default: "{{ now().year }}"
+
 is_cli:
     type: bool
     default: true
