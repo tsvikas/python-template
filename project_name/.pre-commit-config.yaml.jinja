@@ -59,6 +59,7 @@ repos:
         language: fail
         files: '\.ipynb$'
   {%- endif %}
+
   # environment manager
   - repo: https://github.com/astral-sh/uv-pre-commit
     rev: 0.5.14
@@ -68,7 +69,7 @@ repos:
     rev: v0.0.2
     hooks:
       - id: sync-pre-commit-deps
-{%- if ci == "none" %}
+
   # formatting and linting
   - repo: https://github.com/Lucas-C/pre-commit-hooks
     rev: v1.5.5
