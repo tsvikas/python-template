@@ -1,10 +1,14 @@
 [build-system]
+{%- if vcs_version %}
+requires = ["hatchling", "hatch-vcs"]
+{%- else %}
 requires = ["hatchling"]
+{%- endif %}
 build-backend = "hatchling.build"
 
 
 [project]
-version = "0.0.0+dev"
+dynamic = ["version"]
 name = "{{project_name}}"
 description = "{{package_description}}"
 license.text = "{{license}}"
@@ -130,6 +134,15 @@ typing = [
 ]
 
 
+[tool.hatch]
+{%- if not vcs_version %}
+version.path = "src/{{ package_name  }}/__init__.py"
+{%- else %}
+version.source = "vcs"
+build.hooks.vcs.version-file = "src/{{ package_name }}/_version.py"
+{%- endif %}
+
+
 [tool.pytest.ini_options]
 minversion = "6.0"
 addopts = [
@@ -150,6 +163,12 @@ filterwarnings = [
 log_cli_level = "INFO"
 testpaths = [
   "tests",
+]
+
+
+[tool.coverage]
+run.omit = [
+  "*/_version.py",
 ]
 
 
@@ -218,6 +237,9 @@ flake8-comprehensions.allow-dict-calls-with-keyword-arguments = true
 [tool.ruff.lint.per-file-ignores]
 "src/{{package_name}}/cli.py" = [
   "T20",      # flake8-print
+]
+"src/{{package_name}}/_version.py" = [
+  "ALL",
 ]
 "!tests/test_*.py" = [
   "PT",       # flake8-pytest-style

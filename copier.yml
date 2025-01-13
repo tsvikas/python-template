@@ -74,6 +74,13 @@ year:
     help: The current year
     default: "{{ now().year }}"
 
+
+vcs_version:
+    type: bool
+    default: true
+    help: Use the version control system for versioning?
+
+
 is_cli:
     type: bool
     default: true
