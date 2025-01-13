@@ -1,3 +1,8 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+
 [project]
 version = "0.0.0+dev"
 name = "{{project_name}}"
@@ -82,11 +87,6 @@ dependencies = [
 
 [project.gui-scripts]
 # {{project_name}} = "{{package_name}}.gui:app.run"
-
-
-[build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
 
 
 [tool.uv]
