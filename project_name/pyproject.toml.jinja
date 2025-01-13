@@ -154,10 +154,19 @@ testpaths = [
 
 [tool.mypy]
 mypy_path = "stubs"
-packages = "{{package_name}}"
+files = ["src", "tests"]
+python_version = "3.{{python_minor}}"
+warn_unused_configs = true
 strict = true
 warn_unreachable = true
 enable_error_code = ["ignore-without-code", "redundant-expr", "truthy-bool"]
+disallow_untyped_defs = false
+disallow_incomplete_defs = false
+
+[[tool.mypy.overrides]]
+module = "{{package_name}}.*"
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
 
 
 [tool.ruff.format]
