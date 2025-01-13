@@ -68,7 +68,7 @@ urls.repository = "https://github.com/{{username}}/{{project_name}}"
 urls.changelog = "https://github.com/{{username}}/{{project_name}}/blob/master/CHANGELOG.md"
 
 dependencies = [
-  # "loguru >=0.7.0",
+  "loguru >=0",
   {% if not is_cli %}# {% endif -%}
   "typer >=0.15.0",
 ]
