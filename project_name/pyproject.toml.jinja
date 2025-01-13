@@ -90,41 +90,41 @@ build-backend = "hatchling.build"
 
 [dependency-groups]
 dev = [
-  # commit tools
+  ## commit tools
   "black{% if allow_jupyter %}[jupyter]{% endif %} ~=24.0",
   "blacken-docs ~=1.0",
   "pre-commit ~=4.0",
   "ruff ~=0.8.0",
-#  # debug
-#  "icecream",
-#  "snoop",
-#  "python-devtools",
-#  "birdseye",
-  # typing
+  ## debug
+  # "icecream",
+  # "snoop",
+  # "python-devtools",
+  # "birdseye",
+  ## typing
   "mypy ~=1.0",
-#  "pandas-stubs",
-  # testing
+  # "pandas-stubs",
+  ## testing
   "pytest ~=8.0",
   "pytest-benchmark ~=5.0",
   "pytest-clarity ~=1.0",
-#  "pytest-datadir ~=1.0",
+  # "pytest-datadir ~=1.0",
   "pytest-cov ~=6.0",
-#  "pytest-loguru ~=0.4.0",
+  # "pytest-loguru ~=0.4.0",
   "pytest-pretty ~=1.0",
-#  "pytest-regressions ~=2.0",
+  # "pytest-regressions ~=2.0",
   "pytest-reverse ~=1.0",
   "pytest-xdist[psutil] ~=3.0",
-#  "freezegun ~=1.0",
-#  "hypothesis ~=6.0",
-#  # ipython/jupyter
-#  "ipython",
-#  "jupyterlab",
-#  "jupytext",
-#  "matplotlib",
-#  "hvplot",
-#  "ipywidgets",
-#  "python-lsp-server",
-#  "jupyter-collaboration",
+  # "freezegun ~=1.0",
+  # "hypothesis ~=6.0",
+  ## ipython/jupyter
+  # "ipython",
+  # "jupyterlab",
+  # "jupytext",
+  # "matplotlib",
+  # "hvplot",
+  # "ipywidgets",
+  # "python-lsp-server",
+  # "jupyter-collaboration",
 ]
 
 
