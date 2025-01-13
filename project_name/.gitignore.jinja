@@ -53,11 +53,13 @@ venv/
 
 # jupyter
 .ipynb_checkpoints/
-{% if not allow_jupyter %}*.ipynb{% endif %}
 
 # TODO
 TODO*
 
-# converted notebooks:
+{% if not allow_jupyter -%}
+# notebooks:
+*.ipynb
+{%- endif %}
 
 # specific to this project:
