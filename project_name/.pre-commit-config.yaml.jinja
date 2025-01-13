@@ -24,6 +24,8 @@ repos:
       - id: check-docstring-first
       - id: debug-statements
       - id: requirements-txt-fixer
+      - id: name-tests-test
+        args: ["--pytest-test-first"]
       # filetypes
       - id: check-json
         exclude: ipynb
@@ -32,6 +34,22 @@ repos:
       - id: check-yaml
       - id: check-xml
       - id: pretty-format-json
+  - repo: https://github.com/pre-commit/pygrep-hooks
+    rev: v1.10.0
+    hooks:
+      # python
+      - id: python-check-blanket-noqa
+      - id: python-check-blanket-type-ignore
+      - id: python-check-mock-methods
+      - id: python-no-eval
+      - id: python-no-log-warn
+      - id: python-use-type-annotations
+      # rst
+      - id: rst-backticks
+      - id: rst-directive-colons
+      - id: rst-inline-touching-normal
+      # text
+      - id: text-unicode-replacement-char
   {%- if not allow_jupyter %}
   - repo: local
     hooks:
