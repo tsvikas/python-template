@@ -5,8 +5,7 @@ including:
   - cli with [typer](https://typer.tiangolo.com/)
 - dev tools:
   - versioning with [uv-dynamic-versioning](https://github.com/ninoseki/uv-dynamic-versioning)
-  - task runner [poe](https://poethepoet.natn.io/)
-    and soon [just](https://just.systems/man/en/)
+  - WIP: task runner [just](https://just.systems/man/en/)
 - code quality tools:
   - testing with [pytest](https://docs.pytest.org/),
     [pytest-coverage](https://pytest-cov.readthedocs.io/),

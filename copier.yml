@@ -93,24 +93,3 @@ use_ruff_format:
 # format_tool:
 #     type: str  # enum?
 #     help: ruff-format, black
-
-
-ci:
-    type: str  # enum?
-    default: poe
-    choices:
-      - poe
-      - none  # uv run + local
-    help: CI to use
-# TODO: support different ci-tools.
-# managed by | runner    | pre-commit hooks | run remotely             | support?
-# -----------+-----------+------------------+--------------------------+---------
-# uv         | uv run    | local > uv run   | gh-action                | yes?
-# uv         | poe > uv  | local > poe      | gh-action                | yes
-# uv         | just > uv | local > just     | gh-action                | TODO
-# uv         | uv run    | [auto sync hook] | gh-action / precommit.ci |
-# uv         | poe > uv  | [auto sync hook] | gh-action / precommit.ci |
-# uv         | just > uv | [auto sync hook] | gh-action / precommit.ci | TODO
-# pre-commit | poe > pc  | pre-commit       | gh-action / precommit.ci |
-# pre-commit | just > pc | pre-commit       | gh-action / precommit.ci |
-#

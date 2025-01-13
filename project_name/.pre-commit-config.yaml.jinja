@@ -1,5 +1,3 @@
-# if not using poethepoet: remove dev dependencies in pyprojext. update black version in github action
-# if using poethepoet: remove black github action
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v5.0.0
@@ -138,51 +136,3 @@ repos:
         language: pygrep
         entry: PyBind|Numpy|Cmake|CCache|Github|PyTest
         exclude: .pre-commit-config.yaml
-
-{%- elif ci == "poe" %}
-  - repo: local
-    hooks:
-    # black/ruff-isort using poe
-    - id: poe-format
-      name: poe-the-poet format
-      entry: poe format
-      stages: [pre-commit, pre-merge-commit, pre-push, manual]
-      language: system
-      require_serial: true
-      types_or: [python, pyi, jupyter]
-    - id: poe-format-lock
-      name: poe-the-poet format after lock
-      entry: poe format
-      stages: [pre-commit, pre-merge-commit, pre-push, manual]
-      language: system
-      require_serial: true
-      files: ^uv.lock$
-      pass_filenames: false
-    # ruff/mypy using poe
-    - id: poe-lint
-      name: poe-the-poet lint
-      entry: poe lint
-      language: system
-      require_serial: true
-      types_or: [python, pyi, jupyter]
-    - id: poe-lint-lock
-      name: poe-the-poet lint after lock
-      entry: poe lint
-      language: system
-      require_serial: true
-      files: ^uv.lock$
-      pass_filenames: false
-    # pytest using poe
-    - id: poe-test
-      name: poe-the-poet test
-      entry: poe test
-      stages: [pre-commit, pre-merge-commit, pre-push, manual]
-      language: system
-      pass_filenames: false
-      always_run: true
-ci:
-  skip:
-    - poe-format
-    - poe-lint
-    - poe-test
-{%- endif %}
