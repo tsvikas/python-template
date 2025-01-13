@@ -207,7 +207,7 @@ flake8-comprehensions.allow-dict-calls-with-keyword-arguments = true
 
 [tool.ruff.lint.per-file-ignores]
 "src/{{package_name}}/cli.py" = [
-  "T201",  # Print statement
+  "T20",      # flake8-print
 ]
 "!tests/test_*.py" = [
   "PT",       # flake8-pytest-style
