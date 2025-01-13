@@ -107,6 +107,20 @@ repos:
       - id: ruff-format
       {%- endif %}
       - id: ruff
+
+  # validate schema
+  - repo: https://github.com/abravalheri/validate-pyproject
+    rev: v0.23
+    hooks:
+      - id: validate-pyproject
+        additional_dependencies:
+          - validate-pyproject-schema-store[all]
+  - repo: https://github.com/python-jsonschema/check-jsonschema
+    rev: 0.31.0
+    hooks:
+      - id: check-dependabot
+      - id: check-github-workflows
+      - id: check-readthedocs
 {%- elif ci == "poe" %}
   - repo: local
     hooks:
