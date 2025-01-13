@@ -32,14 +32,6 @@ repos:
       - id: check-yaml
       - id: check-xml
       - id: pretty-format-json
-  - repo: https://github.com/Lucas-C/pre-commit-hooks
-    rev: v1.5.5
-    hooks:
-      - id: forbid-tabs
-  - repo: https://github.com/mxr/sync-pre-commit-deps
-    rev: v0.0.2
-    hooks:
-      - id: sync-pre-commit-deps
   {%- if not allow_jupyter %}
   - repo: local
     hooks:
@@ -54,8 +46,16 @@ repos:
     rev: 0.5.14
     hooks:
       - id: uv-lock
+  - repo: https://github.com/mxr/sync-pre-commit-deps
+    rev: v0.0.2
+    hooks:
+      - id: sync-pre-commit-deps
 {%- if ci == "none" %}
   # formatting and linting
+  - repo: https://github.com/Lucas-C/pre-commit-hooks
+    rev: v1.5.5
+    hooks:
+      - id: forbid-tabs
   {%- if not use_ruff_format %}
   - repo: https://github.com/psf/black-pre-commit-mirror
     rev: 24.10.0
