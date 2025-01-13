@@ -10,7 +10,58 @@ authors = [
 ]
 maintainers = []
 keywords = []
-classifiers = ["Private :: Do Not Upload"]
+classifiers = [
+  # remove when ready to upload to pypi
+  "Private :: Do Not Upload",
+  # choose more classifiers from the list in https://pypi.org/classifiers/
+  # i.e.: Environment, Framework, Intended Audience, Topic
+  # update the development status
+  "Development Status :: 1 - Planning",
+  # license
+{%- if license == "Proprietary" %}
+{%- elif license == "AGPL-3.0-or-later" %}
+  "License :: OSI Approved :: GNU Affero General Public License v3 or later (AGPLv3+)",
+{%- elif license == "GPL-3.0-or-later" %}
+  "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
+{%- elif license == "LGPL-3.0-or-later" %}
+  "License :: OSI Approved :: GNU Lesser General Public License v3 or later (LGPLv3+)",
+{%- elif license == "MPL-2.0" %}
+  "License :: OSI Approved :: Mozilla Public License 2.0 (MPL 2.0)",
+{%- elif license == "Apache-2.0" %}
+  "License :: OSI Approved :: Apache Software License",
+{%- elif license == "MIT" %}
+  "License :: OSI Approved :: MIT License",
+{%- elif license == "BSL-1.0" %}
+  "License :: OSI Approved :: Boost Software License 1.0 (BSL-1.0)",
+{%- elif license == "Unlicense" %}
+  "License :: OSI Approved :: The Unlicense (Unlicense)",
+{%- endif %}
+  # target os
+  "Operating System :: OS Independent",
+  # python versions
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+{%- if python_minor <= 9 %}
+  "Programming Language :: Python :: 3.9",
+{%- endif %}
+{%- if python_minor <= 10 %}
+  "Programming Language :: Python :: 3.10",
+{%- endif %}
+{%- if python_minor <= 11 %}
+  "Programming Language :: Python :: 3.11",
+{%- endif %}
+{%- if python_minor <= 12 %}
+  "Programming Language :: Python :: 3.12",
+{%- endif %}
+{%- if python_minor <= 13 %}
+  "Programming Language :: Python :: 3.13",
+{%- endif %}
+{%- if python_minor <= 14 %}
+  "Programming Language :: Python :: 3.14",
+{%- endif %}
+  "Typing :: Typed",
+]
 # urls.homepage = "https://example.com"
 # urls.documentation = "https://readthedocs.org"
 urls.repository = "https://github.com/{{username}}/{{project_name}}"
