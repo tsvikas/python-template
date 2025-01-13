@@ -130,13 +130,13 @@ dev = [
 
 
 [tool.pytest.ini_options]
-addopts = """\
-  --doctest-modules \
-  --cov={{package_name}} \
-  --numprocesses auto \
-  --reverse \
-  --benchmark-disable \
-"""
+addopts = [
+  "--doctest-modules",
+  "--cov={{package_name}}",
+  "--numprocesses=auto",
+  "--reverse",
+  "--benchmark-disable",
+]
 
 
 [tool.mypy]
