@@ -1,2 +1,7 @@
-def test_import():
-    import {{package_name}}  # noqa: F401
+import importlib
+
+import {{ package_name }}
+
+
+def test_version():
+    assert importlib.metadata.version("{{ package_name }}") == {{ package_name }}.__version__
