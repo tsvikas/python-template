@@ -88,6 +88,10 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 
+[tool.uv]
+default-groups = ["dev", "test", "typing"]
+
+
 [dependency-groups]
 dev = [
   "pre-commit ~=4.0",
@@ -104,7 +108,8 @@ dev = [
   # "ipywidgets",
   # "python-lsp-server",
   # "jupyter-collaboration",
-  ## testing
+]
+test = [
   "pytest ~=8.0",
   "pytest-benchmark ~=5.0",
   "pytest-clarity ~=1.0",
@@ -117,9 +122,10 @@ dev = [
   # "pytest-regressions ~=2.0",
   # "freezegun ~=1.0",
   # "hypothesis ~=6.0",
-  ## typing
+]
+typing = [
   "mypy ~=1.0",
-  # "pandas-stubs",
+  # add "*-stubs" packages here
 ]
 
 
