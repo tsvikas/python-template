@@ -106,6 +106,14 @@ repos:
       - id: ruff-format
       {%- endif %}
       - id: ruff
+  - repo: local
+    hooks:
+      - id: mypy-local
+        name: mypy
+        entry: uv run mypy
+        language: system
+        files: '(\.pyi?|^uv.lock$)'
+        pass_filenames: false
 
   # validate schema
   - repo: https://github.com/abravalheri/validate-pyproject
