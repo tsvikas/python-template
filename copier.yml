@@ -6,21 +6,25 @@ name:
     default: Tsvika Shapira
 
 
-email:
-    type: str
-    help: Your email
-    default: tsvikas@gmail.com
-    validator: >-
-        {% if not (email | regex_search('^[^@]+@[^@]+\.[^@]+$')) %}
-        Not a valid email.
-        {% endif %}
-
-
 username:
     type: str
     help: Your GitHub username
     default: >-
-        {{ email.split('@')[0]}}
+        {{ name | lower | replace(' ', '-') }}
+    validator: >-
+        {% if not (username | regex_search('^[a-zA-Z0-9\-]+$')) %}
+        username can only contain alphanumeric characters and dashes.
+        {% endif %}
+
+
+email:
+    type: str
+    help: Your email
+    default: "{{username}}@gmail.com"
+    validator: >-
+        {% if not (email | regex_search('^[^@]+@[^@]+\.[^@]+$')) %}
+        Not a valid email.
+        {% endif %}
 
 
 project_name:
