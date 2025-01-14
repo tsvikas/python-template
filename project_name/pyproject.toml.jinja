@@ -1,5 +1,5 @@
 [build-system]
-{%- if vcs_version %}
+{%- if get_package_version_from_vcs %}
 requires = ["hatchling", "hatch-vcs"]
 {%- else %}
 requires = ["hatchling"]
@@ -135,11 +135,11 @@ typing = [
 
 
 [tool.hatch]
-{%- if not vcs_version %}
-version.path = "src/{{ package_name  }}/__init__.py"
-{%- else %}
+{%- if get_package_version_from_vcs %}
 version.source = "vcs"
 build.hooks.vcs.version-file = "src/{{ package_name }}/_version.py"
+{%- else %}
+version.path = "src/{{ package_name  }}/__init__.py"
 {%- endif %}
 
 

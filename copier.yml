@@ -82,7 +82,7 @@ year:
     default: "{{ now().year }}"
 
 
-vcs_version:
+get_package_version_from_vcs:
     type: bool
     help: Use the version control system for versioning?
     default: true

@@ -3,7 +3,7 @@
 Copyright (c) {{ year }} {{ full_name }}. All rights reserved.
 """
 
-{% if vcs_version -%}
+{% if get_package_version_from_vcs -%}
 from ._version import version as _version
 
 __version__ = _version
