@@ -56,7 +56,7 @@ package_description:
 
 python_minor:
     type: int
-    help: Minor version of python, i.e '9' or '13' for 3.9 or 3.13
+    help: Minimal minor version of python, i.e '9' or '13' for 3.9 or 3.13
     default: 13
 
 
@@ -78,7 +78,7 @@ license:
 
 year:
     type: int
-    help: The current year
+    help: The current year, for the copyright clause
     default: "{{ now().year }}"
 
 
