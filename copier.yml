@@ -1,27 +1,30 @@
 _subdirectory: project_name
 
+_jinja_extensions:
+  - jinja2_shell.ShellExtension
+
 full_name:
   type: str
   help: Your full name
-  default: Tsvika Shapira
+  default: "{{ 'git config user.name' | shell }}"
+
+email:
+  type: str
+  help: Your email
+  default: "{{ 'git config user.email' | shell }}"
+  validator: >-
+    {% if not (email | regex_search('^[^@]+@[^@]+\.[^@]+$')) %}
+    Not a valid email.
+    {% endif %}
 
 username:
   type: str
   help: Your GitHub username
   default: >-
-    {{ full_name | lower | replace(' ', '-') }}
+    {{ email.split('@')[0]}}
   validator: >-
     {% if not (username | regex_search('^[a-zA-Z0-9\-]+$')) %}
     username can only contain alphanumeric characters and dashes.
-    {% endif %}
-
-email:
-  type: str
-  help: Your email
-  default: "{{username}}@gmail.com"
-  validator: >-
-    {% if not (email | regex_search('^[^@]+@[^@]+\.[^@]+$')) %}
-    Not a valid email.
     {% endif %}
 
 project_name:
