@@ -79,7 +79,7 @@ license:
 year:
     type: int
     help: The current year, for the copyright clause
-    default: "{{ now().year }}"
+    default: "{{ '%Y' | strftime }}"
 
 
 get_package_version_from_vcs:
