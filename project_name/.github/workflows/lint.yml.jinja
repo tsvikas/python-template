@@ -7,13 +7,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      {%- if not use_ruff_format %}
+      {%- if format_tool == "black" %}
       - uses: psf/black@stable
         with:
           jupyter: {{"true" if allow_jupyter else "false"}}
           version: "24.10.0"
       {%- endif %}
       - uses: astral-sh/ruff-action@v3
-      {%- if use_ruff_format %}
+      {%- if format_tool == "ruff" %}
       - run: ruff format
       {%- endif %}

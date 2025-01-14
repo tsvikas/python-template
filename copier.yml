@@ -97,11 +97,10 @@ allow_jupyter:
 #     help: allow / strip / reject jupyter notebooks
 
 
-use_ruff_format:
-    type: bool
-    default: false
-    help: use ruff format instead of black
-# TODO: change to this format
-# format_tool:
-#     type: str  # enum?
-#     help: ruff-format, black
+format_tool:
+    type: str
+    help: The python formatter to use
+    default: black
+    choices:
+      - ruff-format
+      - black

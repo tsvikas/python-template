@@ -38,9 +38,9 @@ import {{package_name}}
 * enable pre-commit checks with `uv run pre-commit install`
 
 ## Code formatting
-{%- if use_ruff_format %}
+{%- if format_tool == "ruff" %}
 * use `uv run ruff format .` to format code and docs
-{%- else %}
+{%- elif format_tool == "black" %}
 * use `uv run black .` to format code
 {%- endif %}
 * use `git ls-files -z -- '*.md' '*.rst' '*.tex' '*.py' | xargs -0 blacken-docs` to format docs
