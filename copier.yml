@@ -56,18 +56,18 @@ python_minor:
 
 license:
     type: str
-    help: https://choosealicense.com/
+    help: Choose a license, see https://choosealicense.com/ for help
     default: MIT
     choices:
-      - Proprietary
-      - AGPL-3.0-or-later
-      - GPL-3.0-or-later
-      - LGPL-3.0-or-later
-      - MPL-2.0
-      - Apache-2.0
-      - MIT
-      - BSL-1.0
-      - Unlicense
+      "Proprietary             - see https://choosealicense.com/no-permission/": Proprietary
+      "AGPL-3.0-or-later       - Copyleft": AGPL-3.0-or-later
+      "GPL-3.0-or-later        - Copyleft": GPL-3.0-or-later
+      "LGPL-3.0-or-later       - Copyleft": LGPL-3.0-or-later
+      "MPL-2.0                 - Copyleft": MPL-2.0
+      "Apache-2.0              - Permissive": Apache-2.0
+      "MIT                     - Permissive": MIT
+      "BSL-1.0                 - Permissive": BSL-1.0
+      "Unlicense               - Permissive": Unlicense
 
 year:
     type: int
