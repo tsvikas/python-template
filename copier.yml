@@ -94,14 +94,13 @@ is_cli:
     default: true
 
 
-allow_jupyter:
-    type: bool
-    help: Allow jupyter notebooks
-    default: false
-# TODO: change to this format
-# jupyter_files:
-#     type: str  # enum?
-#     help: allow / strip / reject jupyter notebooks
+jupyter_files:
+    type: str
+    help: Allow jupyter notebooks in the repo?
+    default: forbid
+    choices:
+      - forbid
+      - allow
 
 
 format_tool:

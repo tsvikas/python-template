@@ -10,7 +10,7 @@ jobs:
       {%- if format_tool == "black" %}
       - uses: psf/black@stable
         with:
-          jupyter: {{"true" if allow_jupyter else "false"}}
+          jupyter: {{"true" if jupyter_files != "forbid" else "false"}}
           version: "24.10.0"
       {%- endif %}
       - uses: astral-sh/ruff-action@v3

@@ -48,7 +48,7 @@ repos:
       - id: rst-inline-touching-normal
       # text
       - id: text-unicode-replacement-char
-  {%- if not allow_jupyter %}
+  {%- if jupyter_files == "forbid" %}
   - repo: local
     hooks:
       - id: forbid-ipynb
@@ -87,7 +87,7 @@ repos:
   - repo: https://github.com/psf/black-pre-commit-mirror
     rev: 24.10.0
     hooks:
-      - id: black{%if allow_jupyter %}-jupyter{% endif %}
+      - id: black{%if jupyter_files != "forbid" %}-jupyter{% endif %}
   {%- endif %}
   - repo: https://github.com/adamchainz/blacken-docs
     rev: 1.19.1

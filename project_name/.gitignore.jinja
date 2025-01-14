@@ -60,7 +60,7 @@ venv/
 # TODO
 TODO*
 
-{% if not allow_jupyter -%}
+{% if jupyter_files == "forbid" -%}
 # notebooks:
 *.ipynb
 {%- endif %}
