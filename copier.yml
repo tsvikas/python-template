@@ -88,7 +88,7 @@ vcs_version:
     default: true
 
 
-is_cli:
+has_cli:
     type: bool
     help: Add a cli module and entrypoint?
     default: true

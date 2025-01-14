@@ -78,7 +78,7 @@ urls.changelog = "https://github.com/{{username}}/{{project_name}}/blob/master/C
 
 dependencies = [
   "loguru >=0",
-  {% if not is_cli %}# {% endif -%}
+  {% if not has_cli %}# {% endif -%}
   "typer >=0",
 ]
 
@@ -86,7 +86,7 @@ dependencies = [
 # optional_name = ["some_package >=1.0"]
 
 [project.scripts]
-{% if not is_cli -%}# {% endif -%}
+{% if not has_cli -%}# {% endif -%}
 {{project_name}} = "{{package_name}}.cli:app"
 
 [project.gui-scripts]
