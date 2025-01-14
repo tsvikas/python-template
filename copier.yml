@@ -20,7 +20,7 @@ email:
 
 username:
   type: str
-  help: Your GitHub username
+  help: Your GitHub username (or repo organization)
   default: >-
     {{ email.split('@')[0]}}
   validator: >-
