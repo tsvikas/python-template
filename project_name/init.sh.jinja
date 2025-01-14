@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 set -ex
 
+# reset
+rm -rf .git .venv .python-version uv.lock
+
 # git init & initial commit
 git init
 git add --all
