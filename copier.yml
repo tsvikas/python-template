@@ -105,5 +105,5 @@ format_tool:
     help: The python formatter to use
     default: black
     choices:
-      - ruff-format
       - black
+      - ruff-format
