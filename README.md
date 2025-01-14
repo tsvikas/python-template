@@ -1,10 +1,13 @@
 # my python copier template
+
 including:
+
 - code:
   - dependency management with [uv](https://docs.astral.sh/uv/)
   - cli with [typer](https://typer.tiangolo.com/)
 - dev tools:
-  - versioning with [uv-dynamic-versioning](https://github.com/ninoseki/uv-dynamic-versioning)
+  - versioning with
+    [uv-dynamic-versioning](https://github.com/ninoseki/uv-dynamic-versioning)
   - WIP: task runner [just](https://just.systems/man/en/)
 - code quality tools:
   - testing with [pytest](https://docs.pytest.org/),
@@ -23,13 +26,16 @@ including:
   - [gitignore](https://gitignore.io/)
 
 ## Usage
+
 To use:
+
 ```
 copier copy <src> ~/code/my-repo
 ~/code/my-repo/init.sh
 ```
 
 or:
+
 ```
 copier copy gh:tsvikas/python-template ~/code/my-repo
 ~/code/my-repo/init.sh
