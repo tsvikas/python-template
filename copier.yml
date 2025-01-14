@@ -5,7 +5,6 @@ full_name:
     help: Your full name
     default: Tsvika Shapira
 
-
 username:
     type: str
     help: Your GitHub username
@@ -16,7 +15,6 @@ username:
         username can only contain alphanumeric characters and dashes.
         {% endif %}
 
-
 email:
     type: str
     help: Your email
@@ -26,7 +24,6 @@ email:
         Not a valid email.
         {% endif %}
 
-
 project_name:
     type: str
     help: The repo name. Probably equal to the destination dirname
@@ -35,7 +32,6 @@ project_name:
         {% if not (project_name | regex_search('^[a-z][a-z0-9\-]+$')) %}
         project_name must start with a letter, followed one or more letters, digits or dashes all lowercase.
         {% endif %}
-
 
 package_name:
     type: str
@@ -47,18 +43,15 @@ package_name:
         package_name must start with a letter, followed one or more letters, digits or underscores all lowercase.
         {% endif %}
 
-
 package_description:
     type: str
     help: Short description of this package.
     placeholder: Why fit in when you were born to stand out?
 
-
 python_minor:
     type: int
     help: Minimal minor version of python, i.e '9' or '13' for 3.9 or 3.13
     default: 13
-
 
 license:
     type: str
@@ -75,24 +68,20 @@ license:
       "BSL-1.0                 - Permissive": BSL-1.0
       "Unlicense               - Permissive": Unlicense
 
-
 year:
     type: int
     help: The current year, for the copyright clause
     default: "{{ '%Y' | strftime }}"
-
 
 get_package_version_from_vcs:
     type: bool
     help: Use the version control system for versioning?
     default: true
 
-
 has_cli:
     type: bool
     help: Add a cli module and entrypoint?
     default: true
-
 
 jupyter_files:
     type: str
@@ -102,7 +91,6 @@ jupyter_files:
       - forbid
       - strip_outputs
       - allow
-
 
 format_tool:
     type: str
