@@ -55,6 +55,7 @@ python_minor:
     help: Minor version of python, i.e '9' or '13' for 3.9 or 3.13
     default: 13
 
+
 license:
     type: str
     help: Choose a license, see https://choosealicense.com/ for help
@@ -70,6 +71,7 @@ license:
       "BSL-1.0                 - Permissive": BSL-1.0
       "Unlicense               - Permissive": Unlicense
 
+
 year:
     type: int
     help: The current year
@@ -78,20 +80,20 @@ year:
 
 vcs_version:
     type: bool
-    default: true
     help: Use the version control system for versioning?
+    default: true
 
 
 is_cli:
     type: bool
-    default: true
     help: Add a cli module and entrypoint?
+    default: true
 
 
 allow_jupyter:
     type: bool
-    default: false
     help: Allow jupyter notebooks
+    default: false
 # TODO: change to this format
 # jupyter_files:
 #     type: str  # enum?
