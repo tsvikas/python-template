@@ -2,7 +2,7 @@ _subdirectory: project_name
 
 name:
     type: str
-    help: Your name (for the author field)
+    help: Your full name
     default: Tsvika Shapira
 
 
@@ -26,6 +26,7 @@ username:
 project_name:
     type: str
     help: The repo name. Probably equal to the destination dirname
+    placeholder: paperclip-factory
     validator: >-
         {% if not (project_name | regex_search('^[a-z][a-z0-9\-]+$')) %}
         project_name must start with a letter, followed one or more letters, digits or dashes all lowercase.
