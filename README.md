@@ -1,7 +1,7 @@
 # my python copier template
 including:
 - code:
-  - dependency menegment with [uv](https://docs.astral.sh/uv/)
+  - dependency management with [uv](https://docs.astral.sh/uv/)
   - cli with [typer](https://typer.tiangolo.com/)
 - dev tools:
   - versioning with [uv-dynamic-versioning](https://github.com/ninoseki/uv-dynamic-versioning)
