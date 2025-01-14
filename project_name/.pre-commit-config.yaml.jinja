@@ -68,17 +68,13 @@ repos:
         entry: filenames must not end in .ipynb
         language: fail
         files: '\.ipynb$'
-  {%- elif jupyter_files == "strip_outputs" %}
+  {%- else %}
+  {%- if jupyter_files == "strip_outputs" %}
   - repo: https://github.com/kynan/nbstripout
     rev: 0.8.1
     hooks:
       - id: nbstripout
-  {%- elif jupyter_files == "allow" %}
-  - repo: https://github.com/nbQA-dev/nbQA
-    rev: 1.9.1
-    hooks:
-      - id: nbqa-isort
-        args: ["--float-to-top", "--treat-comment-as-code", "# %%"]
+  {%- endif %}
   {%- endif %}
 
   # general formatting
