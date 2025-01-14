@@ -49,6 +49,16 @@ repos:
       # text
       - id: text-unicode-replacement-char
 
+  # environment manager
+  - repo: https://github.com/mxr/sync-pre-commit-deps
+    rev: v0.0.2
+    hooks:
+      - id: sync-pre-commit-deps
+  - repo: https://github.com/astral-sh/uv-pre-commit
+    rev: 0.5.18
+    hooks:
+      - id: uv-lock
+
   # jupyter notebooks
   {%- if jupyter_files == "forbid" %}
   - repo: local
@@ -71,17 +81,7 @@ repos:
         args: ["--float-to-top", "--treat-comment-as-code", "# %%"]
   {%- endif %}
 
-  # environment manager
-  - repo: https://github.com/astral-sh/uv-pre-commit
-    rev: 0.5.18
-    hooks:
-      - id: uv-lock
-  - repo: https://github.com/mxr/sync-pre-commit-deps
-    rev: v0.0.2
-    hooks:
-      - id: sync-pre-commit-deps
-
-  # formatting and linting
+  # general formatting
   - repo: https://github.com/Lucas-C/pre-commit-hooks
     rev: v1.5.5
     hooks:
@@ -96,6 +96,8 @@ repos:
       - id: prettier
         types_or: [yaml, markdown, html, css, scss, javascript, json]
         args: ["--prose-wrap=always"]
+
+  # python formatting and linting
   {%- if format_tool == "black" %}
   - repo: https://github.com/psf/black-pre-commit-mirror
     rev: 24.10.0
@@ -142,15 +144,17 @@ repos:
       - id: check-github-workflows
       - id: check-readthedocs
 
+  # shell scripts
+  - repo: https://github.com/shellcheck-py/shellcheck-py
+    rev: v0.10.0.1
+    hooks:
+      - id: shellcheck
+
   # spell checks
   - repo: https://github.com/codespell-project/codespell
     rev: v2.3.0
     hooks:
       - id: codespell
-  - repo: https://github.com/shellcheck-py/shellcheck-py
-    rev: v0.10.0.1
-    hooks:
-      - id: shellcheck
   - repo: local
     hooks:
       - id: disallow-caps
