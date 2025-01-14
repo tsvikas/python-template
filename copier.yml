@@ -2,17 +2,17 @@ _subdirectory: project_name
 
 _jinja_extensions:
   - copier_templates_extensions.TemplateExtensionLoader
-  - extensions/jinja2_shell.py:ShellExtension
+  - extensions/jinja2_gitconfig.py:GitConfigExtension
 
 full_name:
   type: str
   help: Your full name
-  default: "{{ 'git config user.name' | shell }}"
+  default: "{{ 'user.name' | git_config }}"
 
 email:
   type: str
   help: Your email
-  default: "{{ 'git config user.email' | shell }}"
+  default: "{{ 'user.email' | git_config }}"
   validator: >-
     {% if not (email | regex_search('^[^@]+@[^@]+\.[^@]+$')) %}
     Not a valid email.
