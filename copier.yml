@@ -1,101 +1,101 @@
 _subdirectory: project_name
 
 full_name:
-    type: str
-    help: Your full name
-    default: Tsvika Shapira
+  type: str
+  help: Your full name
+  default: Tsvika Shapira
 
 username:
-    type: str
-    help: Your GitHub username
-    default: >-
-        {{ full_name | lower | replace(' ', '-') }}
-    validator: >-
-        {% if not (username | regex_search('^[a-zA-Z0-9\-]+$')) %}
-        username can only contain alphanumeric characters and dashes.
-        {% endif %}
+  type: str
+  help: Your GitHub username
+  default: >-
+    {{ full_name | lower | replace(' ', '-') }}
+  validator: >-
+    {% if not (username | regex_search('^[a-zA-Z0-9\-]+$')) %}
+    username can only contain alphanumeric characters and dashes.
+    {% endif %}
 
 email:
-    type: str
-    help: Your email
-    default: "{{username}}@gmail.com"
-    validator: >-
-        {% if not (email | regex_search('^[^@]+@[^@]+\.[^@]+$')) %}
-        Not a valid email.
-        {% endif %}
+  type: str
+  help: Your email
+  default: "{{username}}@gmail.com"
+  validator: >-
+    {% if not (email | regex_search('^[^@]+@[^@]+\.[^@]+$')) %}
+    Not a valid email.
+    {% endif %}
 
 project_name:
-    type: str
-    help: The repo name. Probably equal to the destination dirname
-    placeholder: paperclip-factory
-    validator: >-
-        {% if not (project_name | regex_search('^[a-z][a-z0-9\-]+$')) %}
-        project_name must start with a letter, followed one or more letters, digits or dashes all lowercase.
-        {% endif %}
+  type: str
+  help: The repo name. Probably equal to the destination dirname
+  placeholder: paperclip-factory
+  validator: >-
+    {% if not (project_name | regex_search('^[a-z][a-z0-9\-]+$')) %}
+    project_name must start with a letter, followed one or more letters, digits or dashes all lowercase.
+    {% endif %}
 
 package_name:
-    type: str
-    help: The package name. Must be a valid identifier.
-    default: >-
-      {{ project_name | lower | replace("-", "_") }}
-    validator: >-
-        {% if not (package_name | regex_search('^[a-z][a-z0-9_]+$')) %}
-        package_name must start with a letter, followed one or more letters, digits or underscores all lowercase.
-        {% endif %}
+  type: str
+  help: The package name. Must be a valid identifier.
+  default: >-
+    {{ project_name | lower | replace("-", "_") }}
+  validator: >-
+    {% if not (package_name | regex_search('^[a-z][a-z0-9_]+$')) %}
+    package_name must start with a letter, followed one or more letters, digits or underscores all lowercase.
+    {% endif %}
 
 package_description:
-    type: str
-    help: Short description of this package.
-    placeholder: Why fit in when you were born to stand out?
+  type: str
+  help: Short description of this package.
+  placeholder: Why fit in when you were born to stand out?
 
 python_minor:
-    type: int
-    help: Minimal minor version of python, i.e '9' or '13' for 3.9 or 3.13
-    default: 13
+  type: int
+  help: Minimal minor version of python, i.e '9' or '13' for 3.9 or 3.13
+  default: 13
 
 license:
-    type: str
-    help: Choose a license, see https://choosealicense.com/ for help
-    default: MIT
-    choices:
-      "Proprietary             - see https://choosealicense.com/no-permission/": Proprietary
-      "AGPL-3.0-or-later       - Copyleft": AGPL-3.0-or-later
-      "GPL-3.0-or-later        - Copyleft": GPL-3.0-or-later
-      "LGPL-3.0-or-later       - Copyleft": LGPL-3.0-or-later
-      "MPL-2.0                 - Copyleft": MPL-2.0
-      "Apache-2.0              - Permissive": Apache-2.0
-      "MIT                     - Permissive": MIT
-      "BSL-1.0                 - Permissive": BSL-1.0
-      "Unlicense               - Permissive": Unlicense
+  type: str
+  help: Choose a license, see https://choosealicense.com/ for help
+  default: MIT
+  choices:
+    "Proprietary             - see https://choosealicense.com/no-permission/": Proprietary
+    "AGPL-3.0-or-later       - Copyleft": AGPL-3.0-or-later
+    "GPL-3.0-or-later        - Copyleft": GPL-3.0-or-later
+    "LGPL-3.0-or-later       - Copyleft": LGPL-3.0-or-later
+    "MPL-2.0                 - Copyleft": MPL-2.0
+    "Apache-2.0              - Permissive": Apache-2.0
+    "MIT                     - Permissive": MIT
+    "BSL-1.0                 - Permissive": BSL-1.0
+    "Unlicense               - Permissive": Unlicense
 
 year:
-    type: int
-    help: The current year, for the copyright clause
-    default: "{{ '%Y' | strftime }}"
+  type: int
+  help: The current year, for the copyright clause
+  default: "{{ '%Y' | strftime }}"
 
 get_package_version_from_vcs:
-    type: bool
-    help: Use the version control system for versioning?
-    default: true
+  type: bool
+  help: Use the version control system for versioning?
+  default: true
 
 has_cli:
-    type: bool
-    help: Add a cli module and entrypoint?
-    default: true
+  type: bool
+  help: Add a cli module and entrypoint?
+  default: true
 
 jupyter_files:
-    type: str
-    help: Allow jupyter notebooks in the repo?
-    default: forbid
-    choices:
-      - forbid
-      - strip_outputs
-      - allow
+  type: str
+  help: Allow jupyter notebooks in the repo?
+  default: forbid
+  choices:
+    - forbid
+    - strip_outputs
+    - allow
 
 format_tool:
-    type: str
-    help: The python formatter to use
-    default: black
-    choices:
-      - black
-      - ruff-format
+  type: str
+  help: The python formatter to use
+  default: black
+  choices:
+    - black
+    - ruff-format
