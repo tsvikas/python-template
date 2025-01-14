@@ -48,6 +48,8 @@ repos:
       - id: rst-inline-touching-normal
       # text
       - id: text-unicode-replacement-char
+
+  # jupyter notebooks
   {%- if jupyter_files == "forbid" %}
   - repo: local
     hooks:
@@ -56,6 +58,17 @@ repos:
         entry: filenames must not end in .ipynb
         language: fail
         files: '\.ipynb$'
+  {%- elif jupyter_files == "strip_outputs" %}
+  - repo: https://github.com/kynan/nbstripout
+    rev: 0.8.1
+    hooks:
+      - id: nbstripout
+  {%- elif jupyter_files == "allow" %}
+  - repo: https://github.com/nbQA-dev/nbQA
+    rev: 1.9.1
+    hooks:
+      - id: nbqa-isort
+        args: ["--float-to-top", "--treat-comment-as-code", "# %%"]
   {%- endif %}
 
   # environment manager

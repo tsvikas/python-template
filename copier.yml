@@ -100,6 +100,7 @@ jupyter_files:
     default: forbid
     choices:
       - forbid
+      - strip_outputs
       - allow
 
 
