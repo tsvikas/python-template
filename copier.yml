@@ -6,12 +6,16 @@ _jinja_extensions:
 
 full_name:
   type: str
-  help: Your full name
+  help: Your full name. It is used in the copyright notice and PyPI metadata.
   default: "{{ 'user.name' | git_config }}"
+  validator: >-
+    {% if not full_name %}
+    You must provide a name.
+    {% endif %}
 
 email:
   type: str
-  help: Your email
+  help: Your email. It is used in PyPI metadata.
   default: "{{ 'user.email' | git_config }}"
   validator: >-
     {% if not (email | regex_search('^[^@]+@[^@]+\.[^@]+$')) %}
@@ -20,7 +24,7 @@ email:
 
 username:
   type: str
-  help: Your GitHub username (or repo organization)
+  help: Your GitHub username (or repo organization).
   default: >-
     {{ email.split('@')[0]}}
   validator: >-
