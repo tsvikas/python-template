@@ -4,13 +4,21 @@ Currently, a placeholder until the real CLI will be added.
 """
 
 import typer
+from click.exceptions import UsageError
+
+from . import __version__
 
 app = typer.Typer()
 
 
-@app.callback()
-def callback() -> None:
+@app.callback(invoke_without_command=True)
+def callback(ctx: typer.Context, *, version: bool = False) -> None:
     """Awesome Portal Gun."""
+    if version:
+        typer.echo(f"{{project_name}} {__version__}")
+        raise typer.Exit(0)
+    if ctx.invoked_subcommand is None:
+        raise UsageError("Missing command.")  # noqa: TRY003
 
 
 @app.command()

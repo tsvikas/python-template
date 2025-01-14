@@ -1,5 +1,6 @@
 from typer.testing import CliRunner
 
+from {{package_name}} import __version__
 from {{package_name}}.cli import app
 
 runner = CliRunner()
@@ -13,3 +14,10 @@ def test_app():
     result = runner.invoke(app, ["shoot"])
     assert result.exit_code == 0
     assert "Shooting" in result.stdout
+
+    result = runner.invoke(app, ["--version"])
+    assert result.exit_code == 0
+    assert __version__ in result.stdout
+
+    result = runner.invoke(app, [])
+    assert result.exit_code == 2
