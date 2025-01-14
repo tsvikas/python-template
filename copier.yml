@@ -1,6 +1,6 @@
 _subdirectory: project_name
 
-name:
+full_name:
     type: str
     help: Your full name
     default: Tsvika Shapira
@@ -10,7 +10,7 @@ username:
     type: str
     help: Your GitHub username
     default: >-
-        {{ name | lower | replace(' ', '-') }}
+        {{ full_name | lower | replace(' ', '-') }}
     validator: >-
         {% if not (username | regex_search('^[a-zA-Z0-9\-]+$')) %}
         username can only contain alphanumeric characters and dashes.
