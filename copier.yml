@@ -52,11 +52,6 @@ package_description:
   help: Short description of this package.
   placeholder: Why fit in when you were born to stand out?
 
-python_minor:
-  type: int
-  help: Minimal minor version of python, i.e '9' or '13' for 3.9 or 3.13
-  default: 13
-
 license:
   type: str
   help: Choose a license, see https://choosealicense.com/ for help
@@ -76,6 +71,11 @@ year:
   type: int
   help: The current year, for the copyright clause
   default: "{{ '%Y' | strftime }}"
+
+python_minor:
+  type: int
+  help: Minimal minor version of python, i.e '9' or '13' for 3.9 or 3.13
+  default: 13
 
 get_package_version_from_vcs:
   type: bool
