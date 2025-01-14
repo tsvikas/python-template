@@ -1,7 +1,8 @@
 _subdirectory: project_name
 
 _jinja_extensions:
-  - jinja2_shell.ShellExtension
+  - copier_templates_extensions.TemplateExtensionLoader
+  - extensions/jinja2_shell.py:ShellExtension
 
 full_name:
   type: str
