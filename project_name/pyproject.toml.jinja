@@ -168,6 +168,7 @@ testpaths = [
 
 [tool.coverage]
 run.omit = [
+  "src/{{package_name}}/__main__.py",
   "*/_version.py",
 ]
 
