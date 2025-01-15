@@ -26,12 +26,13 @@ repos:
         args: ["--pytest-test-first"]
       # filetypes
       - id: check-json
-        exclude: ipynb
+        exclude_types: [jupyter]
       - id: check-symlinks
       - id: check-toml
       - id: check-yaml
       - id: check-xml
       - id: pretty-format-json
+        exclude_types: [jupyter]
   - repo: https://github.com/pre-commit/pygrep-hooks
     rev: v1.10.0
     hooks:
@@ -67,7 +68,7 @@ repos:
         name: forbid ipynb
         entry: filenames must not end in .ipynb
         language: fail
-        files: '\.ipynb$'
+        types: [jupyter]
   {%- endif %}
   {%- if jupyter_files == "strip_outputs" %}
   - repo: https://github.com/kynan/nbstripout
