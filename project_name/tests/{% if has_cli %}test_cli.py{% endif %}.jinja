@@ -6,7 +6,7 @@ from {{package_name}}.cli import app
 runner = CliRunner()
 
 
-def test_app():
+def test_app() -> None:
     result = runner.invoke(app, ["load"])
     assert result.exit_code == 0
     assert "Loading" in result.stdout
