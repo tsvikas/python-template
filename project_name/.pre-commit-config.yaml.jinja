@@ -86,12 +86,14 @@ repos:
     rev: 3.0.3
     hooks:
       - id: editorconfig-checker
+        exclude_types: [jupyter]
   - repo: https://github.com/rbubley/mirrors-prettier
     rev: v3.4.2
     hooks:
       - id: prettier
         types_or: [yaml, markdown, html, css, scss, javascript, json]
         args: ["--prose-wrap=always"]
+        exclude_types: [jupyter]
 
   # python formatting and linting
   {%- if format_tool == "black" %}
