@@ -80,9 +80,13 @@ dependencies = [
 # optional_name = ["some_package >=1.0"]
 
 [project.urls]
+# homepage = "https://{{project_name}}.readthedocs.io"
 source = "https://github.com/{{username}}/{{project_name}}"
-changelog = "https://github.com/{{username}}/{{project_name}}/blob/master/CHANGELOG.md"
+# changelog = "https://github.com/{{username}}/{{project_name}}/blob/master/CHANGELOG.md"
+# releasenotes = "https://github.com/{{username}}/{{project_name}}/releases"
 documentation = "https://{{project_name}}.readthedocs.io"
+# issues = "https://github.com/{{username}}/{{project_name}}/issues"
+# funding = "https://github.com/sponsors/{{username}}"
 
 [project.scripts]
 {% if not has_cli -%}# {% endif -%}
