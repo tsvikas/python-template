@@ -3,6 +3,8 @@
 Currently, a placeholder until the real CLI will be added.
 """
 
+from typing import Annotated
+
 import typer
 from click.exceptions import UsageError
 
@@ -11,12 +13,19 @@ from . import __version__
 app = typer.Typer()
 
 
-@app.callback(invoke_without_command=True)
-def callback(ctx: typer.Context, *, version: bool = False) -> None:
-    """Awesome Portal Gun."""
-    if version:
-        typer.echo(f"{{project_name}} {__version__}")
+def version_callback(value: bool) -> None:
+    if value:
+        print(f"{{project_name}} {__version__}")
         raise typer.Exit(0)
+
+
+@app.callback(invoke_without_command=True)
+def callback(
+    ctx: typer.Context,
+    *,
+    version: Annotated[bool, typer.Option(callback=version_callback)] = False,
+) -> None:
+    """Awesome Portal Gun."""
     if ctx.invoked_subcommand is None:
         raise UsageError("Missing command.")  # noqa: TRY003
 
