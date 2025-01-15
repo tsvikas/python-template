@@ -75,11 +75,17 @@ year:
   type: int
   help: The current year, for the copyright clause
   default: "{{ '%Y' | strftime }}"
+  validator: >-
+    {% if year <= 0 %}Must be positive{% endif %}
+    {% if year <= 999 %}Must be 4 digits{% endif %}
+    {% if year > 9999 %}Must be 4 digits{% endif %}
 
 python_minor:
   type: int
   help: Minimal minor version of python, i.e '9' or '13' for 3.9 or 3.13
   default: 13
+  validator: >-
+    {% if python_minor < 0 %}Must be >= 0{% endif %}
 
 get_package_version_from_vcs:
   type: bool
