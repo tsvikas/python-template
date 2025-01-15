@@ -180,7 +180,11 @@ python_version = "3.{{python_minor}}"
 warn_unused_configs = true
 strict = true
 warn_unreachable = true
-enable_error_code = ["ignore-without-code", "redundant-expr", "truthy-bool"]
+enable_error_code = [
+  "redundant-expr",
+  "truthy-bool",
+  "ignore-without-code",
+]
 # only for tests
 disallow_untyped_defs = false
 disallow_incomplete_defs = false
