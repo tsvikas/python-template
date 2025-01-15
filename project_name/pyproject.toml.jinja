@@ -174,14 +174,19 @@ run.omit = [
 
 
 [tool.mypy]
-mypy_path = "stubs"
 files = ["src", "tests"]
-python_version = "3.{{python_minor}}"
+mypy_path = "stubs"
+# verify the config file
 warn_unused_configs = true
+# set the platform
+python_version = "3.{{python_minor}}"
+# enable checks
 strict = true
+disallow_any_unimported = true
 warn_unreachable = true
 enable_error_code = [
   # from https://mypy.readthedocs.io/en/stable/error_code_list2.html
+  # last updated: mypy 1.14
   "redundant-self",
   "deprecated",
   "redundant-expr",
@@ -195,7 +200,6 @@ enable_error_code = [
   "unimported-reveal",
   "narrowed-type-not-subtype",
 ]
-disallow_any_unimported = true
 # only for tests
 disallow_untyped_defs = false
 disallow_incomplete_defs = false
