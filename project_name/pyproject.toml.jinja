@@ -179,7 +179,9 @@ log_cli_level = "INFO"
 [tool.coverage]
 run.omit = [
   "src/{{package_name}}/__main__.py",
+{%- if get_package_version_from_vcs %}
   "src/{{package_name}}/_version.py",
+{%- endif %}
 ]
 
 
@@ -261,9 +263,11 @@ flake8-comprehensions.allow-dict-calls-with-keyword-arguments = true
 "src/{{package_name}}/cli.py" = [
   "T20",      # flake8-print
 ]
+{%- if get_package_version_from_vcs %}
 "src/{{package_name}}/_version.py" = [
   "ALL",
 ]
+{%- endif %}
 "!tests/test_*.py" = [
   "PT",       # flake8-pytest-style
 ]
@@ -277,7 +281,9 @@ flake8-comprehensions.allow-dict-calls-with-keyword-arguments = true
 
 [tool.pylint]
 py-version = "3.{{python_minor}}"
+{%- if get_package_version_from_vcs %}
 ignore-paths = [".*/_version.py"]
+{%- endif %}
 # CHECK those options:
 reports.output-format = "colorized"
 similarities.ignore-imports = "yes"
