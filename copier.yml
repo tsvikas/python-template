@@ -102,9 +102,15 @@ jupyter_files:
   help: Allow jupyter notebooks in the repo?
   default: forbid
   choices:
-    - forbid
-    - strip_outputs
-    - allow
+    "Don't commit notebooks, silently ignore them": ignore
+    "Don't commit notebooks, fail in pre-commit": forbid
+    "Allow notebooks, strip outputs": strip_outputs
+    "Allow notebooks": allow
+
+contains_jupyter_files:
+  type: bool
+  default: "{{ jupyter_files in ['strip_outputs', 'allow'] }}"
+  when: false
 
 format_tool:
   type: str

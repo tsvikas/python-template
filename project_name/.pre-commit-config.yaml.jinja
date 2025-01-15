@@ -60,7 +60,7 @@ repos:
       - id: uv-lock
 
   # jupyter notebooks
-  {%- if jupyter_files == "forbid" %}
+  {%- if not contains_jupyter_files %}
   - repo: local
     hooks:
       - id: forbid-ipynb
@@ -68,13 +68,12 @@ repos:
         entry: filenames must not end in .ipynb
         language: fail
         files: '\.ipynb$'
-  {%- else %}
+  {%- endif %}
   {%- if jupyter_files == "strip_outputs" %}
   - repo: https://github.com/kynan/nbstripout
     rev: 0.8.1
     hooks:
       - id: nbstripout
-  {%- endif %}
   {%- endif %}
 
   # general formatting
@@ -98,7 +97,7 @@ repos:
   - repo: https://github.com/psf/black-pre-commit-mirror
     rev: 24.10.0
     hooks:
-      - id: black{%if jupyter_files != "forbid" %}-jupyter{% endif %}
+      - id: black{%if contains_jupyter_files %}-jupyter{% endif %}
   {%- endif %}
   - repo: https://github.com/adamchainz/blacken-docs
     rev: 1.19.1
