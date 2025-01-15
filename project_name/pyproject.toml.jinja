@@ -170,6 +170,8 @@ xfail_strict = true
 # CHECK those options:
 filterwarnings = [
   "error",
+  "ignore::DeprecationWarning",
+  "error::DeprecationWarning:{{package_name}}",
 ]
 log_cli_level = "INFO"
 
