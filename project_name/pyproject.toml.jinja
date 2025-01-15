@@ -70,10 +70,6 @@ classifiers = [
 {%- endif %}
   "Typing :: Typed",
 ]
-urls.documentation = "https://{{project_name}}.readthedocs.io"
-urls.repository = "https://github.com/{{username}}/{{project_name}}"
-urls.changelog = "https://github.com/{{username}}/{{project_name}}/blob/master/CHANGELOG.md"
-
 dependencies = [
   "loguru >=0",
   {% if not has_cli %}# {% endif -%}
@@ -82,6 +78,11 @@ dependencies = [
 
 [project.optional-dependencies]
 # optional_name = ["some_package >=1.0"]
+
+[project.urls]
+source = "https://github.com/{{username}}/{{project_name}}"
+changelog = "https://github.com/{{username}}/{{project_name}}/blob/master/CHANGELOG.md"
+documentation = "https://{{project_name}}.readthedocs.io"
 
 [project.scripts]
 {% if not has_cli -%}# {% endif -%}
