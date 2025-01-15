@@ -181,11 +181,13 @@ warn_unused_configs = true
 strict = true
 warn_unreachable = true
 enable_error_code = ["ignore-without-code", "redundant-expr", "truthy-bool"]
+# only for tests
 disallow_untyped_defs = false
 disallow_incomplete_defs = false
 
 [[tool.mypy.overrides]]
 module = "{{package_name}}.*"
+# only for src
 disallow_untyped_defs = true
 disallow_incomplete_defs = true
 
