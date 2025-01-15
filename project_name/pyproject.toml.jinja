@@ -210,15 +210,6 @@ enable_error_code = [
   "unimported-reveal",
   "narrowed-type-not-subtype",
 ]
-# only for tests
-disallow_untyped_defs = false
-disallow_incomplete_defs = false
-
-[[tool.mypy.overrides]]
-module = "{{package_name}}.*"
-# only for src
-disallow_untyped_defs = true
-disallow_incomplete_defs = true
 
 
 [tool.ruff.format]
@@ -281,7 +272,6 @@ flake8-comprehensions.allow-dict-calls-with-keyword-arguments = true
   "PLR2004",  # PyLint-Refactor/magic-value-comparison
   "S101",     # flake8-bandit/assert
   "D1",       # pydocstyle/undocumented-*
-  "ANN201",   # flake8-annotations/return-type
 ]
 
 
