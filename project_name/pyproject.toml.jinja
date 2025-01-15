@@ -120,13 +120,16 @@ dev = [
 ]
 test = [
   "pytest ~=8.0",
+  ## addons
   "pytest-benchmark ~=5.0",
-  "pytest-clarity ~=1.0",
   "pytest-cov ~=6.0",
-  "pytest-loguru ~=0.4.0",
-  "pytest-pretty ~=1.0",
   "pytest-reverse ~=1.0",
   "pytest-xdist[psutil] ~=3.0",
+  ## reporting
+  "pytest-clarity ~=1.0",
+  "pytest-pretty ~=1.0",
+  ## fixtures
+  "pytest-loguru ~=0.4.0",
   # "pytest-datadir ~=1.0",
   # "pytest-regressions ~=2.0",
   # "freezegun ~=1.0",
@@ -150,15 +153,18 @@ version.path = "src/{{ package_name  }}/__init__.py"
 [tool.pytest.ini_options]
 minversion = "6.0"
 addopts = [
+  ## testing
   "--doctest-modules",
-  "--cov={{package_name}}",
-  "--numprocesses=auto",
-  "--reverse",
-  "--benchmark-disable",
-  "-ra",
-  "--showlocals",
   "--strict-markers",
   "--strict-config",
+  ## addons
+  "--benchmark-disable",  # pytest-benchmark
+  "--cov={{package_name}}",  # pytest-cov
+  "--reverse",  # pytest-reverse
+  "--numprocesses=auto",  # pytest-xdist
+  ## reporting
+  "-ra",
+  "--showlocals",
 ]
 xfail_strict = true
 filterwarnings = [
