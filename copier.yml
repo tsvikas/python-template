@@ -53,8 +53,15 @@ package_name:
 
 package_description:
   type: str
-  help: Short description of this package.
+  help: A one-line summary of what the package does.
   placeholder: Why fit in when you were born to stand out?
+  validator: >-
+    {% if package_description | length > 80 %}
+    package_description is too long
+    {% endif %}
+    {% if package_description[-1] != '.' %}
+    package_description must end with a period
+    {% endif %}
 
 license:
   type: str
