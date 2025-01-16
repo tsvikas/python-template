@@ -39,6 +39,10 @@ jobs:
           # add prerelease versions
           - resolution: "prerelease"
             resolution-args: "--upgrade --resolution highest --prerelease allow"
+            python-version: "3.13"
+            allow-failure: true
+          - resolution: "prerelease"
+            resolution-args: "--upgrade --resolution highest --prerelease allow"
             python-version: "3.14"
             allow-failure: true
     continue-on-error: {% raw %}${{ matrix.allow-failure }}{% endraw %}
