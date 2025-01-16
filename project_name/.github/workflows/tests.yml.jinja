@@ -1,0 +1,41 @@
+name: Tests
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    name: continuous-integration
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        resolution:
+          - "--no-upgrade"
+          - "--upgrade --resolution highest"
+          - "--upgrade --resolution lowest-direct"
+        python-version:
+          {%- if python_minor <= 9 %}
+          - "3.9"
+          {%- endif %}
+          {%- if python_minor <= 10 %}
+          - "3.10"
+          {%- endif %}
+          {%- if python_minor <= 11 %}
+          - "3.11"
+          {%- endif %}
+          {%- if python_minor <= 12 %}
+          - "3.12"
+          {%- endif %}
+          {%- if python_minor <= 13 %}
+          - "3.13"
+          {%- endif %}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install uv and set the python version
+        uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+          python-version: {% raw %}${{ matrix.python-version }}{% endraw %}
+      - name: Install the project
+        run: uv sync --all-extras --group test {% raw %}${{ matrix.resolution }}{% endraw %}
+      - name: Run tests
+        run: uv run pytest
