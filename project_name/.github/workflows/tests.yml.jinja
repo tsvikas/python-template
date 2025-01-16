@@ -8,9 +8,9 @@ jobs:
     strategy:
       matrix:
         resolution:
-          - "--no-upgrade"
-          - "--upgrade --resolution highest"
-          - "--upgrade --resolution lowest-direct"
+          - "no-upgrade"
+          - "highest"
+          - "lowest"
         python-version:
           {%- if python_minor <= 9 %}
           - "3.9"
@@ -29,10 +29,20 @@ jobs:
           {%- endif %}
         allow-failure: [false]
         include:
-          resolution: "--upgrade --resolution highest --prerelease allow"
-          python-version: "3.14"
-          allow-failure: true
+          # map resolution to resolution-args
+          - resolution: "no-upgrade"
+            resolution-args: "--no-upgrade"
+          - resolution: "highest"
+            resolution-args: "--upgrade --resolution highest"
+          - resolution: "lowest"
+            resolution-args: "--upgrade --resolution lowest-direct"
+          # add prerelease versions
+          - resolution: "prerelease"
+            resolution-args: "--upgrade --resolution highest --prerelease allow"
+            python-version: "3.14"
+            allow-failure: true
     continue-on-error: {% raw %}${{ matrix.allow-failure }}{% endraw %}
+    name: {% raw %}test-py${{ matrix.python-version }}-${{ matrix.resolution }}{% endraw %}
     steps:
       - uses: actions/checkout@v4
       - uses: astral-sh/setup-uv@v5
@@ -40,8 +50,6 @@ jobs:
           enable-cache: true
           python-version: {% raw %}${{ matrix.python-version }}{% endraw %}
       - name: Install the project
-        run:
-          uv sync --all-extras --group test
-          {% raw %}${{ matrix.resolution }}{% endraw %}
+        run: uv sync --all-extras --group test {% raw %}${{ matrix.resolution-args }}{% endraw %}
       - name: Run tests
         run: uv run pytest
