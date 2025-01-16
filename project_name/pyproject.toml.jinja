@@ -103,6 +103,7 @@ default-groups = ["dev", "test", "typing"]
 
 [dependency-groups]
 dev = [
+  "rust-just ~=1.0",
   "pre-commit ~=4.0",
   {%- if jupyter_files == "strip_outputs" %}
   "nbstripout ~=0.8.0",

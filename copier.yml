@@ -5,7 +5,7 @@ _jinja_extensions:
   - extensions/jinja2_gitconfig.py:GitConfigExtension
 
 _tasks:
-  - ./init.sh
+  - uvx --from rust-just just init
 
 full_name:
   type: str
