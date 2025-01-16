@@ -3,8 +3,7 @@ name: Tests
 on: [push, pull_request]
 
 jobs:
-  build:
-    name: continuous-integration
+  test:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -28,14 +27,21 @@ jobs:
           {%- if python_minor <= 13 %}
           - "3.13"
           {%- endif %}
+        allow-failure: [false]
+        include:
+          resolution: "--upgrade --resolution highest --prerelease allow"
+          python-version: "3.14"
+          allow-failure: true
+    continue-on-error: {% raw %}${{ matrix.allow-failure }}{% endraw %}
     steps:
       - uses: actions/checkout@v4
-      - name: Install uv and set the python version
-        uses: astral-sh/setup-uv@v5
+      - uses: astral-sh/setup-uv@v5
         with:
           enable-cache: true
           python-version: {% raw %}${{ matrix.python-version }}{% endraw %}
       - name: Install the project
-        run: uv sync --all-extras --group test {% raw %}${{ matrix.resolution }}{% endraw %}
+        run:
+          uv sync --all-extras --group test
+          {% raw %}${{ matrix.resolution }}{% endraw %}
       - name: Run tests
         run: uv run pytest
