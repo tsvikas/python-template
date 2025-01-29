@@ -24,13 +24,15 @@ def git_config(key: str) -> str:
 
     """
     import subprocess  # nosec
+
     if not is_valid_git_config(key):
         raise ValueError(f"{key!r} is not a valid git config value")
 
     process = subprocess.run(  # nosec
         ["/usr/bin/git", "config", key],
         capture_output=True,
-        text=True, check=False,
+        text=True,
+        check=False,
     )  # nosec
     return process.stdout.rstrip()
 
