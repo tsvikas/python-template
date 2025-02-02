@@ -18,25 +18,31 @@ class XDGPaths:
         """
         self.prog_name = prog_name
 
-    def existing_data_files(self, filename: str) -> list[Path]:
+    def existing_data_files(self, filenames: str | list[str]) -> list[Path]:
         """Get 'prog_name/filename' from '$XDG_DATA_HOME' and '$XDG_DATA_DIRS'.
 
         Those are the directories in which data files should be stored.
         """
+        if isinstance(filenames, str):
+            filenames = [filenames]
         return [
             fn
             for d in [xdg_base_dirs.xdg_data_home(), *xdg_base_dirs.xdg_data_dirs()]
+            for filename in filenames
             if (fn := d / self.prog_name / filename).exists()
         ]
 
-    def existing_config_files(self, filename: str) -> list[Path]:
+    def existing_config_files(self, filenames: str | list[str]) -> list[Path]:
         """Get 'prog_name/filename' from '$XDG_CONFIG_HOME' and '$XDG_CONFIG_DIRS'.
 
         Those are the directories in which configuration files should be stored.
         """
+        if isinstance(filenames, str):
+            filenames = [filenames]
         return [
             fn
             for d in [xdg_base_dirs.xdg_config_home(), *xdg_base_dirs.xdg_config_dirs()]
+            for filename in filenames
             if (fn := d / self.prog_name / filename).exists()
         ]
 
