@@ -4,6 +4,9 @@ Currently, a placeholder until the real CLI will be added.
 """
 
 from typing import Annotated
+{%- if python_minor < 10 -%}
+, Optional
+{%- endif %}
 
 import typer
 from click.exceptions import UsageError
@@ -24,8 +27,19 @@ def callback(
     ctx: typer.Context,
     *,
     version: Annotated[  # noqa: ARG001
-        bool, typer.Option(callback=_version_callback)
-    ] = False,
+        {%- if python_minor < 10 %}
+        Optional[bool],  # noqa: FA100 (needed for typer)
+        {%- else %}
+        bool | None,
+        {%- endif %}
+        typer.Option(
+            "--version",
+            "-V",
+            callback=_version_callback,
+            is_eager=True,
+            help="Print version",
+        ),
+    ] = None,
 ) -> None:
     """Awesome Portal Gun."""
     if ctx.invoked_subcommand is None:
