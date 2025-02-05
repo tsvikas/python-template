@@ -23,15 +23,10 @@ init:
 
   @just test
 
-  @echo "use 'gh repo create' to set this repo on GitHub"
-  @echo "use 'ln -s ~/code_TODOs/{{project_name}}.md ~/code/{{project_name}}/TODO.md' to create a TODO file"
-
 prepare:
   uv sync
   uv run pre-commit install
-  @echo "use 'ln -s ~/code_TODOs/{{project_name}}.md ~/code/{{project_name}}/TODO.md' to create a TODO file"
 
 test:
   uv run pre-commit run --all-files
   uv run pytest
-  uv run mypy
