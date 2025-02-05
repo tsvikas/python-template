@@ -164,5 +164,7 @@ repos:
 ci:
   autoupdate_commit_msg: "chore: update pre-commit hooks"
   autofix_commit_msg: "style: pre-commit fixes"
+  skip: [mypy-local]
+  autoupdate_schedule: monthly
 
 exclude: ^.cruft.json|.copier-answers.yml$
