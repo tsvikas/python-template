@@ -148,7 +148,7 @@ test = [
 ]
 # docs = []
 typing = [
-  "mypy ~=1.14",
+  "mypy ~=1.15.0",
   # add "*-stubs" and "types-*" packages here (">=0")
 ]
 
@@ -204,13 +204,14 @@ mypy_path = "stubs"
 warn_unused_configs = true
 # set the platform
 python_version = "3.{{python_minor}}"
-# enable checks
+# enable checks [last updated: mypy 1.15]
 strict = true
+disallow_any_explicit = true
 disallow_any_unimported = true
 warn_unreachable = true
+strict_bytes = true
 enable_error_code = [
   # from https://mypy.readthedocs.io/en/stable/error_code_list2.html
-  # last updated: mypy 1.14
   "redundant-self",
   "deprecated",
   "redundant-expr",
