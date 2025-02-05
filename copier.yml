@@ -4,9 +4,6 @@ _jinja_extensions:
   - copier_templates_extensions.TemplateExtensionLoader
   - extensions/jinja2_gitconfig.py:GitConfigExtension
 
-_tasks:
-  - uvx --from rust-just just init
-
 full_name:
   type: str
   help: Your full name. It is used in the copyright notice and PyPI metadata.
