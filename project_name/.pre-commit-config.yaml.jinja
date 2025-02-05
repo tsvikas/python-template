@@ -162,6 +162,10 @@ repos:
       - id: shellcheck
 
   # spell checks
+  - repo: https://github.com/crate-ci/typos
+    rev: v1.29.5
+    hooks:
+      - id: typos
   - repo: https://github.com/codespell-project/codespell
     rev: v2.3.0
     hooks:
