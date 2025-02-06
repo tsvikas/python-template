@@ -1,5 +1,7 @@
 [defaults]
 _extra_tasks = [
+  "git init",
+  "git add --all",
   "just init",
 ]
 full_name = "Marty McFly"
