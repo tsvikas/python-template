@@ -62,7 +62,16 @@ import {{package_name}}
 ## Build
 
 - run formatting, linting, and tests.
-- use `uv run dunamai from git` to see the current version
-- use `git tag -a vX.Y.Z -m "version vX.Y.Z" -e` to add a git tag
+- optionally, use `uv run dunamai from git` to see the current version
+{%- if not get_package_version_from_vcs %}
+- replace the version in `src/{{package_name}}/__init__.py`
+- commit
+{%- endif %}
+- use
+  `VER="vX.Y.Z" && git tag -a "$VER" -m "version $VER" -e && git push origin tag "$VER"`
 - use `uv build` to build
-- push the tag with `git push origin tag vX.Y.Z`
+{%- if not get_package_version_from_vcs %}
+- add '+dev' to the version in `src/{{package_name}}/__init__.py`
+- commit
+- push
+{%- endif %}
