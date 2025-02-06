@@ -4,4 +4,4 @@ default:
 
 test:
   rm -rf .ctt
-  uvx --from copier-template-tester --with copier_templates_extensions ctt
+  uvx --from git+https://github.com/tsvikas/copier-template-tester@feat/add-tasks --with copier_templates_extensions ctt

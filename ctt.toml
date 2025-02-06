@@ -1,4 +1,7 @@
 [defaults]
+_extra_tasks = [
+  "just init",
+]
 full_name = "Marty McFly"
 email = "marty.mcfly@example.com"
 username = "marty-mcfly"
