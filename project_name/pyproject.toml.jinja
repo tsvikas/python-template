@@ -170,14 +170,13 @@ addopts = [
   "--doctest-modules",
   "--strict-markers",
   "--strict-config",
+  ## reporting
+  "-ra",
   ## addons
   "--benchmark-disable",  # pytest-benchmark
   "--cov=src/{{package_name}}",  # pytest-cov
   "--reverse",  # pytest-reverse
   "--numprocesses=auto",  # pytest-xdist
-  ## reporting
-  "-ra",
-  "--showlocals",
 ]
 xfail_strict = true
 # CHECK those options:
