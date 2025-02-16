@@ -132,13 +132,14 @@ dev = [
 ]
 test = [
   "pytest ~=8.0",
-  ## addons
-  "pytest-benchmark ~=5.0",
-  "pytest-cov ~=6.0",
+  ## running
   "pytest-reverse ~=1.0",
   "pytest-xdist[psutil] ~=3.0",
   ## reporting
   "pytest-clarity ~=1.0",
+  ## extras
+  "pytest-benchmark ~=5.0",
+  "pytest-cov ~=6.0",
   ## fixtures
   "pytest-mock ~=3.0",
   "pytest-loguru >=0",
