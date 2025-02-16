@@ -15,9 +15,13 @@ def test_app() -> None:
     assert result.exit_code == 0
     assert "Shooting" in result.stdout
 
+
+def test_app_version() -> None:
     result = runner.invoke(app, ["--version"])
     assert result.exit_code == 0
     assert __version__ in result.stdout
 
+
+def test_app_exit() -> None:
     result = runner.invoke(app, [])
     assert result.exit_code == 2
