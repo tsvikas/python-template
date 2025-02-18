@@ -1,6 +1,5 @@
 # {{project_name}}
 
-<!-- prettier-ignore-start -->
 [![Tests][tests-badge]][tests-link]
 [![Documentation Status][rtd-badge]][rtd-link]
 
@@ -16,31 +15,6 @@
 [![PRs Welcome][prs-welcome-badge]][[prs-welcome-link]
 [![Total downloads][pepy-badge]][pepy-link]
 
-
-[tests-badge]:              https://github.com/{{username}}/{{project_name}}/actions/workflows/lint_and_test.yml/badge.svg
-[tests-link]:               https://github.com/{{username}}/{{project_name}}/actions/workflows/lint_and_test.yml
-[rtd-badge]:                https://readthedocs.org/projects/{{project_name}}/badge/?version=latest
-[rtd-link]:                 https://{{project_name}}.readthedocs.io/en/latest/?badge=latest
-[pypi-version]:             https://img.shields.io/pypi/v/{{project_name}}
-[pypi-link]:                https://pypi.org/project/{{project_name}}/
-[conda-badge]:              https://img.shields.io/conda/vn/conda-forge/{{project_name}}
-[conda-link]:               https://github.com/conda-forge/{{project_name}}-feedstock
-[pypi-platforms]:           https://img.shields.io/pypi/pyversions/{{project_name}}
-[uv-badge]:                 https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/uv/main/assets/badge/v0.json
-[uv-link]:                  https://github.com/astral-sh/uv
-[ruff-badge]:               https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json
-[ruff-link]:                https://github.com/astral-sh/ruff
-[black-badge]:              https://img.shields.io/badge/code%20style-black-000000.svg
-[black-link]:               https://github.com/psf/black
-[github-discussions-badge]: https://img.shields.io/static/v1?label=Discussions&message=Ask&color=blue&logo=github
-[github-discussions-link]:  https://github.com/{{username}}/{{project_name}}/discussions
-[prs-welcome-badge]:        https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square
-[prs-welcome-link]:         http://makeapullrequest.com
-[pepy-badge]:               https://static.pepy.tech/badge/{{project_name}}
-[pepy-link]:                https://pepy.tech/project/{{project_name}}
-
-<!-- prettier-ignore-end -->
-
 ## Usage
 
 ```
@@ -52,9 +26,6 @@ import {{package_name}}
 - install [git][install-git], [uv][install-uv].
 - git clone this repo
 - run `uv run just prepare`
-
-[install-git]: https://git-scm.com/book/en/v2/Getting-Started-Installing-Git
-[install-uv]: https://docs.astral.sh/uv/getting-started/installation/
 
 ## Code formatting
 
@@ -89,3 +60,27 @@ import {{package_name}}
 - commit
 - push
 {%- endif %}
+
+[black-badge]: https://img.shields.io/badge/code%20style-black-000000.svg
+[black-link]: https://github.com/psf/black
+[conda-badge]: https://img.shields.io/conda/vn/conda-forge/{{project_name}}
+[conda-link]: https://github.com/conda-forge/{{project_name}}-feedstock
+[github-discussions-badge]: https://img.shields.io/static/v1?label=Discussions&message=Ask&color=blue&logo=github
+[github-discussions-link]: https://github.com/{{username}}/{{project_name}}/discussions
+[install-git]: https://git-scm.com/book/en/v2/Getting-Started-Installing-Git
+[install-uv]: https://docs.astral.sh/uv/getting-started/installation/
+[pepy-badge]: https://static.pepy.tech/badge/{{project_name}}
+[pepy-link]: https://pepy.tech/project/{{project_name}}
+[prs-welcome-badge]: https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square
+[prs-welcome-link]: http://makeapullrequest.com
+[pypi-link]: https://pypi.org/project/{{project_name}}/
+[pypi-platforms]: https://img.shields.io/pypi/pyversions/{{project_name}}
+[pypi-version]: https://img.shields.io/pypi/v/{{project_name}}
+[rtd-badge]: https://readthedocs.org/projects/{{project_name}}/badge/?version=latest
+[rtd-link]: https://{{project_name}}.readthedocs.io/en/latest/?badge=latest
+[ruff-badge]: https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json
+[ruff-link]: https://github.com/astral-sh/ruff
+[tests-badge]: https://github.com/{{username}}/{{project_name}}/actions/workflows/lint_and_test.yml/badge.svg
+[tests-link]: https://github.com/{{username}}/{{project_name}}/actions/workflows/lint_and_test.yml
+[uv-badge]: https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/uv/main/assets/badge/v0.json
+[uv-link]: https://github.com/astral-sh/uv
