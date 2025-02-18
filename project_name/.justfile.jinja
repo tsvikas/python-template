@@ -16,4 +16,5 @@ prepare:
 
 test:
   uv run pre-commit run --all-files
+  uv run mypy
   uv run pytest
