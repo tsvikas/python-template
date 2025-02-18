@@ -96,16 +96,11 @@ repos:
           - mdformat-frontmatter
           - mdformat-footnote
           - mdformat-gfm-alerts
-  - repo: https://github.com/rbubley/mirrors-prettier
-    rev: v3.5.1
+  - repo: https://github.com/adrienverge/yamllint
+    rev: v1.35.1
     hooks:
-      - id: prettier
-        types_or: [yaml]
-        # json is handled with pretty-format-json
-        # markdown is handled with mdformat
-        # html, css, scss, javascript are not needed in python
-        args: ["--prose-wrap=always"]
-        exclude_types: [jupyter]
+      - id: yamllint
+        args: [-d, '{extends: default, rules: {line-length: disable, comments-indentation: disable, document-start: disable}}']
 
   # rst formatting
   - repo: https://github.com/PyCQA/doc8
