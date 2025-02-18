@@ -87,11 +87,23 @@ repos:
     hooks:
       - id: editorconfig-checker
         exclude_types: [jupyter]
+  - repo: https://github.com/hukkin/mdformat
+    rev: 0.7.22
+    hooks:
+      - id: mdformat
+        additional_dependencies:
+          - mdformat-gfm
+          - mdformat-frontmatter
+          - mdformat-footnote
+          - mdformat-gfm-alerts
   - repo: https://github.com/rbubley/mirrors-prettier
     rev: v3.5.1
     hooks:
       - id: prettier
-        types_or: [yaml, markdown, html, css, scss, javascript, json]
+        types_or: [yaml]
+        # json is handled with pretty-format-json
+        # markdown is handled with mdformat
+        # html, css, scss, javascript are not needed in python
         args: ["--prose-wrap=always"]
         exclude_types: [jupyter]
 
