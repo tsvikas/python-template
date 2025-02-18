@@ -20,6 +20,12 @@ format_tool = "black"
 
 [output.".ctt/python3.9"]
 python_minor = 9
+_extra_tasks = [
+  "bash -c 'echo \"3.9\" > .python-version'",
+  "git init",
+  "git add --all",
+  "just init",
+]
 get_package_version_from_vcs = true
 has_cli = true
 jupyter_files = "strip_outputs"
