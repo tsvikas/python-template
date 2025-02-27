@@ -18,3 +18,18 @@ check:
   uv run pre-commit run --all-files
   uv run mypy
   uv run pytest
+
+format:
+  {%- if format_tool == "black" %}
+  uv run black .
+  {%- elif format_tool == "ruff" %}
+  uv run ruff format
+  {%- endif %}
+
+lint:
+  uv run codespell
+  uv run ruff check
+  uv run mypy
+
+test:
+  uv run pytest
