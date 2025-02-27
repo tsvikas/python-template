@@ -7,7 +7,7 @@ _extra_tasks = [
 ]
 full_name = "Marty McFly"
 email = "marty.mcfly@example.com"
-username = "marty-mcfly"
+github_user = "marty-mcfly"
 project_name = "delorian-car"
 package_name = "delorian_car"
 package_description = "A car that flies."

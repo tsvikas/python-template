@@ -24,14 +24,14 @@ email:
     Not a valid email.
     {% endif %}
 
-username:
+github_user:
   type: str
-  help: Your GitHub username (or repo organization).
+  help: Your GitHub username (or organization).
   default: >-
     {{ email.split('@')[0]}}
   validator: >-
-    {% if not (username | regex_search('^[a-zA-Z0-9\-]+$')) %}
-    username can only contain alphanumeric characters and dashes.
+    {% if not (github_user | regex_search('^[a-zA-Z0-9\-]+$')) %}
+    Can only contain alphanumeric characters and dashes.
     {% endif %}
 
 project_name:
