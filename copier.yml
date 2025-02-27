@@ -1,3 +1,5 @@
+_min_copier_version: "9.5.0"
+
 _subdirectory: project_name
 
 _jinja_extensions:
@@ -35,7 +37,8 @@ username:
 project_name:
   type: str
   help: The repo name. Probably equal to the destination dirname
-  placeholder: paperclip-factory
+  default: >-
+    {{ _folder_name }}
   validator: >-
     {% if not (project_name | regex_search('^[a-z][a-z0-9\-]+$')) %}
     project_name must start with a letter, followed one or more letters, digits or dashes all lowercase.
