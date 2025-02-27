@@ -1,6 +1,7 @@
 [defaults]
 _extra_tasks = [
   "just init",
+  "just check",
   "uv tree --outdated --depth 1 --color always -q | grep latest --color=never || true",
 ]
 user_name = "Marty McFly"
@@ -28,6 +29,7 @@ python_minor = 9
 _extra_tasks = [
   "bash -c 'echo \"3.9\" > .python-version'",
   "just init",
+  "just check",
 ]
 get_package_version_from_vcs = true
 has_cli = true
