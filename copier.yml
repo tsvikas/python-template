@@ -6,12 +6,12 @@ _jinja_extensions:
   - copier_templates_extensions.TemplateExtensionLoader
   - extensions/jinja2_gitconfig.py:GitConfigExtension
 
-full_name:
+user_name:
   type: str
   help: Your full name. It is used in the copyright notice and PyPI metadata.
   default: "{{ 'user.name' | git_config }}"
   validator: >-
-    {% if not full_name %}
+    {% if not user_name %}
     You must provide a name.
     {% endif %}
 
