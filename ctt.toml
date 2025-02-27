@@ -6,7 +6,7 @@ _extra_tasks = [
   "uv tree --outdated --depth 1 --color always -q | grep latest --color=never || true",
 ]
 full_name = "Marty McFly"
-email = "marty.mcfly@example.com"
+user_email = "marty.mcfly@example.com"
 github_user = "marty-mcfly"
 project_name = "delorian-car"
 package_name = "delorian_car"

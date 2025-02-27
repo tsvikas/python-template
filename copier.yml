@@ -15,12 +15,12 @@ full_name:
     You must provide a name.
     {% endif %}
 
-email:
+user_email:
   type: str
-  help: Your email. It is used in PyPI metadata.
+  help: Your email address. It is used in PyPI metadata.
   default: "{{ 'user.email' | git_config }}"
   validator: >-
-    {% if not (email | regex_search('^[^@]+@[^@]+\.[^@]+$')) %}
+    {% if not (user_email | regex_search('^[^@]+@[^@]+\.[^@]+$')) %}
     Not a valid email.
     {% endif %}
 
@@ -28,7 +28,7 @@ github_user:
   type: str
   help: Your GitHub username (or organization).
   default: >-
-    {{ email.split('@')[0]}}
+    {{ user_email.split('@')[0]}}
   validator: >-
     {% if not (github_user | regex_search('^[a-zA-Z0-9\-]+$')) %}
     Can only contain alphanumeric characters and dashes.
