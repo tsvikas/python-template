@@ -4,7 +4,12 @@ default:
 # Initialize a new project
 init:
   git init
+  git commit --allow-empty -m "Initial commit"
+  git add --all
+  git commit -m "🚀 Initialized project using https://github.com/tsvikas/python-template"
   @just update-deps
+  git add --all
+  git commit -m "⬆️ Updated project dependencies"
   @just prepare
   @just check
 
