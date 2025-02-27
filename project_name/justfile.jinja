@@ -1,20 +1,25 @@
 default:
   @just --list
 
+# Initialize a new project
 init:
   git init
   @just update-deps
   @just prepare
   @just check
 
+# Update all dependencies
 update-deps:
   uv sync --upgrade
   uv run pre-commit autoupdate -j "$(nproc)"
 
+# Initialize the project after cloning
 prepare:
   uv run pre-commit install
 
+# Run all code quality checks and tests
 check:
+  # pre-commit includes everything except mypy and pytest
   uv run pre-commit run --all-files
   uv run mypy
   uv run pytest
