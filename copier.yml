@@ -41,7 +41,7 @@ project_name:
     {{ _folder_name }}
   validator: >-
     {% if not (project_name | regex_search('^[a-z][a-z0-9\-]+$')) %}
-    project_name must start with a letter, followed one or more letters, digits or dashes all lowercase.
+    Must start with a letter, followed one or more letters, digits or dashes all lowercase.
     {% endif %}
 
 package_name:
@@ -51,7 +51,7 @@ package_name:
     {{ project_name | lower | replace("-", "_") }}
   validator: >-
     {% if not (package_name | regex_search('^[a-z][a-z0-9_]+$')) %}
-    package_name must start with a letter, followed one or more letters, digits or underscores all lowercase.
+    Must start with a letter, followed one or more letters, digits or underscores all lowercase.
     {% endif %}
 
 package_description:
@@ -60,10 +60,10 @@ package_description:
   placeholder: Why fit in when you were born to stand out?
   validator: >-
     {% if package_description | length > 80 %}
-    package_description is too long
+    Must be up to 80 characters long
     {% endif %}
     {% if package_description[-1] != '.' %}
-    package_description must end with a period
+    Must end with a period
     {% endif %}
 
 license:
