@@ -4,12 +4,13 @@
 including:
 
 - code:
-  - dependency management with [uv](https://docs.astral.sh/uv/)
   - cli with [typer](https://typer.tiangolo.com/)
+  - logging with [loguru](https://loguru.readthedocs.io/)
 - dev tools:
+  - python dependency management with [uv](https://docs.astral.sh/uv/)
   - versioning with
     [uv-dynamic-versioning](https://github.com/ninoseki/uv-dynamic-versioning)
-  - WIP: task runner [just](https://just.systems/man/en/)
+  - task runner [just](https://just.systems/man/en/)
 - code quality tools:
   - testing with [pytest](https://docs.pytest.org/),
     [pytest-coverage](https://pytest-cov.readthedocs.io/),
@@ -18,13 +19,15 @@ including:
   - formatting with [black](https://black.readthedocs.io/)
     or [ruff-format](https://docs.astral.sh/ruff/formatter/)
   - linting with [ruff](https://docs.astral.sh/ruff/)
-    and [mypy](https://mypy-lang.org/)
+  - type checking with [mypy](https://mypy-lang.org/)
 - ci:
   - [pre-commit](https://pre-commit.com/)
+    with many hooks pre-configured
   - [github workflows](https://docs.github.com/en/actions/writing-workflows)
-- config files:
+- pre-set config files:
   - [EditorConfig](https://editorconfig.org/)
   - [gitignore](https://gitignore.io/)
+- documentation generation: WIP
 
 ## Usage
 
