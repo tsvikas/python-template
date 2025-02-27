@@ -5,7 +5,7 @@ init:
   git init
   @just update
   @just prepare
-  @just test
+  @just check
 
 update:
   uv sync --upgrade
@@ -14,7 +14,7 @@ update:
 prepare:
   uv run pre-commit install
 
-test:
+check:
   uv run pre-commit run --all-files
   uv run mypy
   uv run pytest
