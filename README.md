@@ -59,12 +59,15 @@ WIP
 
 - Other dev-tools can be installed too, but on default they are easily managed by uv using
   python's [dependency-groups](https://packaging.python.org/en/latest/specifications/dependency-groups/).
+  It is convenient to install [just](https://just.systems/man/en/packages.html),
+  as it allows you to run `just <taskname>` instead of `uv run just <taskname>`
 
 ### Create a new project from the template:
 
 Run
 `copier copy gh:tsvikas/python-template ~/path/to/project/directory/`
 and answer the questionnaire.
+Than switch to the newly created directory and run `just init`
 
 ### Developing your project
 
