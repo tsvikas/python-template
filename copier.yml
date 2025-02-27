@@ -2,6 +2,9 @@ _min_copier_version: "9.5.0"
 
 _subdirectory: project_name
 
+_tasks:
+  - "just init"
+
 _jinja_extensions:
   - copier_templates_extensions.TemplateExtensionLoader
   - extensions/jinja2_gitconfig.py:GitConfigExtension

@@ -1,6 +1,5 @@
 [defaults]
 _extra_tasks = [
-  "just init",
   "just check",
   "uv tree --outdated --depth 1 --color always -q | grep latest --color=never || true",
 ]
@@ -28,7 +27,9 @@ has_cli = false
 python_minor = 9
 _extra_tasks = [
   "bash -c 'echo \"3.9\" > .python-version'",
-  "just init",
+  "just update-deps",
+  "git add --all",
+  "git commit -m 'switch to python 3.9'",
   "just check",
 ]
 get_package_version_from_vcs = true

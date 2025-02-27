@@ -68,7 +68,6 @@ WIP
 Run
 `copier copy gh:tsvikas/python-template ~/path/to/project/directory/`
 and answer the questionnaire.
-Than switch to the newly created directory and run `just init`
 
 ### Developing your project
 
