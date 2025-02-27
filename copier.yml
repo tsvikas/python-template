@@ -3,7 +3,8 @@ _min_copier_version: "9.5.0"
 _subdirectory: project_name
 
 _tasks:
-  - "just init"
+  - "git init"  # required to run uv
+  - "uv run just init"
 
 _jinja_extensions:
   - copier_templates_extensions.TemplateExtensionLoader
