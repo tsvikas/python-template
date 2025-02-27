@@ -31,16 +31,24 @@ including:
 
 ## Usage
 
-To use:
+### Requirements
 
-```
-copier copy <src> ~/code/my-repo
-~/code/my-repo/init.sh
-```
+- To create a project from the template, you need [copier](https://copier.readthedocs.io/),
+  with [copier_templates_extensions](https://github.com/copier-org/copier-templates-extensions).
+  To install: `uv tool install copier --with copier_templates_extensions`
 
-or:
+- The development requirements for the created project is only
+  [uv](https://docs.astral.sh/uv/getting-started/installation/).
 
-```
-copier copy gh:tsvikas/python-template ~/code/my-repo
-~/code/my-repo/init.sh
-```
+- Other dev-tools can be installed too, but on default they are easily managed by uv using
+  python's [dependency-groups](https://packaging.python.org/en/latest/specifications/dependency-groups/).
+
+### Create a new project from the template:
+
+Run
+`copier copy gh:tsvikas/python-template ~/path/to/project/directory/`
+and answer the questionnaire.
+
+### Developing your project
+
+WIP
