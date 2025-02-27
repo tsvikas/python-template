@@ -3,11 +3,11 @@ default:
 
 init:
   git init
-  @just update
+  @just update-deps
   @just prepare
   @just check
 
-update:
+update-deps:
   uv sync --upgrade
   uv run pre-commit autoupdate -j "$(nproc)"
 
