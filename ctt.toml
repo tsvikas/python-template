@@ -29,7 +29,7 @@ _extra_tasks = [
   "bash -c 'echo \"3.9\" > .python-version'",
   "uv run just update-deps",
   "git add --all",
-  "git commit -m 'switch to python 3.9'",
+  "git commit -m 'switch to python 3.9' --no-verify",
   "uv run just check",
 ]
 get_package_version_from_vcs = true
