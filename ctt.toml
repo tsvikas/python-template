@@ -3,6 +3,7 @@ _extra_tasks = [
   "git init",
   "git add --all",
   "just init",
+  "uv tree --outdated --depth 1 --color always -q | grep latest --color=never || true",
 ]
 full_name = "Marty McFly"
 email = "marty.mcfly@example.com"
