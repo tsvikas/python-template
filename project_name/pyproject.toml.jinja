@@ -9,14 +9,14 @@ build-backend = "hatchling.build"
 
 [project]
 dynamic = ["version"]
-name = "{{project_name}}"
-description = "{{package_description}}"
-license = "{{license}}"
+name = "{{ project_name }}"
+description = "{{ package_description }}"
+license = "{{ license }}"
 license-files = ["LICEN[CS]E.*"]
 readme = "README.md"
-requires-python = ">=3.{{python_minor}}"
+requires-python = ">=3.{{ python_minor }}"
 authors = [
-  {name = "{{user_name}}", email = "{{user_email}}"}
+  {name = "{{ user_name }}", email = "{{ user_email }}"}
 ]
 keywords = []
 classifiers = [
@@ -81,20 +81,20 @@ dependencies = [
 # optional_name = ["some_package >=1.0"]
 
 [project.urls]
-# homepage = "https://{{project_name}}.readthedocs.io"
-source = "https://github.com/{{github_user}}/{{project_name}}"
-# changelog = "https://github.com/{{github_user}}/{{project_name}}/blob/master/CHANGELOG.md"
-# releasenotes = "https://github.com/{{github_user}}/{{project_name}}/releases"
-# documentation = "https://{{project_name}}.readthedocs.io"
-# issues = "https://github.com/{{github_user}}/{{project_name}}/issues"
-# funding = "https://github.com/sponsors/{{github_user}}"
+# homepage = "https://{{ project_name }}.readthedocs.io"
+source = "https://github.com/{{ github_user }}/{{ project_name }}"
+# changelog = "https://github.com/{{ github_user }}/{{ project_name }}/blob/master/CHANGELOG.md"
+# releasenotes = "https://github.com/{{ github_user }}/{{ project_name }}/releases"
+# documentation = "https://{{ project_name }}.readthedocs.io"
+# issues = "https://github.com/{{ github_user }}/{{ project_name }}/issues"
+# funding = "https://github.com/sponsors/{{ github_user }}"
 
 [project.scripts]
 {% if not has_cli -%}# {% endif -%}
-{{project_name}} = "{{package_name}}.cli:app"
+{{ project_name }} = "{{ package_name }}.cli:app"
 
 [project.gui-scripts]
-# {{project_name}} = "{{package_name}}.gui:app.run"
+# {{ project_name }} = "{{ package_name }}.gui:app.run"
 
 
 [tool.uv]
@@ -111,7 +111,7 @@ dev = [
   "nbstripout ~=0.8.0",
   {%- endif %}
   "editorconfig-checker ~=3.0",
-  "black{%if contains_jupyter_files %}[jupyter]{% endif %} ~=25.0",
+  "black{% if contains_jupyter_files %}[jupyter]{% endif %} ~=25.0",
   "blacken-docs ~=1.0",
   "ruff ~=0.9.0",
   "validate-pyproject[all,store] ~=0.23.0",
@@ -160,7 +160,7 @@ typing = [
 version.source = "vcs"
 build.hooks.vcs.version-file = "src/{{ package_name }}/_version.py"
 {%- else %}
-version.path = "src/{{ package_name  }}/__init__.py"
+version.path = "src/{{ package_name }}/__init__.py"
 {%- endif %}
 
 
@@ -175,7 +175,7 @@ addopts = [
   "-ra",
   ## addons
   "--benchmark-disable",  # pytest-benchmark
-  "--cov=src/{{package_name}}",  # pytest-cov
+  "--cov=src/{{ package_name }}",  # pytest-cov
   "--reverse",  # pytest-reverse
   "--numprocesses=auto",  # pytest-xdist
 ]
@@ -184,16 +184,16 @@ xfail_strict = true
 filterwarnings = [
   "error",
   "default::DeprecationWarning",
-  "error::DeprecationWarning:{{package_name}}",
+  "error::DeprecationWarning:{{ package_name }}",
 ]
 log_cli_level = "INFO"
 
 
 [tool.coverage]
 run.omit = [
-  "src/{{package_name}}/__main__.py",
+  "src/{{ package_name }}/__main__.py",
 {%- if get_package_version_from_vcs %}
-  "src/{{package_name}}/_version.py",
+  "src/{{ package_name }}/_version.py",
 {%- endif %}
 ]
 
@@ -204,7 +204,7 @@ mypy_path = "stubs"
 # verify the config file
 warn_unused_configs = true
 # set the platform
-python_version = "3.{{python_minor}}"
+python_version = "3.{{ python_minor }}"
 # enable checks [last updated: mypy 1.15]
 strict = true
 disallow_any_explicit = true
@@ -274,11 +274,11 @@ flake8-comprehensions.allow-dict-calls-with-keyword-arguments = true
 "collections.namedtuple".msg = "Use typing.NamedTuple or @dataclasses.dataclass(frozen=True, slots=True)"
 
 [tool.ruff.lint.per-file-ignores]
-"src/{{package_name}}/cli.py" = [
+"src/{{ package_name }}/cli.py" = [
   "T20",      # flake8-print
 ]
 {%- if get_package_version_from_vcs %}
-"src/{{package_name}}/_version.py" = [
+"src/{{ package_name }}/_version.py" = [
   "ALL",
 ]
 {%- endif %}
@@ -294,7 +294,7 @@ flake8-comprehensions.allow-dict-calls-with-keyword-arguments = true
 
 
 [tool.pylint]
-py-version = "3.{{python_minor}}"
+py-version = "3.{{ python_minor }}"
 {%- if get_package_version_from_vcs %}
 ignore-paths = [".*/_version.py"]
 {%- endif %}

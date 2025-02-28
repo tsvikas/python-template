@@ -112,7 +112,7 @@ repos:
   - repo: https://github.com/psf/black-pre-commit-mirror
     rev: 25.1.0
     hooks:
-      - id: black{%if contains_jupyter_files %}-jupyter{% endif %}
+      - id: black{% if contains_jupyter_files %}-jupyter{% endif %}
   {%- endif %}
   - repo: https://github.com/adamchainz/blacken-docs
     rev: 1.19.1
