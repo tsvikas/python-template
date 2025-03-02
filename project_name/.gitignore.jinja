@@ -58,17 +58,14 @@ venv/
 
 # jupyter
 .ipynb_checkpoints/
+{%- if jupyter_files == "ignore" %}
+*.ipynb
+{%- endif %}
 
 # TODO
 TODO*
 
 # LLMs
 CLAUDE.md
-
-{%- if jupyter_files == "ignore" %}
-
-# notebooks:
-*.ipynb
-{%- endif %}
 
 # specific to this project:
