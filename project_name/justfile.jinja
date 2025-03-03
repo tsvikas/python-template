@@ -23,12 +23,13 @@ prepare:
 
 # Run all code quality checks and tests
 check:
-  # pre-commit includes everything except mypy and pytest
+  @just format
+  @just lint
+  @just test
   uv run pre-commit run --all-files
-  uv run mypy
-  uv run pytest
 
 format:
+  uv run ruff check --select I001 --fix
   {%- if format_tool == "black" %}
   uv run black .
   {%- elif format_tool == "ruff" %}
