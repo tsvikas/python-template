@@ -1,5 +1,7 @@
 [defaults]
 _extra_tasks = [
+  "git init",  # required to run uv
+  "uv run just init",
   "uv run just check",
   "uv tree --outdated --depth 1 --color always -q | grep latest --color=never || true",
 ]

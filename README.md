@@ -78,13 +78,14 @@ This template provides a comprehensive set of tools to streamline your Python de
 
 ### Creating a New Project
 
-Generate a new project with:
+- Generate a new project with:
 
 ```bash
 copier copy --trust gh:tsvikas/python-template ~/path/to/project/directory/
 ```
 
-Follow the interactive questionnaire to customize your project.
+- Follow the interactive questionnaire to customize your project.
+- from the project directory, run `just init` to initialize the project.
 
 ### Developing Your Project
 
