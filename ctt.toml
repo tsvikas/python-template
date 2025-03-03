@@ -5,6 +5,18 @@ _extra_tasks = [
   "uv run just lint",
   "uv run just test",
   "uv run pre-commit run --all-files",
+
+  "uvx --with sp-repo-review[cli] repo-review . --ignore PY007,PP303,PC180,PY004,RTD100 --show errskip || true",
+  # PY007 Supports an easy task runner (nox, tox, pixi, etc.)
+  "[ -f justfile ]",
+  # PP303 Sets the test paths
+  "[ -d tests ]",
+  # PC180 Uses a markdown formatter
+  "grep -q 'https://github.com/hukkin/mdformat' .pre-commit-config.yaml",
+  ### fix later:
+  # PY004 Has docs folder
+  # RTD100 Uses ReadTheDocs (pyproject config)
+
   "uv tree --outdated --depth 1 --color always -q | grep latest --color=never || true",
 ]
 user_name = "Marty McFly"
