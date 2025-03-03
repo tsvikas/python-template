@@ -4,7 +4,9 @@
 [![Documentation Status][rtd-badge]][rtd-link]
 [![uv][uv-badge]][uv-link]
 [![Ruff][ruff-badge]][ruff-link]
+{%- if format_tool == "black" %}
 [![Black][black-badge]][black-link]
+{%- endif %}
 
 [![PyPI version][pypi-version]][pypi-link]
 [![Conda-Forge][conda-badge]][conda-link]
@@ -63,8 +65,10 @@ import {{ package_name }}
 - push
 {%- endif %}
 
+{% if format_tool == "black" -%}
 [black-badge]: https://img.shields.io/badge/code%20style-black-000000.svg
 [black-link]: https://github.com/psf/black
+{% endif -%}
 [conda-badge]: https://img.shields.io/conda/vn/conda-forge/{{ project_name }}
 [conda-link]: https://github.com/conda-forge/{{ project_name }}-feedstock
 [github-discussions-badge]: https://img.shields.io/static/v1?label=Discussions&message=Ask&color=blue&logo=github
