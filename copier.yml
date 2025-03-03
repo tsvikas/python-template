@@ -128,4 +128,4 @@ format_tool:
   default: black
   choices:
     - black
-    - ruff-format
+    - ruff

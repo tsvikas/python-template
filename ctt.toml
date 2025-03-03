@@ -30,7 +30,7 @@ python_minor = 9
 get_package_version_from_vcs = true
 has_cli = true
 jupyter_files = "strip_outputs"
-format_tool = "ruff-format"
+format_tool = "ruff"
 
 [output.".ctt/jupyter_forbid"]
 jupyter_files = "forbid"
@@ -38,7 +38,7 @@ format_tool = "black"
 
 [output.".ctt/jupyter_forbid+ruff"]
 jupyter_files = "forbid"
-format_tool = "ruff-format"
+format_tool = "ruff"
 
 [output.".ctt/jupyter_ignore"]
 jupyter_files = "ignore"
@@ -54,4 +54,4 @@ format_tool = "black"
 
 [output.".ctt/jupyter_allow+ruff"]
 jupyter_files = "allow"
-format_tool = "ruff-format"
+format_tool = "ruff"
