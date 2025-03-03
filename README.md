@@ -29,13 +29,17 @@ This template provides a comprehensive set of tools to streamline your Python de
   - Performance benchmarking with [pytest-benchmark](https://pytest-benchmark.readthedocs.io/)
   - Additional pytest plugins for a better testing experience
 - Code formatting with [Black](https://black.readthedocs.io/) or [Ruff formatter](https://docs.astral.sh/ruff/formatter/)
+- Markdown formatting with [Mdformat](https://mdformat.readthedocs.io/)
 - Comprehensive linting with [Ruff](https://docs.astral.sh/ruff/)
+  - Replaces Flake8, isort, pyupgrade, yesqa, pycln, and dozens of plugins
 - Static type checking with [MyPy](https://mypy-lang.org/)
+- Spell checking with [codespell](https://github.com/codespell-project/codespell/yyzz) and [typos](https://github.com/crate-ci/typos/)
 
 ### CI/CD Integration
 
 - Git hooks via [pre-commit](https://pre-commit.com/) with many hooks pre-configured
-- Ready-to-use [GitHub workflows](https://docs.github.com/en/actions/writing-workflows)
+- Test automation with [GitHub Actions](https://docs.github.com/en/actions)
+- Automated dependency updates with [Dependabot](https://docs.github.com/en/code-security/dependabot)
 
 ### Configuration Files
 
@@ -54,7 +58,7 @@ This template provides a comprehensive set of tools to streamline your Python de
 
 - **git**: Obviously.
 
-- **uv**: After the template is used, this is the only requirement to develop.
+- **uv**: After the template is used, this is the only requirement for development.
   Specifically, contributors to your project can use uv for building, testing, linting, and formatting.
   See the [installation instructions](https://docs.astral.sh/uv/getting-started/installation/).
 
