@@ -2,7 +2,9 @@
 _extra_tasks = [
   "git init",  # required to run uv
   "uv run just init",
-  "uv run just check",
+  "uv run just lint",
+  "uv run just test",
+  "uv run pre-commit run --all-files",
   "uv tree --outdated --depth 1 --color always -q | grep latest --color=never || true",
 ]
 user_name = "Marty McFly"
