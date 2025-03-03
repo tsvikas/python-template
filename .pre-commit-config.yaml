@@ -116,7 +116,7 @@ repos:
       - id: ruff
         alias: ruff-isort
         name: ruff isort
-        args: ["--select", "I001", "--fix"]
+        args: ["--select", "I001", "--fix", "--show-fixes"]
       - id: ruff
   - repo: https://github.com/pre-commit/mirrors-mypy
     rev: v1.15.0
