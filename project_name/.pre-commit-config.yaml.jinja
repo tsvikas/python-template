@@ -53,14 +53,14 @@ repos:
       - id: text-unicode-replacement-char
 
   # Python / pre-commit package versions
-  - repo: https://github.com/pre-commit/sync-pre-commit-deps
-    rev: v0.0.3
-    hooks:
-      - id: sync-pre-commit-deps
   - repo: https://github.com/astral-sh/uv-pre-commit
     rev: 0.6.4
     hooks:
       - id: uv-lock
+  - repo: https://github.com/pre-commit/sync-pre-commit-deps
+    rev: v0.0.3
+    hooks:
+      - id: sync-pre-commit-deps
 
   # Jupyter Notebook files
   {%- if not contains_jupyter_files %}
