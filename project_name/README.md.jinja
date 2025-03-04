@@ -35,10 +35,10 @@ import {{ package_name }}
 - use `uv run ruff format .` to format code and docs
 {% elif format_tool == "black" -%}
 - use `uv run black .` to format code
-{% endif -%}
 - use
   `git ls-files -z -- '*.md' '*.rst' '*.tex' '*.py' | xargs -0 uv run blacken-docs`
   to format docs
+{% endif -%}
 
 ### Code quality
 
