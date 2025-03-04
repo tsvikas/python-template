@@ -37,21 +37,15 @@ import {{ package_name }}
 ## Development
 
 - install [git][install-git], [uv][install-uv].
-- git clone this repo
+- git clone this repo: `git clone {{ github_user }}/{{ project_name }}.git`
 - run `uv run just prepare`
-
-### Code formatting
-{% if format_tool == "ruff" %}
-- use `uv run ruff format .` to format code and docs
-{%- elif format_tool == "black" %}
-- use `uv run black .` to format code
-{%- endif %}
 
 ### Code quality
 
-- use `uv run ruff check .` to verify code quality
-- use `uv run mypy` to verify check typing
-- use `uv run pytest` to run tests
+- use `uv run just format` to format the code.
+- use `uv run just lint` to see linting errors.
+- use `uv run just test` to see run tests.
+- use `uv run ruff check` to run all the checks (format, lint, test, and pre-commit).
 
 ### Build
 
