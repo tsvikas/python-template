@@ -11,7 +11,7 @@ _extra_tasks = [
   "[ -f justfile ]",
   # PP303 Sets the test paths
   "[ -d tests ]",
-  # PC180 Uses a markdown formatter
+  # PC180 Uses a markdown formatter  (https://github.com/scientific-python/cookie/pull/562)
   "grep -q 'https://github.com/hukkin/mdformat' .pre-commit-config.yaml",
   ### fix later:
   # PY004 Has docs folder
