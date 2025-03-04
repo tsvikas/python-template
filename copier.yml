@@ -127,6 +127,5 @@ format_tool:
   help: The python formatter to use
   default: black
   choices:
-    "black": black
-    # see https://github.com/astral-sh/ruff/issues/8237
-    "ruff (without blacken-docs)": ruff
+    - black
+    - ruff
