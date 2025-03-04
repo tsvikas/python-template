@@ -1,6 +1,21 @@
 exclude: ^.copier-answers.yml$
 
 repos:
+  # Python / pre-commit package versions
+  # pyproject.toml -> uv.lock
+  - repo: https://github.com/astral-sh/uv-pre-commit
+    rev: 0.6.4
+    hooks:
+      - id: uv-lock
+  # uv.lock -> .pre-commit-config.yaml
+  {#- TODO: add sync-with-uv #}
+  # .pre-commit-config.yaml -> .pre-commit-config.yaml
+  - repo: https://github.com/pre-commit/sync-pre-commit-deps
+    rev: v0.0.3
+    hooks:
+      - id: sync-pre-commit-deps
+
+  # General hooks
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v5.0.0
     hooks:
@@ -52,39 +67,29 @@ repos:
       # text
       - id: text-unicode-replacement-char
 
-  # Python / pre-commit package versions
-  - repo: https://github.com/astral-sh/uv-pre-commit
-    rev: 0.6.4
-    hooks:
-      - id: uv-lock
-  - repo: https://github.com/pre-commit/sync-pre-commit-deps
-    rev: v0.0.3
-    hooks:
-      - id: sync-pre-commit-deps
-
-  # Jupyter Notebook files
-  {%- if not contains_jupyter_files %}
-  - repo: local
-    hooks:
-      - id: forbid-ipynb
-        name: forbid ipynb
-        entry: filenames must not end in .ipynb
-        language: fail
-        types: [jupyter]
-  {%- endif %}
-  {%- if jupyter_files == "strip_outputs" %}
-  - repo: https://github.com/kynan/nbstripout
-    rev: 0.8.1
-    hooks:
-      - id: nbstripout
-  {%- endif %}
-
   # All files
   - repo: https://github.com/editorconfig-checker/editorconfig-checker.python
     rev: 3.2.0
     hooks:
       - id: editorconfig-checker
         exclude_types: [jupyter]
+
+  # Spell checks
+  - repo: https://github.com/crate-ci/typos
+    rev: v1.30.1
+    hooks:
+      - id: typos
+  - repo: https://github.com/codespell-project/codespell
+    rev: v2.4.1
+    hooks:
+      - id: codespell
+  - repo: local
+    hooks:
+      - id: disallow-caps
+        name: disallow improper capitalization
+        language: pygrep
+        entry: PyBind|Numpy|Cmake|CCache|Github|PyTest
+        exclude: .pre-commit-config.yaml
 
   # Markdown files
   - repo: https://github.com/hukkin/mdformat
@@ -96,12 +101,6 @@ repos:
           - mdformat-frontmatter
           - mdformat-footnote
           - mdformat-gfm-alerts
-
-  # YAML files
-  - repo: https://github.com/adrienverge/yamllint
-    rev: v1.35.1
-    hooks:
-      - id: yamllint
 
   # reStructuredText files
   - repo: https://github.com/PyCQA/doc8
@@ -142,6 +141,23 @@ repos:
         name: mypy (without imports)
         args: ["--config-file", "", "--ignore-missing-imports"]
 
+  # Jupyter Notebook files
+  {%- if not contains_jupyter_files %}
+  - repo: local
+    hooks:
+      - id: forbid-ipynb
+        name: forbid ipynb
+        entry: filenames must not end in .ipynb
+        language: fail
+        types: [jupyter]
+  {%- endif %}
+  {%- if jupyter_files == "strip_outputs" %}
+  - repo: https://github.com/kynan/nbstripout
+    rev: 0.8.1
+    hooks:
+      - id: nbstripout
+  {%- endif %}
+
   # pyproject.toml
   - repo: https://github.com/abravalheri/validate-pyproject
     rev: v0.23
@@ -149,6 +165,12 @@ repos:
       - id: validate-pyproject
         additional_dependencies:
           - validate-pyproject-schema-store[all]
+
+  # YAML files
+  - repo: https://github.com/adrienverge/yamllint
+    rev: v1.35.1
+    hooks:
+      - id: yamllint
 
   # GitHub files
   - repo: https://github.com/python-jsonschema/check-jsonschema
@@ -169,23 +191,6 @@ repos:
     rev: v0.10.0.1
     hooks:
       - id: shellcheck
-
-  # Spell checks
-  - repo: https://github.com/crate-ci/typos
-    rev: v1.30.1
-    hooks:
-      - id: typos
-  - repo: https://github.com/codespell-project/codespell
-    rev: v2.4.1
-    hooks:
-      - id: codespell
-  - repo: local
-    hooks:
-      - id: disallow-caps
-        name: disallow improper capitalization
-        language: pygrep
-        entry: PyBind|Numpy|Cmake|CCache|Github|PyTest
-        exclude: .pre-commit-config.yaml
 
 # pre-commit.ci config
 ci:
