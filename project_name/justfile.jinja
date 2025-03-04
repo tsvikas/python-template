@@ -39,7 +39,7 @@ check:
   uv run pre-commit run --all-files
 
 format:
-  uv run ruff check --select I001 --fix --show-fixes
+  uv run ruff check --select I001 --fix
   {%- if format_tool == "black" %}
   uv run black .
   {%- elif format_tool == "ruff" %}
