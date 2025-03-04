@@ -21,11 +21,21 @@ update-deps:
 prepare:
   uv run pre-commit install
 
+# Run code quality checks, than push
+check-and-push:
+  @just check
+  git push
+
+# Format and check code
+format-and-check:
+  @just format
+  @just check
+
 # Run all code quality checks and tests
 check:
-  @just format
-  @just lint
-  @just test
+  # only pytest and mypy are not in the pre-commit hooks
+  uv run pytest
+  uv run mypy
   uv run pre-commit run --all-files
 
 format:
