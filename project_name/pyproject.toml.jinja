@@ -87,17 +87,18 @@ default-groups = ["dev", "test", "typing"]
 dev = [
   "rust-just ~=1.0",
   "pre-commit ~=4.0",
-  {%- if jupyter_files == "strip_outputs" %}
-  "nbstripout ~=0.8.0",
-  {%- endif %}
+  # code formatting/linting tools
   "editorconfig-checker ~=3.0",
+  "codespell ~=2.0",
   "black{% if contains_jupyter_files %}[jupyter]{% endif %} ~=25.0",
   {%- if format_tool != 'black' %}  # required for blacken-docs{% endif %}
   "blacken-docs ~=1.0",
   "ruff ~=0.9.0",
+  {%- if jupyter_files == "strip_outputs" %}
+  "nbstripout ~=0.8.0",
+  {%- endif %}
   "validate-pyproject[all,store] ~=0.23.0",
   "shellcheck-py ~=0.10.0",
-  "codespell ~=2.0",
   ## debug
   # "icecream",
   # "snoop",
