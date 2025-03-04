@@ -50,7 +50,7 @@ repos:
       # text
       - id: text-unicode-replacement-char
 
-  # environment manager
+  # Python / pre-commit package versions
   - repo: https://github.com/pre-commit/sync-pre-commit-deps
     rev: v0.0.3
     hooks:
@@ -60,7 +60,7 @@ repos:
     hooks:
       - id: uv-lock
 
-  # jupyter notebooks
+  # Jupyter Notebook files
   {%- if not contains_jupyter_files %}
   - repo: local
     hooks:
@@ -77,7 +77,7 @@ repos:
       - id: nbstripout
   {%- endif %}
 
-  # general formatting
+  # All files
   - repo: https://github.com/Lucas-C/pre-commit-hooks
     rev: v1.5.5
     hooks:
@@ -87,6 +87,8 @@ repos:
     hooks:
       - id: editorconfig-checker
         exclude_types: [jupyter]
+
+  # Markdown files
   - repo: https://github.com/hukkin/mdformat
     rev: 0.7.22
     hooks:
@@ -96,18 +98,20 @@ repos:
           - mdformat-frontmatter
           - mdformat-footnote
           - mdformat-gfm-alerts
+
+  # YAML files
   - repo: https://github.com/adrienverge/yamllint
     rev: v1.35.1
     hooks:
       - id: yamllint
 
-  # rst formatting
+  # reStructuredText files
   - repo: https://github.com/PyCQA/doc8
     rev: v1.1.2
     hooks:
       - id: doc8
 
-  # python formatting and linting
+  # Python files - formatting
   {%- if format_tool == "black" %}
   - repo: https://github.com/psf/black-pre-commit-mirror
     rev: 25.1.0
@@ -120,6 +124,8 @@ repos:
       - id: blacken-docs
         additional_dependencies:
           - black==25.1.0
+
+  # Python files - linting
   - repo: https://github.com/astral-sh/ruff-pre-commit
     rev: v0.9.9
     hooks:
@@ -138,13 +144,15 @@ repos:
         name: mypy (without imports)
         args: ["--config-file", "", "--ignore-missing-imports"]
 
-  # validate schema
+  # pyproject.toml
   - repo: https://github.com/abravalheri/validate-pyproject
     rev: v0.23
     hooks:
       - id: validate-pyproject
         additional_dependencies:
           - validate-pyproject-schema-store[all]
+
+  # GitHub files
   - repo: https://github.com/python-jsonschema/check-jsonschema
     rev: 0.31.2
     hooks:
@@ -158,13 +166,13 @@ repos:
     hooks:
       - id: actionlint
 
-  # shell scripts
+  # bash/sh shell scripts
   - repo: https://github.com/shellcheck-py/shellcheck-py
     rev: v0.10.0.1
     hooks:
       - id: shellcheck
 
-  # spell checks
+  # Spell checks
   - repo: https://github.com/crate-ci/typos
     rev: v1.30.1
     hooks:
@@ -181,6 +189,7 @@ repos:
         entry: PyBind|Numpy|Cmake|CCache|Github|PyTest
         exclude: .pre-commit-config.yaml
 
+# pre-commit.ci config
 ci:
   autoupdate_commit_msg: "chore: update pre-commit hooks"
   autofix_commit_msg: "style: pre-commit fixes"
