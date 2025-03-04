@@ -42,8 +42,13 @@ format:
   uv run ruff check --select I001 --fix
   {%- if format_tool == "black" %}
   uv run black .
+  uv run pre-commit run --all-files blacken-docs
   {%- elif format_tool == "ruff" %}
   uv run ruff format
+  {%- endif %}
+  uv run pre-commit run --all-files mdformat
+  {%- if jupyter_files == "strip_outputs" %}
+  uv run pre-commit run --all-files nbstripout
   {%- endif %}
 
 lint:
