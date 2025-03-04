@@ -6,7 +6,7 @@ _extra_tasks = [
   "uv run just test",
   "uv run pre-commit run --all-files",
 
-  "uvx --with sp-repo-review[cli] repo-review . --ignore PY007,PP303,PC180,PY004,RTD100 --show errskip || true",
+  "uvx --with sp-repo-review[cli] repo-review . --ignore PY007,PP303,PC180,PY004,RTD100 --show errskip",
   # PY007 Supports an easy task runner (nox, tox, pixi, etc.)
   "[ -f justfile ]",
   # PP303 Sets the test paths
