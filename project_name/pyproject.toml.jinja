@@ -93,6 +93,7 @@ dev = [
   {%- endif %}
   "editorconfig-checker ~=3.0",
   "black{% if contains_jupyter_files %}[jupyter]{% endif %} ~=25.0",
+  {%- if format_tool != 'black' %}  # required for blacken-docs{% endif %}
   "blacken-docs ~=1.0",
   "ruff ~=0.9.0",
   "validate-pyproject[all,store] ~=0.23.0",
