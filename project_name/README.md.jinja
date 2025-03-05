@@ -48,22 +48,6 @@ import {{ package_name }}
 - use `uv run just check` to run all the checks (format, lint, test, and pre-commit).
 - Run a specific tool directly, with `uv run pytest`/`ruff`/`mypy`/`black`/...
 
-### Build
-
-- run formatting, linting, and tests.
-{%- if not get_package_version_from_vcs %}
-- replace the version in `src/{{ package_name }}/__init__.py`
-- commit
-{%- endif %}
-- use
-  `VER="vX.Y.Z" && git tag -a "$VER" -m "version $VER" -e && git push origin tag "$VER"`
-- use `uv build` to build
-{%- if not get_package_version_from_vcs %}
-- add '+dev' to the version in `src/{{ package_name }}/__init__.py`
-- commit
-- push
-{%- endif %}
-
 {% if format_tool == "black" -%}
 [black-badge]: https://img.shields.io/badge/code%20style-black-000000.svg
 [black-link]: https://github.com/psf/black
