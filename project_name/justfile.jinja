@@ -31,10 +31,9 @@ format-and-check:
 
 # Run all code quality checks and tests, except pylint
 check:
-  # only pytest and mypy are not in the pre-commit hooks
   uv run pytest
   uv run mypy
-  uv run pre-commit run --all-files
+  uv run pre-commit run --all-files --show-diff-on-failure
 
 # Format code and files
 format:
