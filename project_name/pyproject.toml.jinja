@@ -73,20 +73,13 @@ dev = [
   ## used in the justfile
   "rust-just ~=1.0",
   "pre-commit ~=4.0",
-  "black{% if contains_jupyter_files %}[jupyter]{% endif %} ~=25.0",
+  "black{% if contains_jupyter_files %}[jupyter]{% endif %} ~=25.0",  # also update GHA version
   "ruff ~=0.9.0",
   ## used for debug
-  # "icecream",
-  # "pysnooper",
-  ## ipython/jupyter
-  # "ipython",
-  # "jupyterlab",
-  # "jupytext",
-  # "matplotlib",
-  # "hvplot",
-  # "ipywidgets",
-  # "python-lsp-server",
-  # "jupyter-collaboration",
+  "icecream >=2",
+  "snoop >=0.3",
+  ## used for REPL
+  "ipython >=8",
 ]
 test = [
   "pytest ~=8.0",
