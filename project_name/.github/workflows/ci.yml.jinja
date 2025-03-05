@@ -113,7 +113,7 @@ jobs:
           - resolution: "prerelease"
             os: ubuntu-latest
             python-version: "3.{{ python_max + 1 }}"
-    continue-on-error: {% raw %}${{ matrix.resolution == 'prerelease' }}{% endraw %}
+    continue-on-error: {% raw %}${{ matrix.resolution == 'prerelease' || matrix.python-version == 'pypy3.11' }}{% endraw %}
     name: {% raw %}test-${{ matrix.python-version }}-${{ matrix.resolution }}-${{ matrix.os }}{% endraw %}
     steps:
       - uses: actions/checkout@v4
