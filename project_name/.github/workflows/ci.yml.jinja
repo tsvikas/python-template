@@ -138,3 +138,22 @@ jobs:
         run: uv pip list
       - name: Run tests
         run: uv run --no-sync pytest
+
+  pylint:
+    if: {% raw %}${{ always() }}{% endraw %}
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+      - name: Install packages
+        run: >-
+          uv sync
+          --all-extras
+          --no-default-groups
+          --exact
+          --locked
+      - name: List packages
+        run: uv pip list
+      - name: Run Pylint
+        run: uv run --no-sync --with pylint pylint src
