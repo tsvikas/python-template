@@ -97,6 +97,11 @@ python_min:
   validator: >-
     {% if python_min < 0 %}Must be >= 0{% endif %}
 
+python_max:
+  type: int
+  default: 13
+  when: false
+
 get_package_version_from_vcs:
   type: bool
   help: Use the version control system for versioning?

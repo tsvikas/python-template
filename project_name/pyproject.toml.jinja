@@ -32,24 +32,9 @@ classifiers = [
   "Programming Language :: Python",
   "Programming Language :: Python :: 3",
   "Programming Language :: Python :: 3 :: Only",
-{%- if python_min <= 9 %}
-  "Programming Language :: Python :: 3.9",
-{%- endif %}
-{%- if python_min <= 10 %}
-  "Programming Language :: Python :: 3.10",
-{%- endif %}
-{%- if python_min <= 11 %}
-  "Programming Language :: Python :: 3.11",
-{%- endif %}
-{%- if python_min <= 12 %}
-  "Programming Language :: Python :: 3.12",
-{%- endif %}
-{%- if python_min <= 13 %}
-  "Programming Language :: Python :: 3.13",
-{%- endif %}
-{%- if python_min <= 14 %}
-  "Programming Language :: Python :: 3.14",
-{%- endif %}
+{%- for version in range(python_min, python_max + 1) %}
+  "Programming Language :: Python :: 3.{{ version }}",
+{%- endfor %}
   "Typing :: Typed",
 ]
 dependencies = [
