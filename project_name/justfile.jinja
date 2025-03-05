@@ -39,7 +39,7 @@ check:
   uv run pre-commit run --all-files
 
 format:
-  uv run ruff check --select I001 --fix
+  just isort
   {%- if format_tool == "black" %}
   uv run black .
   {%- elif format_tool == "ruff" %}
@@ -51,9 +51,15 @@ format:
   uv run pre-commit run --all-files nbstripout
   {%- endif %}
 
+isort:
+  uv run ruff check --select I001 --fix
+
 lint:
   uv run ruff check
   uv run mypy
+
+pylint:
+  uv run --with pylint pylint src
 
 test:
   uv run pytest
