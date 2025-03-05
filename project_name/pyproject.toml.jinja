@@ -249,14 +249,4 @@ py-version = "3.{{ python_min }}"
 {%- if get_package_version_from_vcs %}
 ignore-paths = [".*/_version.py"]
 {%- endif %}
-# CHECK those options:
 reports.output-format = "colorized"
-similarities.ignore-imports = "yes"
-messages_control.disable = [
-  "design",
-  "fixme",
-  "line-too-long",
-  "missing-module-docstring",
-  "missing-function-docstring",
-  "wrong-import-position",
-]
