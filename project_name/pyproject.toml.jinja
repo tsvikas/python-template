@@ -14,7 +14,7 @@ description = "{{ package_description }}"
 license = "{{ license }}"
 license-files = ["LICEN[CS]E.*"]
 readme = "README.md"
-requires-python = ">=3.{{ python_minor }}"
+requires-python = ">=3.{{ python_min }}"
 authors = [
   {name = "{{ user_name }}", email = "{{ user_email }}"}
 ]
@@ -32,22 +32,22 @@ classifiers = [
   "Programming Language :: Python",
   "Programming Language :: Python :: 3",
   "Programming Language :: Python :: 3 :: Only",
-{%- if python_minor <= 9 %}
+{%- if python_min <= 9 %}
   "Programming Language :: Python :: 3.9",
 {%- endif %}
-{%- if python_minor <= 10 %}
+{%- if python_min <= 10 %}
   "Programming Language :: Python :: 3.10",
 {%- endif %}
-{%- if python_minor <= 11 %}
+{%- if python_min <= 11 %}
   "Programming Language :: Python :: 3.11",
 {%- endif %}
-{%- if python_minor <= 12 %}
+{%- if python_min <= 12 %}
   "Programming Language :: Python :: 3.12",
 {%- endif %}
-{%- if python_minor <= 13 %}
+{%- if python_min <= 13 %}
   "Programming Language :: Python :: 3.13",
 {%- endif %}
-{%- if python_minor <= 14 %}
+{%- if python_min <= 14 %}
   "Programming Language :: Python :: 3.14",
 {%- endif %}
   "Typing :: Typed",
@@ -177,7 +177,7 @@ mypy_path = "stubs"
 # verify the config file
 warn_unused_configs = true
 # set the platform
-python_version = "3.{{ python_minor }}"
+python_version = "3.{{ python_min }}"
 # enable checks [last updated: mypy 1.15]
 strict = true
 disallow_any_explicit = true
@@ -267,7 +267,7 @@ flake8-comprehensions.allow-dict-calls-with-keyword-arguments = true
 
 
 [tool.pylint]
-py-version = "3.{{ python_minor }}"
+py-version = "3.{{ python_min }}"
 {%- if get_package_version_from_vcs %}
 ignore-paths = [".*/_version.py"]
 {%- endif %}

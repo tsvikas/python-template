@@ -4,7 +4,7 @@ Currently, a placeholder until the real CLI will be added.
 """
 
 from typing import Annotated
-{%- if python_minor < 10 -%}
+{%- if python_min < 10 -%}
 , Optional
 {%- endif %}
 
@@ -27,7 +27,7 @@ def callback(
     ctx: typer.Context,
     *,
     version: Annotated[  # noqa: ARG001
-        {%- if python_minor < 10 %}
+        {%- if python_min < 10 %}
         Optional[bool],  # noqa: FA100 (needed for typer)
         {%- else %}
         bool | None,
