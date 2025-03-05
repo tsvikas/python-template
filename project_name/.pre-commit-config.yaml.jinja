@@ -127,7 +127,7 @@ repos:
       - id: ruff
         alias: ruff-isort
         name: ruff isort
-        args: ["--select", "I001", "--fix", "--show-fixes"]
+        args: ["--select", "I001", "--fix"]
       {%- if format_tool == "ruff" %}
       - id: ruff-format
       {%- endif %}
