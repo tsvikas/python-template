@@ -78,6 +78,11 @@ jobs:
           {%- for version in range(python_min, python_max + 1) %}
           - "3.{{ version }}"
           {%- endfor %}
+          {%- set lower_bound = [python_min, 10]|max %}
+          {%- set upper_bound = [python_max, 11]|min %}
+          {%- for version in range(lower_bound, upper_bound + 1) %}
+          - "pypy3.{{ version }}"
+          {%- endfor %}
         include:
           # test with lowest resolution
           - resolution: "lowest"
@@ -106,7 +111,7 @@ jobs:
             os: ubuntu-latest
             python-version: "3.{{ python_max + 1 }}"
     continue-on-error: {% raw %}${{ matrix.resolution == 'prerelease' }}{% endraw %}
-    name: {% raw %}test-py${{ matrix.python-version }}-${{ matrix.resolution }}-${{ matrix.os }}{% endraw %}
+    name: {% raw %}test-${{ matrix.python-version }}-${{ matrix.resolution }}-${{ matrix.os }}{% endraw %}
     steps:
       - uses: actions/checkout@v4
       - uses: astral-sh/setup-uv@v5
