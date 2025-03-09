@@ -12,9 +12,9 @@ This template provides a comprehensive set of tools to streamline your Python de
 
 ### Code Structure
 
-- Command-line interface with [Typer](https://typer.tiangolo.com/)
-- Advanced logging with [Loguru](https://loguru.readthedocs.io/)
 - Modern project layout following best practices
+- Optional: Command-line interface with [Typer](https://typer.tiangolo.com/)
+- Optional: Easy logging with [Loguru](https://loguru.readthedocs.io/)
 
 ### Development Tools
 
@@ -39,7 +39,7 @@ This template provides a comprehensive set of tools to streamline your Python de
 
 - Git hooks via [pre-commit](https://pre-commit.com/) with many hooks pre-configured
 - Test automation with [GitHub Actions](https://docs.github.com/en/actions)
-- Automated dependency updates with [Dependabot](https://docs.github.com/en/code-security/dependabot)
+- Dependency updates with [Dependabot](https://docs.github.com/en/code-security/dependabot)
 
 ### Configuration Files
 
@@ -102,6 +102,6 @@ See the generated `justfile` for all available commands.
 
 ## Contributing
 
-I am exicited to see this template being used.
+I am excited to see this template being used.
 Feel free to suggest improvements or tell me about issues.
 Contributions and Pull Requests are welcome!
