@@ -1,3 +1,5 @@
+exclude: ^.cruft.json|.copier-answers.yml$
+
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v5.0.0
@@ -172,5 +174,3 @@ ci:
   autofix_commit_msg: "style: pre-commit fixes"
   skip: []
   autoupdate_schedule: quarterly
-
-exclude: ^.cruft.json|.copier-answers.yml$
