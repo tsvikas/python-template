@@ -36,22 +36,23 @@ repos:
       # text in files
       - id: end-of-file-fixer
       - id: mixed-line-ending
-        args: ["--fix=lf"]
+        args: [--fix=lf]
       - id: trailing-whitespace
       # python
       - id: check-ast
       - id: check-docstring-first
       - id: debug-statements
-      - id: requirements-txt-fixer
       - id: name-tests-test
-        args: ["--pytest-test-first"]
+        args: [--pytest-test-first]
+      - id: requirements-txt-fixer
+      # symlinks
+      - id: check-symlinks
       # filetypes
       - id: check-json
         exclude_types: [jupyter]
-      - id: check-symlinks
       - id: check-toml
-      - id: check-yaml
       - id: check-xml
+      - id: check-yaml
       - id: pretty-format-json
         exclude_types: [jupyter]
   - repo: https://github.com/pre-commit/pygrep-hooks
