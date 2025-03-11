@@ -143,7 +143,7 @@ repos:
       - id: ruff
         alias: ruff-isort
         name: ruff isort
-        args: ["--select", "I001", "--fix"]
+        args: [--select, I001, --fix]
       {%- if format_tool == "ruff" %}
       - id: ruff-format
       {%- endif %}
@@ -154,7 +154,7 @@ repos:
     hooks:
       - id: mypy
         name: mypy (without imports)
-        args: ["--config-file", "", "--ignore-missing-imports"]
+        args: [--config-file, "", --ignore-missing-imports]
 
   # Jupyter Notebook files
   {%- if not contains_jupyter_files %}
