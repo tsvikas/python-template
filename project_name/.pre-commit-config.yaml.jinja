@@ -1,4 +1,8 @@
-exclude: ^.copier-answers.yml$
+# exclude those files from pre-commit checks
+exclude: "\
+  ^.copier-answers.yml$|\
+  ^tests/test_\\w*/output/|\
+  ^$"
 
 repos:
   # Python / pre-commit package versions
