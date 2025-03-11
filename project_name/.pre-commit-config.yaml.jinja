@@ -32,7 +32,7 @@ repos:
       - id: check-added-large-files
       - id: check-merge-conflict
       - id: check-vcs-permalinks
-      - id: forbid-submodules
+      - id: forbid-submodules  # use subtree
       # secrets
       - id: detect-private-key
       # text in files
@@ -152,7 +152,7 @@ repos:
   {%- if not contains_jupyter_files %}
   - repo: local
     hooks:
-      - id: forbid-ipynb
+      - id: forbid-ipynb  # use jupytext
         name: forbid ipynb
         entry: filenames must not end in .ipynb
         language: fail
