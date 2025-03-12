@@ -13,10 +13,10 @@ init:
   git commit --allow-empty -m "Initial commit"
   git add --all
   git commit -m "🚀 Initialized project using https://github.com/tsvikas/python-template"
-  @just update-deps
+  just update-deps
   git add --all
   git commit -m "⬆️ Updated project dependencies"
-  @just prepare
+  just prepare
 
 # Update all dependencies
 update-deps:
@@ -28,12 +28,12 @@ prepare:
   uv run pre-commit install
 
 check-and-push:
-  @just check
+  just check
   git push
 
 format-and-check:
-  @just format
-  @just check
+  just format
+  just check
 
 # Run all code quality checks and tests, except pylint
 check:
