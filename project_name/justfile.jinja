@@ -29,7 +29,7 @@ prepare:
 
 check-and-push:
   just check
-  git push
+  git push --follow-tags
 
 format-and-check:
   just format
@@ -72,7 +72,7 @@ pylint:
 test:
   uv run --exact pytest
 
-# add a new version tag and push it
+# add a new version tag
 {%- raw %}
 tag version commit="HEAD": (_assert-legal-version version)
   just check-at-commit {{ commit }}
@@ -90,6 +90,5 @@ check-at-commit commit:
 
 tag-skip-check version commit: (_assert-legal-version version)
   git tag -a v{{ version }} -m "Release v{{ version }}" {{ commit }}
-  git push --tags
 
 {%- endraw %}
