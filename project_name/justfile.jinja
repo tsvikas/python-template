@@ -37,7 +37,7 @@ format-and-check:
 
 # Run all code quality checks and tests, except pylint
 check:
-  uv run pytest
+  just test
   uv run mypy
   uv run pre-commit run --all-files --show-diff-on-failure
 
