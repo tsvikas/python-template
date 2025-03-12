@@ -8,19 +8,21 @@ A modern Python project template using recommended development tools and best pr
 
 ## Features
 
-This template provides a comprehensive set of tools to streamline your Python development workflow:
+This template uses the best development tools while staying simple and uncluttered.
+Everything is designed to be opt-in, so you can use only what you need and ignore the rest until necessary.
+Sensible defaults for all included tools are provided.
 
 ### Code Structure
 
-- Modern project layout following best practices
+- Follows modern project layout following best practices
 - Optional: Command-line interface with [Typer](https://typer.tiangolo.com/)
 - Optional: Easy logging with [Loguru](https://loguru.readthedocs.io/)
 
 ### Development Tools
 
-- Python dependency management with [uv](https://docs.astral.sh/uv/) (faster alternative to pip/poetry)
-- Versioning management with [uv-dynamic-versioning](https://github.com/ninoseki/uv-dynamic-versioning)
 - Task automation with [Just](https://just.systems/man/en/) command runner
+- Python dependency management with [uv](https://docs.astral.sh/uv/) (faster alternative to pip/poetry)
+- Optional: Versioning management with [uv-dynamic-versioning](https://github.com/ninoseki/uv-dynamic-versioning)
 
 ### Code Quality
 
@@ -29,23 +31,23 @@ This template provides a comprehensive set of tools to streamline your Python de
   - Performance benchmarking with [pytest-benchmark](https://pytest-benchmark.readthedocs.io/)
   - Additional pytest plugins for a better testing experience
 - Code formatting with [Black](https://black.readthedocs.io/) or [Ruff formatter](https://docs.astral.sh/ruff/formatter/)
-- Markdown formatting with [Mdformat](https://mdformat.readthedocs.io/)
+- Documentation formatting with [blacken-docs](https://github.com/adamchainz/blacken-docs/)
 - Comprehensive linting with [Ruff](https://docs.astral.sh/ruff/)
   - Replaces Flake8, isort, pyupgrade, yesqa, pycln, and dozens of plugins
 - Static type checking with [MyPy](https://mypy-lang.org/)
-- Spell checking with [codespell](https://github.com/codespell-project/codespell/yyzz) and [typos](https://github.com/crate-ci/typos/)
+- Curated `.gitignore` file
+- Formatting and linting run automatically on commit via [pre-commit](https://pre-commit.com/) hooks:
+  - [EditorConfig](https://editorconfig.org/) for consistent formatting across editors
+  - Spell checking with [codespell](https://github.com/codespell-project/codespell) and [typos](https://github.com/crate-ci/typos)
+  - Markdown formatting with [Mdformat](https://mdformat.readthedocs.io/)
+  - Validation for JSON, TOML, XML, and YAML files
+  - Linting for YAML, reStructuredText, and shell scripts
+  - Schema checking for `pyproject.toml` and GitHub configuration files
 
 ### CI/CD Integration
 
-- Git hooks via [pre-commit](https://pre-commit.com/) with many hooks pre-configured
 - Test automation with [GitHub Actions](https://docs.github.com/en/actions)
 - Dependency updates with [Dependabot](https://docs.github.com/en/code-security/dependabot)
-
-### Configuration Files
-
-- [EditorConfig](https://editorconfig.org/) for consistent formatting across editors
-- Comprehensive [.gitignore](https://gitignore.io/) file
-- Sensible defaults for all included tools
 
 ### Documentation (Coming Soon)
 
