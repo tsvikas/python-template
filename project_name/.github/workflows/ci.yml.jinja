@@ -74,9 +74,11 @@ jobs:
     strategy:
       matrix:
         include:
+          # test with highest resolution
           - resolution: "highest"
             os: ubuntu-latest
             python-version: "3.{{ python_max }}"
+          # test with pypy
           {%- set lower_bound = [python_min, 10]|max %}
           {%- set upper_bound = [python_max, 11]|min %}
           {%- for version in range(lower_bound, upper_bound + 1) %}
@@ -88,6 +90,7 @@ jobs:
           - resolution: "lowest"
             os: ubuntu-latest
             python-version: "3.{{ python_min }}"
+          # test with different os
           - resolution: "locked"
             os: ubuntu-latest
             python-version: "3.{{ python_min }}"
