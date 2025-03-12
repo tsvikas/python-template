@@ -20,9 +20,9 @@ _assert-legal-version version:
 tmp_rc_dir := '/tmp/rc/' + file_name(justfile_directory()) + '/' + datetime('%s')
 
 check-at-commit commit:
-  git worktree add --detach {{ tmp_rc_dir }} {{ commit }}
-  just -f {{ tmp_rc_dir }}/justfile check
-  git worktree remove {{ tmp_rc_dir }}
+  git worktree add {{ tmp_rc_dir }} --detach {{ commit }}
+  just -f {{ tmp_rc_dir }}/justfile check || ( git worktree remove -f {{ tmp_rc_dir }} && false )
+  git worktree remove -f {{ tmp_rc_dir }}
 
 tag-skip-check version commit: (_assert-legal-version version)
   git tag -a v{{ version }} -m "Release v{{ version }}" {{ commit }}
