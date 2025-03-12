@@ -12,5 +12,6 @@ test:
 # add a new version tag and push it
 tag version commit="HEAD": check
   # TODO: check the commit and not the current state.
+  echo "{{ version }}" | grep -q '^[0-9]'
   git tag -a v{{ version }} -m "Release v{{ version }}" {{ commit }}
   git push --tags
