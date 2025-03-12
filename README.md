@@ -80,7 +80,7 @@ Sensible defaults for all included tools are provided.
 - **just**: Optional but recommended for running tasks with `just <taskname>` instead of `uv run just <taskname>`.
   See the [installation instructions](https://just.systems/man/en/packages.html).
 
-- **gh**: GitHub CLI is not required to use this template, but it is recommended for integrating with GitHub.
+- **gh**: GitHub CLI is not required to use this template, but it is recommended for interacting with GitHub.
 
 ### Creating a New Project
 
