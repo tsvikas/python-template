@@ -50,6 +50,14 @@ import {{ package_name }}
 - use `uv run just check` to run all the checks (format, lint, test, and pre-commit).
 - Run a specific tool directly, with `uv run pytest`/`ruff`/`mypy`/`black`/...
 
+<!---
+Badges to add, when needed:
+[![codecov][codecov-badge]][codecov-link]
+
+[codecov-badge]: https://codecov.io/gh/{{ github_user }}/{{ project_name }}/graph/badge.svg
+[codecov-link]: https://codecov.io/gh/{{ github_user }}/{{ project_name }}
+-->
+
 {% if format_tool == "black" -%}
 [black-badge]: https://img.shields.io/badge/code%20style-black-000000.svg
 [black-link]: https://github.com/psf/black
