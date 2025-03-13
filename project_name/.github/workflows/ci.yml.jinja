@@ -142,10 +142,10 @@ jobs:
         run: >-
           echo "::warning::Stopping job due to installation failure on Python ${{ matrix.python-version }}"
       - name: List packages
-        if: ${{ steps.install_packages.outcome == 'success' }}
+        if: ${{ success() && steps.install_packages.outcome == 'success' }}
         run: uv pip list
       - name: Run tests
-        if: ${{ steps.install_packages.outcome == 'success' }}
+        if: ${{ success() && steps.install_packages.outcome == 'success' }}
         run: uv run --no-sync pytest
     {%- endraw %}
 
