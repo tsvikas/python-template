@@ -22,6 +22,7 @@ init:
 update-deps:
   uv sync --upgrade
   uv run pre-commit autoupdate -j "$(nproc)"
+  uvx sync-with-uv -w
 
 # Setup the project. Needed after cloning
 prepare:
