@@ -69,8 +69,10 @@ jobs:
         run: uv run --no-sync mypy
 
   test:
-    if: {% raw %}${{ always() }}{% endraw %}
-    runs-on: {% raw %}${{ matrix.os }}{% endraw %}
+    {%- raw %}
+    if: ${{ always() }}
+    runs-on: ${{ matrix.os }}
+    {%- endraw %}
     strategy:
       matrix:
         include:
@@ -107,14 +109,15 @@ jobs:
           - resolution: "prerelease"
             os: ubuntu-latest
             python-version: "3.{{ python_max + 1 }}"
-    continue-on-error: {% raw %}${{ matrix.resolution == 'prerelease' || matrix.python-version == 'pypy3.11' }}{% endraw %}
-    name: {% raw %}test-${{ matrix.python-version }}-${{ matrix.resolution }}-${{ matrix.os }}{% endraw %}
+    {%- raw %}
+    continue-on-error: ${{ matrix.resolution == 'prerelease' || matrix.python-version == 'pypy3.11' }}
+    name: test-${{ matrix.python-version }}-${{ matrix.resolution }}-${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
       - uses: astral-sh/setup-uv@v5
         with:
-          python-version: {% raw %}${{ matrix.python-version }}{% endraw %}
-          cache-suffix: {% raw %}${{ matrix.resolution }}{% endraw %}
+          python-version: ${{ matrix.python-version }}
+          cache-suffix: ${{ matrix.resolution }}
       - name: Install packages
         run: >-
           uv sync
@@ -122,16 +125,17 @@ jobs:
           --no-default-groups
           --group test
           --exact
-          {% raw %}${{ matrix.resolution == 'locked' && '--locked' ||
+          ${{ matrix.resolution == 'locked' && '--locked' ||
               matrix.resolution == 'lowest' && '--upgrade --resolution lowest-direct' ||
               matrix.resolution == 'highest' && '--upgrade --resolution highest' ||
               matrix.resolution == 'prerelease' && '--upgrade --resolution highest --prerelease allow' ||
               '--NON_RECOGNIZED_RESOLUTION'
-          }}{% endraw %}
+          }}
       - name: List packages
         run: uv pip list
       - name: Run tests
         run: uv run --no-sync pytest
+    {%- endraw %}
 
   pylint:
     if: {% raw %}${{ always() }}{% endraw %}
