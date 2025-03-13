@@ -170,7 +170,7 @@ jobs:
       - name: Run Pylint
         run: |
           set +e
-          uv run --no-sync --with pylint pylint src
+          uv run --no-sync --with pylint pylint src --output-format=github
           result=$?
           set -e
           [ $((result & 1)) -ne 0 ] && echo "::error ::Pylest fatal(s) found"
