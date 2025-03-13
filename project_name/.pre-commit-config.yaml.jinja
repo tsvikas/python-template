@@ -18,13 +18,11 @@ repos:
     rev: 0.6.4
     hooks:
       - id: uv-lock
-  {%- if python_min >= 11 %}
   # uv.lock -> .pre-commit-config.yaml
   - repo: https://github.com/tsvikas/sync-with-uv
-    rev: v0.1.0
+    rev: v0.1.2
     hooks:
       - id: sync-with-uv
-  {%- endif %}
   # .pre-commit-config.yaml -> .pre-commit-config.yaml
   - repo: https://github.com/pre-commit/sync-pre-commit-deps
     rev: v0.0.3
