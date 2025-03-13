@@ -6,6 +6,8 @@
 
 A modern Python project template using recommended development tools and best practices.
 
+![Concept image](assets/concept.jpg)
+
 ## Features
 
 This template uses the best development tools while staying simple and uncluttered.
