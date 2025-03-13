@@ -147,7 +147,12 @@ jobs:
         run: uv pip list
       - name: Run tests
         if: ${{ success() && steps.install_packages.outcome == 'success' }}
-        run: uv run --no-sync pytest
+        run: uv run --no-sync pytest --cov-branch --cov-report=xml
+      - name: Upload coverage reports to Codecov
+        if: ${{ success() && steps.install_packages.outcome == 'success' }}
+        uses: codecov/codecov-action@v5
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
     {%- endraw %}
 
   pylint:
