@@ -110,6 +110,7 @@ jobs:
             os: ubuntu-latest
             python-version: "3.{{ python_max + 1 }}"
     {%- raw %}
+      fail-fast: false
     name: test-${{ matrix.python-version }}-${{ matrix.resolution }}-${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
