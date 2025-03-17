@@ -177,12 +177,10 @@ repos:
   {%- endif %}
 
   # pyproject.toml
-  - repo: https://github.com/abravalheri/validate-pyproject
-    rev: v0.23
+  - repo: https://github.com/henryiii/validate-pyproject-schema-store
+    rev: 2025.03.10
     hooks:
       - id: validate-pyproject
-        additional_dependencies:
-          - validate-pyproject-schema-store[all]
 
   # YAML files
   - repo: https://github.com/adrienverge/yamllint
