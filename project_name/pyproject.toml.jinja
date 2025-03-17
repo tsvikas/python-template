@@ -128,7 +128,9 @@ addopts = [
   "--benchmark-disable",  # pytest-benchmark
   "--cov=src/{{ package_name }}",  # pytest-cov
   "--reverse",  # pytest-reverse
-  "--numprocesses=auto",  # pytest-xdist
+  # Uncomment to enable pytest-xdist for parallel execution,
+  # but note that it hides filenames in output.
+  # "--numprocesses=auto",  # pytest-xdist
 ]
 xfail_strict = true
 # CHECK those options:
