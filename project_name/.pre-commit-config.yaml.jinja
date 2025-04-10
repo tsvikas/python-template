@@ -158,7 +158,7 @@ repos:
     hooks:
       - id: mypy
         name: mypy (without imports)
-        args: [--config-file, "", --ignore-missing-imports]
+        args: [--config-file, "", --ignore-missing-imports, --disable-error-code=import-untyped]
 
   # Jupyter Notebook files
   {%- if not contains_jupyter_files %}
