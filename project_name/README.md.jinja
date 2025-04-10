@@ -53,27 +53,30 @@ import {{ package_name }}
 - Run a specific tool directly, with
   `uv run pytest`/`ruff`/`mypy`/`black`/`pre-commit`/...
 
-<!---
-Badges to add, when needed:
-# TODO: uncomment after adding RTD documentation
+<!--- Badges to add after adding RTD documentation
 [![Documentation Status][rtd-badge]][rtd-link]
-# TODO: write tests, uncomment this, and follow the link to finish setup:
+
+[rtd-badge]: https://readthedocs.org/projects/{{ project_name }}/badge/?version=latest
+[rtd-link]: https://{{ project_name }}.readthedocs.io/en/latest/?badge=latest
+-->
+
+<!--- Badges to add after writing tests. Also follow the link to finish setup
 [![codecov][codecov-badge]][codecov-link]
-\
-# TODO: uncomment after uploading to PyPI
+
+[codecov-badge]: https://codecov.io/gh/{{ github_user }}/{{ project_name }}/graph/badge.svg
+[codecov-link]: https://codecov.io/gh/{{ github_user }}/{{ project_name }}
+-->
+
+<!--- Badges to add after uploading to PyPI
 [![PyPI version][pypi-version-badge]][pypi-link]
 [![PyPI platforms][pypi-platforms-badge]][pypi-link]
 [![Total downloads][pepy-badge]][pepy-link]
 
-[codecov-badge]: https://codecov.io/gh/{{ github_user }}/{{ project_name }}/graph/badge.svg
-[codecov-link]: https://codecov.io/gh/{{ github_user }}/{{ project_name }}
 [pepy-badge]: https://img.shields.io/pepy/dt/{{ project_name }}
 [pepy-link]: https://pepy.tech/project/{{ project_name }}
 [pypi-link]: https://pypi.org/project/{{ project_name }}/
 [pypi-platforms-badge]: https://img.shields.io/pypi/pyversions/{{ project_name }}
 [pypi-version-badge]: https://img.shields.io/pypi/v/{{ project_name }}
-[rtd-badge]: https://readthedocs.org/projects/{{ project_name }}/badge/?version=latest
-[rtd-link]: https://{{ project_name }}.readthedocs.io/en/latest/?badge=latest
 -->
 
 {% if format_tool == "black" -%}
