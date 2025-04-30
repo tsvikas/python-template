@@ -15,7 +15,7 @@ init:
   git commit -m "🚀 Initialized project using https://github.com/tsvikas/python-template"
   just update-deps
   git add --all
-  git commit -m "⬆️ Updated project dependencies"
+  [ -z "$(git status --porcelain)" ] || git commit -m "⬆️ Updated project dependencies"
   just prepare
 
 # Update all dependencies
