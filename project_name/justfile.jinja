@@ -21,7 +21,7 @@ init:
 # Update all dependencies
 update-deps:
   uv sync --upgrade
-  uv run pre-commit autoupdate -j "$(nproc)"
+  uv run pre-commit autoupdate -j "$( (uname -s | grep -q Linux && nproc) || (uname -s | grep -q Darwin && sysctl -n hw.ncpu) || echo 1 )"
   uvx sync-with-uv -w
   uv run pre-commit run -a sync-pre-commit-deps
 
