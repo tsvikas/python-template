@@ -8,6 +8,16 @@ A modern Python project template using recommended development tools and best pr
 
 ![Concept image](assets/concept.jpg)
 
+## TL;DR
+
+1. install `uv`, version `0.7.*`
+
+1. `uvx --with copier_templates_extensions copier copy -r main --trust gh:tsvikas/python-template path/to/project/directory/`
+
+1. `cd path/to/project/directory/`
+
+1. `uvx --from rust-just just init`
+
 ## Features
 
 This template uses the best development tools while staying simple and uncluttered.
@@ -80,7 +90,7 @@ Sensible defaults for all included tools are provided.
   via Python's [dependency-groups](https://packaging.python.org/en/latest/specifications/dependency-groups/).
 
 - **just**: Optional but recommended for running tasks with `just <taskname>` instead of `uv run just <taskname>`.
-  See the [installation instructions](https://just.systems/man/en/packages.html).
+  See the [installation instructions](https://just.systems/man/en/packages.html), or just run `uv tool install rust-just`.
 
 - **gh**: GitHub CLI is not required to use this template, but it is recommended for interacting with GitHub.
 
