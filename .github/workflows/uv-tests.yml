@@ -21,10 +21,14 @@ jobs:
 
   copier-template-tester:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        uv-version: ["0.5.19", "latest"]
     steps:
       - uses: actions/checkout@v4
       - uses: astral-sh/setup-uv@v5
-
+        with:
+          version: ${{ matrix.uv-version }}
       # set pre-commit cache
       - name: set PY
         run: echo "PY=$(python -VV | sha256sum | cut -d' ' -f1)" >> "$GITHUB_ENV"
