@@ -7,7 +7,7 @@ check:
 
 test:
   rm -rf .ctt
-  uvx --from copier-template-tester --with copier_templates_extensions ctt
+  uv run ctt
 
 # add a new version tag and push it
 tag version commit="HEAD": (_assert-legal-version version)
