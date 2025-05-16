@@ -14,9 +14,9 @@ Assuming that you have `uv` installed (version `>=0.5.19`)
 
 1. `uvx --with copier_templates_extensions copier copy -r main --trust gh:tsvikas/python-template path/to/project/directory/`
 
-2. `cd path/to/project/directory/`
+1. `cd path/to/project/directory/`
 
-3. `uvx --from rust-just just init`
+1. `uvx --from rust-just just init`
 
 You can shorten these steps if you install `copier` and `just`.
 
