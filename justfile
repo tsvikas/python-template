@@ -27,3 +27,8 @@ check-at-commit commit:
 tag-skip-check version commit: (_assert-legal-version version)
   git tag -a v{{ version }} -m "Release v{{ version }}" {{ commit }}
   git push --tags
+
+# Update all dependencies
+update-deps:
+  pre-commit autoupdate -j "$( (uname -s | grep -q Linux && nproc) || (uname -s | grep -q Darwin && sysctl -n hw.ncpu) || echo 1 )"
+  pre-commit run -a sync-pre-commit-deps
