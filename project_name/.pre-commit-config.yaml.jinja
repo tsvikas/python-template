@@ -144,15 +144,14 @@ repos:
   - repo: https://github.com/astral-sh/ruff-pre-commit
     rev: v0.11.12
     hooks:
-      - id: ruff
+      - id: ruff-check
         alias: ruff-isort
         name: ruff isort
         args: [--select, I001, --fix]
       {%- if format_tool == "ruff" %}
       - id: ruff-format
       {%- endif %}
-      - id: ruff
-        alias: ruff-check
+      - id: ruff-check
   - repo: https://github.com/pre-commit/mirrors-mypy
     rev: v1.15.0
     hooks:
