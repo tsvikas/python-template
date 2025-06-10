@@ -196,3 +196,25 @@ jobs:
           [ $((result & 16)) -ne 0 ] && echo "::warning ::Pylest convention(s) found"
           [ $((result & 32)) -ne 0 ] && echo "::error ::Pylest usage error"
           exit $((result & 35))
+
+  check-licenses:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - name: Set rust profile
+        run: rustup set profile minimal
+      - name: Install Feluda
+        run: cargo install feluda
+      - name: Check licenses
+        run: feluda --ci-format github --fail-on-restrictive --fail-on-incompatible
+      - name: Generate compliance files
+        run: |
+          echo "1" | feluda generate  # Auto-select NOTICE file
+          echo "2" | feluda generate  # Auto-select THIRD_PARTY_LICENSES file
+      - uses: actions/upload-artifact@v4
+        with:
+          name: license-compliance
+          path: |
+            NOTICE
+            THIRD_PARTY_LICENSES.md
