@@ -1,10 +1,11 @@
 [build-system]
 {%- if get_package_version_from_vcs %}
 requires = ["hatchling", "hatch-vcs"]
-{%- else %}
-requires = ["hatchling"]
-{%- endif %}
 build-backend = "hatchling.build"
+{%- else %}
+requires = ["uv_build>=0.7.19,<0.8.0"]
+build-backend = "uv_build"
+{%- endif %}
 
 
 [project]
