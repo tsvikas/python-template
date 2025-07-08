@@ -29,30 +29,27 @@
 
 ## Install
 
-Install the package using pip, or with a dependency manager like uv:
+{% if has_cli -%}
+Install this tool using pipx (or uv):
+{%- else -%}
+Install the package using pip (or uv, poetry, etc.):
+{%- endif %}
 
 ```bash
-{%- if in_pypi %}
-pip install {{ project_name }}
-{%- else %}
-pip install git+https://github.com/{{ github_user }}/{{ project_name }}.git`
+pip{% if has_cli %}x{% endif %} install
+{%- if in_pypi %} {{ project_name }}
+{%- else %} git+https://github.com/{{ github_user }}/{{ project_name }}.git
 {%- endif %}
 ```
 
 ## Usage
 
-Import the package in your code:
-
-```python
-import {{ package_name }}
+{% if not has_cli -%}
+```python-repl
+>>> import {{ package_name }}
 ```
-{%- if has_cli %}
-
-or run it directly:
-
-```bash
-{{ project_name }} --help
-```
+{%- else -%}
+Use `{{ project_name }} --help` to learn more.
 {%- endif %}
 
 ## Development
