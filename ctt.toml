@@ -37,6 +37,9 @@ format_tool = "black"
 
 [output.".ctt/no_cli"]
 has_cli = false
+in_pypi = true
+in_rtd = true
+in_codecov = true
 
 [output.".ctt/package_version_from_vcs"]
 get_package_version_from_vcs = true
