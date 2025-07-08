@@ -134,3 +134,18 @@ format_tool:
   choices:
     - black
     - ruff
+
+in_pypi:
+  type: bool
+  help: Did you upload it to PyPI?
+  default: false
+
+in_rtd:
+  type: bool
+  help: Did you deploy the docs to Read the Docs?
+  default: false
+
+in_codecov:
+  type: bool
+  help: Do you track coverage with Codecov?
+  default: false
