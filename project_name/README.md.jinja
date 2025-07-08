@@ -35,12 +35,14 @@ Import the package in your code:
 ```python
 import {{ package_name }}
 ```
+{%- if has_cli %}
 
 or run it directly:
 
 ```bash
 {{ project_name }} --help
 ```
+{%- endif %}
 
 ## Development
 
