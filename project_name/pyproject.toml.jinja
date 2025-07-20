@@ -153,16 +153,13 @@ run.omit = [
 [tool.mypy]
 files = ["src", "tests"]
 mypy_path = "stubs"
-# verify the config file
-warn_unused_configs = true
 # set the platform
 python_version = "3.{{ python_min }}"
 # enable checks [last updated: mypy 1.17]
 strict = true
-disallow_any_explicit = true
 disallow_any_unimported = true
 warn_unreachable = true
-strict_bytes = true
+disallow_any_explicit = true
 enable_error_code = [
   # from https://mypy.readthedocs.io/en/stable/error_code_list2.html
   "redundant-self",
