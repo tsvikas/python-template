@@ -101,7 +101,7 @@ test = [
 ]
 # docs = []
 typing = [
-  "mypy ~=1.16.0",
+  "mypy ~=1.17.0",
   # add "*-stubs" and "types-*" packages here (">=0")
 ]
 
@@ -157,7 +157,7 @@ mypy_path = "stubs"
 warn_unused_configs = true
 # set the platform
 python_version = "3.{{ python_min }}"
-# enable checks [last updated: mypy 1.16]
+# enable checks [last updated: mypy 1.17]
 strict = true
 disallow_any_explicit = true
 disallow_any_unimported = true
@@ -176,7 +176,7 @@ enable_error_code = [
   "explicit-override",
   "mutable-override",
   "unimported-reveal",
-  "narrowed-type-not-subtype",
+  "exhaustive-match",
 ]
 
 
