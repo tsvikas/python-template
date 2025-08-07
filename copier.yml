@@ -137,12 +137,12 @@ format_tool:
 
 in_pypi:
   type: bool
-  help: Did you upload it to PyPI?
+  help: Do you upload it to PyPI?
   default: false
 
 in_rtd:
   type: bool
-  help: Did you deploy the docs to Read the Docs?
+  help: Do you deploy the docs to Read the Docs?
   default: false
 
 in_codecov:
