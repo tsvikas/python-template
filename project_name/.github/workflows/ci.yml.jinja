@@ -193,10 +193,10 @@ jobs:
           uv run --no-sync --with pylint pylint src --output-format=github
           result=$?
           set -e
-          [ $((result & 1)) -ne 0 ] && echo "::error ::Pylest fatal(s) found"
-          [ $((result & 2)) -ne 0 ] && echo "::error ::Pylest error(s) found"
-          [ $((result & 4)) -ne 0 ] && echo "::warning ::Pylest warning(s) found"
-          [ $((result & 8)) -ne 0 ] && echo "::warning ::Pylest refactor(s) found"
-          [ $((result & 16)) -ne 0 ] && echo "::warning ::Pylest convention(s) found"
-          [ $((result & 32)) -ne 0 ] && echo "::error ::Pylest usage error"
+          [ $((result & 1)) -ne 0 ] && echo "::error ::Pylint fatal(s) found"
+          [ $((result & 2)) -ne 0 ] && echo "::error ::Pylint error(s) found"
+          [ $((result & 4)) -ne 0 ] && echo "::warning ::Pylint warning(s) found"
+          [ $((result & 8)) -ne 0 ] && echo "::warning ::Pylint refactor(s) found"
+          [ $((result & 16)) -ne 0 ] && echo "::warning ::Pylint convention(s) found"
+          [ $((result & 32)) -ne 0 ] && echo "::error ::Pylint usage error"
           exit $((result & 35))
