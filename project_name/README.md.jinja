@@ -45,7 +45,7 @@ pip{% if has_cli %}x{% endif %} install
 ## Usage
 
 {% if not has_cli -%}
-```python-repl
+```pycon
 >>> import {{ package_name }}
 ```
 {%- else -%}
