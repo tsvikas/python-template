@@ -2,7 +2,7 @@ exclude: ^.cruft.json|.copier-answers.yml$
 
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v5.0.0
+    rev: v6.0.0
     hooks:
       # filesystem
       - id: check-illegal-windows-names
@@ -62,7 +62,7 @@ repos:
     hooks:
       - id: sync-pre-commit-deps
   - repo: https://github.com/astral-sh/uv-pre-commit
-    rev: 0.8.0
+    rev: 0.8.13
     hooks:
       - id: uv-lock
 
@@ -81,7 +81,7 @@ repos:
     hooks:
       - id: forbid-tabs
   - repo: https://github.com/editorconfig-checker/editorconfig-checker.python
-    rev: 3.2.1
+    rev: 3.4.0
     hooks:
       - id: editorconfig-checker
         exclude_types: [jupyter]
@@ -117,7 +117,7 @@ repos:
         additional_dependencies:
           - black==25.1.0
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.12.4
+    rev: v0.12.11
     hooks:
       - id: ruff
         alias: ruff-isort
@@ -125,7 +125,7 @@ repos:
         args: ["--select", "I001", "--fix"]
       - id: ruff
   - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v1.17.0
+    rev: v1.17.1
     hooks:
       - id: mypy
         name: mypy (without imports)
@@ -139,7 +139,7 @@ repos:
         additional_dependencies:
           - validate-pyproject-schema-store[all]
   - repo: https://github.com/python-jsonschema/check-jsonschema
-    rev: 0.33.2
+    rev: 0.33.3
     hooks:
       - id: check-dependabot
       - id: check-github-actions
@@ -152,13 +152,13 @@ repos:
 
   # shell scripts
   - repo: https://github.com/shellcheck-py/shellcheck-py
-    rev: v0.10.0.1
+    rev: v0.11.0.1
     hooks:
       - id: shellcheck
 
   # spell checks
   - repo: https://github.com/adhtruong/mirrors-typos
-    rev: v1.34.0
+    rev: v1.35.5
     hooks:
       - id: typos
   - repo: https://github.com/codespell-project/codespell
