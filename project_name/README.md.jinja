@@ -52,24 +52,10 @@ pip{% if has_cli %}x{% endif %} install
 Use `{{ project_name }} --help` to learn more.
 {%- endif %}
 
-## Development
+## Contributing
 
-### Getting started
-
-- install [git][install-git], [uv][install-uv].
-- git clone this repo:
-  `git clone https://github.com/{{ github_user }}/{{ project_name }}.git`
-  or `gh repo clone {{ github_user }}/{{ project_name }}.git`
-- run `uv run just prepare`
-
-### Tests and code quality
-
-- use `uv run just format` to format the code.
-- use `uv run just lint` to see linting errors.
-- use `uv run just test` to run tests.
-- use `uv run just check` to run all the checks (format, lint, test, and pre-commit).
-- Run a specific tool directly, with
-  `uv run pytest`/`ruff`/`mypy`/`black`/`pre-commit`/...
+Interested in contributing?
+See [CONTRIBUTING.md](CONTRIBUTING.md) for development setup and guideline.
 
 {% if format_tool == "black" -%}
 [black-badge]: https://img.shields.io/badge/code%20style-black-000000.svg
@@ -81,8 +67,6 @@ Use `{{ project_name }} --help` to learn more.
 {% endif -%}
 [github-discussions-badge]: https://img.shields.io/static/v1?label=Discussions&message=Ask&color=blue&logo=github
 [github-discussions-link]: https://github.com/{{ github_user }}/{{ project_name }}/discussions
-[install-git]: https://git-scm.com/book/en/v2/Getting-Started-Installing-Git
-[install-uv]: https://docs.astral.sh/uv/getting-started/installation/
 {%- if in_pypi %}
 [pepy-badge]: https://img.shields.io/pepy/dt/{{ project_name }}
 [pepy-link]: https://pepy.tech/project/{{ project_name }}
