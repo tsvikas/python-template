@@ -5,6 +5,7 @@ on:
   pull_request:
   push:
     branches: [main, develop]
+  workflow_call:
 
 concurrency:
   group: {% raw %}${{ github.workflow }}-${{ github.ref }}{% endraw %}
