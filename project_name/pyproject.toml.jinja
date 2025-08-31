@@ -128,6 +128,9 @@ addopts = [
   ## addons: pytest-benchmark
   "--benchmark-disable",
   ## addons: pytest-cov
+  # this might affect debuggers.
+  # use `--no-cov` to disable in the debugger
+  # see https://pytest-cov.readthedocs.io/en/latest/debuggers.html
   "--cov=src/{{ package_name }}",
   ## addons: pytest-reverse
   "--reverse",
