@@ -2,7 +2,7 @@
 
 [![Copier](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/copier-org/copier/master/img/badge/badge-black.json)](https://github.com/copier-org/copier)
 [![Tests](https://github.com/tsvikas/python-template/actions/workflows/uv-tests.yml/badge.svg)](https://github.com/tsvikas/python-template/actions/workflows/uv-tests.yml)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://opensource.guide/how-to-contribute/)
 
 A modern Python project template using recommended development tools and best practices.
 
