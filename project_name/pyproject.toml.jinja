@@ -49,10 +49,11 @@ dependencies = [
 [project.urls]
 # homepage = "https://{{ project_name }}.readthedocs.io"
 source = "https://github.com/{{ github_user }}/{{ project_name }}"
-# changelog = "https://github.com/{{ github_user }}/{{ project_name }}/blob/master/CHANGELOG.md"
+changelog = "https://github.com/{{ github_user }}/{{ project_name }}/blob/main/CHANGELOG.md"
 # releasenotes = "https://github.com/{{ github_user }}/{{ project_name }}/releases"
-# documentation = "https://{{ project_name }}.readthedocs.io"
-# issues = "https://github.com/{{ github_user }}/{{ project_name }}/issues"
+{% if not in_rtd %}# {% endif -%}
+documentation = "https://{{ project_name }}.readthedocs.io"
+issues = "https://github.com/{{ github_user }}/{{ project_name }}/issues"
 # funding = "https://github.com/sponsors/{{ github_user }}"
 
 [project.scripts]
