@@ -17,25 +17,18 @@ jobs:
   ci:
     uses: ./.github/workflows/ci.yml
 
-  build:
+  build-and-inspect-package:
     needs: ci
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
         with:
           persist-credentials: false
-      - uses: astral-sh/setup-uv@v6
-      - name: Build package
-        run: uv build
-      - name: Upload package distributions
-        uses: actions/upload-artifact@v4
-        with:
-          name: python-package-distributions
-          path: dist/
+      - uses: hynek/build-and-inspect-python-package@v2
 
   publish-to-testpypi:
     if: github.event_name == 'push'
-    needs: build
+    needs: build-and-inspect-package
     runs-on: ubuntu-latest
     environment:
       name: testpypi
@@ -48,7 +41,7 @@ jobs:
       - name: Download package distributions
         uses: actions/download-artifact@v5
         with:
-          name: python-package-distributions
+          name: Packages
           path: dist/
       - name: Publish distribution to TestPyPI
         uses: pypa/gh-action-pypi-publish@release/v1
@@ -57,7 +50,7 @@ jobs:
 
   publish-to-pypi:
     if: github.event_name == 'release'
-    needs: build
+    needs: build-and-inspect-package
     runs-on: ubuntu-latest
     environment:
       name: pypi
@@ -70,7 +63,7 @@ jobs:
       - name: Download package distributions
         uses: actions/download-artifact@v5
         with:
-          name: python-package-distributions
+          name: Packages
           path: dist/
       - name: Publish distribution to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
