@@ -125,12 +125,14 @@ addopts = [
   "--strict-config",
   ## reporting
   "-ra",
-  ## addons
-  "--benchmark-disable",  # pytest-benchmark
-  "--cov=src/{{ package_name }}",  # pytest-cov
-  "--reverse",  # pytest-reverse
-  # Uncomment to enable pytest-xdist for parallel execution,
-  # but note that it hides filenames in output.
+  ## addons: pytest-benchmark
+  "--benchmark-disable",
+  ## addons: pytest-cov
+  "--cov=src/{{ package_name }}",
+  ## addons: pytest-reverse
+  "--reverse",
+  ## addons: pytest-xdist
+  # this enable parallel execution, but hides filenames in output
   # "--numprocesses=auto",  # pytest-xdist
 ]
 xfail_strict = true
