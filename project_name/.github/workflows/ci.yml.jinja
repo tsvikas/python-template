@@ -201,3 +201,19 @@ jobs:
           [ $((result & 16)) -ne 0 ] && echo "::warning ::Pylint convention(s) found"
           [ $((result & 32)) -ne 0 ] && echo "::error ::Pylint usage error"
           exit $((result & 35))
+
+  pass:
+    if: always()
+    needs: [
+      {{ "ruff-format" if format_tool == "ruff" else format_tool }},
+      ruff-check,
+      pre-commit,
+      mypy,
+      test,
+      pylint,
+    ]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: re-actors/alls-green@release/v1
+        with:
+          jobs: {% raw %}${{ toJSON(needs) }}{% endraw %}
