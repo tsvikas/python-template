@@ -5,6 +5,8 @@ _extra_tasks = [
   "uv run just lint",
   "uv run just test",
   "uv run pre-commit run --all-files",
+  "uv sync --resolution lowest-direct; uv run --no-sync pytest",
+  "uv sync --resolution highest",
 
   "uvx --with sp-repo-review[cli] repo-review . --ignore PY007,PP303,PY004,RTD100,PC191 --show errskip",
   # PY007 Supports an easy task runner (nox, tox, pixi, etc.)
