@@ -6,13 +6,11 @@ _extra_tasks = [
   "uv run just test",
   "uv run pre-commit run --all-files",
 
-  "uvx --with sp-repo-review[cli] repo-review . --ignore PY007,PP303,PC180,PY004,RTD100,PC191 --show errskip",
+  "uvx --with sp-repo-review[cli] repo-review . --ignore PY007,PP303,PY004,RTD100,PC191 --show errskip",
   # PY007 Supports an easy task runner (nox, tox, pixi, etc.)
   "[ -f justfile ]",
   # PP303 Sets the test paths
   "[ -d tests ]",
-  # PC180 Uses a markdown formatter  (https://github.com/scientific-python/cookie/pull/562)
-  "grep -q 'https://github.com/hukkin/mdformat' .pre-commit-config.yaml",
   # PC191 Ruff show fixes if fixes enabled
   # good check, but false-positive on ruff-isort
   ### fix later:
