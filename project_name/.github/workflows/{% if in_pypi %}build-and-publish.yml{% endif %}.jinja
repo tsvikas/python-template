@@ -35,7 +35,7 @@ jobs:
 
   publish-to-testpypi:
     if: github.event_name == 'push'
-    needs: [build]
+    needs: build
     runs-on: ubuntu-latest
     environment:
       name: testpypi
@@ -55,7 +55,7 @@ jobs:
 
   publish-to-pypi:
     if: github.event_name == 'release'
-    needs: [build]
+    needs: build
     runs-on: ubuntu-latest
     environment:
       name: pypi
