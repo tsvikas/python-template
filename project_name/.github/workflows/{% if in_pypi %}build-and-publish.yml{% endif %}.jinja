@@ -41,6 +41,8 @@ jobs:
       name: testpypi
       url: https://test.pypi.org/p/{{ project_name }}
     permissions:
+      # IMPORTANT: this permission is mandatory for trusted publishing, but
+      # should NOT be granted anywhere else!
       id-token: write
     steps:
       - name: Download package distributions
@@ -61,6 +63,8 @@ jobs:
       name: pypi
       url: https://pypi.org/p/{{ project_name }}
     permissions:
+      # IMPORTANT: this permission is mandatory for trusted publishing, but
+      # should NOT be granted anywhere else!
       id-token: write
     steps:
       - name: Download package distributions
