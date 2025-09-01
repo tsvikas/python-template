@@ -1,5 +1,4 @@
-_min_copier_version: "9.5.0"
-
+_min_copier_version: 9.5.0
 _subdirectory: project_name
 
 user_name:
@@ -45,7 +44,8 @@ package_name:
     {{ project_name | lower | replace("-", "_") }}
   validator: >-
     {% if not (package_name | regex_search('^[a-z][a-z0-9_]+$')) %}
-    Must start with a letter, followed one or more letters, digits or underscores all lowercase.
+    Must start with a letter, followed one or more letters, digits or underscores
+    all lowercase.
     {% endif %}
 
 package_description:
@@ -65,15 +65,15 @@ license:
   help: Choose a license, see https://choosealicense.com/ for help
   default: MIT
   choices:
-    "Proprietary             - see https://choosealicense.com/no-permission/": Proprietary
-    "AGPL-3.0-or-later       - Copyleft": AGPL-3.0-or-later
-    "GPL-3.0-or-later        - Copyleft": GPL-3.0-or-later
-    "LGPL-3.0-or-later       - Copyleft": LGPL-3.0-or-later
-    "MPL-2.0                 - Copyleft": MPL-2.0
-    "Apache-2.0              - Permissive": Apache-2.0
-    "MIT                     - Permissive": MIT
-    "BSL-1.0                 - Permissive": BSL-1.0
-    "Unlicense               - Permissive": Unlicense
+    Proprietary             - see https://choosealicense.com/no-permission/: Proprietary
+    AGPL-3.0-or-later       - Copyleft: AGPL-3.0-or-later
+    GPL-3.0-or-later        - Copyleft: GPL-3.0-or-later
+    LGPL-3.0-or-later       - Copyleft: LGPL-3.0-or-later
+    MPL-2.0                 - Copyleft: MPL-2.0
+    Apache-2.0              - Permissive: Apache-2.0
+    MIT                     - Permissive: MIT
+    BSL-1.0                 - Permissive: BSL-1.0
+    Unlicense               - Permissive: Unlicense
 
 year:
   type: int
@@ -111,10 +111,10 @@ jupyter_files:
   help: Allow jupyter notebooks in the repo?
   default: forbid
   choices:
-    "Don't commit notebooks, silently ignore them": ignore
-    "Don't commit notebooks, fail in pre-commit": forbid
-    "Allow notebooks, strip outputs": strip_outputs
-    "Allow notebooks": allow
+    Don't commit notebooks, silently ignore them: ignore
+    Don't commit notebooks, fail in pre-commit: forbid
+    Allow notebooks, strip outputs: strip_outputs
+    Allow notebooks: allow
 
 contains_jupyter_files:
   type: bool
@@ -125,9 +125,7 @@ format_tool:
   type: str
   help: The python formatter to use
   default: black
-  choices:
-    - black
-    - ruff
+  choices: [black, ruff]
 
 in_pypi:
   type: bool

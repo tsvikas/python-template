@@ -27,7 +27,7 @@ repos:
       - id: check-docstring-first
       - id: debug-statements
       - id: name-tests-test
-        args: ["--pytest-test-first"]
+        args: [--pytest-test-first]
       - id: requirements-txt-fixer
       # symlinks
       - id: check-symlinks
@@ -114,30 +114,28 @@ repos:
     rev: 1.19.1
     hooks:
       - id: blacken-docs
-        additional_dependencies:
-          - black==25.1.0
+        additional_dependencies: [black==25.1.0]
   - repo: https://github.com/astral-sh/ruff-pre-commit
     rev: v0.12.11
     hooks:
       - id: ruff
         alias: ruff-isort
         name: ruff isort
-        args: ["--select", "I001", "--fix"]
+        args: [--select, I001, --fix]
       - id: ruff
   - repo: https://github.com/pre-commit/mirrors-mypy
     rev: v1.17.1
     hooks:
       - id: mypy
         name: mypy (without imports)
-        args: ["--config-file", "", "--ignore-missing-imports"]
+        args: [--config-file, '', --ignore-missing-imports]
 
   # validate schema
   - repo: https://github.com/abravalheri/validate-pyproject
     rev: v0.24.1
     hooks:
       - id: validate-pyproject
-        additional_dependencies:
-          - validate-pyproject-schema-store[all]
+        additional_dependencies: ['validate-pyproject-schema-store[all]']
   - repo: https://github.com/python-jsonschema/check-jsonschema
     rev: 0.33.3
     hooks:
@@ -174,7 +172,7 @@ repos:
         exclude: .pre-commit-config.yaml
 
 ci:
-  autoupdate_commit_msg: "chore: update pre-commit hooks"
-  autofix_commit_msg: "style: pre-commit fixes"
+  autoupdate_commit_msg: 'chore: update pre-commit hooks'
+  autofix_commit_msg: 'style: pre-commit fixes'
   skip: []
   autoupdate_schedule: quarterly
