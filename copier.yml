@@ -2,14 +2,9 @@ _min_copier_version: "9.5.0"
 
 _subdirectory: project_name
 
-_jinja_extensions:
-  - copier_templates_extensions.TemplateExtensionLoader
-  - extensions/jinja2_gitconfig.py:GitConfigExtension
-
 user_name:
   type: str
   help: Your full name. It is used in the copyright notice and PyPI metadata.
-  default: "{{ 'user.name' | git_config }}"
   validator: >-
     {% if not user_name %}
     You must provide a name.
@@ -18,7 +13,6 @@ user_name:
 user_email:
   type: str
   help: Your email address. It is used in PyPI metadata.
-  default: "{{ 'user.email' | git_config }}"
   validator: >-
     {% if not (user_email | regex_search('^[^@]+@[^@]+\.[^@]+$')) %}
     Not a valid email.

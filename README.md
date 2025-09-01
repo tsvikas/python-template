@@ -12,7 +12,7 @@ A modern Python project template using recommended development tools and best pr
 
 Assuming that you have `uv` installed (version `>=0.5.19`)
 
-1. `uvx --with copier_templates_extensions copier copy -r main --trust gh:tsvikas/python-template path/to/project/directory/`
+1. `uvx copier copy -r main gh:tsvikas/python-template path/to/project/directory/`
 
 1. `cd path/to/project/directory/`
 
@@ -79,13 +79,15 @@ Sensible defaults for all included tools are provided.
   See the [installation instructions](https://docs.astral.sh/uv/getting-started/installation/).
 
 - **Copier**: For the initial creation of the project from this template, and for pulling template updates,
-  you need [Copier](https://copier.readthedocs.io/)
-  with the [copier_templates_extensions](https://github.com/copier-org/copier-templates-extensions) package.
+  you need [Copier](https://copier.readthedocs.io/).
   Install it with this command (requires uv):
 
   ```bash
-  uv tool install copier --with copier_templates_extensions
+  uv tool install copier
   ```
+
+  The template uses [copier's user defaults](https://copier.readthedocs.io/en/stable/settings/#user-defaults)
+  for your name and email.
 
 - All the other developments tools are managed automatically by uv in your vertual environment,
   ensuring consistent versions across developers
@@ -101,7 +103,7 @@ Sensible defaults for all included tools are provided.
 - Generate a new project with:
 
 ```bash
-copier copy --trust gh:tsvikas/python-template ~/path/to/project/directory/
+copier copy gh:tsvikas/python-template ~/path/to/project/directory/
 ```
 
 - Follow the interactive questionnaire to customize your project.
