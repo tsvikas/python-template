@@ -35,7 +35,7 @@ jobs:
           persist-credentials: false
       - uses: astral-sh/ruff-action@v3
         with:
-          args: "format --check"
+          args: format --check
   {%- endif %}
 
   ruff-check:
@@ -89,38 +89,38 @@ jobs:
       matrix:
         include:
           # test with highest resolution
-          - resolution: "highest"
+          - resolution: highest
             os: ubuntu-latest
-            python-version: "3.{{ python_max }}"
+            python-version: '3.{{ python_max }}'
           # test with pypy
           {%- set lower_bound = [python_min, 10]|max %}
           {%- set upper_bound = [python_max, 11]|min %}
           {%- for version in range(lower_bound, upper_bound + 1) %}
-          - resolution: "highest"
+          - resolution: highest
             os: ubuntu-latest
-            python-version: "pypy3.{{ version }}"
+            python-version: 'pypy3.{{ version }}'
           {%- endfor %}
           # test with lowest resolution
-          - resolution: "lowest"
+          - resolution: lowest
             os: ubuntu-latest
-            python-version: "3.{{ python_min }}"
+            python-version: '3.{{ python_min }}'
           # test with different os
-          - resolution: "locked"
+          - resolution: locked
             os: ubuntu-latest
-            python-version: "3.{{ python_min }}"
-          - resolution: "locked"
+            python-version: '3.{{ python_min }}'
+          - resolution: locked
             os: macos-latest
-            python-version: "3.{{ python_min }}"
-          - resolution: "locked"
+            python-version: '3.{{ python_min }}'
+          - resolution: locked
             os: windows-latest
-            python-version: "3.{{ python_min }}"
+            python-version: '3.{{ python_min }}'
           # test on prerelease
-          - resolution: "prerelease"
+          - resolution: prerelease
             os: ubuntu-latest
-            python-version: "3.{{ python_max }}"
-          - resolution: "prerelease"
+            python-version: '3.{{ python_max }}'
+          - resolution: prerelease
             os: ubuntu-latest
-            python-version: "3.{{ python_max + 1 }}"
+            python-version: '3.{{ python_max + 1 }}'
     {%- raw %}
       fail-fast: false
     name: test-${{ matrix.python-version }}-${{ matrix.resolution }}-${{ matrix.os }}
@@ -145,11 +145,11 @@ jobs:
           --no-default-groups
           --group test
           --exact
-          ${{ matrix.resolution == 'locked' && '--locked' ||
-              matrix.resolution == 'lowest' && '--upgrade --resolution lowest-direct' ||
-              matrix.resolution == 'highest' && '--upgrade --resolution highest' ||
-              matrix.resolution == 'prerelease' && '--upgrade --resolution highest --prerelease allow' ||
-              '--NON_RECOGNIZED_RESOLUTION'
+          ${{ matrix.resolution == 'locked' && '--locked'
+              || matrix.resolution == 'lowest' && '--upgrade --resolution lowest-direct'
+              || matrix.resolution == 'highest' && '--upgrade --resolution highest'
+              || matrix.resolution == 'prerelease' && '--upgrade --resolution highest --prerelease allow'
+              || '--NON_RECOGNIZED_RESOLUTION'
           }}
         continue-on-error: ${{ env.ALLOW_FAILURE == 'true' }}
       - name: Stop job with warning if install fails for specific versions
