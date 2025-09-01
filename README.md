@@ -12,7 +12,7 @@ A modern Python project template using recommended development tools and best pr
 
 Assuming that you have `uv` installed (version `>=0.5.19`)
 
-1. `uvx copier copy -r main gh:tsvikas/python-template path/to/project/directory/`
+1. `uvx copier copy gh:tsvikas/python-template path/to/project/directory/`
 
 1. `cd path/to/project/directory/`
 
