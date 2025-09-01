@@ -1,7 +1,7 @@
 [project]
 name = "python-template"
 version = "0.1.0"
-requires-python = ">=3.10.9, <4.0.0"  # note: using <4 is wrong, but ctt requires it.
+requires-python = ">=3.10.9"
 
 [dependency-groups]
 dev = [
