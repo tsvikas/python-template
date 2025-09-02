@@ -7,9 +7,25 @@ theme:
 
 plugins:
   - search
+  - gen-files:
+      # https://oprypin.github.io/mkdocs-gen-files/index.html
+      scripts:
+        - scripts/gen_ref_pages.py
+  - literate-nav:
+      # https://oprypin.github.io/mkdocs-literate-nav/
+      nav_file: SUMMARY.md
+  - section-index  # https://oprypin.github.io/mkdocs-section-index/
+  - mkdocstrings:
+      # https://mkdocstrings.github.io/usage/
+      default_handler: python
+      handlers:
+        python:
+          # https://mkdocstrings.github.io/python/usage/
+          paths: [src]
 
 nav:
   - Home: index.md
+  - Code Reference: reference/
 
 markdown_extensions:
   # TODO: choose relevant options

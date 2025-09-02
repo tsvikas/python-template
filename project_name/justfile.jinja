@@ -96,8 +96,12 @@ tag-skip-check version commit: (_assert-legal-version version)
 
 {%- endraw %}
 
-build-docs:
+build-docs-ref:
+  rm -rf docs/reference
+  uv run --python 3.{{ python_max }} --only-group docs scripts/gen_ref_pages.py
+
+build-docs: build-docs-ref
   uv run --python 3.{{ python_max }} --only-group docs mkdocs build
 
-serve-docs:
+serve-docs: build-docs-ref
   uv run --python 3.{{ python_max }} --only-group docs mkdocs serve
