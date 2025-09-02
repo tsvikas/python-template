@@ -95,3 +95,9 @@ tag-skip-check version commit: (_assert-legal-version version)
   git tag -a v{{ version }} -m "Release v{{ version }}" {{ commit }}
 
 {%- endraw %}
+
+build-docs:
+  uv run --python 3.{{ python_max }} --only-group docs mkdocs build
+
+serve-docs:
+  uv run --python 3.{{ python_max }} --only-group docs mkdocs serve

@@ -7,8 +7,9 @@ _extra_tasks = [
   "uv run pre-commit run --all-files",
   "uv sync --resolution lowest-direct; uv run --no-sync pytest",
   "uv sync --resolution highest",
+  "uv run just build-docs",
 
-  "uvx --with sp-repo-review[cli] repo-review . --ignore PY007,PP303,PY004,RTD100,PC191 --show errskip",
+  "uvx --with sp-repo-review[cli] repo-review . --ignore PY007,PP303,RTD100,PC191 --show errskip",
   # PY007 Supports an easy task runner (nox, tox, pixi, etc.)
   "[ -f justfile ]",
   # PP303 Sets the test paths
@@ -16,7 +17,6 @@ _extra_tasks = [
   # PC191 Ruff show fixes if fixes enabled
   # good check, but false-positive on ruff-isort
   ### fix later:
-  # PY004 Has docs folder
   # RTD100 Uses ReadTheDocs (pyproject config)
 
   "uv tree --outdated --depth 1 --color always -q | grep latest --color=never || true",
