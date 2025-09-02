@@ -1,6 +1,6 @@
 """{{ project_name }}: {{ package_description }}
 
-Copyright (c) {{ year }} {{ user_name }}. All rights reserved.
+© {{ year }} {{ user_name }}. {{ "All" if license == "Proprietary" else "Some" }} rights reserved.
 """
 
 {% if get_package_version_from_vcs -%}
