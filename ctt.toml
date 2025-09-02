@@ -9,11 +9,9 @@ _extra_tasks = [
   "uv sync --resolution highest",
   "uv run just build-docs",
 
-  "uvx --with sp-repo-review[cli] repo-review . --ignore PY007,PP303,RTD100,PC191 --show errskip",
+  "uvx --with sp-repo-review[cli] repo-review . --ignore PY007,RTD100,PC191 --show errskip",
   # PY007 Supports an easy task runner (nox, tox, pixi, etc.)
   "[ -f justfile ]",
-  # PP303 Sets the test paths
-  "[ -d tests ]",
   # PC191 Ruff show fixes if fixes enabled
   # good check, but false-positive on ruff-isort
   ### fix later:

@@ -126,6 +126,10 @@ version.path = "src/{{ package_name }}/__init__.py"
 
 [tool.pytest.ini_options]
 minversion = "7.0"
+testpaths = [
+  "src/",
+  "tests/",
+]
 addopts = [
   ## testing
   "--doctest-modules",
