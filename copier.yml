@@ -129,15 +129,15 @@ format_tool:
 
 in_pypi:
   type: bool
-  help: Do you upload it to PyPI?
+  help: Did you upload the package to PyPI?
   default: false
 
 in_rtd:
   type: bool
-  help: Do you deploy the docs to Read the Docs?
+  help: Add 'Read the Docs' integration?
   default: false
 
 in_codecov:
   type: bool
-  help: Do you track coverage with Codecov?
-  default: false
+  help: Add Codecov badge to the readme?
+  default: true
