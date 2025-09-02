@@ -23,7 +23,7 @@ jobs:
       - uses: psf/black@stable
         with:
           jupyter: {{ "true" if contains_jupyter_files else "false" }}
-          version: "~=25.0"
+          version: ~=25.0
   {%- endif %}
   {%- if format_tool == "ruff" %}
   ruff-format:
