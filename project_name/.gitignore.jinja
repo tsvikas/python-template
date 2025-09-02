@@ -38,7 +38,8 @@ MANIFEST
 
 # End of https://www.toptal.com/developers/gitignore/api/pythonvanilla
 
-{%- if get_package_version_from_vcs %}
+
+{% if get_package_version_from_vcs -%}
 # version file
 _version.py
 {%- endif %}
@@ -64,5 +65,6 @@ venv/
 
 # TODO
 TODO*
+
 
 # specific to this project:
