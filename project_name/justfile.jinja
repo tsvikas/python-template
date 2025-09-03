@@ -42,7 +42,7 @@ format-and-check:
 check:
   just test
   uv run mypy
-  uv run pre-commit run --all-files --show-diff-on-failure
+  uv run pre-commit run --all-files
 
 # Format code and files
 format:
