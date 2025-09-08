@@ -75,8 +75,17 @@ pylint:
 test:
   uv run --all-extras --exact pytest
 
+{% raw -%}
+# create a release commit
+release version: (_assert-legal-version version)
+  [ -z "$(git status --porcelain)" ]
+  just check
+  sed -i "s/## Unreleased/## Unreleased\n\n## v{{version}}/" CHANGELOG.md
+  git add CHANGELOG.md
+  git commit -m "Release v{{version}}"
+  just tag-skip-check {{version}} HEAD
+
 # add a new version tag
-{%- raw %}
 tag version commit="HEAD": (_assert-legal-version version)
   just check-at-commit {{ commit }}
   just tag-skip-check {{ version }} {{ commit }}
