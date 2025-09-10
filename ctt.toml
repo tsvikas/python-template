@@ -14,6 +14,9 @@ _extra_tasks = [
   # PC191 : Ruff show fixes if fixes enabled : false-positive on ruff-isort
   # RTD : ReadTheDocs : checked in the no_cli section
 
+  # test just tasks
+  "uv run just format",
+
   # show outdated deps
   "uv run just list-outdated-deps",
 ]
@@ -49,6 +52,9 @@ _extra_tasks = [
   # PY007 : Supports an easy task runner (nox, tox, pixi, etc.) : we use just
   "[ -f justfile ]",
   # PC191 : Ruff show fixes if fixes enabled : false-positive on ruff-isort
+
+  # test just tasks
+  "uv run just format",
 
   # show outdated deps
   "uv run just list-outdated-deps",
