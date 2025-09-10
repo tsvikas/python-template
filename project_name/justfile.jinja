@@ -18,6 +18,13 @@ init:
   [ -z "$(git status --porcelain)" ] || git commit -m "⬆️ Updated project dependencies"
   just prepare
 
+# Setup the project after cloning
+prepare:
+  uv run pre-commit install --install-hooks
+
+
+### dependencies ###
+
 # List outdated python dependencies
 list-outdated-deps:
   uv tree --outdated --depth 1 --color always -q  | { grep latest --color=never || exit 0; }
@@ -29,9 +36,8 @@ update-deps:
   uvx sync-with-uv
   uv run pre-commit run -a sync-pre-commit-deps
 
-# Setup the project. Needed after cloning
-prepare:
-  uv run pre-commit install --install-hooks
+
+### code quality ###
 
 check-and-push:
   [ -z "$(git status --porcelain)" ]
@@ -89,6 +95,9 @@ test-lowest python:
   mv uv.lock.1 uv.lock
   uv run --no-sync pytest
 {%- endraw %}
+
+
+### Release, tags, previous commits ###
 
 {% raw -%}
 # Create a release commit
