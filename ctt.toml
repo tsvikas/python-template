@@ -15,7 +15,8 @@ _extra_tasks = [
   # PC191 : Ruff show fixes if fixes enabled : false-positive on ruff-isort
   # RTD : ReadTheDocs : checked in the no_cli section
 
-  "uv tree --outdated --depth 1 --color always -q | grep latest --color=never || true",
+  # show outdated deps
+  "uv run just list-outdated-deps",
 ]
 user_name = "Marty McFly"
 user_email = "marty.mcfly@example.com"
@@ -51,7 +52,8 @@ _extra_tasks = [
   "[ -f justfile ]",
   # PC191 : Ruff show fixes if fixes enabled : false-positive on ruff-isort
 
-  "uv tree --outdated --depth 1 --color always -q | grep latest --color=never || true",
+  # show outdated deps
+  "uv run just list-outdated-deps",
 ]
 
 [output.".ctt/package_version_from_vcs"]
