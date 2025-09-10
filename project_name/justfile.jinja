@@ -66,6 +66,7 @@ isort:
 lint:
   uv run ruff check
   uv run dmypy run
+  uv run --all-extras --all-groups --with deptry deptry src/
 
 # Run Pylint, might be slow
 pylint:
