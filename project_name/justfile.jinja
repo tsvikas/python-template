@@ -73,7 +73,16 @@ pylint:
 
 # Run tests with pytest
 test:
-  uv run --all-extras --exact pytest
+  uv run --all-extras --exact --no-default-groups --group test pytest
+
+{% raw -%}
+test-lowest python:
+  mv uv.lock uv.lock.1
+  uv sync --all-extras --exact --no-default-groups --group test \
+    --upgrade --resolution lowest-direct --python {{python}}
+  mv uv.lock.1 uv.lock
+  uv run --no-sync pytest
+{%- endraw %}
 
 {% raw -%}
 # create a release commit
