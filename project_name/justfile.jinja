@@ -18,6 +18,10 @@ init:
   [ -z "$(git status --porcelain)" ] || git commit -m "⬆️ Updated project dependencies"
   just prepare
 
+# List outdated python dependencies
+list-outdated-deps:
+  uv tree --outdated --depth 1 --color always -q  | { grep latest --color=never || exit 0; }
+
 # Update all dependencies
 update-deps:
   uv sync --upgrade
