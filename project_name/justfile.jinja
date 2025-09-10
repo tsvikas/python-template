@@ -103,12 +103,12 @@ release version: (_assert-legal-version version)
   sed -i "s/## Unreleased/## Unreleased\n\n## v{{version}}/" CHANGELOG.md
   git add CHANGELOG.md
   git commit -m "Release v{{version}}"
-  just tag-skip-check {{version}} HEAD
+  just _tag-skip-check {{version}} HEAD
 
 # Add a new version tag at a specific commit
 tag version commit="HEAD": (_assert-legal-version version)
   just check-at-commit {{ commit }}
-  just tag-skip-check {{ version }} {{ commit }}
+  just _tag-skip-check {{ version }} {{ commit }}
 
 version_regex := '^([1-9][0-9]*!)?(0|[1-9][0-9]*)(\.(0|[1-9][0-9]*))*((a|b|rc)(0|[1-9][0-9]*))?(\.post(0|[1-9][0-9]*))?(\.dev(0|[1-9][0-9]*))?$'
 
@@ -123,7 +123,7 @@ check-at-commit commit:
   just -f {{ tmp_rc_dir }}/justfile check || ( git worktree remove -f {{ tmp_rc_dir }} && false )
   git worktree remove {{ tmp_rc_dir }}
 
-tag-skip-check version commit: (_assert-legal-version version)
+_tag-skip-check version commit: (_assert-legal-version version)
   git tag -a v{{ version }} -m "Release v{{ version }}" {{ commit }}
 
 {%- endraw %}
