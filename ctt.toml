@@ -5,9 +5,7 @@ _extra_tasks = [
   "uv run just init",
   "uv run just lint",
   "uv run just test",
-  "uv run pre-commit run --all-files",
-  "uv sync --resolution lowest-direct; uv run --no-sync pytest",
-  "uv sync --resolution highest",
+  "uv run just test-lowest 3.10",
   "uv run just build-docs",
 
   "uvx --with sp-repo-review[cli] repo-review . --ignore PY007,RTD,PC191 --show errskip",
@@ -16,7 +14,11 @@ _extra_tasks = [
   # PC191 : Ruff show fixes if fixes enabled : false-positive on ruff-isort
   # RTD : ReadTheDocs : checked in the no_cli section
 
-  "uv tree --outdated --depth 1 --color always -q | grep latest --color=never || true",
+  # test just tasks
+  "uv run just format",
+
+  # show outdated deps
+  "uv run just list-outdated-deps || true",
 ]
 user_name = "Marty McFly"
 user_email = "marty.mcfly@example.com"
