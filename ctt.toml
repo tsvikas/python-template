@@ -6,8 +6,7 @@ _extra_tasks = [
   "uv run just lint",
   "uv run just test",
   "uv run pre-commit run --all-files",
-  "uv sync --resolution lowest-direct; uv run --no-sync pytest",
-  "uv sync --resolution highest",
+  "uv run just test-lowest 3.13",
   "uv run just build-docs",
 
   "uvx --with sp-repo-review[cli] repo-review . --ignore PY007,RTD,PC191 --show errskip",
@@ -44,8 +43,7 @@ _extra_tasks = [
   "uv run just lint",
   "uv run just test",
   "uv run pre-commit run --all-files",
-  "uv sync --resolution lowest-direct; uv run --no-sync pytest",
-  "uv sync --resolution highest",
+  "uv run just test-lowest 3.13",
   "uv run just build-docs",
 
   "uvx --with sp-repo-review[cli] repo-review . --ignore PY007,PC191 --show errskip",
