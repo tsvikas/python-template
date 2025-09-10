@@ -106,7 +106,7 @@ release version: (_assert-legal-version version)
   just _tag-skip-check {{version}} HEAD
 
 # Add a new version tag at a specific commit
-tag version commit="HEAD": (_assert-legal-version version)
+tag-version-at-commit version commit: (_assert-legal-version version)
   just check-at-commit {{ commit }}
   just _tag-skip-check {{ version }} {{ commit }}
 
