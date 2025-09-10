@@ -55,7 +55,7 @@ check:
 
 # Format code and files
 format:
-  just isort
+  uv run ruff check --select I001 --fix
   {%- if format_tool == "black" %}
   uv run black .
   {%- elif format_tool == "ruff" %}
@@ -66,10 +66,6 @@ format:
   {%- if jupyter_files == "strip_outputs" %}
   uv run pre-commit run --all-files nbstripout
   {%- endif %}
-
-# Sort imports (using ruff)
-isort:
-  uv run ruff check --select I001 --fix
 
 # Run linters: ruff, mypy, deptry, pre-commit
 lint:
