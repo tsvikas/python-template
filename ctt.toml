@@ -5,7 +5,6 @@ _extra_tasks = [
   "uv run just init",
   "uv run just lint",
   "uv run just test",
-  "uv run pre-commit run --all-files",
   "uv run just test-lowest 3.13",
   "uv run just build-docs",
 
@@ -43,7 +42,6 @@ _extra_tasks = [
   "uv run just init",
   "uv run just lint",
   "uv run just test",
-  "uv run pre-commit run --all-files",
   "uv run just test-lowest 3.13",
   "uv run just build-docs",
 
