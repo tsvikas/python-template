@@ -25,6 +25,7 @@ jobs:
   copier-template-tester:
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
         uv-version: ["0.7.3", "latest"]
     steps:
