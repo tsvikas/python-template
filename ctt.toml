@@ -4,6 +4,7 @@ _extra_tasks = [
   "git init",  # required to run uv
   "uv run just init",
   "uv run just lint",
+  "uv run dmypy stop",
   "uv run just test",
   "uv run just test-lowest 3.13",
   "uv run just build-docs",
@@ -44,6 +45,7 @@ _extra_tasks = [
   "git init",  # required to run uv
   "uv run just init",
   "uv run just lint",
+  "uv run dmypy stop",
   "uv run just test",
   "uv run just test-lowest 3.13",
   "uv run just build-docs",
