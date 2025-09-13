@@ -23,6 +23,7 @@ jobs:
       - uses: pre-commit/action@v3.0.1
 
   copier-template-tester:
+    name: copier-template-tester (uv ${{ matrix.uv-version }})
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
