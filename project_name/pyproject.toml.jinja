@@ -75,7 +75,7 @@ dev = [
   "rust-just ~=1.0",
   "pre-commit ~=4.0",
   "black{% if contains_jupyter_files %}[jupyter]{% endif %} ~=25.0",  # also update GHA version
-  "ruff ~=0.12.0",
+  "ruff ~=0.13.0",
   ## can be used for debug
   "icecream >=2",
   "snoop >=0.3",
@@ -230,7 +230,6 @@ ignore = [
   # ban something useful for a possibly good reason
   #"C901",     # mccabe/complex-structure
   #"S101",     # flake8-bandit/assert
-  #"PD901",    # pandas-vet/pandas-df-variable-name
   #"FIX00",    # flake8-fixme/line-contains-*
   #"ERA001",   # eradicate/commented-out-code
   #"PLR091",   # PyLint-Refactor/too-many-*
