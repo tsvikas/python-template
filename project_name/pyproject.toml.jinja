@@ -110,7 +110,7 @@ docs = [
   "mkdocs-section-index ~=0.3.0",
 ]
 typing = [
-  "mypy ~=1.17.0",
+  "mypy ~=1.18.0",
   # add "*-stubs" and "types-*" packages here (">=0")
 ]
 
@@ -172,10 +172,13 @@ run.omit = [
 [tool.mypy]
 files = ["src", "tests"]
 mypy_path = "stubs"
+# ENABLE WHEN SCHEMA UPDATES: fixed_format_cache = true
 # set the platform
 python_version = "3.{{ python_min }}"
-# enable checks [last updated: mypy 1.17]
+# enable checks [last updated: mypy 1.18]
 strict = true
+# ENABLE WHEN SCHEMA UPDATES: strict_equality_for_none = true
+local_partial_types = true
 disallow_any_unimported = true
 warn_unreachable = true
 disallow_any_explicit = true
