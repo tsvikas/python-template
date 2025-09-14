@@ -44,14 +44,10 @@ check-and-push:
   just check
   git push --follow-tags
 
-format-and-check:
-  just format
-  just check
+format-and-check: format check
 
 # Run test, lint
-check:
-  just test
-  just lint
+check: test lint
 
 # Format code and files
 format:
