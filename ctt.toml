@@ -1,21 +1,26 @@
 [defaults]
 _extra_tasks = [
   # NOTE: also update no_cli below
+
+  # init
   "git init",  # required to run uv
   "VIRTUAL_ENV='' uv run just init",
+
+  # check code with non-editing tasks
   "VIRTUAL_ENV='' uv run just lint",
   "VIRTUAL_ENV='' uv run dmypy stop",
   "VIRTUAL_ENV='' uv run just test",
   "VIRTUAL_ENV='' uv run just test-lowest 3.13",
   "VIRTUAL_ENV='' uv run just build-docs",
 
+  # check repo for following good practices
   "uvx --with sp-repo-review[cli] repo-review . --ignore PY007,RTD,PC191 --show errskip",
+  # RTD : ReadTheDocs : checked in the no_cli section
   # PY007 : Supports an easy task runner (nox, tox, pixi, etc.) : we use just
   "[ -f justfile ]",
   # PC191 : Ruff show fixes if fixes enabled : false-positive on ruff-isort
-  # RTD : ReadTheDocs : checked in the no_cli section
 
-  # test just tasks
+  # check the editing tasks
   "VIRTUAL_ENV='' uv run just format",
   "VIRTUAL_ENV='' uv run just quick-tools",
 
@@ -43,20 +48,26 @@ in_pypi = true
 in_rtd = true
 in_codecov = true
 _extra_tasks = [
+  # NOTE: also update defaults above
+
+  # init
   "git init",  # required to run uv
   "VIRTUAL_ENV='' uv run just init",
+
+  # check code with non-editing tasks
   "VIRTUAL_ENV='' uv run just lint",
   "VIRTUAL_ENV='' uv run dmypy stop",
   "VIRTUAL_ENV='' uv run just test",
   "VIRTUAL_ENV='' uv run just test-lowest 3.13",
   "VIRTUAL_ENV='' uv run just build-docs",
 
+  # check repo for following good practices
   "uvx --with sp-repo-review[cli] repo-review . --ignore PY007,PC191 --show errskip",
   # PY007 : Supports an easy task runner (nox, tox, pixi, etc.) : we use just
   "[ -f justfile ]",
   # PC191 : Ruff show fixes if fixes enabled : false-positive on ruff-isort
 
-  # test just tasks
+  # check the editing tasks
   "VIRTUAL_ENV='' uv run just format",
   "VIRTUAL_ENV='' uv run just quick-tools",
 
