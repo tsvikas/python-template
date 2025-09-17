@@ -2,9 +2,7 @@ list-tasks:
   @just --list
 
 alias t := test
-alias c := check
 alias cp := check-and-push
-alias fc := format-and-check
 alias f := format
 
 
@@ -41,15 +39,14 @@ update-deps: && list-outdated-deps
 
 ### code quality ###
 
+# Check the code, and push if it pass
 check-and-push:
   [ -z "$(git status --porcelain)" ]
-  just check
+  just _check
   git push --follow-tags
 
-format-and-check: format check
-
-# Run test, lint
-check: test lint
+# Tests to run before push, tag, or release
+_check: test lint
 
 # Format code and files
 format:
@@ -98,7 +95,7 @@ test-lowest python:
 # Create a release commit
 release version: (_assert-legal-version version)
   [ -z "$(git status --porcelain)" ]
-  just check
+  just _check
   sed -i "s/## Unreleased/## Unreleased\n\n## v{{version}}/" CHANGELOG.md
   git add CHANGELOG.md
   git commit -m "Release v{{version}}"
@@ -116,10 +113,10 @@ _assert-legal-version version:
 
 tmp_rc_dir := '/tmp/rc/' + file_name(justfile_directory()) + '/' + datetime('%s')
 
-# Run the 'check' task at a specific commit
+# Run code checks at a specific commit
 check-at-commit commit:
   git worktree add {{ tmp_rc_dir }} --detach {{ commit }}
-  just -f {{ tmp_rc_dir }}/justfile check || ( git worktree remove -f {{ tmp_rc_dir }} && false )
+  just -f {{ tmp_rc_dir }}/justfile _check || ( git worktree remove -f {{ tmp_rc_dir }} && false )
   git worktree remove {{ tmp_rc_dir }}
 
 _tag-skip-check version commit: (_assert-legal-version version)
