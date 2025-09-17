@@ -73,7 +73,7 @@ format:
   uv run pre-commit run --all-files nbstripout
   {%- endif %}
 
-# Run linters: ruff, mypy, deptry, pre-commit
+# Run linters
 lint:
   uv run ruff check
   uv run dmypy run
@@ -81,7 +81,7 @@ lint:
   uv run --all-extras --all-groups --with pip-audit pip-audit --skip-editable
   uv run pre-commit run --all-files
 
-# Run Pylint, might be slow
+# Run Pylint (slow, not used in other tasks)
 pylint:
   uv run --with pylint pylint src
 
