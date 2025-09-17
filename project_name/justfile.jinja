@@ -4,6 +4,7 @@ list-tasks:
 alias f := format
 alias t := test
 alias l := lint
+alias q := quick-tools
 
 
 ### run once after init/clone ###
@@ -47,6 +48,16 @@ check-and-push:
 
 # Tests to run before push, tag, or release
 _check: test lint
+
+# Run fast formatting and linting tools
+quick-tools:
+  uv run ruff check --select I001 --fix -q
+  {%- if format_tool == "black" %}
+  uv run black -q .
+  {%- elif format_tool == "ruff" %}
+  uv run ruff format -q
+  {%- endif %}
+  uv run ruff check
 
 # Format code and files
 format:

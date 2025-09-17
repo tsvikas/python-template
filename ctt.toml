@@ -17,6 +17,7 @@ _extra_tasks = [
 
   # test just tasks
   "uv run just format",
+  "uv run just quick-tools",
 
   # show outdated deps
   "uv run just list-outdated-deps",
@@ -57,6 +58,7 @@ _extra_tasks = [
 
   # test just tasks
   "uv run just format",
+  "uv run just quick-tools",
 
   # show outdated deps
   "uv run just list-outdated-deps",
