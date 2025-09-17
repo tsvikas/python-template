@@ -102,15 +102,22 @@ test-lowest python:
 
 ### Release, tags, previous commits ###
 
-{% raw -%}
 # Create a release commit
 release version: (_assert-legal-version version)
   [ -z "$(git status --porcelain)" ]
   just _check
+  {%- if not get_package_version_from_vcs %}
+  uvx hatch version {{ "{{version}}" }}
+  git add "src/{{ package_name }}/__init__.py"
+  {%- endif %}
+  {%- raw %}
   sed -i "s/## Unreleased/## Unreleased\n\n## v{{version}}/" CHANGELOG.md
   git add CHANGELOG.md
   git commit -m "Release v{{version}}"
   just _tag-skip-check {{version}} HEAD
+  {%- endraw %}
+
+{% raw -%}
 
 # Add a new version tag at a specific commit
 tag-version-at-commit version commit: (_assert-legal-version version)
