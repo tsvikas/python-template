@@ -12,29 +12,22 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  {%- if format_tool == "black" %}
-  black:
+  format-python:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
         with:
           persist-credentials: false
+      {%- if format_tool == "black" %}
       - uses: psf/black@stable
         with:
           jupyter: {{ "true" if contains_jupyter_files else "false" }}
           use_pyproject: true
-  {%- endif %}
-  {%- if format_tool == "ruff" %}
-  ruff-format:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v5
-        with:
-          persist-credentials: false
+      {%- elif format_tool == "ruff" %}
       - uses: astral-sh/ruff-action@v3
         with:
           args: format --check
-  {%- endif %}
+      {%- endif %}
 
   ruff-check:
     runs-on: ubuntu-latest
@@ -222,7 +215,7 @@ jobs:
   pass:
     if: {{ "${{ always() }}" }}
     needs:
-      - {{ "ruff-format" if format_tool == "ruff" else format_tool }}
+      - format-python
       - ruff-check
       - pre-commit
       - mypy
