@@ -231,15 +231,14 @@ jobs:
 
   pass:
     if: always()
-    needs: [
-      {{ "ruff-format" if format_tool == "ruff" else format_tool }},
-      ruff-check,
-      pre-commit,
-      mypy,
-      dependencies,
-      test,
-      pylint,
-    ]
+    needs:
+      - {{ "ruff-format" if format_tool == "ruff" else format_tool }}
+      - ruff-check
+      - pre-commit
+      - mypy
+      - dependencies
+      - test
+      - pylint
     runs-on: ubuntu-latest
     steps:
       - uses: re-actors/alls-green@release/v1
