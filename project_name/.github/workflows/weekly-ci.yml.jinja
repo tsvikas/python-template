@@ -5,6 +5,10 @@ on:
   schedule:
     - cron: 0 6 * * 0  # Sunday at 6 AM UTC
 
+permissions:
+  issues: write
+  contents: read
+
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -30,6 +34,29 @@ jobs:
         run: uv pip list
       - name: Run tests
         run: uv run --no-sync pytest
+      - name: Create failure issue
+        if: failure()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: `Scheduled CI Tests Failed - ${new Date().toISOString().split('T')[0]}`,
+              body: `The scheduled CI tests failed on ${context.sha.substring(0, 7)}.
+
+              **Failed Jobs:**
+              - Check the [workflow run](${context.payload.repository.html_url}/actions/runs/${context.runId})
+
+              **Likely Causes:**
+              - New dependency versions with breaking changes
+
+              **Next Steps:**
+              - Review the logs above
+              - Update code for new dependencies or limit package versions
+              - Re-run the workflow to verify fixes`,
+              assignees: [context.repo.owner],
+            })
 
   pip-audit:
     runs-on: ubuntu-latest
@@ -50,3 +77,26 @@ jobs:
         run: uv pip list
       - name: Run pip-audit
         run: uv run --no-sync --with pip-audit pip-audit --skip-editable
+      - name: Create failure issue
+        if: failure()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: `Scheduled CI Audit Failed - ${new Date().toISOString().split('T')[0]}`,
+              body: `The scheduled CI audit check failed on ${context.sha.substring(0, 7)}.
+
+              **Failed Jobs:**
+              - Check the [workflow run](${context.payload.repository.html_url}/actions/runs/${context.runId})
+
+              **Likely Causes:**
+              - New security vulnerabilities detected by pip-audit
+
+              **Next Steps:**
+              - Review the logs above
+              - Update locked dependencies
+              - Re-run the workflow to verify fixes`,
+              assignees: [context.repo.owner],
+            })
