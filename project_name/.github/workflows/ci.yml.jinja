@@ -8,7 +8,7 @@ on:
   workflow_call:
 
 concurrency:
-  group: {% raw %}${{ github.workflow }}-${{ github.ref }}{% endraw %}
+  group: {{ "${{ github.workflow }}-${{ github.ref }}" }}
   cancel-in-progress: true
 
 jobs:
@@ -97,9 +97,6 @@ jobs:
         run: uv run --no-sync --with pip-audit pip-audit --skip-editable
 
   test:
-    {%- raw %}
-    runs-on: ${{ matrix.os }}
-    {%- endraw %}
     strategy:
       matrix:
         include:
@@ -136,8 +133,9 @@ jobs:
           - resolution: prerelease
             os: ubuntu-latest
             python-version: '3.{{ python_max + 1 }}'
-    {%- raw %}
       fail-fast: false
+    {%- raw %}
+    runs-on: ${{ matrix.os }}
     name: test-${{ matrix.python-version }}-${{ matrix.resolution }}-${{ matrix.os }}
     steps:
       - uses: actions/checkout@v5
@@ -222,7 +220,7 @@ jobs:
           exit $((result & 35))
 
   pass:
-    if: {% raw %}${{ always() }}{% endraw %}
+    if: {{ "${{ always() }}" }}
     needs:
       - {{ "ruff-format" if format_tool == "ruff" else format_tool }}
       - ruff-check
@@ -235,4 +233,4 @@ jobs:
     steps:
       - uses: re-actors/alls-green@release/v1
         with:
-          jobs: {% raw %}${{ toJSON(needs) }}{% endraw %}
+          jobs: {{ "${{ toJSON(needs) }}" }}
