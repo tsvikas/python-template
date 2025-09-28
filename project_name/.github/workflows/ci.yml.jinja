@@ -104,14 +104,14 @@ jobs:
           - resolution: highest
             os: ubuntu-latest
             python-version: '3.{{ python_max }}'
-          # test with pypy
           {%- set lower_bound = [python_min, 10]|max %}
           {%- set upper_bound = [python_max, 11]|min %}
-          {%- for version in range(lower_bound, upper_bound + 1) %}
+          {%- if lower_bound <= upper_bound %}
+          # test with pypy
           - resolution: highest
             os: ubuntu-latest
-            python-version: 'pypy3.{{ version }}'
-          {%- endfor %}
+            python-version: 'pypy3.{{ upper_bound }}'
+          {%- endif %}
           # test with lowest resolution
           - resolution: lowest
             os: ubuntu-latest
