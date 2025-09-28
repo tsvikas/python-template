@@ -14,7 +14,6 @@ concurrency:
 jobs:
   {%- if format_tool == "black" %}
   black:
-    if: {% raw %}${{ always() }}{% endraw %}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
@@ -27,7 +26,6 @@ jobs:
   {%- endif %}
   {%- if format_tool == "ruff" %}
   ruff-format:
-    if: {% raw %}${{ always() }}{% endraw %}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
@@ -39,7 +37,6 @@ jobs:
   {%- endif %}
 
   ruff-check:
-    if: {% raw %}${{ always() }}{% endraw %}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
@@ -48,7 +45,6 @@ jobs:
       - uses: astral-sh/ruff-action@v3
 
   pre-commit:
-    if: {% raw %}${{ always() }}{% endraw %}
     env:
       COLUMNS: 120
     runs-on: ubuntu-latest
@@ -59,7 +55,6 @@ jobs:
       - uses: pre-commit/action@v3.0.1
 
   mypy:
-    if: {% raw %}${{ always() }}{% endraw %}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
@@ -81,7 +76,6 @@ jobs:
         run: uv run --no-sync mypy
 
   dependencies:
-    if: {% raw %}${{ always() }}{% endraw %}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
@@ -104,7 +98,6 @@ jobs:
 
   test:
     {%- raw %}
-    if: ${{ always() }}
     runs-on: ${{ matrix.os }}
     {%- endraw %}
     strategy:
@@ -197,7 +190,6 @@ jobs:
     {%- endraw %}
 
   pylint:
-    if: {% raw %}${{ always() }}{% endraw %}
     runs-on: ubuntu-latest
     continue-on-error: true
     steps:
@@ -230,7 +222,7 @@ jobs:
           exit $((result & 35))
 
   pass:
-    if: always()
+    if: {% raw %}${{ always() }}{% endraw %}
     needs:
       - {{ "ruff-format" if format_tool == "ruff" else format_tool }}
       - ruff-check
