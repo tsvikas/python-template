@@ -163,10 +163,10 @@ jobs:
         run: >-
           echo "::warning::Stopping job due to installation failure on Python ${{ matrix.python-version }}"
       - name: List packages
-        if: ${{ success() && steps.install_packages.outcome == 'success' }}
+        if: ${{ steps.install_packages.outcome == 'success' }}
         run: uv pip list
       - name: Run tests
-        if: ${{ success() && steps.install_packages.outcome == 'success' }}
+        if: ${{ steps.install_packages.outcome == 'success' }}
         run: uv run --no-sync pytest --cov-branch --cov-report=xml --junitxml=junit.xml
       - name: Upload coverage reports to Codecov
         if: ${{ success() && steps.install_packages.outcome == 'success' }}
