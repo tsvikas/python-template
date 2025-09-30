@@ -50,7 +50,7 @@ Sensible defaults for all included tools are provided.
   - Replaces Flake8, isort, pyupgrade, yesqa, pycln, and dozens of plugins
 - Static type checking with [MyPy](https://mypy-lang.org/)
 - Curated `.gitignore` file
-- Formatting and linting run automatically on commit via [pre-commit](https://pre-commit.com/) hooks:
+- Formatting and linting run automatically on commit via [pre-commit](https://pre-commit.com/) hooks, running with [prek](https://prek.j178.dev/):
   - [EditorConfig](https://editorconfig.org/) for consistent formatting across editors
   - Spell checking with [codespell](https://github.com/codespell-project/codespell) and [typos](https://github.com/crate-ci/typos)
   - Markdown formatting with [Mdformat](https://mdformat.readthedocs.io/)

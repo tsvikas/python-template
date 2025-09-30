@@ -21,7 +21,7 @@ init: && prepare
 
 # Setup the project after cloning
 prepare:
-  uv run pre-commit install --install-hooks
+  uv run prek install --install-hooks
 
 
 ### dependencies ###
@@ -33,7 +33,7 @@ list-outdated-deps:
 # Update all dependencies
 update-deps: && list-outdated-deps
   uv sync --upgrade
-  uv run pre-commit autoupdate -j "$( (uname -s | grep -q Linux && nproc) || (uname -s | grep -q Darwin && sysctl -n hw.ncpu) || echo 1 )"
+  uv run prek autoupdate -j "$( (uname -s | grep -q Linux && nproc) || (uname -s | grep -q Darwin && sysctl -n hw.ncpu) || echo 1 )"
   uvx sync-with-uv
   uvx sync-pre-commit-deps --yaml-mapping 2 --yaml-sequence 4 --yaml-offset 2 .pre-commit-config.yaml || { \
     echo "Note: '.pre-commit-config.yaml' changed, and might lost its formatting." \
@@ -70,10 +70,10 @@ format:
   {%- elif format_tool == "ruff" %}
   uv run ruff format
   {%- endif %}
-  uv run pre-commit run --all-files blacken-docs
-  uv run pre-commit run --all-files mdformat
+  uv run prek run --all-files blacken-docs
+  uv run prek run --all-files mdformat
   {%- if jupyter_files == "strip_outputs" %}
-  uv run pre-commit run --all-files nbstripout
+  uv run prek run --all-files nbstripout
   {%- endif %}
 
 # Run linters
@@ -82,7 +82,7 @@ lint:
   uv run dmypy run
   uv run --all-extras --all-groups --with deptry deptry src/
   uv run --all-extras --all-groups --with pip-audit pip-audit --skip-editable
-  uv run pre-commit run --all-files
+  uv run prek run --all-files
 
 # Run Pylint (slow, not used in other tasks)
 pylint:

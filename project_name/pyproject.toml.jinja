@@ -73,7 +73,7 @@ default-groups = ["dev", "test", "typing"]
 dev = [
   ## used in the justfile
   "rust-just ~=1.0",
-  "pre-commit ~=4.0",
+  "prek ~=0.2.0",
   "black{% if contains_jupyter_files %}[jupyter]{% endif %} ~=25.9",
   "ruff ~=0.13.0",
   ## can be used for debug
