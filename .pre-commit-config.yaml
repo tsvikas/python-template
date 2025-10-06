@@ -1,178 +1,178 @@
 exclude: ^.cruft.json|.copier-answers.yml$
 
 repos:
-  - repo: https://github.com/pre-commit/pre-commit-hooks
+-   repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v6.0.0
     hooks:
       # filesystem
-      - id: check-illegal-windows-names
-      - id: check-case-conflict
-      - id: check-executables-have-shebangs
-      - id: check-shebang-scripts-are-executable
+    -   id: check-illegal-windows-names
+    -   id: check-case-conflict
+    -   id: check-executables-have-shebangs
+    -   id: check-shebang-scripts-are-executable
       # git
-      - id: check-added-large-files
-      - id: check-merge-conflict
-      - id: check-vcs-permalinks
-      - id: forbid-submodules
+    -   id: check-added-large-files
+    -   id: check-merge-conflict
+    -   id: check-vcs-permalinks
+    -   id: forbid-submodules
       # secrets
-      - id: detect-private-key
+    -   id: detect-private-key
       # text in files
-      - id: end-of-file-fixer
-      - id: fix-byte-order-marker
-      - id: mixed-line-ending
+    -   id: end-of-file-fixer
+    -   id: fix-byte-order-marker
+    -   id: mixed-line-ending
         args: [--fix=lf]
-      - id: trailing-whitespace
+    -   id: trailing-whitespace
       # python
-      - id: check-ast
-      - id: check-docstring-first
-      - id: debug-statements
-      - id: name-tests-test
+    -   id: check-ast
+    -   id: check-docstring-first
+    -   id: debug-statements
+    -   id: name-tests-test
         args: [--pytest-test-first]
-      - id: requirements-txt-fixer
+    -   id: requirements-txt-fixer
       # symlinks
-      - id: check-symlinks
-      - id: destroyed-symlinks
+    -   id: check-symlinks
+    -   id: destroyed-symlinks
       # filetypes
-      - id: check-json
-      - id: check-toml
-      - id: check-xml
-      - id: check-yaml
-      - id: pretty-format-json
+    -   id: check-json
+    -   id: check-toml
+    -   id: check-xml
+    -   id: check-yaml
+    -   id: pretty-format-json
         exclude_types: [jupyter]
-  - repo: https://github.com/pre-commit/pygrep-hooks
+-   repo: https://github.com/pre-commit/pygrep-hooks
     rev: v1.10.0
     hooks:
       # python
-      - id: python-check-blanket-noqa
-      - id: python-check-blanket-type-ignore
-      - id: python-check-mock-methods
-      - id: python-no-eval
-      - id: python-no-log-warn
-      - id: python-use-type-annotations
+    -   id: python-check-blanket-noqa
+    -   id: python-check-blanket-type-ignore
+    -   id: python-check-mock-methods
+    -   id: python-no-eval
+    -   id: python-no-log-warn
+    -   id: python-use-type-annotations
       # rst
-      - id: rst-backticks
-      - id: rst-directive-colons
-      - id: rst-inline-touching-normal
+    -   id: rst-backticks
+    -   id: rst-directive-colons
+    -   id: rst-inline-touching-normal
       # text
-      - id: text-unicode-replacement-char
+    -   id: text-unicode-replacement-char
 
   # environment manager
-  - repo: https://github.com/pre-commit/sync-pre-commit-deps
+-   repo: https://github.com/pre-commit/sync-pre-commit-deps
     rev: v0.0.3
     hooks:
-      - id: sync-pre-commit-deps
-  - repo: https://github.com/astral-sh/uv-pre-commit
+    -   id: sync-pre-commit-deps
+-   repo: https://github.com/astral-sh/uv-pre-commit
     rev: 0.8.23
     hooks:
-      - id: uv-lock
+    -   id: uv-lock
 
   # jupyter notebooks
-  - repo: local
+-   repo: local
     hooks:
-      - id: forbid-ipynb
+    -   id: forbid-ipynb
         name: forbid ipynb
         entry: filenames must not end in .ipynb
         language: fail
         types: [jupyter]
 
   # general formatting
-  - repo: https://github.com/Lucas-C/pre-commit-hooks
+-   repo: https://github.com/Lucas-C/pre-commit-hooks
     rev: v1.5.5
     hooks:
-      - id: forbid-tabs
-  - repo: https://github.com/editorconfig-checker/editorconfig-checker.python
+    -   id: forbid-tabs
+-   repo: https://github.com/editorconfig-checker/editorconfig-checker.python
     rev: 3.4.0
     hooks:
-      - id: editorconfig-checker
+    -   id: editorconfig-checker
         exclude_types: [jupyter]
-  - repo: https://github.com/hukkin/mdformat
+-   repo: https://github.com/hukkin/mdformat
     rev: 0.7.22
     hooks:
-      - id: mdformat
+    -   id: mdformat
         additional_dependencies:
-          - mdformat-gfm
-          - mdformat-frontmatter
-          - mdformat-footnote
-          - mdformat-gfm-alerts
-  - repo: https://github.com/adrienverge/yamllint
+        -   mdformat-gfm
+        -   mdformat-frontmatter
+        -   mdformat-footnote
+        -   mdformat-gfm-alerts
+-   repo: https://github.com/adrienverge/yamllint
     rev: v1.37.1
     hooks:
-      - id: yamllint
+    -   id: yamllint
 
   # rst formatting
-  - repo: https://github.com/PyCQA/doc8
+-   repo: https://github.com/PyCQA/doc8
     rev: v2.0.0
     hooks:
-      - id: doc8
+    -   id: doc8
 
   # python formatting and linting
-  - repo: https://github.com/psf/black-pre-commit-mirror
+-   repo: https://github.com/psf/black-pre-commit-mirror
     rev: 25.9.0
     hooks:
-      - id: black
-  - repo: https://github.com/adamchainz/blacken-docs
+    -   id: black
+-   repo: https://github.com/adamchainz/blacken-docs
     rev: 1.20.0
     hooks:
-      - id: blacken-docs
-        additional_dependencies: [black==25.1.0]
-  - repo: https://github.com/astral-sh/ruff-pre-commit
+    -   id: blacken-docs
+        additional_dependencies: [black==25.9.0]
+-   repo: https://github.com/astral-sh/ruff-pre-commit
     rev: v0.13.3
     hooks:
-      - id: ruff
+    -   id: ruff
         alias: ruff-isort
         name: ruff isort
         args: [--select, I001, --fix]
-      - id: ruff
-  - repo: https://github.com/pre-commit/mirrors-mypy
+    -   id: ruff
+-   repo: https://github.com/pre-commit/mirrors-mypy
     rev: v1.18.2
     hooks:
-      - id: mypy
+    -   id: mypy
         name: mypy (without imports)
         args: [--config-file, '', --ignore-missing-imports]
 
   # validate schema
-  - repo: https://github.com/abravalheri/validate-pyproject
+-   repo: https://github.com/abravalheri/validate-pyproject
     rev: v0.24.1
     hooks:
-      - id: validate-pyproject
+    -   id: validate-pyproject
         additional_dependencies: ['validate-pyproject-schema-store[all]']
-  - repo: https://github.com/python-jsonschema/check-jsonschema
+-   repo: https://github.com/python-jsonschema/check-jsonschema
     rev: 0.34.0
     hooks:
-      - id: check-dependabot
-      - id: check-github-actions
-      - id: check-github-workflows
-      - id: check-readthedocs
-  - repo: https://github.com/rhysd/actionlint
+    -   id: check-dependabot
+    -   id: check-github-actions
+    -   id: check-github-workflows
+    -   id: check-readthedocs
+-   repo: https://github.com/rhysd/actionlint
     rev: v1.7.7
     hooks:
-      - id: actionlint
+    -   id: actionlint
 
   # shell scripts
-  - repo: https://github.com/shellcheck-py/shellcheck-py
+-   repo: https://github.com/shellcheck-py/shellcheck-py
     rev: v0.11.0.1
     hooks:
-      - id: shellcheck
+    -   id: shellcheck
 
   # spell checks
-  - repo: https://github.com/adhtruong/mirrors-typos
+-   repo: https://github.com/adhtruong/mirrors-typos
     rev: v1.37.2
     hooks:
-      - id: typos
-  - repo: https://github.com/codespell-project/codespell
+    -   id: typos
+-   repo: https://github.com/codespell-project/codespell
     rev: v2.4.1
     hooks:
-      - id: codespell
-  - repo: local
+    -   id: codespell
+-   repo: local
     hooks:
-      - id: disallow-caps
+    -   id: disallow-caps
         name: disallow improper capitalization
         language: pygrep
         entry: PyBind|Numpy|Cmake|CCache|Github|PyTest
         exclude: .pre-commit-config.yaml
 
 ci:
-  autoupdate_commit_msg: 'chore: update pre-commit hooks'
-  autofix_commit_msg: 'style: pre-commit fixes'
-  skip: []
-  autoupdate_schedule: quarterly
+    autoupdate_commit_msg: 'chore: update pre-commit hooks'
+    autofix_commit_msg: 'style: pre-commit fixes'
+    skip: []
+    autoupdate_schedule: quarterly
