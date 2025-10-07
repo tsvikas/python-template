@@ -86,14 +86,14 @@ year:
 
 python_min:
   type: int
-  help: Minimal minor version of Python, i.e '13' for 3.13
+  help: Minimal minor version of Python, i.e '14' for 3.14
   default: 10
   validator: >-
     {% if python_min < 8 %}Must be >= 8{% endif %}
 
 python_max:
   type: int
-  default: 13
+  default: 14
   when: false
 
 get_package_version_from_vcs:
