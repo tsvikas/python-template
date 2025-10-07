@@ -10,7 +10,7 @@ _extra_tasks = [
   "VIRTUAL_ENV='' uv run just lint",
   "VIRTUAL_ENV='' uv run dmypy stop",
   "VIRTUAL_ENV='' uv run just test",
-  "VIRTUAL_ENV='' uv run just test-lowest 3.13",
+  "VIRTUAL_ENV='' uv run just test-lowest 3.14",
   "VIRTUAL_ENV='' uv run just build-docs",
 
   # check repo for following good practices
@@ -73,7 +73,7 @@ in_rtd = true
 in_codecov = true
 jupyter_files = "ignore"
 
-[output.".ctt/python3.13"]
-python_min = 13
+[output.".ctt/python3.14"]
+python_min = 14
 jupyter_files = "allow"
 format_tool = "ruff"
