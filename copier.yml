@@ -89,7 +89,7 @@ python_min:
   help: Minimal minor version of python, i.e '9' or '13' for 3.9 or 3.13
   default: 13
   validator: >-
-    {% if python_min < 0 %}Must be >= 0{% endif %}
+    {% if python_min < 8 %}Must be >= 8{% endif %}
 
 python_max:
   type: int
