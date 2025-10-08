@@ -15,7 +15,7 @@ _extra_tasks = [
 
   # check repo for following good practices
   "uvx --with sp-repo-review[cli] repo-review . --ignore PY007,RTD,PC191 --show errskip",
-  # RTD : ReadTheDocs : checked in the no_cli section
+  # RTD : ReadTheDocs : checked in the docs section
   # PY007 : Supports an easy task runner (nox, tox, pixi, etc.) : we use just
   "[ -f justfile ]",
   # PC191 : Ruff show fixes if fixes enabled : false-positive on ruff-isort
@@ -36,74 +36,44 @@ package_description = "A car that flies."
 license = "MIT"
 year = 2015
 get_package_version_from_vcs = false
-has_cli = true
+has_cli = false
+in_pypi = false
+in_rtd = false
+in_codecov = false
 jupyter_files = "forbid"
 format_tool = "black"
-in_rtd = false
 
-[output.".ctt/no_cli"]
-has_cli = false
+[output.".ctt/bare"]
+jupyter_files = "forbid"
+
+[output.".ctt/docs"]
 in_pypi = true
 in_rtd = true
 in_codecov = true
 _extra_tasks = [
-  # NOTE: also update defaults above
-
-  # init
   "git init",  # required to run uv
   "VIRTUAL_ENV='' uv run just init",
-
-  # check code with non-editing tasks
-  "VIRTUAL_ENV='' uv run just lint",
-  "VIRTUAL_ENV='' uv run dmypy stop",
-  "VIRTUAL_ENV='' uv run just test",
-  "VIRTUAL_ENV='' uv run just test-lowest 3.13",
   "VIRTUAL_ENV='' uv run just build-docs",
-
-  # check repo for following good practices
-  "uvx --with sp-repo-review[cli] repo-review . --ignore PY007,PC191 --show errskip",
-  # PY007 : Supports an easy task runner (nox, tox, pixi, etc.) : we use just
-  "[ -f justfile ]",
-  # PC191 : Ruff show fixes if fixes enabled : false-positive on ruff-isort
-
-  # check the editing tasks
-  "VIRTUAL_ENV='' uv run just format",
-  "VIRTUAL_ENV='' uv run just quick-tools",
-
-  # show outdated deps
-  "VIRTUAL_ENV='' uv run just list-outdated-deps",
+  "uvx --with sp-repo-review[cli] repo-review . --select RTD --show errskip",
 ]
 
-[output.".ctt/package_version_from_vcs"]
-get_package_version_from_vcs = true
-
-[output.".ctt/python3.10"]
-python_min = 10
+[output.".ctt/cli_vcs"]
 get_package_version_from_vcs = true
 has_cli = true
+in_pypi = true
+in_rtd = true
+in_codecov = true
 jupyter_files = "strip_outputs"
-format_tool = "ruff"
 
-[output.".ctt/jupyter_forbid"]
-jupyter_files = "forbid"
-format_tool = "black"
-
-[output.".ctt/jupyter_forbid+ruff"]
-jupyter_files = "forbid"
-format_tool = "ruff"
-
-[output.".ctt/jupyter_ignore"]
+[output.".ctt/cli_no_vcs"]
+get_package_version_from_vcs = false
+has_cli = true
+in_pypi = true
+in_rtd = true
+in_codecov = true
 jupyter_files = "ignore"
-format_tool = "black"
 
-[output.".ctt/jupyter_strip_outputs"]
-jupyter_files = "strip_outputs"
-format_tool = "black"
-
-[output.".ctt/jupyter_allow"]
-jupyter_files = "allow"
-format_tool = "black"
-
-[output.".ctt/jupyter_allow+ruff"]
+[output.".ctt/python3.13"]
+python_min = 13
 jupyter_files = "allow"
 format_tool = "ruff"
