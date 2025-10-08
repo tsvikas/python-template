@@ -123,12 +123,10 @@ repos:
           - mdformat-gfm-alerts
 
   # reStructuredText files
-  {%- if python_min >= 10 %}
   - repo: https://github.com/PyCQA/doc8
     rev: <placeholder_until_update_deps>
     hooks:
       - id: doc8
-  {%- endif %}
 
   # Python files
   {%- if format_tool == "black" %}

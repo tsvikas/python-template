@@ -35,7 +35,6 @@ package_name = "delorian_car"
 package_description = "A car that flies."
 license = "MIT"
 year = 2015
-# python_min = default
 get_package_version_from_vcs = false
 has_cli = true
 jupyter_files = "forbid"
@@ -78,8 +77,8 @@ _extra_tasks = [
 [output.".ctt/package_version_from_vcs"]
 get_package_version_from_vcs = true
 
-[output.".ctt/python3.9"]
-python_min = 9
+[output.".ctt/python3.10"]
+python_min = 10
 get_package_version_from_vcs = true
 has_cli = true
 jupyter_files = "strip_outputs"
