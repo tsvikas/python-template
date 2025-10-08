@@ -47,5 +47,12 @@ jobs:
         run: |
           git config --global user.email "${{ github.actor }}@users.noreply.github.com"
           git config --global user.name "${{ github.actor }}"
+      - name: Cache pre-commit
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pre-commit
+          key: pre-commit-${{ runner.os }}-${{ hashFiles('.pre-commit-config.yaml', 'project_name/.pre-commit-config.yaml.jinja') }}
+          restore-keys: |
+            pre-commit-${{ runner.os }}-
       - name: Run copier-template-tester
         run: uv run ctt
