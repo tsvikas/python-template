@@ -29,6 +29,7 @@ repos:
     rev: <placeholder_until_update_deps>
     hooks:
       - id: sync-pre-commit-deps
+        args: [--yaml-mapping, '2', --yaml-sequence, '4', --yaml-offset, '2']
 
   # General hooks
   - repo: https://github.com/pre-commit/pre-commit-hooks

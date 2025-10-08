@@ -31,4 +31,7 @@ tag-skip-check version commit: (_assert-legal-version version)
 # Update all dependencies
 update-deps:
   pre-commit autoupdate -j "$( (uname -s | grep -q Linux && nproc) || (uname -s | grep -q Darwin && sysctl -n hw.ncpu) || echo 1 )"
-  pre-commit run -a sync-pre-commit-deps
+  uvx sync-pre-commit-deps --yaml-mapping 2 --yaml-sequence 4 --yaml-offset 2 .pre-commit-config.yaml || { \
+    echo "Note: '.pre-commit-config.yaml' changed, and might lost its formatting." \
+    && exit 1; \
+  }

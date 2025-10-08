@@ -61,6 +61,7 @@ repos:
     rev: v0.0.3
     hooks:
       - id: sync-pre-commit-deps
+        args: [--yaml-mapping, '2', --yaml-sequence, '4', --yaml-offset, '2']
   - repo: https://github.com/astral-sh/uv-pre-commit
     rev: 0.8.13
     hooks:
