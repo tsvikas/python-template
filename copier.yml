@@ -108,6 +108,7 @@ cli_framework:
   choices:
     No CLI: none
     Typer: typer
+    Cyclopts: cyclopts
 
 has_cli:
   type: bool

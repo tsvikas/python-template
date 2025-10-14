@@ -50,6 +50,8 @@ dependencies = [
   {%- if cli_framework == "typer" %}
   "typer >=0.16",
   "click >=0",
+  {%- elif cli_framework == "cyclopts" %}
+  "cyclopts >=4",
   {%- endif %}
 ]
 
