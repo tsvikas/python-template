@@ -101,10 +101,18 @@ get_package_version_from_vcs:
   help: Use the version control system for versioning?
   default: true
 
+cli_framework:
+  type: str
+  help: Which CLI framework to use?
+  default: cyclopts
+  choices:
+    No CLI: none
+    Typer: typer
+
 has_cli:
   type: bool
-  help: Add a cli module and entrypoint?
-  default: true
+  default: "{{ false if cli_framework == 'none' else true }}"
+  when: false
 
 jupyter_files:
   type: str

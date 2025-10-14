@@ -36,7 +36,7 @@ package_description = "A car that flies."
 license = "MIT"
 year = 2015
 get_package_version_from_vcs = false
-has_cli = false
+cli_framework = "none"
 in_pypi = false
 in_rtd = false
 in_codecov = false
@@ -57,17 +57,17 @@ _extra_tasks = [
   "uvx --with sp-repo-review[cli] repo-review . --select RTD --show errskip",
 ]
 
-[output.".ctt/cli_vcs"]
+[output.".ctt/cli_t_vcs"]
 get_package_version_from_vcs = true
-has_cli = true
+cli_framework = "typer"
 in_pypi = true
 in_rtd = true
 in_codecov = true
 jupyter_files = "strip_outputs"
 
-[output.".ctt/cli_no_vcs"]
+[output.".ctt/cli_t_no_vcs"]
 get_package_version_from_vcs = false
-has_cli = true
+cli_framework = "typer"
 in_pypi = true
 in_rtd = true
 in_codecov = true
