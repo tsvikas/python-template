@@ -43,19 +43,19 @@ in_codecov = false
 jupyter_files = "forbid"
 format_tool = "black"
 
-[output.".ctt/bare"]
-jupyter_files = "forbid"
-
-[output.".ctt/docs"]
-in_pypi = true
-in_rtd = true
-in_codecov = true
-_extra_tasks = [
-  "git init",  # required to run uv
-  "VIRTUAL_ENV='' uv run just init",
-  "VIRTUAL_ENV='' uv run just build-docs",
-  "uvx --with sp-repo-review[cli] repo-review . --select RTD --show errskip",
-]
+# [output.".ctt/bare"]
+# jupyter_files = "forbid"
+#
+# [output.".ctt/docs"]
+# in_pypi = true
+# in_rtd = true
+# in_codecov = true
+# _extra_tasks = [
+#   "git init",  # required to run uv
+#   "VIRTUAL_ENV='' uv run just init",
+#   "VIRTUAL_ENV='' uv run just build-docs",
+#   "uvx --with sp-repo-review[cli] repo-review . --select RTD --show errskip",
+# ]
 
 [output.".ctt/cli_c_vcs"]
 get_package_version_from_vcs = true
@@ -89,7 +89,7 @@ in_rtd = true
 in_codecov = true
 jupyter_files = "ignore"
 
-[output.".ctt/python3.14"]
-python_min = 14
-jupyter_files = "allow"
-format_tool = "ruff"
+# [output.".ctt/python3.14"]
+# python_min = 14
+# jupyter_files = "allow"
+# format_tool = "ruff"
