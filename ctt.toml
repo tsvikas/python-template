@@ -57,6 +57,22 @@ _extra_tasks = [
   "uvx --with sp-repo-review[cli] repo-review . --select RTD --show errskip",
 ]
 
+[output.".ctt/cli_c_vcs"]
+get_package_version_from_vcs = true
+cli_framework = "cyclopts"
+in_pypi = true
+in_rtd = true
+in_codecov = true
+jupyter_files = "strip_outputs"
+
+[output.".ctt/cli_c_no_vcs"]
+get_package_version_from_vcs = false
+cli_framework = "cyclopts"
+in_pypi = true
+in_rtd = true
+in_codecov = true
+jupyter_files = "ignore"
+
 [output.".ctt/cli_t_vcs"]
 get_package_version_from_vcs = true
 cli_framework = "typer"
