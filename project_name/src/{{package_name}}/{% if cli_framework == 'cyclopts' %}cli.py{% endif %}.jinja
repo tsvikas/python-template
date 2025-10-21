@@ -18,7 +18,7 @@ def do_something(
     /,
     *,
     code: Annotated[str, Parameter(alias="-c")] = "CODE",
-) -> None:
+) -> int:
     """Do something.
 
     Parameters
@@ -29,3 +29,4 @@ def do_something(
         The code to use
     """
     print(target, code)
+    return 0
