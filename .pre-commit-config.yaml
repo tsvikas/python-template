@@ -92,7 +92,6 @@ repos:
       - id: mdformat
         additional_dependencies:
           - mdformat-gfm
-          - mdformat-frontmatter
           - mdformat-footnote
           - mdformat-gfm-alerts
   - repo: https://github.com/adrienverge/yamllint
