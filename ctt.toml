@@ -7,12 +7,17 @@ _extra_tasks = [
   "VIRTUAL_ENV='' uv run just init",
 
   # check code with non-editing tasks
-  "VIRTUAL_ENV='' uv run just lint",
+  "VIRTUAL_ENV='' uv run just lint test release 1.0.0",
+  "VIRTUAL_ENV='' uv run just _assert_clean_repo",
   "VIRTUAL_ENV='' uv run dmypy stop",
-  "VIRTUAL_ENV='' uv run just test",
   "VIRTUAL_ENV='' uv run just test-lowest 3.14",
   "VIRTUAL_ENV='' uv run just build-docs",
   "VIRTUAL_ENV='' uv run just deps-audit",
+
+  # check the editing tasks
+  "VIRTUAL_ENV='' uv run just quick-tools",
+  "VIRTUAL_ENV='' uv run just format",
+  "VIRTUAL_ENV='' uv run just _assert_clean_repo",
 
   # check repo for following good practices
   "uvx --with sp-repo-review[cli] repo-review . --ignore PY007,RTD,PC191 --show errskip",
@@ -20,11 +25,6 @@ _extra_tasks = [
   # PY007 : Supports an easy task runner (nox, tox, pixi, etc.) : we use just
   "[ -f justfile ]",
   # PC191 : Ruff show fixes if fixes enabled : false-positive on ruff-isort
-
-  # check the editing tasks
-  "VIRTUAL_ENV='' uv run just format",
-  "VIRTUAL_ENV='' uv run just quick-tools",
-  "VIRTUAL_ENV='' uv run just release 1.0.0",
 
   # show outdated deps
   "VIRTUAL_ENV='' uv run just deps-list-outdated",
