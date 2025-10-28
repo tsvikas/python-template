@@ -49,6 +49,7 @@ deps-audit:
   #   vuln is in pip, which is not a pinned requirwement
   #   vuln is fixed in recent python versions
   #   see https://github.com/pypa/pip/issues/13607
+  uv sync --exact
 
 
 ### code quality ###
@@ -91,15 +92,18 @@ lint:
   uv run ruff check
   uv run dmypy run
   uv run --all-extras --all-groups --with deptry deptry src/
+  uv sync --exact
   uv run pre-commit run --all-files
 
 # Run Pylint (slow, not used in other tasks)
 pylint:
   uv run --with pylint pylint src
+  uv sync --exact
 
 # Run tests with pytest
 test:
   uv run --all-extras --exact --no-default-groups --group test pytest
+  uv sync --exact
 
 {% raw -%}
 # Run tests with pytest, using resolution lowest-direct
@@ -109,6 +113,7 @@ test-lowest python:
     --upgrade --resolution lowest-direct --python {{python}}
   mv uv.lock.1 uv.lock
   uv run --no-sync pytest
+  uv sync --exact
 {%- endraw %}
 
 
@@ -159,11 +164,14 @@ _tag-skip-check version commit: (_assert-legal-version version)
 build-docs-ref:
   rm -rf docs/reference
   uv run --python 3.{{python_max}} --only-group docs scripts/gen_ref_pages.py
+  uv sync --exact
 
 # Build the documentation
 build-docs: build-docs-ref
   uv run --python 3.{{python_max}} --only-group docs mkdocs build
+  uv sync --exact
 
 # Serve the documentation locally
 serve-docs: build-docs-ref
   uv run --python 3.{{python_max}} --only-group docs mkdocs serve
+  uv sync --exact
