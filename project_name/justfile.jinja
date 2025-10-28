@@ -52,15 +52,15 @@ deps-audit:
 
 
 ### code quality ###
-
-# Check the code, and push if it pass
-check-and-push:
+_assert_clean_repo:
   [ -z "$(git status --porcelain)" ]
-  just _check
-  git push --follow-tags
 
 # Tests to run before push, tag, or release
-_check: test lint
+_check: _assert_clean_repo test lint
+
+# Check the code, and push if it pass
+check-and-push: _check
+  git push --follow-tags
 
 # Run fast formatting and linting tools
 quick-tools:
@@ -115,9 +115,7 @@ test-lowest python:
 ### Release, tags, previous commits ###
 
 # Create a release commit
-release version: (_assert-legal-version version)
-  [ -z "$(git status --porcelain)" ]
-  just _check
+release version: (_assert-legal-version version) _check
   {%- if not get_package_version_from_vcs %}
   uvx hatch version {{ "{{version}}" }}
   git add "src/{{ package_name }}/__init__.py"
