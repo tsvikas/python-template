@@ -24,6 +24,7 @@ _extra_tasks = [
   # check the editing tasks
   "VIRTUAL_ENV='' uv run just format",
   "VIRTUAL_ENV='' uv run just quick-tools",
+  "VIRTUAL_ENV='' uv run just release 1.0.0",
 
   # show outdated deps
   "VIRTUAL_ENV='' uv run just deps-list-outdated",
