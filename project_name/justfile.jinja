@@ -94,7 +94,7 @@ format:
 # Run linters
 lint:
   uv run ruff check
-  uv run dmypy run
+  uv run --all-extras -- dmypy run
   uv run --all-extras --all-groups --with deptry -- deptry src/
   uv sync --exact
   uv run pre-commit run --all-files
