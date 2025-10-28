@@ -33,7 +33,9 @@ deps-list-outdated:
 # Update all dependencies
 deps-update: && deps-list-outdated
   uv sync --upgrade
-  uv run pre-commit autoupdate -j "$( (uname -s | grep -q Linux && nproc) || (uname -s | grep -q Darwin && sysctl -n hw.ncpu) || echo 1 )"
+  uv run -- \
+    pre-commit autoupdate -j \
+    "$( (uname -s | grep -q Linux && nproc) || (uname -s | grep -q Darwin && sysctl -n hw.ncpu) || echo 1 )"
   uvx sync-with-uv
   uvx sync-pre-commit-deps --yaml-mapping 2 --yaml-sequence 4 --yaml-offset 2 .pre-commit-config.yaml || { \
     echo "Note: '.pre-commit-config.yaml' changed, and might lost its formatting." \
@@ -42,8 +44,10 @@ deps-update: && deps-list-outdated
 
 # Audit dependencies
 deps-audit:
-  uv run --all-extras --all-groups --with pip-audit pip-audit --skip-editable \
-    --ignore-vuln GHSA-4xh5-x5gv-qwph
+  uv run --all-extras --all-groups --with pip-audit -- \
+    pip-audit \
+    --ignore-vuln GHSA-4xh5-x5gv-qwph \
+    --skip-editable
   # pip-audit ignored vuln:
   # GHSA-4xh5-x5gv-qwph:
   #   vuln is in pip, which is not a pinned requirwement
@@ -91,19 +95,19 @@ format:
 lint:
   uv run ruff check
   uv run dmypy run
-  uv run --all-extras --all-groups --with deptry deptry src/
+  uv run --all-extras --all-groups --with deptry -- deptry src/
   uv sync --exact
   uv run pre-commit run --all-files
 
 # Run Pylint (slow, not used in other tasks)
 pylint:
-  uv run --with pylint pylint src
+  uv run --with pylint -- pylint src
   uv sync --exact
 
 # Run tests with pytest
 test:
   uv run --all-extras --exact --no-default-groups --group test \
-    --reinstall-package {{ package_name }} pytest
+    --reinstall-package {{ package_name }} -- pytest
   uv sync --exact
 
 # Run tests with pytest, using resolution lowest-direct
@@ -163,15 +167,18 @@ _tag-skip-check version commit: (_assert-legal-version version)
 # Generate reference pages from docstrings
 build-docs-ref:
   rm -rf docs/reference
-  uv run --python 3.{{python_max}} --only-group docs scripts/gen_ref_pages.py
+  uv run --python 3.{{python_max}} --only-group docs -- \
+    scripts/gen_ref_pages.py
   uv sync --exact
 
 # Build the documentation
 build-docs: build-docs-ref
-  uv run --python 3.{{python_max}} --only-group docs mkdocs build
+  uv run --python 3.{{python_max}} --only-group docs -- \
+    mkdocs build
   uv sync --exact
 
 # Serve the documentation locally
 serve-docs: build-docs-ref
-  uv run --python 3.{{python_max}} --only-group docs mkdocs serve
+  uv run --python 3.{{python_max}} --only-group docs -- \
+    mkdocs serve
   uv sync --exact
