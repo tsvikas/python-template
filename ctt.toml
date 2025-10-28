@@ -12,7 +12,7 @@ _extra_tasks = [
   "VIRTUAL_ENV='' uv run just test",
   "VIRTUAL_ENV='' uv run just test-lowest 3.14",
   "VIRTUAL_ENV='' uv run just build-docs",
-  "VIRTUAL_ENV='' uv run just audit-deps",
+  "VIRTUAL_ENV='' uv run just deps-audit",
 
   # check repo for following good practices
   "uvx --with sp-repo-review[cli] repo-review . --ignore PY007,RTD,PC191 --show errskip",
@@ -26,7 +26,7 @@ _extra_tasks = [
   "VIRTUAL_ENV='' uv run just quick-tools",
 
   # show outdated deps
-  "VIRTUAL_ENV='' uv run just list-outdated-deps",
+  "VIRTUAL_ENV='' uv run just deps-list-outdated",
 ]
 user_name = "Marty McFly"
 user_email = "marty.mcfly@example.com"
