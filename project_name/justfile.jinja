@@ -102,19 +102,19 @@ pylint:
 
 # Run tests with pytest
 test:
-  uv run --all-extras --exact --no-default-groups --group test pytest
+  uv run --all-extras --exact --no-default-groups --group test \
+    --reinstall-package {{ package_name }} pytest
   uv sync --exact
 
-{% raw -%}
 # Run tests with pytest, using resolution lowest-direct
 test-lowest python:
   mv uv.lock uv.lock.1
   uv sync --all-extras --exact --no-default-groups --group test \
-    --upgrade --resolution lowest-direct --python {{python}}
+    --upgrade --resolution lowest-direct --python {{ "{{python}}" }} \
+    --reinstall-package {{ package_name }}
   mv uv.lock.1 uv.lock
   uv run --no-sync pytest
   uv sync --exact
-{%- endraw %}
 
 
 ### Release, tags, previous commits ###
