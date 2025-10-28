@@ -108,7 +108,7 @@ jobs:
         run: uv pip list
       - name: Run pip-audit
         run: >-
-          uv run --no-sync --with pip-audit pip-audit --skip-editable
+          uv run --no-sync --with pip-audit -- pip-audit --skip-editable
       - name: Create failure issue
         if: failure()
         uses: actions/github-script@v8
