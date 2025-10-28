@@ -66,11 +66,11 @@ jobs:
       - name: Install packages
         run: >-
           uv sync
+          --exact
           --all-extras
           --no-default-groups
           --group typing
           --group test
-          --exact
           --locked
       - name: List packages
         run: uv pip list
@@ -87,9 +87,9 @@ jobs:
       - name: Install packages
         run: >-
           uv sync
+          --exact
           --all-extras
           --all-groups
-          --exact
           --locked
       - name: List packages
         run: uv pip list
@@ -144,10 +144,10 @@ jobs:
         id: install_packages
         run: >-
           uv sync
+          --exact
           --all-extras
           --no-default-groups
           --group test
-          --exact
           ${{ matrix.resolution == 'locked' && '--locked'
               || matrix.resolution == 'lowest' && '--upgrade --resolution lowest-direct'
               || matrix.resolution == 'highest' && '--upgrade --resolution highest'
@@ -205,10 +205,10 @@ jobs:
         id: install_packages
         run: >-
           uv sync
+          --exact
           --all-extras
           --no-default-groups
           --group test
-          --exact
           ${{ matrix.resolution == 'locked' && '--locked'
               || matrix.resolution == 'lowest' && '--upgrade --resolution lowest-direct'
               || matrix.resolution == 'highest' && '--upgrade --resolution highest'
@@ -239,9 +239,9 @@ jobs:
       - name: Install packages
         run: >-
           uv sync
+          --exact
           --all-extras
           --no-default-groups
-          --exact
           --locked
       - name: List packages
         run: uv pip list
