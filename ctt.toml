@@ -52,11 +52,13 @@ jupyter_files = "forbid"
 in_pypi = true
 in_rtd = true
 in_codecov = true
+cli_framework = "cyclopts"
 _extra_tasks = [
   "git init",  # required to run uv
   "VIRTUAL_ENV='' uv run just init",
   "VIRTUAL_ENV='' uv run just build-docs",
   "uvx --with sp-repo-review[cli] repo-review . --select RTD --show errskip",
+  "VIRTUAL_ENV='' uv run just print-cli-help",
 ]
 
 [output.".ctt/cli_c_vcs"]
