@@ -5,5 +5,5 @@ requires-python = ">=3.10.9"
 
 [dependency-groups]
 dev = [
-    "copier-template-tester>=2.2.0",
+  "copier-template-tester>=2.2.0",
 ]
