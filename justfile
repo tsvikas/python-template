@@ -1,13 +1,21 @@
 default:
   @just --list
 
-check:
+check: lint test
+
+lint:
   pre-commit run --all-files
-  just test
 
 test:
   rm -rf .ctt
   uv run ctt
+
+_assert_clean_repo:
+  [ -z "$(git status --porcelain)" ]
+
+# Check the code, and push if it pass
+check-and-push: _assert_clean_repo check
+  git push --follow-tags
 
 # add a new version tag and push it
 tag version commit="HEAD": (_assert-legal-version version)
