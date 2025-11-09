@@ -133,7 +133,7 @@ testpaths = [
   "tests/",
 ]
 addopts = [
-  ## testing
+  ## collection
   "--doctest-modules",
   ## reporting
   "-ra",
@@ -151,6 +151,7 @@ addopts = [
   # this enable parallel execution, but hides filenames in output
   # "--numprocesses=auto",  # pytest-xdist
 ]
+## testing
 strict = true
 filterwarnings = [
   "error",
