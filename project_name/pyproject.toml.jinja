@@ -126,8 +126,8 @@ version.path = "src/{{ package_name }}/__init__.py"
 {%- endif %}
 
 
-[tool.pytest.ini_options]
-minversion = "7.0"
+[tool.pytest]
+minversion = "9.0"
 testpaths = [
   "src/",
   "tests/",
@@ -135,8 +135,6 @@ testpaths = [
 addopts = [
   ## testing
   "--doctest-modules",
-  "--strict-markers",
-  "--strict-config",
   ## reporting
   "-ra",
   ## addons: pytest-benchmark
@@ -153,7 +151,7 @@ addopts = [
   # this enable parallel execution, but hides filenames in output
   # "--numprocesses=auto",  # pytest-xdist
 ]
-xfail_strict = true
+strict = true
 filterwarnings = [
   "error",
   "default::DeprecationWarning",
