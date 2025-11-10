@@ -39,7 +39,7 @@ deps-update: && deps-list-outdated
   uvx sync-with-uv
   uvx sync-pre-commit-deps --yaml-mapping 2 --yaml-sequence 4 --yaml-offset 2 .pre-commit-config.yaml || { \
     echo "Note: '.pre-commit-config.yaml' changed, and might lost its formatting." \
-    && exit 1; \
+    && exit 0; \
   }
 
 # Audit dependencies
