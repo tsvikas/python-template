@@ -24,14 +24,13 @@ _extra_tasks = [
     --from git+https://github.com/scientific-python/cookie \
     --with repo-review[cli] \
     sp-repo-review . \
-    --ignore PY007,RTD,PC191,PP301 \
+    --ignore PY007,RTD,PC191 \
     --show errskip\
   """,
   # PY007 : Supports an easy task runner (nox, tox, pixi, etc.) : we use just
   "[ -f justfile ]",
   # RTD : ReadTheDocs : checked in the docs section
   # PC191 : Ruff show fixes if fixes enabled : false-positive on ruff-isort
-  # PP301 : temporary! remove when it supports the new tool.pytest config
 
   # show outdated deps
   "VIRTUAL_ENV='' uv run just deps-list-outdated",
