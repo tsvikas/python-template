@@ -20,7 +20,13 @@ _extra_tasks = [
   "VIRTUAL_ENV='' uv run just _assert_clean_repo",
 
   # check repo for following good practices
-  "uvx --with sp-repo-review[cli] repo-review . --ignore PY007,RTD,PC191,PP301 --show errskip",
+  """uvx \
+    --from git+https://github.com/scientific-python/cookie \
+    --with repo-review[cli] \
+    sp-repo-review . \
+    --ignore PY007,RTD,PC191,PP301 \
+    --show errskip\
+  """,
   # PY007 : Supports an easy task runner (nox, tox, pixi, etc.) : we use just
   "[ -f justfile ]",
   # RTD : ReadTheDocs : checked in the docs section
