@@ -132,12 +132,17 @@ repos:
       - id: doc8
 
   # Python files
-  {%- if format_tool == "black" %}
   - repo: https://github.com/psf/black-pre-commit-mirror
     rev: <placeholder_until_update_deps>
     hooks:
+      {%- if format_tool == "black" %}
       - id: black{% if contains_jupyter_files %}-jupyter{% endif %}
-  {%- endif %}
+      {%- endif %}
+      {%- if format_tool != "black" or contains_jupyter_files %}
+      # used to keep the blacken-docs in sync
+      - id: black
+        stages: [manual]
+      {%- endif %}
   - repo: https://github.com/adamchainz/blacken-docs
     rev: <placeholder_until_update_deps>
     hooks:
