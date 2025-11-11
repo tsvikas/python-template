@@ -42,7 +42,7 @@ jobs:
           version: ${{ matrix.uv-version }}
       - name: Use correct Python version in older uv version
         if: ${{ matrix.uv-version == '0.7.3' }}
-        run: sed -i 's/14/13/g' ctt.toml copier.yml
+        run: sed -i 's/14/13/g' ctt.toml copier.yml .python-version
       - name: Configure Git
         run: |
           git config --global user.email "${{ github.actor }}@users.noreply.github.com"
