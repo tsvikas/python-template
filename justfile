@@ -1,5 +1,8 @@
-default:
+list-tasks:
   @just --list
+
+prepare:
+    uv run pre-commit install
 
 check: lint test
 
