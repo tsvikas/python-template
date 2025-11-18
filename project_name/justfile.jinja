@@ -126,7 +126,7 @@ release version: (_assert-legal-version version) _check
   {%- raw %}
   sed -i "s/## Unreleased/## Unreleased\n\n## v{{version}}/" CHANGELOG.md
   git add CHANGELOG.md
-  git commit -m "Release v{{version}}"
+  git commit -m "🔖 Release v{{version}}"
   just _tag-skip-check {{version}} HEAD
   {%- endraw %}
 
