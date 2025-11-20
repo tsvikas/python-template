@@ -11,7 +11,7 @@ _extra_tasks = [
   "VIRTUAL_ENV='' uv run just _assert_clean_repo",
   "VIRTUAL_ENV='' uv run dmypy stop",
   "VIRTUAL_ENV='' uv run just test-lowest 3.14",
-  "VIRTUAL_ENV='' uv run just build-docs",
+  "VIRTUAL_ENV='' uv run just docs-build",
   "VIRTUAL_ENV='' uv run just deps-audit",
 
   # check the editing tasks
@@ -65,7 +65,7 @@ _extra_tasks = [
   "VIRTUAL_ENV='' uv run just lint test release 0.1.1",
   "VIRTUAL_ENV='' uv run just lint test release 0.2.0",
   "VIRTUAL_ENV='' uv run just lint test release 1.0.0",
-  "VIRTUAL_ENV='' uv run just build-docs",
+  "VIRTUAL_ENV='' uv run just docs-build",
   "uvx --with sp-repo-review[cli] repo-review . --select RTD --show errskip",
   "VIRTUAL_ENV='' uv run just print-cli-help",
 ]
