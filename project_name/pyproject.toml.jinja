@@ -36,14 +36,15 @@ classifiers = [
 {%- endfor %}
   "Typing :: Typed",
 ]
-# urls.homepage = "https://{{ project_name }}.readthedocs.io"
-urls.source = "https://github.com/{{ github_user }}/{{ project_name }}"
-urls.changelog = "https://github.com/{{ github_user }}/{{ project_name }}/blob/main/CHANGELOG.md"
-# urls.releasenotes = "https://github.com/{{ github_user }}/{{ project_name }}/releases"
+# urls.Homepage = "https://{{ project_name }}.readthedocs.io"
+urls.Source = "https://github.com/{{ github_user }}/{{ project_name }}"
+urls.Changelog = "https://github.com/{{ github_user }}/{{ project_name }}/blob/main/CHANGELOG.md"
+# urls.ReleaseNotes = "https://github.com/{{ github_user }}/{{ project_name }}/releases"
 {% if not in_rtd %}# {% endif -%}
-urls.documentation = "https://{{ project_name }}.readthedocs.io"
-urls.issues = "https://github.com/{{ github_user }}/{{ project_name }}/issues"
-# urls.funding = "https://github.com/sponsors/{{ github_user }}"
+urls.Documentation = "https://{{ project_name }}.readthedocs.io"
+urls.Issues = "https://github.com/{{ github_user }}/{{ project_name }}/issues"
+# urls.Funding = "https://github.com/sponsors/{{ github_user }}"
+# Discussions = "https://github.com/{{ github_user }}/{{ project_name }}/discussions"
 
 requires-python = ">=3.{{ python_min }}"
 dependencies = [
