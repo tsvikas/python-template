@@ -67,11 +67,6 @@ dependencies = [
 # {{ project_name }} = "{{ package_name }}.gui:app.run"
 
 
-[tool.uv]
-required-version = ">=0.7.3"
-default-groups = ["dev", "test", "typing"]
-
-
 [dependency-groups]
 dev = [
   ## used in the justfile
@@ -116,6 +111,11 @@ typing = [
   "mypy ~=1.18.0",
   # add "*-stubs" and "types-*" packages here (">=0")
 ]
+
+
+[tool.uv]
+required-version = ">=0.7.3"
+default-groups = ["dev", "test", "typing"]
 
 
 [tool.hatch]
