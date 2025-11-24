@@ -268,8 +268,10 @@ flake8-comprehensions.allow-dict-calls-with-keyword-arguments = true
 "!tests/test_*.py" = [
   "PT",       # flake8-pytest-style
 ]
-"tests/test_*.py" = [
+"tests/**.py" = [
   "INP001",   # flake8-no-pep420/implicit-namespace-package
+]
+"tests/test_*.py" = [
   "PLR2004",  # PyLint-Refactor/magic-value-comparison
   "S101",     # flake8-bandit/assert
   "D1",       # pydocstyle/undocumented-*
