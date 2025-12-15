@@ -1,5 +1,6 @@
 # Read the Docs configuration file for MkDocs projects
-# See https://docs.readthedocs.com/platform/stable/config-file/v2.html for details
+# See https://docs.readthedocs.com/platform/stable/config-file/v2.html
+# and https://docs.readthedocs.com/platform/stable/intro/zensical.html for details
 
 version: 2
 
@@ -19,6 +20,6 @@ build:
       - UV_PROJECT_ENVIRONMENT="${READTHEDOCS_VIRTUALENV_PATH}" uv sync --frozen --only-group docs
     build:
       html:
-        - zensical build --clean
-        - mkdir -p "$READTHEDOCS_OUTPUT/html"
-        - cp -r site/* "$READTHEDOCS_OUTPUT/html/"
+        - UV_PROJECT_ENVIRONMENT="${READTHEDOCS_VIRTUALENV_PATH}" uv run zensical build --clean
+        - mkdir -p $READTHEDOCS_OUTPUT/html/
+        - cp --recursive site/* $READTHEDOCS_OUTPUT/html/
