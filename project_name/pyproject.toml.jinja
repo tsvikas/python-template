@@ -109,6 +109,7 @@ docs = [
 ]
 typing = [
   "mypy ~=1.19.0",
+  "ty ~=0.0",
   # add "*-stubs" and "types-*" packages here (">=0")
 ]
 
@@ -169,6 +170,13 @@ run.omit = [
 {%- if get_package_version_from_vcs %}
   "src/{{ package_name }}/_version.py",
 {%- endif %}
+]
+
+
+[tool.ty]
+src.include = [
+    "src",
+    "tests",
 ]
 
 

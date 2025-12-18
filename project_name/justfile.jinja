@@ -71,6 +71,7 @@ quick-tools:
   uv run ruff format -q
   {%- endif %}
   uv run ruff check
+  uv run --exact --all-extras --no-default-groups --group typing --group test -- ty check
 
 # Format code and files
 format:
