@@ -116,7 +116,7 @@ repos:
       - id: blacken-docs
         additional_dependencies: [black==26.1.0]
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.14.13
+    rev: v0.14.14
     hooks:
       - id: ruff-check
         alias: ruff-isort
@@ -156,7 +156,7 @@ repos:
 
   # spell checks
   - repo: https://github.com/adhtruong/mirrors-typos
-    rev: v1.42.0
+    rev: v1.42.1
     hooks:
       - id: typos
   - repo: https://github.com/codespell-project/codespell
