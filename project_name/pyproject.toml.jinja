@@ -49,7 +49,7 @@ urls.Issues = "https://github.com/{{ github_user }}/{{ project_name }}/issues"
 requires-python = ">=3.{{ python_min }}"
 dependencies = [
   {%- if cli_framework == "typer" %}
-  "typer >=0.16",
+  "typer >=0.20",
   "click >=0",
   {%- elif cli_framework == "cyclopts" %}
   "cyclopts >=4",
@@ -73,12 +73,11 @@ dev = [
   "rust-just ~=1.0",
   "pre-commit ~=4.0",
   "black{% if contains_jupyter_files %}[jupyter]{% endif %} ~=26.1",
-  "ruff ~=0.14.0",
+  "ruff ~=0.15.0",
   ## can be used for debug
   "icecream >=2",
-  "snoop >=0.3",
   ## can be used for REPL
-  "ipython >=8",
+  "ipython >=9",
 ]
 test = [
   "pytest ~=9.0",
