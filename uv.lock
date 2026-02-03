@@ -1,6 +1,10 @@
 version = 1
 revision = 3
 requires-python = ">=3.10.9"
+resolution-markers = [
+    "python_full_version >= '3.10.11'",
+    "python_full_version < '3.10.11'",
+]
 
 [[package]]
 name = "annotated-types"
@@ -40,7 +44,7 @@ wheels = [
 
 [[package]]
 name = "copier"
-version = "9.11.2"
+version = "9.11.3"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "colorama" },
@@ -58,9 +62,9 @@ dependencies = [
     { name = "questionary" },
     { name = "typing-extensions", marker = "python_full_version < '3.11'" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/cb/ab/dc4349bdde6850cf81e28e72d921b542346d0c96af835493a21ef0c6d512/copier-9.11.2.tar.gz", hash = "sha256:0e27c45db99f68e0e761e4a088d09cc1de78a67be5d32fb8041d466a54cce364", size = 593108, upload-time = "2026-01-20T10:12:23.081Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/40/be/35bb44c0c7c278bd9144f5934aa10a2d532cedea4e16494c6552aa7132e1/copier-9.11.3.tar.gz", hash = "sha256:f4da98c7f3dd2243480433541b3b4d9daa788bce13b7b6d43c0c6d84bd50e889", size = 610458, upload-time = "2026-01-23T17:19:11.561Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/07/fe/75192a53862a756e85d775428bac3d4a9c35157deb84a5db09a70a23998c/copier-9.11.2-py3-none-any.whl", hash = "sha256:ae860df9e954e04e8b5d0b79711dceb3b5e0c304490fcae224adb68d56963e5a", size = 56698, upload-time = "2026-01-20T10:12:21.286Z" },
+    { url = "https://files.pythonhosted.org/packages/b8/01/74922a1c552137c05a41fee0c61153753dddc9117d19c7c5902c146c25ab/copier-9.11.3-py3-none-any.whl", hash = "sha256:ab4bc7e2944edc030b4c14ec84fffd6bf810b9b8fd56938e8ccbab1b169ea6ca", size = 56905, upload-time = "2026-01-23T17:19:09.999Z" },
 ]
 
 [[package]]
@@ -69,7 +73,8 @@ version = "2.2.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "copier" },
-    { name = "corallium" },
+    { name = "corallium", version = "2.1.1", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.10.11'" },
+    { name = "corallium", version = "2.2.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.10.11'" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/33/8c/58f76f40690d36eec360debf5b23075b1fe171b8b199a9ae1def9670484f/copier_template_tester-2.2.0.tar.gz", hash = "sha256:dda9ee02024df700195f096211a4809ba0220b8806c2603a15801115e7f9ea25", size = 9563, upload-time = "2025-02-07T02:55:08.75Z" }
 wheels = [
@@ -80,15 +85,36 @@ wheels = [
 name = "corallium"
 version = "2.1.1"
 source = { registry = "https://pypi.org/simple" }
+resolution-markers = [
+    "python_full_version < '3.10.11'",
+]
 dependencies = [
-    { name = "beartype" },
-    { name = "rich" },
-    { name = "tomli", marker = "python_full_version < '3.11'" },
-    { name = "typing-extensions" },
+    { name = "beartype", marker = "python_full_version < '3.10.11'" },
+    { name = "rich", marker = "python_full_version < '3.10.11'" },
+    { name = "tomli", marker = "python_full_version < '3.10.11'" },
+    { name = "typing-extensions", marker = "python_full_version < '3.10.11'" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/83/a6/2cae5e65d5640e404188f42b18ebadceb67033dcd769b38deb9647c076f4/corallium-2.1.1.tar.gz", hash = "sha256:aa142f137a8a77e511faba9592c710143a4c63d2cdc1e0b7b22d0f4d6835213f", size = 14581, upload-time = "2024-11-13T03:05:45.322Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/56/e3/91024524a6b1091ad561c3c25a0bcd1e7ec293bfd2506877312a235c552f/corallium-2.1.1-py3-none-any.whl", hash = "sha256:8f5deddb7b15282099e092399dc4918f23e6d6763ec78de79044e84877a3eed7", size = 16596, upload-time = "2024-11-13T03:05:44.157Z" },
+]
+
+[[package]]
+name = "corallium"
+version = "2.2.0"
+source = { registry = "https://pypi.org/simple" }
+resolution-markers = [
+    "python_full_version >= '3.10.11'",
+]
+dependencies = [
+    { name = "beartype", marker = "python_full_version >= '3.10.11'" },
+    { name = "rich", marker = "python_full_version >= '3.10.11'" },
+    { name = "tomli", marker = "python_full_version >= '3.10.11' and python_full_version < '3.11'" },
+    { name = "typing-extensions", marker = "python_full_version >= '3.10.11'" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/e7/5e/21fa48f5c79cae8779ce3bc65af2d08316190853eaf7e9aa82b2fa866583/corallium-2.2.0.tar.gz", hash = "sha256:6021ad469154782196d3cebb55868f325208c905fa8b0e52328796d979237d68", size = 26332, upload-time = "2026-01-28T04:42:02.802Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/0b/93/5af01a31a5e1252fda2a25387b3c1d51b4a4e70e0d5148226ac52883b82f/corallium-2.2.0-py3-none-any.whl", hash = "sha256:497c8568832eb1c8361b82c250184ee15b6109a065fae249c045860fd2e67883", size = 30962, upload-time = "2026-01-28T04:42:01.284Z" },
 ]
 
 [[package]]
@@ -290,11 +316,11 @@ wheels = [
 
 [[package]]
 name = "pathspec"
-version = "1.0.3"
+version = "1.0.4"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/4c/b2/bb8e495d5262bfec41ab5cb18f522f1012933347fb5d9e62452d446baca2/pathspec-1.0.3.tar.gz", hash = "sha256:bac5cf97ae2c2876e2d25ebb15078eb04d76e4b98921ee31c6f85ade8b59444d", size = 130841, upload-time = "2026-01-09T15:46:46.009Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/fa/36/e27608899f9b8d4dff0617b2d9ab17ca5608956ca44461ac14ac48b44015/pathspec-1.0.4.tar.gz", hash = "sha256:0210e2ae8a21a9137c0d470578cb0e595af87edaa6ebf12ff176f14a02e0e645", size = 131200, upload-time = "2026-01-27T03:59:46.938Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/32/2b/121e912bd60eebd623f873fd090de0e84f322972ab25a7f9044c056804ed/pathspec-1.0.3-py3-none-any.whl", hash = "sha256:e80767021c1cc524aa3fb14bedda9c34406591343cc42797b386ce7b9354fb6c", size = 55021, upload-time = "2026-01-09T15:46:44.652Z" },
+    { url = "https://files.pythonhosted.org/packages/ef/3c/2c197d226f9ea224a9ab8d197933f9da0ae0aac5b6e0f884e2b8d9c8e9f7/pathspec-1.0.4-py3-none-any.whl", hash = "sha256:fb6ae2fd4e7c921a165808a552060e722767cfa526f99ca5156ed2ce45a5c723", size = 55206, upload-time = "2026-01-27T03:59:45.137Z" },
 ]
 
 [[package]]
@@ -607,15 +633,15 @@ wheels = [
 
 [[package]]
 name = "rich"
-version = "14.2.0"
+version = "14.3.2"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "markdown-it-py" },
     { name = "pygments" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/fb/d2/8920e102050a0de7bfabeb4c4614a49248cf8d5d7a8d01885fbb24dc767a/rich-14.2.0.tar.gz", hash = "sha256:73ff50c7c0c1c77c8243079283f4edb376f0f6442433aecb8ce7e6d0b92d1fe4", size = 219990, upload-time = "2025-10-09T14:16:53.064Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/74/99/a4cab2acbb884f80e558b0771e97e21e939c5dfb460f488d19df485e8298/rich-14.3.2.tar.gz", hash = "sha256:e712f11c1a562a11843306f5ed999475f09ac31ffb64281f73ab29ffdda8b3b8", size = 230143, upload-time = "2026-02-01T16:20:47.908Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/25/7a/b0178788f8dc6cafce37a212c99565fa1fe7872c70c6c9c1e1a372d9d88f/rich-14.2.0-py3-none-any.whl", hash = "sha256:76bc51fe2e57d2b1be1f96c524b890b816e334ab4c1e45888799bfaab0021edd", size = 243393, upload-time = "2025-10-09T14:16:51.245Z" },
+    { url = "https://files.pythonhosted.org/packages/ef/45/615f5babd880b4bd7d405cc0dc348234c5ffb6ed1ea33e152ede08b2072d/rich-14.3.2-py3-none-any.whl", hash = "sha256:08e67c3e90884651da3239ea668222d19bea7b589149d8014a21c633420dbb69", size = 309963, upload-time = "2026-02-01T16:20:46.078Z" },
 ]
 
 [[package]]
@@ -710,9 +736,9 @@ wheels = [
 
 [[package]]
 name = "wcwidth"
-version = "0.3.1"
+version = "0.5.3"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/25/6f/e1ea6dcb21da43d581284d8d5a715c2affb906aa3ed301f77f7f5ae0e7d5/wcwidth-0.3.1.tar.gz", hash = "sha256:5aedb626a9c0d941b990cfebda848d538d45c9493a3384d080aff809143bd3be", size = 233057, upload-time = "2026-01-22T22:08:25.231Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/c2/62/a7c072fbfefb2980a00f99ca994279cb9ecf310cb2e6b2a4d2a28fe192b3/wcwidth-0.5.3.tar.gz", hash = "sha256:53123b7af053c74e9fe2e92ac810301f6139e64379031f7124574212fb3b4091", size = 157587, upload-time = "2026-01-31T03:52:10.92Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/d7/9c/9d951691bf1224772f6082d3b2e8c110edfd9622627908ad75bb0f691979/wcwidth-0.3.1-py3-none-any.whl", hash = "sha256:b2d355df3ec5d51bfc973a22fb4ea9a03b12fdcbf00d0abd22a2c78b12ccc177", size = 85746, upload-time = "2026-01-22T22:08:23.564Z" },
+    { url = "https://files.pythonhosted.org/packages/3c/c1/d73f12f8cdb1891334a2ccf7389eed244d3941e74d80dd220badb937f3fb/wcwidth-0.5.3-py3-none-any.whl", hash = "sha256:d584eff31cd4753e1e5ff6c12e1edfdb324c995713f75d26c29807bb84bf649e", size = 92981, upload-time = "2026-01-31T03:52:09.14Z" },
 ]
