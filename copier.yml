@@ -34,7 +34,7 @@ project_name:
     {{ _folder_name }}
   validator: >-
     {% if not (project_name | regex_search('^[A-Za-z][A-Za-z0-9\-]+$')) %}
-    Must start with a letter, followed one or more letters, digits or dashes all lowercase.
+    Must start with a letter, followed one or more letters, digits or dashes.
     {% endif %}
 
 package_name:
