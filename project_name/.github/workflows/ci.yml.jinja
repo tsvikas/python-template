@@ -160,9 +160,10 @@ jobs:
           --junitxml=junit.xml
       - name: Upload test results to Codecov
         if: ${{ !cancelled() && steps.run_tests.conclusion != 'skipped' }}
-        uses: codecov/test-results-action@v1
+        uses: codecov/codecov-action@v5
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
+          report_type: test_results
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v5
         with:
