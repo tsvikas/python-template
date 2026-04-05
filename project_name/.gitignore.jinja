@@ -1,10 +1,10 @@
-# Created by https://www.toptal.com/developers/gitignore/api/pythonvanilla
-# Edit at https://www.toptal.com/developers/gitignore?templates=pythonvanilla
+# based on https://www.toptal.com/developers/gitignore/api/pythonvanilla
+# and https://github.com/github/gitignore/blob/main/Python.gitignore
 
 ### PythonVanilla ###
 # Byte-compiled / optimized / DLL files
 __pycache__/
-*.py[cod]
+*.py[codz]
 *$py.class
 
 # C extensions
@@ -21,7 +21,6 @@ eggs/
 lib/
 lib64/
 parts/
-__pypackages__/
 sdist/
 var/
 wheels/
@@ -32,44 +31,50 @@ share/python-wheels/
 MANIFEST
 
 # Unit test / coverage reports
-.cache
-.pytest_cache/
+htmlcov/
 .coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py.cover
+.hypothesis/
+.pytest_cache/
+cover/
+.benchmarks/
 
-# End of https://www.toptal.com/developers/gitignore/api/pythonvanilla
+# Jupyter Notebook
+.ipynb_checkpoints
 
+# Environments / Secrets
+.env
+.envrc
+.venv
+
+# mkdocs documentation
+/site
+/docs/reference
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Ruff stuff:
+.ruff_cache/
 
 {% if get_package_version_from_vcs -%}
 # version file
 _version.py
 {%- endif %}
 
-# virtual envs
-venv/
-.venv/
-
-# mkdocs documentation
-/site
-/docs/reference
-
-# development tools
-.mypy_cache/
-.dmypy.json
-.ruff_cache/
-.hypothesis/
-.benchmarks/
-
-# Secrets
-.env
-
-# jupyter
-.ipynb_checkpoints/
+# jupyter notebooks
 {%- if jupyter_files == "ignore" %}
 *.ipynb
 {%- endif %}
 
 # TODO
 TODO*
-
 
 # specific to this project:
