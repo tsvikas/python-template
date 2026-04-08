@@ -16,9 +16,11 @@ init: && prepare
   git add --all
   git commit -m "🚀 Initialized project using https://github.com/tsvikas/python-template"
   just deps-update
-  uvx detect-secrets scan > .secrets.baseline
   git add --all
   [ -z "$(git status --porcelain)" ] || git commit -m "⬆️ Updated project dependencies"
+  uvx detect-secrets scan > .secrets.baseline
+  git add --all
+  [ -z "$(git status --porcelain)" ] || git commit -m "🔒 Add detect-secrets baseline"
 
 # Setup the project after cloning
 prepare:
