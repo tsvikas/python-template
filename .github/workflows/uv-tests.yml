@@ -47,11 +47,9 @@ jobs:
         if: ${{ matrix.uv-version == '0.7.3' }}
         run: sed -i 's/14/13/g' ctt.toml copier.yml .python-version
       - name: Configure Git
-        env:
-          GH_ACTOR: ${{ github.actor }}
         run: |
-          git config --global user.email "${GH_ACTOR}@users.noreply.github.com"
-          git config --global user.name "${GH_ACTOR}"
+          git config --global user.email "template-tester@example.com"
+          git config --global user.name "template-tester"
       - name: Cache pre-commit
         uses: actions/cache@668228422ae6a00e4ad889ee87cd7109ec5666a7 # v5
         with:
