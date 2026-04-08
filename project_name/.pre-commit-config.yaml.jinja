@@ -87,6 +87,13 @@ repos:
       # UTF-8 encoding
       - id: text-unicode-replacement-char
 
+  # Security
+  - repo: https://github.com/Yelp/detect-secrets
+    rev: <placeholder_until_update_deps>
+    hooks:
+      - id: detect-secrets
+        args: ['--baseline', '.secrets.baseline']
+
   # All files
   - repo: https://github.com/editorconfig-checker/editorconfig-checker.python
     rev: <placeholder_until_update_deps>
