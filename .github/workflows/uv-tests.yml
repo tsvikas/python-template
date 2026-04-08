@@ -10,6 +10,9 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
+permissions:
+  contents: read
+
 env:
   COLUMNS: 200
   # Many color libraries just need this variable to be set to any value.
@@ -21,10 +24,10 @@ jobs:
   pre-commit:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
         with:
           persist-credentials: false
-      - uses: pre-commit/action@v3.0.1
+      - uses: pre-commit/action@2c7b3805fd2a0fd8c1884dcaebf91fc102a13ecd # v3.0.1
 
   copier-template-tester:
     name: copier-template-tester (uv ${{ matrix.uv-version }})
@@ -34,10 +37,10 @@ jobs:
       matrix:
         uv-version: ["0.7.3", "latest"]
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
         with:
           persist-credentials: false
-      - uses: astral-sh/setup-uv@v7
+      - uses: astral-sh/setup-uv@94527f2e458b27549849d47d273a16bec83a01e9 # v7
         with:
           version: ${{ matrix.uv-version }}
       - name: Use correct Python version in older uv version
@@ -45,10 +48,10 @@ jobs:
         run: sed -i 's/14/13/g' ctt.toml copier.yml .python-version
       - name: Configure Git
         run: |
-          git config --global user.email "${{ github.actor }}@users.noreply.github.com"
-          git config --global user.name "${{ github.actor }}"
+          git config --global user.email "template-tester@example.com"
+          git config --global user.name "template-tester"
       - name: Cache pre-commit
-        uses: actions/cache@v5
+        uses: actions/cache@668228422ae6a00e4ad889ee87cd7109ec5666a7 # v5
         with:
           path: ~/.cache/pre-commit
           key: pre-commit-${{ runner.os }}-${{ hashFiles('.pre-commit-config.yaml', 'project_name/.pre-commit-config.yaml.jinja') }}
