@@ -19,6 +19,7 @@ init: && prepare
   git add --all
   [ -z "$(git status --porcelain)" ] || git commit -m "⬆️ Updated project dependencies"
   uvx detect-secrets scan > .secrets.baseline
+  python3 -c "import json,sys; r=json.load(open('.secrets.baseline'))['results']; sys.exit('ERROR: detect-secrets found secrets in the initial scan:\n' + json.dumps(r, indent=2)) if r else None"
   git add .secrets.baseline
   git commit -m "🔒 Add detect-secrets baseline"
 
