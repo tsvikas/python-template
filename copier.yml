@@ -136,6 +136,13 @@ format_tool:
   default: black
   choices: [black, ruff]
 
+audit_in_ci:
+  type: bool
+  help: >-
+    Run pip-audit on the full locked set in CI? If no, rely on GitHub
+    Dependabot alerts and run `just deps-audit` locally.
+  default: false
+
 in_pypi:
   type: bool
   help: Did you upload the package to PyPI?

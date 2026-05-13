@@ -99,9 +99,11 @@ jobs:
         run: uv pip list
       - name: Run deptry
         run: uv run --no-sync --with deptry -- deptry src/
+      {%- if audit_in_ci %}
       - name: Run pip-audit
         run: >-
           uv run --no-sync --with pip-audit -- pip-audit --skip-editable
+      {%- endif %}
 
 
   test:
