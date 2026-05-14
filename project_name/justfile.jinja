@@ -91,7 +91,7 @@ format:
 # Run linters
 lint:
   uv run ruff check
-  uv run --exact --all-extras --no-default-groups --group typing --group test -- dmypy run
+  uv run --exact --all-extras --no-default-groups --group typing --group test -- dmypy run -- --num-workers 4
   uv run --exact --all-extras --all-groups --with deptry -- deptry src/
   uv run --exact pre-commit run --all-files
 
