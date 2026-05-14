@@ -89,3 +89,29 @@ jobs:
               });
               await core.notice(`Created issue ${issue.data.html_url}`);
             }
+{%- if audit_in_ci %}
+
+  pip-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+        with:
+          persist-credentials: false
+      - uses: astral-sh/setup-uv@08807647e7069bb48b6ef5acd8ec9567f424441b # v8.1.0
+        with:
+          cache-suffix: pip-audit
+      - name: Export packages
+        run: >-
+          uv export
+          --all-packages
+          --all-extras
+          --all-groups
+          -o requirements.txt
+          --no-emit-local
+          --locked
+      - uses: pypa/gh-action-pip-audit@1220774d901786e6f652ae159f7b6bc8fea6d266 # v1.1.0
+        with:
+          inputs: requirements.txt
+          require-hashes: true
+{%- endif %}

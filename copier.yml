@@ -139,11 +139,11 @@ format_tool:
 audit_in_ci:
   type: bool
   help: >-
-    Run pip-audit in CI? It audits the locked dependencies, which only
-    affect this repo's developers and CI -- downstream consumers resolve
-    their own deps, so the audit is mostly relevant for developer safety.
-    If no, rely on GitHub Dependabot alerts and run `just deps-audit`
-    locally.
+    Run pip-audit in weekly CI? It audits the locked dependencies, which
+    only affect this repo's developers and CI -- downstream consumers
+    resolve their own deps, so the audit is mostly relevant for developer
+    safety. GitHub Dependabot alerts and `just deps-audit` are always
+    available.
   default: false
 
 in_pypi:
