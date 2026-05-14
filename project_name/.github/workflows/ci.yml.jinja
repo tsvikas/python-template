@@ -77,7 +77,7 @@ jobs:
       - name: List packages
         run: uv pip list
       - name: Run mypy
-        run: uv run --no-sync mypy
+        run: uv run --no-sync mypy --num-workers "$(nproc)"
 
   dependencies:
     runs-on: ubuntu-latest
