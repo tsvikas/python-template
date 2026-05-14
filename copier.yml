@@ -139,8 +139,11 @@ format_tool:
 audit_in_ci:
   type: bool
   help: >-
-    Run pip-audit on the full locked set in CI? If no, rely on GitHub
-    Dependabot alerts and run `just deps-audit` locally.
+    Run pip-audit in CI? It audits the locked dependencies, which only
+    affect this repo's developers and CI -- downstream consumers resolve
+    their own deps, so the audit is mostly relevant for developer safety.
+    If no, rely on GitHub Dependabot alerts and run `just deps-audit`
+    locally.
   default: false
 
 in_pypi:
