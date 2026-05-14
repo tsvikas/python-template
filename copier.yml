@@ -136,6 +136,16 @@ format_tool:
   default: black
   choices: [black, ruff]
 
+audit_in_ci:
+  type: bool
+  help: >-
+    Run pip-audit in weekly CI? It audits the locked dependencies, which
+    only affect this repo's developers and CI -- downstream consumers
+    resolve their own deps, so the audit is mostly relevant for developer
+    safety. GitHub Dependabot alerts and `just deps-audit` are always
+    available.
+  default: false
+
 in_pypi:
   type: bool
   help: Did you upload the package to PyPI?
