@@ -1,10 +1,10 @@
 [project]
 name = "python-template"
 version = "0.1.0"
-requires-python = ">=3.10.9"
+requires-python = ">=3.10.11"
 
 [dependency-groups]
 dev = [
-  "copier-template-tester>=2.2.0",
+  "copier-template-tester>=2.3.0",
   "pre-commit>=4.4.0",
 ]

@@ -1,5 +1,5 @@
 [defaults]
-_extra_tasks = [
+_post_tasks = [
   # NOTE: also update no_cli below
 
   # init
@@ -59,7 +59,7 @@ in_pypi = true
 in_rtd = true
 in_codecov = true
 cli_framework = "cyclopts"
-_extra_tasks = [
+_post_tasks = [
   "git init",  # required to run uv
   "VIRTUAL_ENV='' uv run just init",
   "VIRTUAL_ENV='' uv run just lint test release 0.1.1",
