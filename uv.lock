@@ -1,10 +1,6 @@
 version = 1
 revision = 3
-requires-python = ">=3.10.9"
-resolution-markers = [
-    "python_full_version >= '3.10.11'",
-    "python_full_version < '3.10.11'",
-]
+requires-python = ">=3.10.11"
 
 [[package]]
 name = "annotated-types"
@@ -69,30 +65,11 @@ wheels = [
 
 [[package]]
 name = "copier-template-tester"
-version = "2.2.0"
-source = { registry = "https://pypi.org/simple" }
-resolution-markers = [
-    "python_full_version < '3.10.11'",
-]
-dependencies = [
-    { name = "copier", marker = "python_full_version < '3.10.11'" },
-    { name = "corallium", version = "2.1.1", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.10.11'" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/33/8c/58f76f40690d36eec360debf5b23075b1fe171b8b199a9ae1def9670484f/copier_template_tester-2.2.0.tar.gz", hash = "sha256:dda9ee02024df700195f096211a4809ba0220b8806c2603a15801115e7f9ea25", size = 9563, upload-time = "2025-02-07T02:55:08.75Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/e6/04/5825313e0e30c35be17effa2237380f6d88746c845d9875dd4c541f2c53b/copier_template_tester-2.2.0-py3-none-any.whl", hash = "sha256:818e0d94da0653ce0db51d252b970959832801a79d6431e85e7b08d9dfb6f2e9", size = 10983, upload-time = "2025-02-07T02:55:06.872Z" },
-]
-
-[[package]]
-name = "copier-template-tester"
 version = "2.3.0"
 source = { registry = "https://pypi.org/simple" }
-resolution-markers = [
-    "python_full_version >= '3.10.11'",
-]
 dependencies = [
-    { name = "copier", marker = "python_full_version >= '3.10.11'" },
-    { name = "corallium", version = "2.3.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.10.11'" },
+    { name = "copier" },
+    { name = "corallium" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/1c/a9/0d28b4d7c9ff1b601348fd3d7b70db6ca83c254bfe9f49ae6160f6b2c1e2/copier_template_tester-2.3.0.tar.gz", hash = "sha256:a0c6cf6a13daffe637c95a26f20cacc2b768862408390150d936080822d61819", size = 10421, upload-time = "2026-03-15T03:32:25.621Z" }
 wheels = [
@@ -101,34 +78,13 @@ wheels = [
 
 [[package]]
 name = "corallium"
-version = "2.1.1"
-source = { registry = "https://pypi.org/simple" }
-resolution-markers = [
-    "python_full_version < '3.10.11'",
-]
-dependencies = [
-    { name = "beartype", marker = "python_full_version < '3.10.11'" },
-    { name = "rich", marker = "python_full_version < '3.10.11'" },
-    { name = "tomli", marker = "python_full_version < '3.10.11'" },
-    { name = "typing-extensions", marker = "python_full_version < '3.10.11'" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/83/a6/2cae5e65d5640e404188f42b18ebadceb67033dcd769b38deb9647c076f4/corallium-2.1.1.tar.gz", hash = "sha256:aa142f137a8a77e511faba9592c710143a4c63d2cdc1e0b7b22d0f4d6835213f", size = 14581, upload-time = "2024-11-13T03:05:45.322Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/56/e3/91024524a6b1091ad561c3c25a0bcd1e7ec293bfd2506877312a235c552f/corallium-2.1.1-py3-none-any.whl", hash = "sha256:8f5deddb7b15282099e092399dc4918f23e6d6763ec78de79044e84877a3eed7", size = 16596, upload-time = "2024-11-13T03:05:44.157Z" },
-]
-
-[[package]]
-name = "corallium"
 version = "2.3.0"
 source = { registry = "https://pypi.org/simple" }
-resolution-markers = [
-    "python_full_version >= '3.10.11'",
-]
 dependencies = [
-    { name = "beartype", marker = "python_full_version >= '3.10.11'" },
-    { name = "rich", marker = "python_full_version >= '3.10.11'" },
-    { name = "tomli", marker = "python_full_version >= '3.10.11' and python_full_version < '3.11'" },
-    { name = "typing-extensions", marker = "python_full_version >= '3.10.11'" },
+    { name = "beartype" },
+    { name = "rich" },
+    { name = "tomli", marker = "python_full_version < '3.11'" },
+    { name = "typing-extensions" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/5c/65/63d02eed2b4bf483d78266052ae28a351e6ab55b6198c35e55639ad234a0/corallium-2.3.0.tar.gz", hash = "sha256:831738b802de604a97ebd8e55d1803db5009878b05a5fb3759ef4a876dc68cc8", size = 29222, upload-time = "2026-03-25T03:19:58.932Z" }
 wheels = [
@@ -550,8 +506,7 @@ source = { virtual = "." }
 
 [package.dev-dependencies]
 dev = [
-    { name = "copier-template-tester", version = "2.2.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.10.11'" },
-    { name = "copier-template-tester", version = "2.3.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.10.11'" },
+    { name = "copier-template-tester" },
     { name = "pre-commit" },
 ]
 
@@ -559,7 +514,7 @@ dev = [
 
 [package.metadata.requires-dev]
 dev = [
-    { name = "copier-template-tester", specifier = ">=2.2.0" },
+    { name = "copier-template-tester", specifier = ">=2.3.0" },
     { name = "pre-commit", specifier = ">=4.4.0" },
 ]
 
