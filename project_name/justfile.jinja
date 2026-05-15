@@ -46,10 +46,7 @@ deps-update: && deps-list-outdated
 
 # Audit dependencies
 deps-audit:
-  uv run --exact --all-extras --all-groups --with pip-audit -- \
-    pip-audit \
-    --skip-editable
-  uv run --exact true
+  uv audit --locked
 
 
 ### code quality ###
