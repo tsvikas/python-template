@@ -8,3 +8,9 @@ dev = [
   "copier-template-tester>=2.3.0",
   "pre-commit>=4.4.0",
 ]
+
+[tool.uv]
+required-version = ">=0.9.17"
+# Minimum age guard: only consider package versions released at least 24h ago,
+# as a lightweight supply-chain defense against just-published malicious releases.
+exclude-newer = "24 hours"
