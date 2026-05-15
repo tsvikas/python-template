@@ -114,8 +114,11 @@ typing = [
 
 
 [tool.uv]
-required-version = ">=0.7.3"
+required-version = ">=0.9.17"
 default-groups = ["dev", "test", "typing"]
+# Minimum age guard: only consider package versions released at least 24h ago,
+# as a lightweight supply-chain defense against just-published malicious releases.
+exclude-newer = "24 hours"
 
 
 [tool.hatch]
