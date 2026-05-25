@@ -72,7 +72,9 @@ dev = [
   ## used in the justfile
   "rust-just ~=1.0",
   "prek ~=0.4.0",
+  {%- if format_tool == "black" %}
   "black{% if contains_jupyter_files %}[jupyter]{% endif %} ~=26.1",
+  {%- endif %}
   "ruff ~=0.15.0",
   ## can be used for debug
   "icecream >=2",
@@ -216,9 +218,18 @@ enable_error_code = [
 DEP002 = [
 ]
 
+{% if format_tool == "ruff" %}
+[tool.ruff]
+# discover Markdown files so `ruff format` can format their code blocks
+extend-include = ["*.md"]
 
+{% endif %}
 [tool.ruff.format]
 docstring-code-format = true
+{%- if format_tool == "ruff" %}
+# enable preview mode to format code blocks inside Markdown files
+preview = true
+{%- endif %}
 
 
 [tool.ruff.lint]
