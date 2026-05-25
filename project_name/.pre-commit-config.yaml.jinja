@@ -141,22 +141,17 @@ repos:
       - id: doc8
 
   # Python files
+  {%- if format_tool == "black" %}
   - repo: https://github.com/psf/black-pre-commit-mirror
     rev: <placeholder_until_update_deps>
     hooks:
-      {%- if format_tool == "black" %}
       - id: black{% if contains_jupyter_files %}-jupyter{% endif %}
-      {%- endif %}
-      {%- if format_tool != "black" or contains_jupyter_files %}
-      # used to keep the blacken-docs in sync
-      - id: black
-        stages: [manual]
-      {%- endif %}
   - repo: https://github.com/adamchainz/blacken-docs
     rev: <placeholder_until_update_deps>
     hooks:
       - id: blacken-docs
         additional_dependencies: [black==<placeholder_until_update_deps>]
+  {%- endif %}
   - repo: https://github.com/astral-sh/ruff-pre-commit
     rev: <placeholder_until_update_deps>
     hooks:
@@ -166,6 +161,7 @@ repos:
         args: [--select, I001, --fix]
       {%- if format_tool == "ruff" %}
       - id: ruff-format
+        types_or: [python, pyi, jupyter, markdown]
       {%- endif %}
       - id: ruff-check
   - repo: https://github.com/pre-commit/mirrors-mypy

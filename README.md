@@ -45,7 +45,7 @@ Sensible defaults for all included tools are provided.
   - Performance benchmarking with [pytest-benchmark](https://pytest-benchmark.readthedocs.io/)
   - Additional pytest plugins for a better testing experience
 - Code formatting with [Black](https://black.readthedocs.io/) or [Ruff formatter](https://docs.astral.sh/ruff/formatter/)
-- Documentation formatting with [blacken-docs](https://github.com/adamchainz/blacken-docs/)
+- Documentation formatting with [blacken-docs](https://github.com/adamchainz/blacken-docs/) (Black) or [Ruff formatter](https://docs.astral.sh/ruff/formatter/#markdown-code-formatting) (Ruff)
 - Comprehensive linting with [Ruff](https://docs.astral.sh/ruff/)
   - Replaces Flake8, isort, pyupgrade, yesqa, pycln, and dozens of plugins
 - Static type checking with [MyPy](https://mypy-lang.org/)

@@ -24,12 +24,13 @@ _post_tasks = [
     --from git+https://github.com/scientific-python/cookie \
     --with repo-review[cli] \
     sp-repo-review . \
-    --ignore PY007,RTD,PC191 \
+    --ignore PY007,RTD,PC111,PC191 \
     --show errskip\
   """,
   # PY007 : Supports an easy task runner (nox, tox, pixi, etc.) : we use just
   "[ -f justfile ]",
   # RTD : ReadTheDocs : checked in the docs section
+  # PC111 : Uses blacken-docs : only used in the black variant; ruff format handles md code blocks
   # PC191 : Ruff show fixes if fixes enabled : false-positive on ruff-isort
 
   # show outdated deps

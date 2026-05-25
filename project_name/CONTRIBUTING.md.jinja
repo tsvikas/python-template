@@ -58,7 +58,7 @@ Ready to get started? Follow the development setup below.
 You can run specific tools directly:
 
 ```bash
-{% if format_tool == "black" %}uv run black{% endif %}
+{% if format_tool == "black" %}uv run black{% elif format_tool == "ruff" %}uv run ruff format{% endif %}
 uv run ruff check
 uv run mypy
 uv run pytest
