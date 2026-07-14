@@ -2,12 +2,12 @@ list-tasks:
   @just --list
 
 prepare:
-    uv run pre-commit install
+    uv run prek install
 
 check: lint test
 
 lint:
-  pre-commit run --all-files
+  uv run prek run --all-files
 
 test:
   rm -rf .ctt
@@ -42,7 +42,7 @@ tag-skip-check version commit: (_assert-legal-version version)
 # Update all dependencies
 deps-update:
   uv sync --upgrade
-  uv run pre-commit autoupdate -j "$( (uname -s | grep -q Linux && nproc) || (uname -s | grep -q Darwin && sysctl -n hw.ncpu) || echo 1 )"
+  uv run prek auto-update -j "$( (uname -s | grep -q Linux && nproc) || (uname -s | grep -q Darwin && sysctl -n hw.ncpu) || echo 1 )"
   uvx sync-pre-commit-deps --yaml-mapping 2 --yaml-sequence 4 --yaml-offset 2 .pre-commit-config.yaml || { \
     echo "Note: '.pre-commit-config.yaml' changed, and might lost its formatting." \
     && exit 1; \
