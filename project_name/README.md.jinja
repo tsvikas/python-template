@@ -30,13 +30,13 @@
 ## Install
 
 {% if has_cli -%}
-Install this tool using pipx (or uv):
+Install this tool using uv (or pipx):
 {%- else -%}
 Install the package using pip (or uv, poetry, etc.):
 {%- endif %}
 
 ```bash
-pip{% if has_cli %}x{% endif %} install
+{% if has_cli %}uv tool{% else %}pip{% endif %} install
 {%- if in_pypi %} {{ project_name }}
 {%- else %} git+https://github.com/{{ github_user }}/{{ project_name }}.git
 {%- endif %}
