@@ -21,13 +21,13 @@ env:
   FORCE_COLOR: 3
 
 jobs:
-  pre-commit:
+  prek:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7
         with:
           persist-credentials: false
-      - uses: pre-commit/action@2c7b3805fd2a0fd8c1884dcaebf91fc102a13ecd # v3.0.1
+      - uses: j178/prek-action@e98a699c41eb69ab013a45817a0406469a748f8d # v2
 
   copier-template-tester:
     name: copier-template-tester (uv ${{ matrix.uv-version }})
