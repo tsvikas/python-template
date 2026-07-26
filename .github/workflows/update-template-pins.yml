@@ -58,9 +58,9 @@ jobs:
         # --min-age does two separate things. It refuses to move a pin onto a
         # release whose commit is younger than 7 days, which is the cooldown
         # equivalent of cooldown.default-days in .github/dependabot.yml. It also
-        # fails the run when a pin already in the tree is that young. The second
-        # half is wanted: the updater itself can never introduce one, so a pin
-        # that fresh got there by hand and is worth stopping for.
+        # fails the run when a pin already in the tree is that young, which is
+        # deliberate: the updater cannot introduce a pin that fresh, so one that
+        # appears got there by hand.
         #
         # Twice, because a pin whose comment is a moving tag rather than a
         # version (`# release/v1`) takes one pass to resolve the comment to the
