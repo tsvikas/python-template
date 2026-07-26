@@ -10,21 +10,14 @@ from typing import Annotated, NoReturn
 import cyclopts.types
 from cyclopts import App, CycloptsError, Parameter
 
-# sysexits(3) would put usage errors at 64, but 2 is the far wider convention:
-# argparse, click, clap, grep, diff, curl and bash builtins all use it.
-# https://stackoverflow.com/questions/1101957/are-there-any-standard-exit-status-codes-in-linux
-EX_USAGE = 2
-# The rest are sysexits(3) codes. `os.EX_*` holds the same values but only
-# exists on Unix, so they are inlined to keep the CLI importable on Windows.
-EX_NOINPUT = 66
-EX_UNAVAILABLE = 69
-EX_SOFTWARE = 70
-EX_NOPERM = 77
-
 app = App(name="{{ project_name }}")
 app.register_install_completion_command()
 
 
+# --- Commands -------------------------------------------------------------------------
+# This is the part to replace. `@app.default()` runs when no subcommand is
+# given, so switch these to `@app.command()` once there is more than one, and
+# keep the exit codes each returns listed in its docstring.
 @app.default()
 def do_something(
     target: cyclopts.types.File,
@@ -49,6 +42,22 @@ def do_something(
     """
     print(target, code)
     return 0
+
+
+# --- Entry point ----------------------------------------------------------------------
+# Maps the commands above onto exit codes, and is what `[project.scripts]` and
+# `__main__` both call.
+
+# sysexits(3) would put usage errors at 64, but 2 is the far wider convention:
+# argparse, click, clap, grep, diff, curl and bash builtins all use it.
+# https://stackoverflow.com/questions/1101957/are-there-any-standard-exit-status-codes-in-linux
+EX_USAGE = 2
+# The rest are sysexits(3) codes. `os.EX_*` holds the same values but only
+# exists on Unix, so they are inlined to keep the CLI importable on Windows.
+EX_NOINPUT = 66
+EX_UNAVAILABLE = 69
+EX_SOFTWARE = 70
+EX_NOPERM = 77
 
 
 def _fail(exc: Exception, code: int) -> NoReturn:
