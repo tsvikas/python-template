@@ -49,10 +49,18 @@ jobs:
       - name: Update template action pins
         env:
           GITHUB_TOKEN: ${{ github.token }}
-        # Given no file arguments pinact scans .github/workflows only, which
-        # would silently retarget this step at the root workflows, hence -r to
-        # fail closed if the glob ever stops matching. -z/-0 is required because
-        # one template is named "{% if in_pypi %}build-and-publish.yml{% endif %}.jinja".
+        # Given no file arguments pinact scans .github/workflows instead, so -r
+        # stops it from ever retargeting the root workflows should the glob stop
+        # matching (it no-ops rather than falling back). -z/-0 is required
+        # because one template is named
+        # "{% if in_pypi %}build-and-publish.yml{% endif %}.jinja".
+        #
+        # --min-age does two separate things. It refuses to move a pin onto a
+        # release whose commit is younger than 7 days, which is the cooldown
+        # equivalent of cooldown.default-days in .github/dependabot.yml. It also
+        # fails the run when a pin already in the tree is that young. The second
+        # half is wanted: the updater itself can never introduce one, so a pin
+        # that fresh got there by hand and is worth stopping for.
         #
         # Twice, because a pin whose comment is a moving tag rather than a
         # version (`# release/v1`) takes one pass to resolve the comment to the
@@ -61,7 +69,7 @@ jobs:
         run: |
           for _ in 1 2; do
             git ls-files -z 'project_name/.github/workflows/*' \
-              | xargs -0 -r pinact run --update
+              | xargs -0 -r pinact run --update --min-age 7
           done
 
       - name: Create pull request
