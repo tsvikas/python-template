@@ -1,0 +1,82 @@
+name: Update template action pins
+
+# Dependabot cannot see the pins in project_name/: the github-actions ecosystem
+# only parses *.yml/*.yaml, and three of the four template workflows are .jinja.
+# Renaming them is not an option either, since Jinja control blocks inside a
+# `steps:` sequence are not parseable YAML. pinact rewrites line by line, so the
+# templating is irrelevant to it.
+#
+# The root workflows are deliberately left to Dependabot. Running both updaters
+# over the same files would produce competing PRs against the same lines.
+
+on:
+  schedule:
+    # quarterly, matching the dependabot cadence in .github/dependabot.yml
+    - cron: '0 6 1 1,4,7,10 *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  PINACT_VERSION: v4.1.0
+
+jobs:
+  update-pins:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Install pinact
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release download "$PINACT_VERSION" \
+            --repo suzuki-shunsuke/pinact \
+            --pattern pinact_linux_amd64.tar.gz \
+            --pattern 'pinact_*_checksums.txt' \
+            --dir "$RUNNER_TEMP/pinact"
+          cd "$RUNNER_TEMP/pinact"
+          sha256sum --ignore-missing --check pinact_*_checksums.txt
+          tar -xzf pinact_linux_amd64.tar.gz
+          echo "$RUNNER_TEMP/pinact" >> "$GITHUB_PATH"
+
+      - name: Update template action pins
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        # Given no file arguments pinact scans .github/workflows only, which
+        # would silently retarget this step at the root workflows, hence -r to
+        # fail closed if the glob ever stops matching. -z/-0 is required because
+        # one template is named "{% if in_pypi %}build-and-publish.yml{% endif %}.jinja".
+        #
+        # Twice, because a pin whose comment is a moving tag rather than a
+        # version (`# release/v1`) takes one pass to resolve the comment to the
+        # version the SHA actually is, and only then can the next pass see that
+        # a newer release exists. The second pass is a no-op once converged.
+        run: |
+          for _ in 1 2; do
+            git ls-files -z 'project_name/.github/workflows/*' \
+              | xargs -0 -r pinact run --update
+          done
+
+      - name: Create pull request
+        uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1 # v8.1.1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "ci: update action pins in the template"
+          title: "⬆️ Update action pins in the template"
+          body: |
+            Automated update of the SHA-pinned actions under `project_name/.github/workflows/`,
+            which Dependabot cannot reach. Each pin is moved to the latest release
+            and its `# vX.Y.Z` comment is rewritten to match.
+
+            Review the diff as you would a Dependabot PR: check the release notes
+            for anything behavioural, especially on major bumps.
+          branch: ci/template-action-pins
+          delete-branch: true
+          labels: dependencies
