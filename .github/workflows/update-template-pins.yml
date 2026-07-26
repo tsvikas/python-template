@@ -1,18 +1,12 @@
 name: Update template action pins
 
-# Dependabot cannot see the pins in project_name/: the github-actions ecosystem
-# only parses *.yml/*.yaml, and three of the four template workflows are .jinja.
-# Renaming them is not an option either, since Jinja control blocks inside a
-# `steps:` sequence are not parseable YAML. pinact rewrites line by line, so the
-# templating is irrelevant to it.
-#
-# The root workflows are deliberately left to Dependabot. Running both updaters
-# over the same files would produce competing PRs against the same lines.
+# Dependabot cannot see the pins under project_name/,
+# since the github-actions ecosystem only parses *.yml/*.yaml.
+# We use pinact instead.
 
 on:
   schedule:
-    # monthly
-    - cron: '0 6 1 * *'
+    - cron: '0 6 1 * *'  # monthly
   workflow_dispatch:
 
 permissions:
@@ -49,27 +43,10 @@ jobs:
       - name: Update template action pins
         env:
           GITHUB_TOKEN: ${{ github.token }}
-        # Given no file arguments pinact scans .github/workflows instead, so -r
-        # stops it from ever retargeting the root workflows should the glob stop
-        # matching (it no-ops rather than falling back). -z/-0 is required
-        # because one template is named
-        # "{% if in_pypi %}build-and-publish.yml{% endif %}.jinja".
-        #
-        # --min-age does two separate things. It refuses to move a pin onto a
-        # release whose commit is younger than 7 days, which is the cooldown
-        # equivalent of cooldown.default-days in .github/dependabot.yml. It also
-        # fails the run when a pin already in the tree is that young, which is
-        # deliberate: the updater cannot introduce a pin that fresh, so one that
-        # appears got there by hand.
-        #
-        # Twice, because a pin whose comment is a moving tag rather than a
-        # version (`# release/v1`) takes one pass to resolve the comment to the
-        # version the SHA actually is, and only then can the next pass see that
-        # a newer release exists. The second pass is a no-op once converged.
+        # 2 passes: moving tag (`# release/v1`) -> SHA version -> newer release
         run: |
           for _ in 1 2; do
-            git ls-files -z 'project_name/.github/workflows/*' \
-              | xargs -0 -r pinact run --update --min-age 7
+            pinact run --update --min-age 7 project_name/.github/workflows/*
           done
 
       - name: Create pull request
