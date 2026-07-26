@@ -50,7 +50,6 @@ requires-python = ">=3.{{ python_min }}"
 dependencies = [
   {%- if cli_framework == "typer" %}
   "typer >=0.20",
-  "click >=0",
   {%- elif cli_framework == "cyclopts" %}
   "cyclopts >=4",
   {%- endif %}
