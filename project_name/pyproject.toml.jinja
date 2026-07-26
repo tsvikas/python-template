@@ -75,7 +75,7 @@ dev = [
   {%- if format_tool == "black" %}
   "black{% if contains_jupyter_files %}[jupyter]{% endif %} ~=26.1",
   {%- endif %}
-  "ruff ~=0.15.0",
+  "ruff ~=0.16.0",
   ## can be used for debug
   "icecream >=2",
   ## can be used for REPL
@@ -218,18 +218,9 @@ enable_error_code = [
 DEP002 = [
 ]
 
-{% if format_tool == "ruff" %}
-[tool.ruff]
-# discover Markdown files so `ruff format` can format their code blocks
-extend-include = ["*.md"]
 
-{% endif %}
 [tool.ruff.format]
 docstring-code-format = true
-{%- if format_tool == "ruff" %}
-# enable preview mode to format code blocks inside Markdown files
-preview = true
-{%- endif %}
 
 
 [tool.ruff.lint]
@@ -245,6 +236,8 @@ ignore = [
   # needed only in large codebases
   "TD002",    # flake8-todos/missing-todo-author
   "TD003",    # flake8-todos/missing-todo-link
+  # needed only with a per-file copyright policy
+  "CPY001",   # flake8-copyright/missing-copyright-notice
   # incompatible with other rules
   "COM812",   # flake8-commas/missing-trailing-comma (incompatible with black)
   # disagree:
@@ -299,6 +292,11 @@ flake8-comprehensions.allow-dict-calls-with-keyword-arguments = true
   "TC002",    # flake8-type-checking/typing-only-*-import
   "TC003",    # flake8-type-checking/typing-only-*-import
 ]
+
+
+[tool.typos.default.extend-identifiers]
+# a ruff rule code, not a misspelling of "copy"
+CPY001 = "CPY001"
 
 
 [tool.pylint]
