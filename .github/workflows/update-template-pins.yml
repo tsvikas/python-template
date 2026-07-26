@@ -11,8 +11,8 @@ name: Update template action pins
 
 on:
   schedule:
-    # quarterly, matching the dependabot cadence in .github/dependabot.yml
-    - cron: '0 6 1 1,4,7,10 *'
+    # monthly
+    - cron: '0 6 1 * *'
   workflow_dispatch:
 
 permissions:
