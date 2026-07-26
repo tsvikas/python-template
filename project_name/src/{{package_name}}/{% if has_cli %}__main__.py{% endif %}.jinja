@@ -2,7 +2,12 @@
 
 use `python -m {{ package_name }}` to run the cli
 """
+{% if cli_framework == 'cyclopts' %}
+from .cli import main
 
+main()
+{%- else %}
 from .cli import app
 
-app({% if cli_framework == 'typer' %}prog_name="{{ project_name }}"{% endif %})
+app(prog_name="{{ project_name }}")
+{%- endif %}

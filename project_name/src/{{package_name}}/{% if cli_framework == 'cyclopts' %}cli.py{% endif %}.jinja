@@ -3,10 +3,23 @@
 Currently, a placeholder until the real CLI will be added.
 """
 
-from typing import Annotated
+import sys
+import traceback
+from typing import Annotated, NoReturn
 
 import cyclopts.types
-from cyclopts import App, Parameter
+from cyclopts import App, CycloptsError, Parameter
+
+# sysexits(3) would put usage errors at 64, but 2 is the far wider convention:
+# argparse, click, clap, grep, diff, curl and bash builtins all use it.
+# https://stackoverflow.com/questions/1101957/are-there-any-standard-exit-status-codes-in-linux
+EX_USAGE = 2
+# The rest are sysexits(3) codes. `os.EX_*` holds the same values but only
+# exists on Unix, so they are inlined to keep the CLI importable on Windows.
+EX_NOINPUT = 66
+EX_UNAVAILABLE = 69
+EX_SOFTWARE = 70
+EX_NOPERM = 77
 
 app = App(name="{{ project_name }}")
 app.register_install_completion_command()
@@ -27,6 +40,42 @@ def do_something(
 
     Returns:
         The process exit code.
+
+    Exit Codes:
+        0: Success.
+        2: Invalid usage.
+        64-78: Reserved, an internal failure.
+        129-159: Reserved, terminated by signal N, as 128 + N.
     """
     print(target, code)
     return 0
+
+
+def _fail(exc: Exception, code: int) -> NoReturn:
+    """Report `exc` on stderr and exit with `code`."""
+    print(f"error: {exc}", file=sys.stderr)
+    sys.exit(code)
+
+
+def main() -> None:
+    """Run the CLI, reporting failures and mapping them onto exit codes."""
+    try:
+        # Tokens are passed explicitly because cyclopts warns when invoked with none
+        app(sys.argv[1:], exit_on_error=False)
+    except CycloptsError:
+        # Cyclopts has already printed its own error panel.
+        sys.exit(EX_USAGE)
+    # Nothing reports the errors below, so without `_fail` the CLI would exit on
+    # a bare code and no output. Match on the exception rather than on
+    # `type(exc)`, so that subclasses such as ConnectionRefusedError still land
+    # on the right code. Specific OSError subclasses must precede any bare
+    # `except OSError`, which would otherwise swallow them.
+    except FileNotFoundError as exc:
+        _fail(exc, EX_NOINPUT)
+    except PermissionError as exc:
+        _fail(exc, EX_NOPERM)
+    except ConnectionError as exc:
+        _fail(exc, EX_UNAVAILABLE)
+    except Exception:  # noqa: BLE001
+        traceback.print_exc()
+        sys.exit(EX_SOFTWARE)
