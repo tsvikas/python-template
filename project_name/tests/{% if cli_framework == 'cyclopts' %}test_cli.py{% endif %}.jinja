@@ -1,7 +1,9 @@
+import sys
+
 import pytest
 
-from {{ package_name }} import __version__
-from {{ package_name }}.cli import app
+from {{ package_name }} import __version__, cli
+from {{ package_name }}.cli import EX_SOFTWARE, EX_USAGE, app, main
 
 
 def test_version(capsys: pytest.CaptureFixture[str]) -> None:
@@ -16,3 +18,20 @@ def test_app(capsys: pytest.CaptureFixture[str]) -> None:
         app("path/to/file")
     assert exc_info.value.code == 0
     assert "path/to/file" in capsys.readouterr().out
+
+
+def test_main_usage_error(monkeypatch: pytest.MonkeyPatch) -> None:
+    monkeypatch.setattr(sys, "argv", ["{{ project_name }}", "--not-an-option"])
+    with pytest.raises(SystemExit) as exc_info:
+        main()
+    assert exc_info.value.code == EX_USAGE
+
+
+def test_main_unhandled_error(monkeypatch: pytest.MonkeyPatch) -> None:
+    def explode(**_kwargs: object) -> None:
+        raise RuntimeError
+
+    monkeypatch.setattr(cli, "app", explode)
+    with pytest.raises(SystemExit) as exc_info:
+        main()
+    assert exc_info.value.code == EX_SOFTWARE

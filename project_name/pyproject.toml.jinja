@@ -50,7 +50,6 @@ requires-python = ">=3.{{ python_min }}"
 dependencies = [
   {%- if cli_framework == "typer" %}
   "typer >=0.20",
-  "click >=0",
   {%- elif cli_framework == "cyclopts" %}
   "cyclopts >=4",
   {%- endif %}
@@ -61,7 +60,7 @@ dependencies = [
 
 [project.scripts]
 {% if not has_cli -%}# {% endif -%}
-{{ project_name }} = "{{ package_name }}.cli:app"
+{{ project_name }} = "{{ package_name }}.cli:{% if cli_framework == 'cyclopts' %}main{% else %}app{% endif %}"
 
 [project.gui-scripts]
 # {{ project_name }} = "{{ package_name }}.gui:app.run"

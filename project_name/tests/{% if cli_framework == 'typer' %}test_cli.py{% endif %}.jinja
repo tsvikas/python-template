@@ -23,5 +23,6 @@ def test_app_version() -> None:
 
 
 def test_app_exit() -> None:
+    # 2 is the usage-error convention that click, argparse and clap share
     result = runner.invoke(app, [])
-    assert result.exit_code != 0
+    assert result.exit_code == 2
