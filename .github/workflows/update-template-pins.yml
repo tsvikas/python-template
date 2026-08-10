@@ -1,0 +1,67 @@
+name: Update template action pins
+
+# Dependabot cannot see the pins under project_name/,
+# since the github-actions ecosystem only parses *.yml/*.yaml.
+# We use pinact instead.
+
+on:
+  schedule:
+    - cron: '0 6 1 * *'  # monthly
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  PINACT_VERSION: v4.1.0
+
+jobs:
+  update-pins:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Install pinact
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release download "$PINACT_VERSION" \
+            --repo suzuki-shunsuke/pinact \
+            --pattern pinact_linux_amd64.tar.gz \
+            --pattern 'pinact_*_checksums.txt' \
+            --dir "$RUNNER_TEMP/pinact"
+          cd "$RUNNER_TEMP/pinact"
+          sha256sum --ignore-missing --check pinact_*_checksums.txt
+          tar -xzf pinact_linux_amd64.tar.gz
+          echo "$RUNNER_TEMP/pinact" >> "$GITHUB_PATH"
+
+      - name: Update template action pins
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        # 2 passes: moving tag (`# release/v1`) -> SHA version -> newer release
+        run: |
+          for _ in 1 2; do
+            pinact run --update --min-age 7 project_name/.github/workflows/*
+          done
+
+      - name: Create pull request
+        uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1 # v8.1.1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "ci: update action pins in the template"
+          title: "⬆️ Update action pins in the template"
+          body: |
+            Automated update of the SHA-pinned actions under `project_name/.github/workflows/`,
+            which Dependabot cannot reach. Each pin is moved to the latest release
+            and its `# vX.Y.Z` comment is rewritten to match.
+
+            Review the diff as you would a Dependabot PR: check the release notes
+            for anything behavioural, especially on major bumps.
+          branch: ci/template-action-pins
+          delete-branch: true
+          labels: dependencies
