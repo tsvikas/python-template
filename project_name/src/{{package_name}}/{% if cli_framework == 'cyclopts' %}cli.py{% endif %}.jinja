@@ -5,6 +5,7 @@ Currently, a placeholder until the real CLI will be added.
 
 import sys
 import traceback
+from collections.abc import Sequence
 from typing import Annotated, NoReturn
 
 import cyclopts.types
@@ -66,13 +67,21 @@ def _fail(exc: Exception, code: int) -> NoReturn:
     sys.exit(code)
 
 
-def main() -> None:
-    """Run the CLI, reporting failures and mapping them onto exit codes."""
+def main(tokens: Sequence[str] | None = None) -> None:
+    """Run the CLI, reporting failures and mapping them onto exit codes.
+
+    Args:
+        tokens: The command line to parse. Defaults to `sys.argv[1:]`.
+    """
     try:
-        # Tokens are passed explicitly because cyclopts warns when invoked with none
-        app(sys.argv[1:], exit_on_error=False)
+        # `tokens` is a parameter so that tests can pass a command line here.
+        # Under pytest, a bare `app()` warns, since it would parse pytest's own
+        # argv, and a test that does so passes while testing nothing.
+        app(tokens, exit_on_error=False)
     except CycloptsError:
-        # Cyclopts has already printed its own error panel.
+        # Cyclopts has already printed its own error panel. Cyclopts >=5 exits 2
+        # on parse errors itself, so once the dependency requires it, this clause
+        # and `exit_on_error=False` above can both go.
         sys.exit(EX_USAGE)
     # Nothing reports the errors below, so without `_fail` the CLI would exit on
     # a bare code and no output. Match on the exception rather than on
