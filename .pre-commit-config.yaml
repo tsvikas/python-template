@@ -124,6 +124,7 @@ repos:
         name: ruff isort
         args: [--select, I001, --fix]
       - id: ruff-check
+        types_or: [python, pyi, jupyter, pyproject]
   - repo: https://github.com/pre-commit/mirrors-mypy
     rev: v2.3.1
     hooks:
