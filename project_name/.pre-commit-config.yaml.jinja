@@ -11,6 +11,14 @@ ci:
   autofix_commit_msg: '[pre-commit.ci] 🎨 pre-commit fixes'
   autoupdate_schedule: quarterly
 
+# prek auto-update config (pre-commit warns about this key, and ignores it)
+update:
+  repos:
+    # the fork also moves minor tags (v1.17) to off-branch commits for its Docker
+    # action; only take exact releases
+    https://github.com/kjanat/actionlint:
+      include_tags: "v*.*.*"
+
 repos:
   # Sync Python and pre-commit package versions
   # pyproject.toml -> uv.lock
@@ -214,7 +222,8 @@ repos:
       - id: check-github-actions
       - id: check-github-workflows
       - id: check-readthedocs
-  - repo: https://github.com/rhysd/actionlint
+  # Maintained fork of rhysd/actionlint (inactive since 2026-04), supports `uses: $/`
+  - repo: https://github.com/kjanat/actionlint
     rev: <placeholder_until_update_deps>
     hooks:
       - id: actionlint

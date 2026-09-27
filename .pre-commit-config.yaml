@@ -1,5 +1,13 @@
 exclude: ^.cruft.json|.copier-answers.yml$
 
+# prek auto-update config (pre-commit warns about this key, and ignores it)
+update:
+  repos:
+    # the fork also moves minor tags (v1.17) to off-branch commits for its Docker
+    # action; only take exact releases
+    https://github.com/kjanat/actionlint:
+      include_tags: "v*.*.*"
+
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v6.0.0
@@ -145,8 +153,9 @@ repos:
       - id: check-github-actions
       - id: check-github-workflows
       - id: check-readthedocs
-  - repo: https://github.com/rhysd/actionlint
-    rev: v1.7.12
+  # Maintained fork of rhysd/actionlint (inactive since 2026-04), supports `uses: $/`
+  - repo: https://github.com/kjanat/actionlint
+    rev: v1.17.0
     hooks:
       - id: actionlint
   - repo: https://github.com/zizmorcore/zizmor-pre-commit
