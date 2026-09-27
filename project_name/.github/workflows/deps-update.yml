@@ -26,6 +26,62 @@ jobs:
         run: uv sync
       - name: Update dependencies
         run: uv run just deps-update
+      - name: List the updates, for the commit message
+        id: updates
+        # Compare against HEAD, since `uv sync --upgrade` does not print what it bumped
+        shell: python
+        run: |
+          import os, re, subprocess, tomllib
+
+          def at_head(path):
+              cmd = ["git", "show", f"HEAD:{path}"]
+              return subprocess.run(cmd, capture_output=True, text=True, check=True).stdout
+
+          # Both map a name to {key: version}. A lock can hold one package at several
+          # versions, one per resolution fork, keyed by the fork's markers.
+          def packages(text):
+              versions = {}
+              for p in tomllib.loads(text).get("package", []):
+                  if "version" in p:
+                      fork = tuple(p.get("resolution-markers", []))
+                      versions.setdefault(p["name"], {})[fork] = p["version"]
+              return versions
+
+          def hook_revs(text):
+              pairs = re.findall(r"- repo: https://github.com/(\S+)\n\s+rev: (\S+)", text)
+              return {repo: {(): rev.strip("'\"")} for repo, rev in pairs}
+
+          def vkey(version):
+              return tuple(int(n) for n in re.findall(r"\d+", version))
+
+          def bumps(old, new):
+              pairs = [(old[k], new[k]) for k in new if k in old]
+              # Forks whose markers changed, e.g. one fork split in two: pair each new
+              # version with the newest old one below it, and any old version left over
+              # with the oldest new one above it.
+              lo = sorted({v for k, v in old.items() if k not in new}, key=vkey)
+              ln = sorted({v for k, v in new.items() if k not in old}, key=vkey)
+              if lo and ln:
+                  for b in ln:
+                      below = [a for a in lo if vkey(a) <= vkey(b)]
+                      pairs.append((below[-1] if below else lo[0], b))
+                  for a in lo:
+                      if a not in {p[0] for p in pairs}:
+                          above = [b for b in ln if vkey(b) >= vkey(a)]
+                          pairs.append((a, above[0] if above else ln[-1]))
+              pairs = sorted(set(pairs), key=lambda p: (vkey(p[0]), vkey(p[1])))
+              return [f"{a} → {b}" for a, b in pairs if a != b]
+
+          lines = []
+          for path, parse in [("uv.lock", packages), (".pre-commit-config.yaml", hook_revs)]:
+              old = parse(at_head(path))
+              with open(path, encoding="utf-8") as f:
+                  new = parse(f.read())
+              for name in sorted(new.keys() & old.keys()):
+                  if changes := bumps(old[name], new[name]):
+                      lines.append(f"- {name} {', '.join(changes)}")
+          with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as f:
+              f.write("updates<<EOF\n" + "\n".join(lines) + "\nEOF\n")
       - name: Run security audit
         id: audit
         run: |
@@ -43,7 +99,11 @@ jobs:
         uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1 # v8.1.1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: "⬆️ Update project dependencies"
+          # A squash merge may take its message from this commit's body.
+          commit-message: |
+            ⬆️ Update project dependencies
+
+            ${{ steps.updates.outputs.updates }}
           title: "⬆️ Update project dependencies"
           body: |
             Automated dependency update.
