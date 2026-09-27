@@ -1,7 +1,7 @@
 import pytest
 
 from {{ package_name }} import __version__, cli
-from {{ package_name }}.cli import EX_SOFTWARE, EX_USAGE, app, main
+from {{ package_name }}.cli import EX_SOFTWARE, app, main
 
 
 def test_version(capsys: pytest.CaptureFixture[str]) -> None:
@@ -21,7 +21,9 @@ def test_app(capsys: pytest.CaptureFixture[str]) -> None:
 def test_main_usage_error() -> None:
     with pytest.raises(SystemExit) as exc_info:
         main(["--not-an-option"])
-    assert exc_info.value.code == EX_USAGE
+    # Cyclopts >=5 exits 2 on invalid usage, as argparse, click and clap do.
+    # sysexits(3) would say 64, but 2 is the far wider convention.
+    assert exc_info.value.code == 2
 
 
 def test_main_unhandled_error(monkeypatch: pytest.MonkeyPatch) -> None:

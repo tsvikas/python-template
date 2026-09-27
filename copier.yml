@@ -87,7 +87,7 @@ year:
 python_min:
   type: int
   help: Minimal minor version of Python, i.e '14' for 3.14
-  default: 10
+  default: 11
   validator: >-
     {% if python_min < 8 %}Must be >= 8{% endif %}
 
@@ -109,6 +109,8 @@ cli_framework:
     No CLI: none
     Typer: typer
     Cyclopts: cyclopts
+  validator: >-
+    {% if cli_framework == 'cyclopts' and python_min < 11 %}Cyclopts requires python_min >= 11{% endif %}
 
 has_cli:
   type: bool
