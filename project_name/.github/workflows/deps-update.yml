@@ -84,16 +84,23 @@ jobs:
               f.write("updates<<EOF\n" + "\n".join(lines) + "\nEOF\n")
       - name: Run security audit
         id: audit
+        # Here and below: findings must not stop the PR, and without pipefail the
+        # pipeline exits with sed's status. sed strips the colors, which the PR body
+        # would show as raw escape codes.
         run: |
-          echo 'AUDIT<<EOF' >> "$GITHUB_OUTPUT"
-          uv run just deps-audit 2>&1 || true
-          echo 'EOF' >> "$GITHUB_OUTPUT"
+          {
+            echo 'AUDIT<<EOF'
+            uv run -q just deps-audit 2>&1 | sed 's/\x1b\[[0-9;]*m//g'
+            echo 'EOF'
+          } >> "$GITHUB_OUTPUT"
       - name: Check outdated packages
         id: outdated
         run: |
-          echo 'OUTDATED<<EOF' >> "$GITHUB_OUTPUT"
-          uv run just deps-list-outdated 2>&1 || true
-          echo 'EOF' >> "$GITHUB_OUTPUT"
+          {
+            echo 'OUTDATED<<EOF'
+            uv run -q just deps-list-outdated 2>&1 | sed 's/\x1b\[[0-9;]*m//g'
+            echo 'EOF'
+          } >> "$GITHUB_OUTPUT"
       - name: Create Pull Request
         id: cpr
         uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1 # v8.1.1
