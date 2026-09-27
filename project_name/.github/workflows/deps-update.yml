@@ -51,13 +51,25 @@ jobs:
               pairs = re.findall(r"- repo: https://github.com/(\S+)\n\s+rev: (\S+)", text)
               return {repo: {(): rev.strip("'\"")} for repo, rev in pairs}
 
+          def vkey(version):
+              return tuple(int(n) for n in re.findall(r"\d+", version))
+
           def bumps(old, new):
               pairs = [(old[k], new[k]) for k in new if k in old]
-              # forks whose markers changed: pair what is left in version order
-              pairs += zip(
-                  sorted(v for k, v in old.items() if k not in new),
-                  sorted(v for k, v in new.items() if k not in old),
-              )
+              # Forks whose markers changed, e.g. one fork split in two: pair each new
+              # version with the newest old one below it, and any old version left over
+              # with the oldest new one above it.
+              lo = sorted({v for k, v in old.items() if k not in new}, key=vkey)
+              ln = sorted({v for k, v in new.items() if k not in old}, key=vkey)
+              if lo and ln:
+                  for b in ln:
+                      below = [a for a in lo if vkey(a) <= vkey(b)]
+                      pairs.append((below[-1] if below else lo[0], b))
+                  for a in lo:
+                      if a not in {p[0] for p in pairs}:
+                          above = [b for b in ln if vkey(b) >= vkey(a)]
+                          pairs.append((a, above[0] if above else ln[-1]))
+              pairs = sorted(set(pairs), key=lambda p: (vkey(p[0]), vkey(p[1])))
               return [f"{a} → {b}" for a, b in pairs if a != b]
 
           lines = []
