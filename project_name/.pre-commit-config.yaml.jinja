@@ -214,7 +214,8 @@ repos:
       - id: check-github-actions
       - id: check-github-workflows
       - id: check-readthedocs
-  - repo: https://github.com/rhysd/actionlint
+  # Maintained fork of rhysd/actionlint (inactive since 2026-04), supports `uses: $/`
+  - repo: https://github.com/kjanat/actionlint
     rev: <placeholder_until_update_deps>
     hooks:
       - id: actionlint
