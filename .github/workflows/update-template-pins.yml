@@ -1,3 +1,5 @@
+# Needs "Allow GitHub Actions to create and approve pull requests" enabled in
+# Settings > Actions > General, or creating the pull request fails.
 name: Update template action pins
 
 # Dependabot cannot see the pins under project_name/,
@@ -21,6 +23,7 @@ jobs:
     permissions:
       contents: write
       pull-requests: write
+      actions: write  # to dispatch the tests
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -50,6 +53,7 @@ jobs:
           done
 
       - name: Create pull request
+        id: cpr
         uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1 # v8.1.1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -65,3 +69,11 @@ jobs:
           branch: ci/template-action-pins
           delete-branch: true
           labels: dependencies
+
+      - name: Run tests on the pull request
+        # Pull requests opened with GITHUB_TOKEN trigger no `pull_request` workflows,
+        # but `workflow_dispatch` is exempt, and its checks show on the PR head.
+        if: steps.cpr.outputs.pull-request-operation == 'created' || steps.cpr.outputs.pull-request-operation == 'updated'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run uv-tests.yml --repo "$GITHUB_REPOSITORY" --ref ci/template-action-pins
