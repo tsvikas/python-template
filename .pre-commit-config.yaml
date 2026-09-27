@@ -1,5 +1,13 @@
 exclude: ^.cruft.json|.copier-answers.yml$
 
+# prek auto-update config (pre-commit warns about this key, and ignores it)
+update:
+  repos:
+    # the fork also moves minor tags (v1.17) to off-branch commits for its Docker
+    # action; only take exact releases
+    https://github.com/kjanat/actionlint:
+      include_tags: "v*.*.*"
+
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v6.0.0
