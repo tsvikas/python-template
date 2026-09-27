@@ -1,6 +1,6 @@
 exclude: ^.cruft.json|.copier-answers.yml$
 
-# prek auto-update config (pre-commit warns about this key, and ignores it)
+# prek update config (pre-commit warns about this key, and ignores it)
 update:
   repos:
     # the fork also moves minor tags (v1.17) to off-branch commits for its Docker
