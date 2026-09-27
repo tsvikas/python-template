@@ -37,24 +37,37 @@ jobs:
               cmd = ["git", "show", f"HEAD:{path}"]
               return subprocess.run(cmd, capture_output=True, text=True, check=True).stdout
 
+          # Both map a name to {key: version}. A lock can hold one package at several
+          # versions, one per resolution fork, keyed by the fork's markers.
           def packages(text):
-              lock = tomllib.loads(text).get("package", [])
-              return {p["name"]: p["version"] for p in lock if "version" in p}
+              versions = {}
+              for p in tomllib.loads(text).get("package", []):
+                  if "version" in p:
+                      fork = tuple(p.get("resolution-markers", []))
+                      versions.setdefault(p["name"], {})[fork] = p["version"]
+              return versions
 
           def hook_revs(text):
               pairs = re.findall(r"- repo: https://github.com/(\S+)\n\s+rev: (\S+)", text)
-              return {repo: rev.strip("'\"") for repo, rev in pairs}
+              return {repo: {(): rev.strip("'\"")} for repo, rev in pairs}
+
+          def bumps(old, new):
+              pairs = [(old[k], new[k]) for k in new if k in old]
+              # forks whose markers changed: pair what is left in version order
+              pairs += zip(
+                  sorted(v for k, v in old.items() if k not in new),
+                  sorted(v for k, v in new.items() if k not in old),
+              )
+              return [f"{a} → {b}" for a, b in pairs if a != b]
 
           lines = []
           for path, parse in [("uv.lock", packages), (".pre-commit-config.yaml", hook_revs)]:
               old = parse(at_head(path))
               with open(path, encoding="utf-8") as f:
                   new = parse(f.read())
-              lines += [
-                  f"- {name} {old[name]} → {version}"
-                  for name, version in sorted(new.items())
-                  if old.get(name, version) != version
-              ]
+              for name in sorted(new.keys() & old.keys()):
+                  if changes := bumps(old[name], new[name]):
+                      lines.append(f"- {name} {', '.join(changes)}")
           with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as f:
               f.write("updates<<EOF\n" + "\n".join(lines) + "\nEOF\n")
       - name: Run security audit
