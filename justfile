@@ -11,7 +11,10 @@ lint:
 
 test:
   rm -rf .ctt
-  uv run ctt
+  # ctt renders from a copy under $TMPDIR, and the generated `just init` runs
+  # detect-secrets before ctt normalizes `_src_path`. macOS's per-user $TMPDIR
+  # (/var/folders/xx/<random>/T) reads as a high-entropy secret, so use /tmp.
+  TMPDIR=/tmp uv run ctt
 
 _assert_clean_repo:
   [ -z "$(git status --porcelain)" ]
