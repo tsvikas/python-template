@@ -53,16 +53,27 @@ jobs:
           done
 
       - name: Write the pull request body, with release notes
+        id: body
         env:
           GH_TOKEN: ${{ github.token }}
-        run: python3 .github/scripts/pins_pr_body.py > "$RUNNER_TEMP/pr-body.md"
+        run: |
+          python3 .github/scripts/pins_pr_body.py "$RUNNER_TEMP/bumps.txt" > "$RUNNER_TEMP/pr-body.md"
+          {
+            echo 'bumps<<EOF'
+            cat "$RUNNER_TEMP/bumps.txt"
+            echo 'EOF'
+          } >> "$GITHUB_OUTPUT"
 
       - name: Create pull request
         id: cpr
         uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1 # v8.1.1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: "ci: update action pins in the template"
+          # The squash merge takes its message from this commit's body.
+          commit-message: |
+            ci: update action pins in the template
+
+            ${{ steps.body.outputs.bumps }}
           title: "⬆️ Update action pins in the template"
           body-path: ${{ runner.temp }}/pr-body.md
           branch: ci/template-action-pins

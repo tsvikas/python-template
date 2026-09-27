@@ -1,7 +1,8 @@
 """Write the body of the template action pins PR, with the release notes of each bump.
 
 Reads the pin changes from `git diff` of the template's workflows, and fetches the
-notes of every release in each bumped range with `gh`. Prints the body to stdout.
+notes of every release in each bumped range with `gh`. Prints the body to stdout, and
+writes the list of bumps, for the commit message, to the path given as an argument.
 """
 
 import json
@@ -126,8 +127,12 @@ def release_notes(repo: str, old: str, new: str) -> str:
 
 
 def main() -> None:
+    changes = pin_changes()
+    bumps = "".join(f"- {repo} {old} → {new}\n" for repo, (old, new) in changes.items())
+    with open(sys.argv[1], "w", encoding="utf-8") as f:
+        f.write(bumps)
     body = INTRO + "\n## Release notes\n\n"
-    for repo, (old, new) in pin_changes().items():
+    for repo, (old, new) in changes.items():
         try:
             section = release_notes(repo, old, new)
         except subprocess.CalledProcessError as exc:
