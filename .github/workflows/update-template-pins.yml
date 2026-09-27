@@ -52,6 +52,11 @@ jobs:
             pinact run --update --min-age 7 project_name/.github/workflows/*
           done
 
+      - name: Write the pull request body, with release notes
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 .github/scripts/pins_pr_body.py > "$RUNNER_TEMP/pr-body.md"
+
       - name: Create pull request
         id: cpr
         uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1 # v8.1.1
@@ -59,20 +64,14 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: "ci: update action pins in the template"
           title: "⬆️ Update action pins in the template"
-          body: |
-            Automated update of the SHA-pinned actions under `project_name/.github/workflows/`,
-            which Dependabot cannot reach. Each pin is moved to the latest release
-            and its `# vX.Y.Z` comment is rewritten to match.
-
-            Review the diff as you would a Dependabot PR: check the release notes
-            for anything behavioural, especially on major bumps.
+          body-path: ${{ runner.temp }}/pr-body.md
           branch: ci/template-action-pins
           delete-branch: true
           labels: dependencies
 
       - name: Run tests on the pull request
-        # Pull requests opened with GITHUB_TOKEN trigger no `pull_request` workflows,
-        # but `workflow_dispatch` is exempt, and its checks show on the PR head.
+        # A pull request opened with GITHUB_TOKEN gets `pull_request` runs held for
+        # approval, but `workflow_dispatch` runs right away, on the PR head.
         if: steps.cpr.outputs.pull-request-operation == 'created' || steps.cpr.outputs.pull-request-operation == 'updated'
         env:
           GH_TOKEN: ${{ github.token }}
