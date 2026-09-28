@@ -51,9 +51,9 @@ deps-update:
     && exit 1; \
   }
 
-# Field-test a template branch on GitHub: render it into a throwaway repo (force-pushed,
-# so never point this at a real one), with stale dependencies, and run its deps-update
-field-test ref=`git branch --show-current` repo=("tsvikas/" + file_name(justfile_directory()) + "-sandbox"):
+# Field-test the deps-update workflow of a template branch on GitHub: render it into a
+# throwaway repo (force-pushed, so never point this at a real one) with stale dependencies
+field-test-deps-update ref=`git branch --show-current` repo=("tsvikas/" + file_name(justfile_directory()) + "-sandbox"):
   #!/usr/bin/env bash
   set -euo pipefail
   dir=$(mktemp -d /tmp/field-test.XXXXXX)  # /tmp, for the reason in `test`

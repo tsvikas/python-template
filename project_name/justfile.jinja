@@ -46,8 +46,8 @@ deps-update: && deps-list-outdated
 
 # Audit dependencies, as CI does
 deps-audit:
-  uv sync -q --all-extras --all-groups --locked
-  uv run --no-sync --with pip-audit -- pip-audit --skip-editable
+  @uv sync -q --all-extras --all-groups --locked
+  @uv run -q --no-sync --with pip-audit -- pip-audit --skip-editable
 
 
 ### code quality ###

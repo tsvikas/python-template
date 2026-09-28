@@ -72,16 +72,25 @@ jobs:
               pairs = sorted(set(pairs), key=lambda p: (vkey(p[0]), vkey(p[1])))
               return [f"{a} → {b}" for a, b in pairs if a != b]
 
-          lines = []
-          for path, parse in [("uv.lock", packages), (".pre-commit-config.yaml", hook_revs)]:
+          sections = []
+          for title, path, parse in [
+              ("Packages", "uv.lock", packages),
+              ("Pre-commit hooks", ".pre-commit-config.yaml", hook_revs),
+          ]:
               old = parse(at_head(path))
               with open(path, encoding="utf-8") as f:
                   new = parse(f.read())
-              for name in sorted(new.keys() & old.keys()):
-                  if changes := bumps(old[name], new[name]):
-                      lines.append(f"- {name} {', '.join(changes)}")
+              lines = [
+                  f"- {name} {', '.join(changes)}"
+                  for name in sorted(new.keys() & old.keys())
+                  if (changes := bumps(old[name], new[name]))
+              ]
+              if lines:
+                  sections.append((title, lines))
+          commit = "\n\n".join(f"{t}:\n" + "\n".join(ls) for t, ls in sections)
+          body = "\n\n".join(f"### {t}\n" + "\n".join(ls) for t, ls in sections)
           with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as f:
-              f.write("updates<<EOF\n" + "\n".join(lines) + "\nEOF\n")
+              f.write(f"commit<<EOF\n{commit}\nEOF\nbody<<EOF\n{body}\nEOF\n")
       - name: Run security audit
         id: audit
         # Here and below: findings must not stop the PR.
@@ -108,13 +117,13 @@ jobs:
           commit-message: |
             ⬆️ Update project dependencies
 
-            ${{ steps.updates.outputs.updates }}
+            ${{ steps.updates.outputs.commit }}
           title: "⬆️ Update project dependencies"
           body: |
             Automated dependency update.
 
             ## Updates
-            ${{ steps.updates.outputs.updates }}
+            ${{ steps.updates.outputs.body }}
 
             ## Security Audit
             ```
