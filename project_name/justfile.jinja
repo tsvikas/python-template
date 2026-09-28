@@ -32,7 +32,7 @@ prepare:
 
 # List outdated python dependencies
 deps-list-outdated:
-  uv tree --outdated --depth 1 -q | { grep latest || exit 0; }
+  @uv tree --outdated --depth 1 -q | { grep latest || exit 0; }
 
 # Update all dependencies
 deps-update: && deps-list-outdated
