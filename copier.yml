@@ -141,8 +141,9 @@ format_tool:
 audit_in_ci:
   type: bool
   help: >-
-    Run pip-audit on locked deps in weekly CI? (Dependabot and
-    `just deps-audit` are always available.)
+    Also run pip-audit on locked deps in weekly CI? (CI always audits
+    branches that change uv.lock, and `just deps-audit` runs the same
+    check locally.)
   default: false
 
 in_pypi:

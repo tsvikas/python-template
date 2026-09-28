@@ -26,7 +26,7 @@ jobs:
         run: uv sync
       - name: Update dependencies
         run: uv run just deps-update
-      - name: List the updates, for the commit message
+      - name: List the updates
         id: updates
         # Compare against HEAD, since `uv sync --upgrade` does not print what it bumped
         shell: python
@@ -84,13 +84,11 @@ jobs:
               f.write("updates<<EOF\n" + "\n".join(lines) + "\nEOF\n")
       - name: Run security audit
         id: audit
-        # Here and below: findings must not stop the PR, and without pipefail the
-        # pipeline exits with sed's status. sed strips the colors, which the PR body
-        # would show as raw escape codes.
+        # Here and below: findings must not stop the PR.
         run: |
           {
             echo 'AUDIT<<EOF'
-            uv run -q just deps-audit 2>&1 | sed 's/\x1b\[[0-9;]*m//g'
+            uv run -q just deps-audit 2>&1 || true
             echo 'EOF'
           } >> "$GITHUB_OUTPUT"
       - name: Check outdated packages
@@ -98,7 +96,7 @@ jobs:
         run: |
           {
             echo 'OUTDATED<<EOF'
-            uv run -q just deps-list-outdated 2>&1 | sed 's/\x1b\[[0-9;]*m//g'
+            uv run -q just deps-list-outdated 2>&1 || true
             echo 'EOF'
           } >> "$GITHUB_OUTPUT"
       - name: Create Pull Request
@@ -114,6 +112,9 @@ jobs:
           title: "⬆️ Update project dependencies"
           body: |
             Automated dependency update.
+
+            ## Updates
+            ${{ steps.updates.outputs.updates }}
 
             ## Security Audit
             ```

@@ -32,7 +32,7 @@ prepare:
 
 # List outdated python dependencies
 deps-list-outdated:
-  uv tree --outdated --depth 1 --color always -q  | { grep latest --color=never || exit 0; }
+  uv tree --outdated --depth 1 -q | { grep latest || exit 0; }
 
 # Update all dependencies
 deps-update: && deps-list-outdated
@@ -44,9 +44,10 @@ deps-update: && deps-list-outdated
     && exit 1; \
   }
 
-# Audit dependencies
+# Audit dependencies, as CI does
 deps-audit:
-  uv audit --locked
+  uv sync -q --all-extras --all-groups --locked
+  uv run --no-sync --with pip-audit -- pip-audit --skip-editable
 
 
 ### code quality ###
