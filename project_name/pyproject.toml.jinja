@@ -108,7 +108,7 @@ docs = [
   "mkdocs-section-index ~=0.3.0",
 ]
 typing = [
-  "mypy ~=2.3.0",
+  "mypy ~=2.4.0",
   "ty ~=0.0",
   # add "*-stubs" and "types-*" packages here (">=0")
 ]
@@ -186,15 +186,15 @@ src.include = [
 [tool.mypy]
 files = ["src", "tests"]
 mypy_path = "stubs"
-fixed_format_cache = true
 # set the platform
 python_version = "3.{{ python_min }}"
-# enable checks [last updated: mypy 2.3]
+# enable checks [last updated: mypy 2.4]
 strict = true
 strict_equality_for_none = true
 disallow_any_unimported = true
 warn_unreachable = true
 disallow_any_explicit = true
+warn_unused_configs = true
 enable_error_code = [
   # from https://mypy.readthedocs.io/en/stable/error_code_list2.html
   "redundant-self",
