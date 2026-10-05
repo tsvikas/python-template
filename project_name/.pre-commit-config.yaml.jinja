@@ -207,6 +207,9 @@ repos:
     rev: <placeholder_until_update_deps>
     hooks:
       - id: validate-pyproject
+        # TODO: drop `args` once SchemaStore's mypy schema accepts
+        #   `num_workers = "auto"` (new in mypy 2.4)
+        args: [--disable-plugins, mypy, --]
 
   # YAML files
   - repo: https://github.com/adrienverge/yamllint
