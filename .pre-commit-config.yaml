@@ -71,7 +71,7 @@ repos:
       - id: sync-pre-commit-deps
         args: [--yaml-mapping, '2', --yaml-sequence, '4', --yaml-offset, '2']
   - repo: https://github.com/astral-sh/uv-pre-commit
-    rev: 0.12.19
+    rev: 0.12.23
     hooks:
       - id: uv-lock
 
@@ -116,7 +116,7 @@ repos:
 
   # python formatting and linting
   - repo: https://github.com/psf/black-pre-commit-mirror
-    rev: 26.5.1
+    rev: 26.10.0
     hooks:
       - id: black
   - repo: https://github.com/adamchainz/blacken-docs
@@ -125,7 +125,7 @@ repos:
       - id: blacken-docs
         additional_dependencies: [black==26.5.1]
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.16.9
+    rev: v0.16.10
     hooks:
       - id: ruff-check
         alias: ruff-isort
@@ -134,7 +134,7 @@ repos:
       - id: ruff-check
         types_or: [python, pyi, jupyter, pyproject]
   - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v2.3.1
+    rev: v2.4.0
     hooks:
       - id: mypy
         name: mypy (without imports)
