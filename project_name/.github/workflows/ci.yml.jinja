@@ -191,9 +191,11 @@ jobs:
           - resolution: prerelease
             os: ubuntu-latest
             python-version: '3.{{ python_max }}'
+          {%- if python_next_in_beta %}
           - resolution: prerelease
             os: ubuntu-latest
             python-version: '3.{{ python_max + 1 }}'
+          {%- endif %}
       fail-fast: false
     {%- raw %}
     runs-on: ${{ matrix.os }}

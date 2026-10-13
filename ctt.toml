@@ -10,7 +10,7 @@ _post_tasks = [
   "VIRTUAL_ENV='' uv run just lint test release 1.0.0",
   "VIRTUAL_ENV='' uv run just _assert_clean_repo",
   "VIRTUAL_ENV='' uv run dmypy stop",
-  "VIRTUAL_ENV='' uv run just test-lowest 3.14",
+  "VIRTUAL_ENV='' uv run just test-lowest 3.15",
   "VIRTUAL_ENV='' uv run just build-docs",
   "VIRTUAL_ENV='' uv run just deps-audit",
 
@@ -102,7 +102,7 @@ in_rtd = true
 in_codecov = true
 jupyter_files = "ignore"
 
-[output.".ctt/python3.14"]
-python_min = 14
+[output.".ctt/python3.15"]
+python_min = 15
 jupyter_files = "allow"
 format_tool = "ruff"
