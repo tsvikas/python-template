@@ -96,6 +96,13 @@ python_max:
   default: 15
   when: false
 
+# Set to true once 3.{python_max + 1} reaches beta (feature freeze),
+# to add it to the prerelease CI job. Alphas are too unstable to be useful.
+python_next_in_beta:
+  type: bool
+  default: false
+  when: false
+
 get_package_version_from_vcs:
   type: bool
   help: Use the version control system for versioning?
