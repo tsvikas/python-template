@@ -14,7 +14,7 @@ dev = [
 CPY001 = "CPY001"
 
 [tool.uv]
-required-version = ">=0.13.0"
+required-version = ">=0.10.12"
 # Minimum age guard: only consider package versions released at least 24h ago,
 # as a lightweight supply-chain defense against just-published malicious releases.
 exclude-newer = "24 hours"
