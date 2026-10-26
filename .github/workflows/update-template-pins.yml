@@ -80,6 +80,21 @@ jobs:
           delete-branch: true
           labels: dependencies
 
+      - name: Link the pull request
+        if: steps.cpr.outputs.pull-request-operation == 'created' || steps.cpr.outputs.pull-request-operation == 'updated'
+        env:
+          OPERATION: ${{ steps.cpr.outputs.pull-request-operation }}
+          URL: ${{ steps.cpr.outputs.pull-request-url }}
+        run: echo "::notice title=Pull request ${OPERATION}::$URL"
+
+      - name: Explain a failure to create the pull request
+        if: failure() && steps.cpr.outcome == 'failure'
+        run: |
+          url="$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/settings/actions"
+          msg="If the error is 'GitHub Actions is not permitted to create or approve pull requests': open $url, check 'Allow GitHub Actions to create and approve pull requests' under 'Workflow permissions', save, and re-run this workflow."
+          echo "::error title=Could not create the pull request::$msg"
+          echo "$msg" >> "$GITHUB_STEP_SUMMARY"
+
       - name: Run tests on the pull request
         # A pull request opened with GITHUB_TOKEN gets `pull_request` runs held for
         # approval, but `workflow_dispatch` runs right away, on the PR head.
