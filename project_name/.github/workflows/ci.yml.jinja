@@ -235,40 +235,6 @@ jobs:
         run: uv run --no-sync -- pytest --cov-branch --cov-report=xml --junitxml=junit.xml
     {%- endraw %}
 
-  pylint:
-    runs-on: ubuntu-latest
-    continue-on-error: true
-    steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-        with:
-          persist-credentials: false
-      - uses: astral-sh/setup-uv@07a047e608db84b3d8c06cd9a7c7dcc9c355c18e # v10.3.2
-        with:
-          cache-suffix: pylint
-      - name: Install packages
-        run: >-
-          uv sync
-          --exact
-          --all-extras
-          --no-default-groups
-          --locked
-      - name: List packages
-        run: uv pip list
-      # use pylint exitcode to fail only on errors.
-      - name: Run Pylint
-        run: |
-          set +e
-          uv run --no-sync --with pylint -- pylint src --output-format=github
-          result=$?
-          set -e
-          [ $((result & 1)) -ne 0 ] && echo "::error ::Pylint fatal(s) found"
-          [ $((result & 2)) -ne 0 ] && echo "::error ::Pylint error(s) found"
-          [ $((result & 4)) -ne 0 ] && echo "::warning ::Pylint warning(s) found"
-          [ $((result & 8)) -ne 0 ] && echo "::warning ::Pylint refactor(s) found"
-          [ $((result & 16)) -ne 0 ] && echo "::warning ::Pylint convention(s) found"
-          [ $((result & 32)) -ne 0 ] && echo "::error ::Pylint usage error"
-          exit $((result & 35))
-
   pass:
     if: {{ "${{ always() }}" }}
     needs:
@@ -279,7 +245,6 @@ jobs:
       - dependencies
       - test
       - test-pypy-and-prerelease
-      - pylint
     runs-on: ubuntu-latest
     steps:
       - uses: re-actors/alls-green@b5b5b37504aa4183270bd3d855c52a67f212be35 # v1.3.0

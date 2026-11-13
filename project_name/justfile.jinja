@@ -92,11 +92,6 @@ lint:
   uv run --exact --all-extras --all-groups --with deptry -- deptry src/
   uv run --exact prek run --all-files
 
-# Run Pylint (slow, not used in other tasks)
-pylint:
-  uv run --exact --with pylint -- pylint src
-  uv run --exact true
-
 # Run tests with pytest
 test:
   uv run --exact --all-extras --no-default-groups --group test \
